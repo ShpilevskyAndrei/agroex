@@ -1,0 +1,2 @@
+# FRONTEND-AGROEX
+AGROEX - B2B platform
