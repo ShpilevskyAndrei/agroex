@@ -1,1 +1,96 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+@import "app/styles/variables/variables";
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  min-width: 320px;
+  color: $main-text-color;
+  background: $main-background-color;
+}
+
+h1, h2, h3, h4, h5, h6, p, ul, button, input, textarea html, legend, li, ol, td, th, figure {
+  margin: 0;
+  padding: 0;
+}
+
+li, ol, ul {
+  list-style-type: none;
+}
+
+a, a:active, a:focus {
+  text-decoration: none;
+  color: inherit;
+  outline: 0
+}
+
+button, input, textarea {
+  font: inherit;
+  border: none;
+  outline: 0;
+  background: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+button, html input[type=button], input[type=reset], input[type=submit] {
+  -webkit-appearance: button;
+  cursor: pointer
+}
+
+select {
+  font-family: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+  background: none;
+  color: inherit;
+}
+
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.container {
+  padding: 0 20px;
+  width: 1540px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1539px) {
+  .container {
+    width: 1300px;
+  }
+}
+
+@media (max-width: 1299px) {
+  .container {
+    width: 960px;
+  }
+}
+
+@media (max-width: 959px) {
+  .container {
+    width: 780px;
+  }
+}
+
+@media (max-width: 779px) {
+  .container {
+    width: 100%;
+    padding: 0 16px;
+  }
+}
+
