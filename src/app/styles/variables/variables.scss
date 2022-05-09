@@ -1,14 +1,19 @@
-$main-background-color: #f9f9f9;
-$main-text-color: #000000;
-
 $color-success: #28a745;
 $color-info: #17a2b8;
 $color-warning: #ffc107;
-$color-danger: #dc3545;
+$color-error: #dc3545;
 $color-white: #ffffff;
+$color-black: #000000;
 
-$font-size-small: small;
-$font-size-medium: medium;
-$font-size-large: large;
-$font-size-xl: x-large;
-$font-size-xxl: xx-large;
+$main-background-color: #f9f9f9;
+$main-text-color: $color-black;
+
+$font-size-small: 13px;
+$font-size-medium: 16px;
+$font-size-large: 18px;
+$font-size-xl: 24px;
+$font-size-xxl: 32px;
+
+$offset-small: 5px;
+$offset-medium: 10px;
+$offset-large: 20px;
