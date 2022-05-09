@@ -2,17 +2,15 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { CategoriesComponent } from './categories/categories.component';
-import { CategoryComponent } from './categories/category/category.component';
+import {CategoriesModule} from "./categories/categories.module";
 
 @NgModule({
   declarations: [
-    AppComponent,
-    CategoriesComponent,
-    CategoryComponent
+    AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    CategoriesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
