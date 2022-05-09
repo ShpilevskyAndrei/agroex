@@ -163,7 +163,8 @@ export class CategoriesComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getCategoryList(id:number | string) {
-    console.log(this.categoriesItems.filter(item => item.categoryId === id));
+  getCategoryList(category:Category) {
+    this.activeCategory = category.id;
+    console.log(this.categoriesItems.filter(item => item.categoryId === category.id));
   }
 }

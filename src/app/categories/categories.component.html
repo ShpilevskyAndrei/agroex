@@ -1,13 +1,12 @@
-<div class="catigories">
+<div class="categories">
   <div
-    class="catigories__item"
+    class="categories__item"
     *ngFor="let category of categories; let index = index">
       <app-category
+        class="categories__content"
+        [ngClass]="{active: category.id === activeCategory}"
         [category] = category
-        (click)="activeCategory = index; getCategoryList(index)"
-        [ngClass]="{active: index === activeCategory}"
-        class="catigories__content"
-        [attr.data-id]="category.id"
+        (click)="getCategoryList(category)"
       ></app-category>
   </div>
 </div>

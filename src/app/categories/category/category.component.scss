@@ -1,17 +1,19 @@
+@import "src/app/styles/variables/variables";
+
 .categories {
 
   &__icon {
     width: 30px;
     height: 30px;
-    margin: 0 0 8px 0;
+    margin-bottom: $offset-small;
     object-fit: contain;
   }
 
   &__title {
-    font-size: 14px;
+    font-size: $font-size-small;
     line-height: 17px;
     font-weight: 500;
-    color: #fff;
+    color: $color-white;
     text-align: center;
   }
 }
