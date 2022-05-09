@@ -1,0 +1,24 @@
+.catigories {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 128px;
+    height: 104px;
+    padding: 8px;
+    border-radius: 6px;
+    background-color: #0cb80c;
+    &:not(.active):hover {
+      cursor: pointer;
+      background-color: green;
+    }
+    &.active {
+      background-color: green;
+    }
+  }
+
+}

@@ -1,0 +1,17 @@
+.categories {
+
+  &__icon {
+    width: 30px;
+    height: 30px;
+    margin: 0 0 8px 0;
+    object-fit: contain;
+  }
+
+  &__title {
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: 500;
+    color: #fff;
+    text-align: center;
+  }
+}
