@@ -1,0 +1,53 @@
+@import '../../styles/variables/variables.scss';
+
+header {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    background-color: $color-success;
+    margin: 0px 0px;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    -ms-align-items: center;
+    align-items: center;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+}
+
+header li a,
+header a {
+    text-decoration: none;
+    color: $main-text-color;
+    font-size: $font-size-medium;
+}
+
+header ul {
+    list-style-type: none;
+}
+
+header ul li {
+    display: inline-block;
+    margin: 0 20px;
+}
+
+.logo_img {
+    width: 30px;
+    height: 30px;
+    margin: 0 0 0 20px;
+}
+
+.account_in_header {
+    right: 0px;
+    width: 40px;
+    height: 40px;
+    margin: 0 20px;
+    vertical-align: middle;
+}
+
+.div_account {
+    right: 10px;
+    float: right;
+    position: absolute;
+}

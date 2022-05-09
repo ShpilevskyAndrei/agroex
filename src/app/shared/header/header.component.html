@@ -1,0 +1,28 @@
+<header>
+    <div class="logo_in_header">
+        <a href="#"><img class="logo_img" src="../../../assets/logo.png" alt=""></a>
+    </div>
+    <a href="#"><strong>AGROEX</strong> </a>
+    <ul>
+        <li><a href="">Marketplace</a></li>
+        <li><a href="">Ads</a></li>
+        <li><a href="">About us</a></li>
+        <li *ngIf="isSeller"><a href="">For sellers</a></li>
+        <li *ngIf="isBuyer"><a href="">For buyers</a></li>
+        <li *ngIf="isAdmin"><a href="">Moderation room</a></li>
+    </ul>
+    <div class="div_account">
+        <a *ngIf="isGuest" href="../login-page/login-page.component.html">LOG IN
+            <img class="account_in_header" src="../../../assets/guest.png" alt="">
+        </a>
+        <a *ngIf="isSeller" href="">SELLER name
+            <img class="account_in_header" src="../../../assets/user.png" alt="">
+        </a>
+        <a *ngIf="isBuyer" href="">BUYER name
+            <img class="account_in_header" src="../../../assets/user.png" alt="">
+        </a>
+        <a *ngIf="isAdmin" href="">ADMIN
+            <img class="account_in_header" src="../../../assets/admin.png" alt="">
+        </a>
+    </div>
+</header>
