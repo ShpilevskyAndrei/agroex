@@ -5,11 +5,12 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
+
 export class HeaderComponent implements OnInit {
-  @Input() isGuest: boolean = true;
-  @Input() isAdmin: boolean = false;
-  @Input() isSeller: boolean = false;
-  @Input() isBuyer: boolean = false;
+  @Input() public isGuest = true;
+  @Input() public isAdmin = false;
+  @Input() public isSeller = false;
+  @Input() public isBuyer = false;
   constructor() { }
 
   ngOnInit(): void {
