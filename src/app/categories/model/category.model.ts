@@ -1,9 +1,9 @@
 export class Category {
-  id: number;
-  title: string;
-  icon?: string;
+  public id: number;
+  public title: string;
+  public icon?: string;
 
-  constructor(values: Object = {}) {
+  public constructor(values: Object = {}) {
     Object.assign(this, values);
   }
 }
