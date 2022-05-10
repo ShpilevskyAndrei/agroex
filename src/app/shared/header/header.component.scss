@@ -1,17 +1,13 @@
 @import '../../styles/variables/variables.scss';
 
 :host {
-
     .main-header {
-        max-width: 100%;
-        width: auto;
-        height: auto;
-        background-color: $color-success;
+        width: 100%;
+        height: $header-height;
+        background-color: $header-color;
         margin: 0;
         display: flex;
-        -ms-align-items: center;
         align-items: center;
-        position: sticky;
         top: 0;
     }
 
@@ -44,10 +40,10 @@
         vertical-align: middle;
     }
 
-    .div-account {
+    .account-container-header {
         right: 10px;
         float: right;
-        position: absolute;
+
     }
 
 }
