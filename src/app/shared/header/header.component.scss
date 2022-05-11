@@ -1,49 +1,55 @@
-@import '../../styles/variables/variables.scss';
+@import "../../styles/variables/variables.scss";
 
 :host {
-    .main-header {
-        width: 100%;
-        height: $header-height;
-        background-color: $header-color;
-        margin: 0;
-        display: flex;
-        align-items: center;
-        top: 0;
-    }
+  .main-header {
+    width: 100%;
+    height: $header-height;
+    background-color: $header-color;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    top: 0;
+    justify-content: space-between;
+  }
 
-    .logo-name {
-        margin: 0px 50px 0px 0px;
-    }
+  .points-container-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
 
-    .logo-img {
-        width: 30px;
-        height: 30px;
-        margin: 0 0 0 50px;
-    }
+  .logo-name {
+    margin: 0 50px 0 0;
+    font-weight: bold;
+  }
 
-    .menu-items {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+  .logo-img {
+    width: 30px;
+    height: 30px;
+    margin: 0 0 0 50px;
+  }
 
-    .menu-items p {
-        margin: 0 20px;
-        font-size: $font-size-medium;
-    }
+  .menu-items {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-    .account-in-header {
-        right: 0px;
-        width: 40px;
-        height: 40px;
-        margin: 0 20px;
-        vertical-align: middle;
-    }
+  .menu-items p {
+    margin: 0 20px;
+    font-size: $font-size-medium;
+  }
 
-    .account-container-header {
-        right: 10px;
-        float: right;
+  .account-in-header {
+    right: 0;
+    width: 40px;
+    height: 40px;
+    margin: 0 20px;
+    vertical-align: middle;
+  }
 
-    }
-
+  .account-container-header {
+    display: flex;
+    align-items: center;
+  }
 }

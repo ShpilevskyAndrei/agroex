@@ -1,28 +1,24 @@
 <header class="main-header">
+  <div class="points-container-header">
     <div class="logo-in-header">
-        <p><img class="logo-img" src="../../../assets/logo.png" alt=""></p>
+      <img class="logo-img" src="../../../assets/logo.png" alt="" />
     </div>
-    <p class="logo-name"><strong>AGROEX</strong></p>
+    <p class="logo-name">AGROEX</p>
     <div class="menu-items">
-        <p>Marketplace</p>
-        <p>Ads</p>
-        <p>About us</p>
-        <p *ngIf="isSeller">For sellers</p>
-        <p *ngIf="isBuyer">For buyers</p>
-        <p *ngIf="isAdmin">Moderation room</p>
+      <p>Marketplace</p>
+      <p>Ads</p>
+      <p>About us</p>
+      <p>{{ userRoleConfiguration[userRole]["newNavPoint"] }}</p>
     </div>
-    <div class="account-container-header">
-        <p *ngIf="isGuest">LOG IN
-            <img class="account-in-header" src="../../../assets/guest.png" alt="">
-        </p>
-        <p *ngIf="isSeller">SELLER name
-            <img class="account-in-header" src="../../../assets/user.png" alt="">
-        </p>
-        <p *ngIf="isBuyer">BUYER name
-            <img class="account-in-header" src="../../../assets/user.png" alt="">
-        </p>
-        <p *ngIf="isAdmin">ADMIN
-            <img class="account-in-header" src="../../../assets/admin.png" alt="">
-        </p>
-    </div>
+  </div>
+  <div class="account-container-header">
+    <p>
+      {{ userRoleConfiguration[userRole]["point"] }}
+    </p>
+    <img
+      alt=""
+      class="account-in-header"
+      [src]="userRoleConfiguration[userRole]['src']"
+    />
+  </div>
 </header>
