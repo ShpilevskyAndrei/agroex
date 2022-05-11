@@ -18,5 +18,3 @@ import { HeaderModule } from './shared/header/header.module';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-
