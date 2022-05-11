@@ -8,7 +8,9 @@
       <p>Marketplace</p>
       <p>Ads</p>
       <p>About us</p>
-      <p>{{ userRoleConfig[userRole].newNavPoint }}</p>
+      <p *ngIf="userRoleConfig[userRole]?.newNavPoint">
+        {{ userRoleConfig[userRole].newNavPoint }}
+      </p>
     </div>
   </div>
   <div class="account-container-header">
