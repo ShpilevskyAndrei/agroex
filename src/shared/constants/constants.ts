@@ -1,1 +1,1 @@
-export const title = 'agroex-fe';
+export const TITLE = 'agroex-fe';
