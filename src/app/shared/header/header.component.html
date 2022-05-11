@@ -8,17 +8,17 @@
       <p>Marketplace</p>
       <p>Ads</p>
       <p>About us</p>
-      <p>{{ userRoleConfiguration[userRole]["newNavPoint"] }}</p>
+      <p>{{ userRoleConfig[userRole].newNavPoint }}</p>
     </div>
   </div>
   <div class="account-container-header">
     <p>
-      {{ userRoleConfiguration[userRole]["point"] }}
+      {{ userRoleConfig[userRole].point }}
     </p>
     <img
       alt=""
       class="account-in-header"
-      [src]="userRoleConfiguration[userRole]['src']"
+      [src]="userRoleConfig[userRole].src"
     />
   </div>
 </header>

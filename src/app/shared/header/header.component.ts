@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
-import { UserRole } from './user-role/user-role';
-import { UserRoleConfiguration } from './user-role/user-role-configuration';
+import { UserRole } from './enums/user-role';
+import { USER_ROLE_CONFIG } from './constants/user-role-config';
 
 @Component({
   selector: 'app-header',
@@ -9,6 +9,7 @@ import { UserRoleConfiguration } from './user-role/user-role-configuration';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  @Input() public userRole: UserRole = UserRole.Admin;
-  public userRoleConfiguration = UserRoleConfiguration;
+  @Input() public userRole: UserRole = UserRole.Guest;
+
+  public userRoleConfig = USER_ROLE_CONFIG;
 }

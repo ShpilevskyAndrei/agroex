@@ -1,6 +1,7 @@
-import { UserRole, UserRolePossibleKeys } from './user-role';
+import { UserRole } from '../enums/user-role';
+import { RoleOptions } from '../interfaces/role-options';
 
-export const UserRoleConfiguration: Record<UserRole, UserRolePossibleKeys> = {
+export const USER_ROLE_CONFIG: Record<UserRole, RoleOptions> = {
   [UserRole.Guest]: {
     point: 'LOG IN',
     src: '../../../assets/guest.png',
