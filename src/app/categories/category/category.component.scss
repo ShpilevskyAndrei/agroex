@@ -1,0 +1,21 @@
+@import "src/app/styles/variables/variables";
+
+:host {
+  .categories {
+
+    &__icon {
+      width: 30px;
+      height: 30px;
+      margin-bottom: $offset-small;
+      object-fit: contain;
+    }
+
+    &__title {
+      font-size: $font-size-small;
+      line-height: 17px;
+      font-weight: 500;
+      color: $color-white;
+      text-align: center;
+    }
+  }
+}
