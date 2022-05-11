@@ -5,7 +5,7 @@
       <app-category
         class="categories__content"
         [ngClass]="{active: category.id === activeCategory}"
-        [category] = category
+        [category] = "category"
         (click)="getCategoryList(category)"
       ></app-category>
   </div>
