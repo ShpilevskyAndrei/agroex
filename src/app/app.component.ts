@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TITLE } from '../shared/constants/constants';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  public title = 'agroex-fe';
+  public title = TITLE;
 }
