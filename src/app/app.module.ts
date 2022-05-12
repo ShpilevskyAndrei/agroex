@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { CategoriesModule } from './categories/categories.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderModule } from './shared/header/header.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -13,6 +14,7 @@ import { HeaderModule } from './shared/header/header.module';
     BrowserModule,
     BrowserAnimationsModule,
     CategoriesModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
