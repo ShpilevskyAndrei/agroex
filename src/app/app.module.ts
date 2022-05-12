@@ -28,7 +28,6 @@ import { AppEffects } from './state/effect/app.effects';
     }),
     EffectsModule.forRoot([AppEffects]),
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
