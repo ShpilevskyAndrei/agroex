@@ -1,0 +1,26 @@
+<header class="main-header">
+  <div class="points-container-header">
+    <div class="logo-in-header">
+      <img class="logo-img" src="../../../assets/logo.png" alt="" />
+    </div>
+    <p class="logo-name">AGROEX</p>
+    <div class="menu-items">
+      <p>Marketplace</p>
+      <p>Ads</p>
+      <p>About us</p>
+      <p *ngIf="userRoleConfig[userRole]?.newNavPoint">
+        {{ userRoleConfig[userRole].newNavPoint }}
+      </p>
+    </div>
+  </div>
+  <div class="account-container-header">
+    <p>
+      {{ userRoleConfig[userRole].point }}
+    </p>
+    <img
+      alt=""
+      class="account-in-header"
+      [src]="userRoleConfig[userRole].src"
+    />
+  </div>
+</header>
