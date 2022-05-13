@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+
 import { Category } from './model/category.model';
-import { CategoryItemModel } from './model/categoryItem.model';
 import { CategoriesService } from './categories.service';
+import { CategoryItemModel } from './model/categoryItem.model';
 
 @Component({
   selector: 'app-categories',
