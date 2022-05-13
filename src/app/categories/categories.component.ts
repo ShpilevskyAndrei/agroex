@@ -118,7 +118,7 @@ export class CategoriesComponent {
     },
   ];
 
-  public constructor(private categoriesService: CategoriesService) {}
+  constructor(private categoriesService: CategoriesService) {}
 
   public getCategoryList(category: Category): void {
     this.activeCategory = category.id;
