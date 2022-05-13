@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { CategoriesModule } from './categories/categories.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderModule } from './shared/header/header.module';
-import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './state/reducer';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
-import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './state/effect/app.effects';
 
 @NgModule({
@@ -19,6 +20,7 @@ import { AppEffects } from './state/effect/app.effects';
     BrowserModule,
     BrowserAnimationsModule,
     CategoriesModule,
+    HttpClientModule,
     StoreModule.forRoot(reducers, {
       metaReducers,
     }),
