@@ -12,4 +12,12 @@ export class HeaderComponent {
   @Input() public userRole: UserRole = UserRole.Guest;
 
   public userRoleConfig = USER_ROLE_CONFIG;
+  public userRoles = UserRole;
+
+  public onLogin(): void {
+    this.userRole = UserRole.User;
+  }
+  public onLogout(): void {
+    this.userRole = UserRole.Guest;
+  }
 }

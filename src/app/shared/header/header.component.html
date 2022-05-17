@@ -1,26 +1,52 @@
 <header class="main-header">
   <div class="points-container-header">
-    <div class="logo-in-header">
-      <img class="logo-img" src="../../../assets/logo.png" alt="" />
-    </div>
+    <img class="logo-img" src="../../../assets/logo.png" alt="" />
     <p class="logo-name">AGROEX</p>
-    <div class="menu-items">
-      <p>Marketplace</p>
-      <p>Ads</p>
-      <p>About us</p>
-      <p *ngIf="userRoleConfig[userRole]?.newNavPoint">
-        {{ userRoleConfig[userRole].newNavPoint }}
-      </p>
-    </div>
+    <div class="menu-items"></div>
   </div>
-  <div class="account-container-header">
-    <p>
+  <div class="account-container-header menu-items">
+    <p
+      *ngIf="userRole === userRoles.Guest; else loggedUser"
+      (click)="onLogin()"
+    >
       {{ userRoleConfig[userRole].point }}
     </p>
     <img
+      *ngIf="userRole === userRoles.Guest"
+      (click)="onLogin()"
+      class="img-in-header login-img"
+      [src]="userRoleConfig[userRole].srcLogin"
       alt=""
-      class="account-in-header"
-      [src]="userRoleConfig[userRole].src"
     />
+
+    <ng-template #loggedUser>
+      <p>Add advertisement</p>
+      <img
+        *ngIf="userRole === userRoles.User"
+        (click)="select.open()"
+        class="img-in-header account-img"
+        [src]="userRoleConfig[userRole].src"
+        alt=""
+      />
+      <img
+        *ngIf="userRole === userRoles.User"
+        (click)="select.open()"
+        class="img-in-header vector"
+        src="./assets/vector.png"
+        alt=""
+      />
+      <mat-form-field class="my-account-select" appearance="fill">
+        <mat-label>My account</mat-label>
+        <mat-select panelClass="mat-select-unset-height" class #select>
+          <mat-option> My Advertisements </mat-option>
+          <mat-option> My Account </mat-option>
+          <mat-option> Edit personal details </mat-option>
+          <mat-option> My orders </mat-option>
+          <mat-option> Settings </mat-option>
+          <mat-option> Change password </mat-option>
+          <mat-option (click)="onLogout()"> Log out</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </ng-template>
   </div>
 </header>

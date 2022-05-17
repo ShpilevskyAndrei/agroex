@@ -1,5 +1,5 @@
 export interface RoleOptions {
-  point: string;
-  src: string;
-  newNavPoint?: string;
+  point?: string;
+  srcLogin?: string;
+  src?: string;
 }
