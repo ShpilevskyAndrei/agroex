@@ -1,4 +1,4 @@
-@import "../../styles/variables/variables.scss";
+@import "../../styles/general-styles";
 
 :host {
   .main-header {
@@ -8,7 +8,6 @@
     margin: 0 0 $offset-large 0;
     display: flex;
     align-items: center;
-    top: 0;
     justify-content: space-between;
   }
 
@@ -19,14 +18,14 @@
   }
 
   .logo-name {
-    margin: 0 calc(2.5*#{$offset-large}) 0 0;
+    margin: 0 calc(2.5 * #{$offset-large}) 0 0;
     font-weight: bold;
   }
 
   .logo-img {
-    width: 30px;
-    height: 30px;
-    margin: 0 0 0 calc(2.5*#{$offset-large});
+    width: 2.5rem;
+    height: 2.5rem;
+    margin: 0 0 0 calc(2.5 * #{$offset-large});
   }
 
   .menu-items {
@@ -42,8 +41,8 @@
 
   .account-in-header {
     right: 0;
-    width: 40px;
-    height: 40px;
+    width: 3.3rem;
+    height: 3.3rem;
     margin: 0 $offset-large;
     vertical-align: middle;
   }

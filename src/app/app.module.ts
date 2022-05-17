@@ -12,6 +12,9 @@ import { HeaderModule } from './shared/header/header.module';
 import { reducers, metaReducers } from './state/reducer';
 import { environment } from '../environments/environment';
 import { AppEffects } from './state/effect/app.effects';
+import { MatButtonModule } from "@angular/material/button";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,6 +32,9 @@ import { AppEffects } from './state/effect/app.effects';
       logOnly: environment.production,
     }),
     EffectsModule.forRoot([AppEffects]),
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   bootstrap: [AppComponent],
 })
