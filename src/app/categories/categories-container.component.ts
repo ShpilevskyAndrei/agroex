@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { LoadingStatus } from '../shared/header/interfaces/loading-status';
-import { REQUESTED_ACTION } from '../state/categories/categories-store/categories.actions';
+import { LoadingStatus } from '../shared/categories/interfaces/loading-status';
+import { CategoriesActions } from '../state/categories/categories-store/categories.actions';
+
 import {
   selectCategoriesData,
   selectCategoriesLoadingStatus,
@@ -29,6 +30,6 @@ export class CategoriesContainerComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.store.dispatch(REQUESTED_ACTION());
+    this.store.dispatch(CategoriesActions.REQUESTED_ACTION());
   }
 }

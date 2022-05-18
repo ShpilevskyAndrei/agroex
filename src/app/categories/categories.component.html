@@ -1,5 +1,5 @@
 <div class="categories">
-  <ng-container *ngIf="categoriesLoadingStatus?.loaded; else loading">
+  <ng-container *ngIf="categoriesLoadingStatus?.loaded; else notLoaded">
     <div
       class="categories__item"
       *ngFor="let category of categories; let index = index"
@@ -12,7 +12,10 @@
       ></app-category>
     </div>
   </ng-container>
-  <ng-template #loading>
-    <p>LOADING...</p>
+  <ng-template #notLoaded>
+    <p *ngIf="categoriesLoadingStatus?.loading; else categoriesError">LOADING...</p>
+    <ng-template #categoriesError>
+      <p>{{ categoriesLoadingStatus?.error?.statusText }}</p>
+    </ng-template>
   </ng-template>
 </div>
