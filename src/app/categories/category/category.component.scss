@@ -1,18 +1,17 @@
-@import "src/app/styles/variables/variables";
+@import "../../styles/general-styles";
 
 :host {
   .categories {
 
     &__icon {
-      width: 30px;
-      height: 30px;
+      width: 2.5rem;
+      height: 2.5rem;
       margin-bottom: $offset-small;
       object-fit: contain;
     }
 
     &__title {
       font-size: $font-size-small;
-      line-height: 17px;
       font-weight: 500;
       color: $color-white;
       text-align: center;
