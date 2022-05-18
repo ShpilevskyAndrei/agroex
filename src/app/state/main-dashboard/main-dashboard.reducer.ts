@@ -21,14 +21,14 @@ export const MAIN_DASHBOARD_REDUCER = createReducer(
   initialState,
   on(
     MainDashboardActions.getCategoriesRequest,
-    (state: MainDashboardState): MainDashboardState => ({
+    (state): MainDashboardState => ({
       ...state,
       mainDashboardLoadingStatus: DEFAULT_LOADING_STATUS,
     })
   ),
   on(
     MainDashboardActions.getCategoriesSuccess,
-    (state: MainDashboardState, { categories }): MainDashboardState => ({
+    (state, { categories }): MainDashboardState => ({
       ...state,
       categories,
       mainDashboardLoadingStatus: { loading: false, loaded: true, error: null },
@@ -36,7 +36,7 @@ export const MAIN_DASHBOARD_REDUCER = createReducer(
   ),
   on(
     MainDashboardActions.getCategoriesError,
-    (state: MainDashboardState, { error }): MainDashboardState => ({
+    (state, { error }): MainDashboardState => ({
       ...state,
       mainDashboardLoadingStatus: { loading: false, loaded: false, error },
     })
