@@ -34,8 +34,8 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('./pages/main-dashboard/main-page.module').then(
-        (m) => m.MainPageModule
+      import('./pages/main-dashboard/main-dashboard.module').then(
+        (m) => m.MainDashboardModule
       ),
     pathMatch: 'full',
   },
