@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { LoadingStatus } from '../shared/categories/interfaces/loading-status';
-import { CategoriesActions } from '../state/categories/categories-store/categories.actions';
+import { LoadingStatus } from '../shared/main-dashboard/interfaces/loading-status';
+import { CategoriesActions } from '../state/main-dashboard/main-dashboard.actions';
 
 import {
   selectCategoriesData,
   selectCategoriesLoadingStatus,
-} from '../state/categories/categories-store/categories.selectors';
+} from '../state/main-dashboard/main-dashboard.selectors';
 import { Category } from './model/category.model';
 
 @Component({
@@ -30,6 +30,6 @@ export class CategoriesContainerComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.store.dispatch(CategoriesActions.REQUESTED_ACTION());
+    this.store.dispatch(CategoriesActions.RequestAction());
   }
 }

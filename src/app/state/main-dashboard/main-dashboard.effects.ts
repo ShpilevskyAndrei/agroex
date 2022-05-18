@@ -2,21 +2,19 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, of, switchMap } from 'rxjs';
 
-import { CategoriesService } from '../../../categories/categories.service';
-import { CategoriesActions } from './categories.actions';
+import { CategoriesService } from '../../categories/categories.service';
+import { CategoriesActions } from './main-dashboard.actions';
 
 @Injectable()
-export class CategoriesEffects {
+export class MainDashboardEffects {
   public categories$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(CategoriesActions.REQUESTED_ACTION),
+      ofType(CategoriesActions.RequestAction),
       switchMap(() => this.categoriesService.getCategories()),
       map((categories) =>
-        CategoriesActions.SUCCESS_ACTION({ categories: categories })
+        CategoriesActions.SuccessAction({ categories: categories })
       ),
-      catchError((error) =>
-        of(CategoriesActions.ERROR_ACTION({ error: error }))
-      )
+      catchError((error) => of(CategoriesActions.ErrorAction({ error: error })))
     );
   });
 
