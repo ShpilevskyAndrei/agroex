@@ -1,19 +1,19 @@
 import { ActionReducerMap, MetaReducer } from '@ngrx/store';
 
-import { MainDashBoardEffects } from './main-dashboard/main-dashboard.effects';
+import { MainDashboardEffects } from './main-dashboard/main-dashboard.effects';
 import {
-  CATEGORIES_REDUCER,
-  MainDashBoardState,
+  MAIN_DASHBOARD_REDUCER,
+  MainDashboardState,
 } from './main-dashboard/main-dashboard.reducer';
 
 export interface State {
-  mainDashBoard: MainDashBoardState;
+  mainDashboard: MainDashboardState;
 }
 
 export const ROOT_REDUCER: ActionReducerMap<State> = {
-  mainDashBoard: CATEGORIES_REDUCER,
+  mainDashboard: MAIN_DASHBOARD_REDUCER,
 };
 
-export const ROOT_EFFECT = [MainDashBoardEffects];
+export const ROOT_EFFECT = [MainDashboardEffects];
 
 export const META_REDUCER: MetaReducer<State>[] = [];

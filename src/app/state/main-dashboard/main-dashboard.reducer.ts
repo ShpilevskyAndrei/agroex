@@ -7,38 +7,38 @@ import { MainDashboardActions } from './main-dashboard.actions';
 
 export const MAIN_DASHBOARD = 'mainDashBoard';
 
-export interface MainDashBoardState {
-  mainDashBoardLoadingStatus: LoadingStatus;
+export interface MainDashboardState {
+  mainDashboardLoadingStatus: LoadingStatus;
   categories: Category[];
 }
 
-const initialState: MainDashBoardState = {
-  mainDashBoardLoadingStatus: DEFAULT_LOADING_STATUS,
+const initialState: MainDashboardState = {
+  mainDashboardLoadingStatus: DEFAULT_LOADING_STATUS,
   categories: [],
 };
 
-export const CATEGORIES_REDUCER = createReducer(
+export const MAIN_DASHBOARD_REDUCER = createReducer(
   initialState,
   on(
     MainDashboardActions.getCategoriesRequest,
-    (state: MainDashBoardState): MainDashBoardState => ({
+    (state: MainDashboardState): MainDashboardState => ({
       ...state,
-      mainDashBoardLoadingStatus: DEFAULT_LOADING_STATUS,
+      mainDashboardLoadingStatus: DEFAULT_LOADING_STATUS,
     })
   ),
   on(
     MainDashboardActions.getCategoriesSuccess,
-    (state: MainDashBoardState, { categories }): MainDashBoardState => ({
+    (state: MainDashboardState, { categories }): MainDashboardState => ({
       ...state,
       categories,
-      mainDashBoardLoadingStatus: { loading: false, loaded: true, error: null },
+      mainDashboardLoadingStatus: { loading: false, loaded: true, error: null },
     })
   ),
   on(
     MainDashboardActions.getCategoriesError,
-    (state: MainDashBoardState, { error }): MainDashBoardState => ({
+    (state: MainDashboardState, { error }): MainDashboardState => ({
       ...state,
-      mainDashBoardLoadingStatus: { loading: false, loaded: false, error },
+      mainDashboardLoadingStatus: { loading: false, loaded: false, error },
     })
   )
 );

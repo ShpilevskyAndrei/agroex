@@ -7,7 +7,7 @@ import { Category } from '../../categories/model/category.model';
 import { MainDashboardActions } from './main-dashboard.actions';
 
 @Injectable()
-export class MainDashBoardEffects {
+export class MainDashboardEffects {
   public categories$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MainDashboardActions.getCategoriesRequest),
