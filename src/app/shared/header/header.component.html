@@ -1,6 +1,6 @@
 <header class="main-header">
   <div class="points-container-header">
-    <img class="logo-img" src="../../../assets/logo.png" alt="" />
+    <img class="logo-img" src="../../../assets/logo.svg" alt="" />
     <p class="logo-name">AGROEX</p>
     <div class="menu-items"></div>
   </div>
@@ -15,7 +15,7 @@
       *ngIf="userRole === userRoles.Guest"
       class="img-in-header login-img"
       alt=""
-      src="./assets/guest.png"
+      src="./assets/guest.svg"
       (click)="onLogin()"
     />
 
@@ -28,22 +28,24 @@
         [src]="userRoleConfig[userRole].src"
         (click)="userNavigationPanel.open()"
       />
-      <img
+
+      <mat-icon
         *ngIf="userRole === userRoles.User"
-        class="img-in-header vector"
-        alt=""
-        src="./assets/vector.png"
+        class="img-in-header my-account-vector"
         (click)="userNavigationPanel.open()"
-      />
+        >expand_more</mat-icon
+      >
+
       <mat-form-field class="my-account-select" appearance="fill">
         <mat-label>My account</mat-label>
-        <mat-select panelClass="mat-select-unset-height" class #userNavigationPanel>
-          <mat-option> My Advertisements </mat-option>
-          <mat-option> My Account </mat-option>
-          <mat-option> Edit personal details </mat-option>
-          <mat-option> My orders </mat-option>
-          <mat-option> Settings </mat-option>
-          <mat-option> Change password </mat-option>
+        <mat-select
+          panelClass="mat-select-unset-height"
+          class
+          #userNavigationPanel
+        >
+          <mat-option *ngFor="let option of userPanelOption">
+            {{ option.title }}
+          </mat-option>
           <mat-option (click)="onLogout()"> Log out</mat-option>
         </mat-select>
       </mat-form-field>

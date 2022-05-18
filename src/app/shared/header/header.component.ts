@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
 
-import { UserRole } from './enums/user-role';
 import { LOGGED_ROLE_CONFIG } from './constants/user-role-config';
+import { UserRole } from './enums/user-role';
+import { USER_PANEL_OPTION } from './constants/user-panel-option';
 
 @Component({
   selector: 'app-header',
@@ -13,6 +14,8 @@ export class HeaderComponent {
 
   public userRoleConfig = LOGGED_ROLE_CONFIG;
   public userRoles = UserRole;
+
+  public userPanelOption = USER_PANEL_OPTION;
 
   public onLogin(): void {
     this.userRole = UserRole.User;

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TITLE } from '../shared/constants/constants';
+import { TITLE } from './shared/constants/constants';
 
 @Component({
   selector: 'app-root',
