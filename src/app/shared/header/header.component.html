@@ -43,7 +43,8 @@
           class
           #userNavigationPanel
         >
-          <mat-option *ngFor="let option of userPanelOption">
+          <mat-option *ngFor="let option of userPanelOption"
+          (click)="goLink(this.option.url)">
             {{ option.title }}
           </mat-option>
           <mat-option (click)="onLogout()"> Log out</mat-option>

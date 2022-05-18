@@ -23,4 +23,8 @@ export class HeaderComponent {
   public onLogout(): void {
     this.userRole = UserRole.Guest;
   }
+
+  public goLink(url: string): void {
+    console.log(url);
+  }
 }
