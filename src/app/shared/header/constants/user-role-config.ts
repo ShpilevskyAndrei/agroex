@@ -1,11 +1,10 @@
 import { UserRole } from '../enums/user-role';
-import { RoleOptions } from '../interfaces/role-options';
+import { ILoggedRoleOption } from '../interfaces/i-logged-role-option';
 
-export const USER_ROLE_CONFIG: Record<UserRole, RoleOptions> = {
-  [UserRole.Guest]: {
-    point: 'Log in',
-    srcLogin: '../../../assets/guest.png',
-  },
+export const LOGGED_ROLE_CONFIG: Record<
+  Exclude<UserRole, 'Guest'>,
+  ILoggedRoleOption
+> = {
   [UserRole.User]: {
     src: '../../../assets/user.png',
   },

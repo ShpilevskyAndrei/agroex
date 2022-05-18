@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { UserRole } from './enums/user-role';
-import { USER_ROLE_CONFIG } from './constants/user-role-config';
+import { LOGGED_ROLE_CONFIG } from './constants/user-role-config';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +11,7 @@ import { USER_ROLE_CONFIG } from './constants/user-role-config';
 export class HeaderComponent {
   @Input() public userRole: UserRole = UserRole.Guest;
 
-  public userRoleConfig = USER_ROLE_CONFIG;
+  public userRoleConfig = LOGGED_ROLE_CONFIG;
   public userRoles = UserRole;
 
   public onLogin(): void {

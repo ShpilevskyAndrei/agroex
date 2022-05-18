@@ -9,31 +9,31 @@
       *ngIf="userRole === userRoles.Guest; else loggedUser"
       (click)="onLogin()"
     >
-      {{ userRoleConfig[userRole].point }}
+      Log in
     </p>
     <img
       *ngIf="userRole === userRoles.Guest"
-      (click)="onLogin()"
       class="img-in-header login-img"
-      [src]="userRoleConfig[userRole].srcLogin"
       alt=""
+      src="./assets/guest.png"
+      (click)="onLogin()"
     />
 
     <ng-template #loggedUser>
-      <p>Add advertisement</p>
+      <button class="button-add-advertisement">Add advertisement</button>
       <img
         *ngIf="userRole === userRoles.User"
-        (click)="select.open()"
         class="img-in-header account-img"
-        [src]="userRoleConfig[userRole].src"
         alt=""
+        [src]="userRoleConfig[userRole].src"
+        (click)="select.open()"
       />
       <img
         *ngIf="userRole === userRoles.User"
-        (click)="select.open()"
         class="img-in-header vector"
-        src="./assets/vector.png"
         alt=""
+        src="./assets/vector.png"
+        (click)="select.open()"
       />
       <mat-form-field class="my-account-select" appearance="fill">
         <mat-label>My account</mat-label>

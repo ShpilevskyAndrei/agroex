@@ -87,7 +87,17 @@
   .vector {
     width: 8.49px;
     height: 5.66px;
+<<<<<<< Updated upstream
     margin-right: calc(2.5 * #{$offset-xlarge});
     margin-left: $offset-normal;
+=======
+    margin-right: 5.5rem;
+    margin-left: 15px;
+>>>>>>> Stashed changes
+  }
+
+  .button-add-advertisement {
+    border: none;
+    background: none;
   }
 }
