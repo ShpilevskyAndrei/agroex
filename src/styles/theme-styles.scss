@@ -1,0 +1,25 @@
+@use "@angular/material" as mat;
+
+@import "custom-palette";
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@include mat.core();
+
+$agroex-primary: mat.define-palette($primary-palette, 700);
+$agroex-accent: mat.define-palette($accent-palette);
+$agroex-warning: mat.define-palette($warning-palette);
+$agroex-typography: mat.define-typography-config(
+  $font-family: 'IBM Plex Sans',
+);
+
+$my-theme: mat.define-light-theme(
+    (
+      color: (
+        primary: $agroex-primary,
+        accent: $agroex-accent,
+        warn: $agroex-warning,
+      ),
+      typography: $agroex-typography,
+    )
+);
+
+@include mat.all-component-themes($my-theme);

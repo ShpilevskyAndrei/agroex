@@ -1,0 +1,40 @@
+$primary-palette: (
+  50: #F2F5F5,
+  100: #DDE7E7,
+  200: #BCC3C3,
+  500: #798787,
+  700: #131314,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    500: $dark-primary-text,
+    700: $dark-primary-text,
+  )
+);
+
+$accent-palette: (
+  50: #F6FBFB,
+  100: #97CDCE,
+  500: #51ACAE,
+  700: #38999B,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    500: $dark-primary-text,
+    700: $dark-primary-text,
+  )
+);
+
+$warning-palette: (
+  50: #FFF3F1,
+  100: #F17767,
+  500: #EB3D26,
+  700: #EB3D26,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    500: $dark-primary-text,
+    700: $dark-primary-text,
+  )
+);
