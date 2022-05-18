@@ -26,18 +26,18 @@
         class="img-in-header account-img"
         alt=""
         [src]="userRoleConfig[userRole].src"
-        (click)="select.open()"
+        (click)="userNavigationPanel.open()"
       />
       <img
         *ngIf="userRole === userRoles.User"
         class="img-in-header vector"
         alt=""
         src="./assets/vector.png"
-        (click)="select.open()"
+        (click)="userNavigationPanel.open()"
       />
       <mat-form-field class="my-account-select" appearance="fill">
         <mat-label>My account</mat-label>
-        <mat-select panelClass="mat-select-unset-height" class #select>
+        <mat-select panelClass="mat-select-unset-height" class #userNavigationPanel>
           <mat-option> My Advertisements </mat-option>
           <mat-option> My Account </mat-option>
           <mat-option> Edit personal details </mat-option>
