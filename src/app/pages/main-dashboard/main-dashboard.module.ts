@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { MainPageComponent } from './main-page.component';
+import { MainDashboardComponent } from './main-dashboard.component';
 import { HeaderModule } from '../../shared/header/header.module';
 import { CategoriesModule } from './categories/categories.module';
-import { MainPageRoutingModule } from './main-page-routing.module';
+import { MainDashboardRoutingModule } from './main-dashboard-routing.module';
 
 @NgModule({
-  declarations: [MainPageComponent],
+  declarations: [MainDashboardComponent],
   imports: [
     CommonModule,
     HeaderModule,
     CategoriesModule,
-    MainPageRoutingModule,
+    MainDashboardRoutingModule,
   ],
-  exports: [MainPageComponent],
+  exports: [MainDashboardComponent],
 })
-export class MainPageModule {}
+export class MainDashboardModule {}

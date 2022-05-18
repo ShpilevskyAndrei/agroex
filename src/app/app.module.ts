@@ -10,14 +10,14 @@ import { AppComponent } from './app.component';
 import { reducers, metaReducers } from './state/reducer';
 import { environment } from '../environments/environment';
 import { AppEffects } from './state/effect/app.effects';
-import { MainPageModule } from './pages/main-dashboard/main-page.module';
+import { MainDashboardModule } from './pages/main-dashboard/main-dashboard.module';
 import { AppRoutingModule } from './app-routing.module';
 import { ErrorPageModule } from './pages/error-page/error-page.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    MainPageModule,
+    MainDashboardModule,
     ErrorPageModule,
     BrowserModule,
     BrowserAnimationsModule,
