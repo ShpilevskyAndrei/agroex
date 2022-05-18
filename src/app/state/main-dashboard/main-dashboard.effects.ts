@@ -4,19 +4,19 @@ import { catchError, map, of, switchMap } from 'rxjs';
 
 import { CategoriesService } from '../../categories/categories.service';
 import { Category } from '../../categories/model/category.model';
-import { CategoriesActions } from './main-dashboard.actions';
+import { MainDashboardActions } from './main-dashboard.actions';
 
 @Injectable()
-export class MainDashboardEffects {
+export class MainDashBoardEffects {
   public categories$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(CategoriesActions.getCategoriesRequest),
+      ofType(MainDashboardActions.getCategoriesRequest),
       switchMap(() => this.categoriesService.getCategories()),
       map((categories: Category[]) =>
-        CategoriesActions.getCategoriesSuccess({ categories })
+        MainDashboardActions.getCategoriesSuccess({ categories })
       ),
       catchError((error) =>
-        of(CategoriesActions.getCategoriesError({ error: error }))
+        of(MainDashboardActions.getCategoriesError({ error: error }))
       )
     );
   });

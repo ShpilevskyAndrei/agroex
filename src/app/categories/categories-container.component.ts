@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { LoadingStatus } from '../shared/main-dashboard/interfaces/loading-status';
-import { CategoriesActions } from '../state/main-dashboard/main-dashboard.actions';
+import { LoadingStatus } from '../main-dashboard/interfaces/loading-status';
+import { MainDashboardActions } from '../state/main-dashboard/main-dashboard.actions';
 
 import {
   selectCategoriesData,
@@ -30,6 +30,6 @@ export class CategoriesContainerComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.store.dispatch(CategoriesActions.getCategoriesRequest());
+    this.store.dispatch(MainDashboardActions.getCategoriesRequest());
   }
 }

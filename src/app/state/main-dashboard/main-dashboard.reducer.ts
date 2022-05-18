@@ -1,44 +1,44 @@
 import { createReducer, on } from '@ngrx/store';
 
 import { Category } from '../../categories/model/category.model';
-import { DEFAULT_LOADING_STATUS } from '../../shared/main-dashboard/constants/lodaing-default-status';
-import { LoadingStatus } from '../../shared/main-dashboard/interfaces/loading-status';
-import { CategoriesActions } from './main-dashboard.actions';
+import { DEFAULT_LOADING_STATUS } from '../../main-dashboard/constants/lodaing-default-status';
+import { LoadingStatus } from '../../main-dashboard/interfaces/loading-status';
+import { MainDashboardActions } from './main-dashboard.actions';
 
-export const CATEGORIES = 'categories';
+export const MAIN_DASHBOARD = 'mainDashBoard';
 
-export interface CategoriesState {
-  categoriesLoadingStatus: LoadingStatus;
+export interface MainDashBoardState {
+  mainDashBoardLoadingStatus: LoadingStatus;
   categories: Category[];
 }
 
-const initialState: CategoriesState = {
-  categoriesLoadingStatus: DEFAULT_LOADING_STATUS,
+const initialState: MainDashBoardState = {
+  mainDashBoardLoadingStatus: DEFAULT_LOADING_STATUS,
   categories: [],
 };
 
 export const CATEGORIES_REDUCER = createReducer(
   initialState,
   on(
-    CategoriesActions.getCategoriesRequest,
-    (state: CategoriesState): CategoriesState => ({
+    MainDashboardActions.getCategoriesRequest,
+    (state: MainDashBoardState): MainDashBoardState => ({
       ...state,
-      categoriesLoadingStatus: DEFAULT_LOADING_STATUS,
+      mainDashBoardLoadingStatus: DEFAULT_LOADING_STATUS,
     })
   ),
   on(
-    CategoriesActions.getCategoriesSuccess,
-    (state: CategoriesState, { categories }): CategoriesState => ({
+    MainDashboardActions.getCategoriesSuccess,
+    (state: MainDashBoardState, { categories }): MainDashBoardState => ({
       ...state,
       categories,
-      categoriesLoadingStatus: { loading: false, loaded: true, error: null },
+      mainDashBoardLoadingStatus: { loading: false, loaded: true, error: null },
     })
   ),
   on(
-    CategoriesActions.getCategoriesError,
-    (state: CategoriesState, { error }): CategoriesState => ({
+    MainDashboardActions.getCategoriesError,
+    (state: MainDashBoardState, { error }): MainDashBoardState => ({
       ...state,
-      categoriesLoadingStatus: { loading: false, loaded: false, error },
+      mainDashBoardLoadingStatus: { loading: false, loaded: false, error },
     })
   )
 );

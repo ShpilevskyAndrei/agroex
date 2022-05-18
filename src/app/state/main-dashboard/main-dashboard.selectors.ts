@@ -1,13 +1,13 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { CATEGORIES, CategoriesState } from './main-dashboard.reducer';
+import { MAIN_DASHBOARD, MainDashBoardState } from './main-dashboard.reducer';
 
 const selectGetFeatureState =
-  createFeatureSelector<CategoriesState>(CATEGORIES);
+  createFeatureSelector<MainDashBoardState>(MAIN_DASHBOARD);
 
 export const selectCategoriesLoadingStatus = createSelector(
   selectGetFeatureState,
-  (state) => state.categoriesLoadingStatus
+  (state) => state.mainDashBoardLoadingStatus
 );
 export const selectCategoriesData = createSelector(
   selectGetFeatureState,

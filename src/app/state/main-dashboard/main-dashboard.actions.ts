@@ -3,16 +3,16 @@ import { createAction, props } from '@ngrx/store';
 
 import { Category } from '../../categories/model/category.model';
 
-export const CategoriesActions = {
-  getCategoriesRequest: createAction('[CATEGORIES] categories requested'),
+export const MainDashboardActions = {
+  getCategoriesRequest: createAction('[MAIN_DASHBOARD] categories requested'),
 
   getCategoriesSuccess: createAction(
-    '[CATEGORIES] categories success',
+    '[MAIN_DASHBOARD] categories success',
     props<{ categories: Category[] }>()
   ),
 
   getCategoriesError: createAction(
-    '[CATEGORIES] categories error',
+    '[MAIN_DASHBOARD] categories error',
     props<{ error: HttpErrorResponse }>()
   ),
 };
