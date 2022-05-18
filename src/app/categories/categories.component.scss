@@ -1,4 +1,4 @@
-@import "src/app/styles/variables/variables";
+@import "../styles/general-styles";
 
 :host {
   .categories {
@@ -11,9 +11,9 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      width: 128px;
-      height: 104px;
-      border-radius: 6px;
+      width: 10rem;
+      height: 9rem;
+      border-radius: $border-radius;
       background-color: #0cb80c;
 
       &:not(.active):hover {
