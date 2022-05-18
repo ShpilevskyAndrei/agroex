@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+
 import { LoadingStatus } from '../shared/header/interfaces/loading-status';
 import { REQUESTED_ACTION } from '../state/categories/categories-store/categories.actions';
 import {
