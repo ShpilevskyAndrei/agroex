@@ -5,7 +5,7 @@ import { DEFAULT_LOADING_STATUS } from '../../main-dashboard/constants/lodaing-d
 import { LoadingStatus } from '../../main-dashboard/interfaces/loading-status';
 import { MainDashboardActions } from './main-dashboard.actions';
 
-export const MAIN_DASHBOARD = 'mainDashBoard';
+export const MAIN_DASHBOARD = 'mainDashboard';
 
 export interface MainDashboardState {
   mainDashboardLoadingStatus: LoadingStatus;
