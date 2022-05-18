@@ -21,14 +21,14 @@ export const CATEGORIES_REDUCER = createReducer(
   initialState,
   on(
     CategoriesActions.getCategoriesRequest,
-    (state): CategoriesState => ({
+    (state: CategoriesState): CategoriesState => ({
       ...state,
-      categoriesLoadingStatus: { loading: true, loaded: false, error: null },
+      categoriesLoadingStatus: DEFAULT_LOADING_STATUS,
     })
   ),
   on(
     CategoriesActions.getCategoriesSuccess,
-    (state, { categories }): CategoriesState => ({
+    (state: CategoriesState, { categories }): CategoriesState => ({
       ...state,
       categories,
       categoriesLoadingStatus: { loading: false, loaded: true, error: null },
@@ -36,7 +36,7 @@ export const CATEGORIES_REDUCER = createReducer(
   ),
   on(
     CategoriesActions.getCategoriesError,
-    (state, { error }): CategoriesState => ({
+    (state: CategoriesState, { error }): CategoriesState => ({
       ...state,
       categoriesLoadingStatus: { loading: false, loaded: false, error },
     })
