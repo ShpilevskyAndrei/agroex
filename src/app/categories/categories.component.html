@@ -1,13 +1,18 @@
 <div class="categories">
-  <div
-    class="categories__item"
-    *ngFor="let category of categories$ | async; let index = index">
-    <app-category
-      class="categories__content"
-      [ngClass]="{active: category.id === activeCategory}"
-      [category]="category"
-      (click)="getCategoryList(category)"
-    ></app-category>
-  </div>
+  <ng-container *ngIf="categoriesLoadingStatus?.loaded; else loading">
+    <div
+      class="categories__item"
+      *ngFor="let category of categories; let index = index"
+    >
+      <app-category
+        class="categories__content"
+        [ngClass]="{ active: category.id === activeCategory }"
+        [category]="category"
+        (click)="getCategoryList(category)"
+      ></app-category>
+    </div>
+  </ng-container>
+  <ng-template #loading>
+    <p>LOADING...</p>
+  </ng-template>
 </div>
-
