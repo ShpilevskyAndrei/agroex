@@ -3,7 +3,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Category } from './model/category.model';
 import { CategoriesService } from './categories.service';
 import { CategoryItemModel } from './model/categoryItem.model';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-categories',
@@ -120,19 +119,12 @@ export class CategoriesComponent {
     },
   ];
 
-  constructor(
-    private categoriesService: CategoriesService,
-    private router: Router
-  ) {}
+  constructor(private categoriesService: CategoriesService) {}
 
   public getCategoryList(category: Category): void {
     this.activeCategory = category.id;
     console.log(
       this.categoriesItems.filter((item) => item.categoryId === category.id)
     );
-  }
-
-  public goToMyAccountPage(): void {
-    this.router.navigate(['/my-account']);
   }
 }
