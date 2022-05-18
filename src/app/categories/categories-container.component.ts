@@ -30,6 +30,6 @@ export class CategoriesContainerComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.store.dispatch(CategoriesActions.RequestAction());
+    this.store.dispatch(CategoriesActions.getCategoriesRequest());
   }
 }

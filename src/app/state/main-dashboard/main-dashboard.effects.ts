@@ -9,12 +9,14 @@ import { CategoriesActions } from './main-dashboard.actions';
 export class MainDashboardEffects {
   public categories$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(CategoriesActions.RequestAction),
+      ofType(CategoriesActions.getCategoriesRequest),
       switchMap(() => this.categoriesService.getCategories()),
       map((categories) =>
-        CategoriesActions.SuccessAction({ categories: categories })
+        CategoriesActions.getCategoriesSuccess({ categories: categories })
       ),
-      catchError((error) => of(CategoriesActions.ErrorAction({ error: error })))
+      catchError((error) =>
+        of(CategoriesActions.getCategoriesError({ error: error }))
+      )
     );
   });
 
