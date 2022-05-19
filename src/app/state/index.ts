@@ -1,14 +1,18 @@
 import { ActionReducerMap, MetaReducer } from '@ngrx/store';
 
+import { AccountPageEffects } from './account-page/account-page.effects';
 import {
   ACCOUNT_PAGE_REDUCER,
   AccountPageState,
 } from './account-page/account-page.reducer';
+import { AppRootEffects } from './app-root/app-root.effects';
 import { APP_ROOT_REDUCER, AppRootState } from './app-root/app-root.reducer';
+import { ErrorPageEffects } from './error-page/error-page.effects';
 import {
   ERROR_PAGE_REDUCER,
   ErrorPageState,
 } from './error-page/error-page.reducer';
+import { LoginPageEffects } from './login-page/login-page.effects';
 import {
   LOGIN_PAGE_REDUCER,
   LoginPageState,
@@ -18,6 +22,7 @@ import {
   MAIN_DASHBOARD_REDUCER,
   MainDashboardState,
 } from './main-dashboard/main-dashboard.reducer';
+import { RegistrationPageEffects } from './registration-page/registration-page.effects';
 import {
   REGISTRATION_PAGE_REDUCER,
   RegistrationPageState,
@@ -41,6 +46,13 @@ export const ROOT_REDUCER: ActionReducerMap<State> = {
   registrationPage: REGISTRATION_PAGE_REDUCER,
 };
 
-export const ROOT_EFFECT = [MainDashboardEffects];
+export const ROOT_EFFECT = [
+  AppRootEffects,
+  MainDashboardEffects,
+  AccountPageEffects,
+  ErrorPageEffects,
+  LoginPageEffects,
+  RegistrationPageEffects,
+];
 
 export const META_REDUCER: MetaReducer<State>[] = [];
