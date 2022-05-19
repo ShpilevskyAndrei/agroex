@@ -1,26 +1,47 @@
 <header class="main-header">
-  <div class="points-container-header">
-    <div class="logo-in-header">
-      <img class="logo-img" src="../../../assets/logo.png" alt="" />
+  <div class="container main-header-content">
+    <div class="points-container-header" (click)='goToMainPage()'>
+      <img class="logo-img" src="../../../assets/logo.svg" alt="" />
+      <p class="logo-name">AGROEX</p>
     </div>
-    <p class="logo-name">AGROEX</p>
-    <div class="menu-items">
-      <p>Marketplace</p>
-      <p>Ads</p>
-      <p>About us</p>
-      <p *ngIf="userRoleConfig[userRole]?.newNavPoint">
-        {{ userRoleConfig[userRole].newNavPoint }}
-      </p>
+    <div class="account-container-header">
+      <ng-container *ngIf="userRole === userRoles.Guest; else loggedUser">
+        <div class="account-container-header" (click)="onLogin()">
+          <p class="menu-items">Log in</p>
+          <mat-icon class="img-in-header icon-for-guest">login</mat-icon>
+        </div>
+      </ng-container>
+      <ng-template #loggedUser>
+        <button mat-raised-button color="accent">+ Add advertisement</button>
+        <div
+          class="account-container-header"
+          (click)="userNavigationPanel.open()"
+        >
+          <img
+            *ngIf="userRole === userRoles.User"
+            class="img-in-header account-img"
+            alt=""
+            [src]="userRoleConfig[userRole].src"
+          />
+          <mat-icon
+            *ngIf="userRole === userRoles.User"
+            class="img-in-header my-account-vector"
+          >
+            expand_more
+          </mat-icon>
+        </div>
+        <mat-select
+          #userNavigationPanel
+          class="my-account-select"
+          panelClass="mat-select-unset-height"
+          disableOptionCentering
+          (valueChange)="navigateToUserOption($event, userNavigationPanel)"
+        >
+          <mat-option *ngFor="let option of userPanelOption" [value]="option" [routerLink]="option.url">
+            {{ option.title }}
+          </mat-option>
+        </mat-select>
+      </ng-template>
     </div>
-  </div>
-  <div class="account-container-header">
-    <p>
-      {{ userRoleConfig[userRole].point }}
-    </p>
-    <img
-      alt=""
-      class="account-in-header"
-      [src]="userRoleConfig[userRole].src"
-    />
   </div>
 </header>

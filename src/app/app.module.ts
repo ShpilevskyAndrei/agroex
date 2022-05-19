@@ -4,18 +4,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { CategoriesModule } from './categories/categories.module';
-import { HeaderModule } from './shared/header/header.module';
+import { MainDashboardModule } from './pages/main-dashboard/main-dashboard.module';
+import { AppRoutingModule } from './app-routing.module';
+import { ErrorPageModule } from './pages/error-page/error-page.module';
 import { StateModule } from './state/state.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    HeaderModule,
+    MainDashboardModule,
+    ErrorPageModule,
     BrowserModule,
     BrowserAnimationsModule,
-    CategoriesModule,
     HttpClientModule,
+    AppRoutingModule,
     StateModule,
   ],
   bootstrap: [AppComponent],
