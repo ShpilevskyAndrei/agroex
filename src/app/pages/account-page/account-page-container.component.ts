@@ -4,4 +4,4 @@ import { Component } from '@angular/core';
   selector: 'app-account-page-container',
   template: ` <app-account-page></app-account-page>`,
 })
-export class AccountContainerPageComponent {}
+export class AccountPageContainerComponent {}
