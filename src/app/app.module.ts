@@ -9,6 +9,7 @@ import { MainDashboardModule } from './pages/main-dashboard/main-dashboard.modul
 import { AppRoutingModule } from './app-routing.module';
 import { ErrorPageModule } from './pages/error-page/error-page.module';
 import { StateModule } from './state/state.module';
+import { IconSerializeService } from './shared/services/icon-serialize.service';
 
 @NgModule({
   declarations: [AppComponent, AppContainerComponent],

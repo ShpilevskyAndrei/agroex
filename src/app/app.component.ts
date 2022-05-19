@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { TITLE } from './shared/constants/constants';
+
+import { TITLE } from './shared/constants/application-title';
 import { IconSerializeService } from './shared/services/icon-serialize.service';
 
 @Component({

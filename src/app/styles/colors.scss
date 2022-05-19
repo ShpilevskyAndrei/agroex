@@ -6,10 +6,11 @@ $color-white: #ffffff;
 $color-black: #000000;
 
 $primary-color: #131314;
+$active-color: #51ACAE;
 
-$main-background-color: #f9f9f9;
+$main-background-color: #D8D8D8;
 $main-text-color: $color-black;
 
 $header-color: $color-white;
-$header-login-icon-color: #51ACAE;
+$header-login-icon-color: $active-color;
 $header-logo-color: #183c48;

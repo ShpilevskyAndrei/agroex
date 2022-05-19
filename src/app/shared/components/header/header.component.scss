@@ -2,6 +2,7 @@
 
 :host {
   .main-header {
+    position: relative;
     width: 100%;
     height: $header-height;
     background-color: $header-color;
@@ -19,6 +20,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    cursor: pointer;
   }
 
   .logo-name {
@@ -27,7 +29,7 @@
     font-style: normal;
     font-size: $font-size-medium;
     color: $header-logo-color;
-    margin: 0 calc(2.5 * #{$offset-large}) 0 0;
+    margin: 0 0 0 1rem;
     font-weight: bold;
   }
 
@@ -37,14 +39,12 @@
   }
 
   .menu-items {
-    cursor: pointer;
     margin: 0;
     font-size: $font-size-medium;
   }
 
   .img-in-header {
     vertical-align: middle;
-    cursor: pointer;
   }
 
   .icon-for-guest {
@@ -60,6 +60,7 @@
   .account-container-header {
     display: flex;
     align-items: center;
+    cursor: pointer;
   }
 
   .my-account-select {

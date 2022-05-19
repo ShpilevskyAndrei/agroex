@@ -1,6 +1,11 @@
 @import "../../../styles/general-styles";
 
 :host {
+  .categories {
+    &__wrap {
+      background-color: $color-white;
+    }
+  }
   .category {
     display: flex;
     align-items: center;
