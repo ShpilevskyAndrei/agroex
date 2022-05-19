@@ -7,20 +7,22 @@ import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { CategoriesModule } from './categories/categories.module';
-import { HeaderModule } from './shared/header/header.module';
 import { reducers, metaReducers } from './state/reducer';
 import { environment } from '../environments/environment';
 import { AppEffects } from './state/effect/app.effects';
+import { MainDashboardModule } from './pages/main-dashboard/main-dashboard.module';
+import { AppRoutingModule } from './app-routing.module';
+import { ErrorPageModule } from './pages/error-page/error-page.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    HeaderModule,
+    MainDashboardModule,
+    ErrorPageModule,
     BrowserModule,
     BrowserAnimationsModule,
-    CategoriesModule,
     HttpClientModule,
+    AppRoutingModule,
     StoreModule.forRoot(reducers, {
       metaReducers,
     }),

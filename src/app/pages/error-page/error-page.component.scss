@@ -1,0 +1,16 @@
+@import "../../styles/general-styles";
+
+:host {
+  .error-page {
+    height: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    a {
+      margin: $offset-xxlarge 0 0 0;
+    }
+  }
+}
