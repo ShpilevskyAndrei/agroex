@@ -14,6 +14,8 @@ import { MainDashboardModule } from './pages/main-dashboard/main-dashboard.modul
 import { AppRoutingModule } from './app-routing.module';
 import { ErrorPageModule } from './pages/error-page/error-page.module';
 
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -31,6 +33,7 @@ import { ErrorPageModule } from './pages/error-page/error-page.module';
       logOnly: environment.production,
     }),
     EffectsModule.forRoot([AppEffects]),
+    MatSnackBarModule,
   ],
   bootstrap: [AppComponent],
 })
