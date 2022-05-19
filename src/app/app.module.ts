@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { AppContainerComponent } from './app-container.component';
 
 import { AppComponent } from './app.component';
 import { MainDashboardModule } from './pages/main-dashboard/main-dashboard.module';
@@ -10,7 +11,7 @@ import { ErrorPageModule } from './pages/error-page/error-page.module';
 import { StateModule } from './state/state.module';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, AppContainerComponent],
   imports: [
     MainDashboardModule,
     ErrorPageModule,
@@ -20,6 +21,6 @@ import { StateModule } from './state/state.module';
     AppRoutingModule,
     StateModule,
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppContainerComponent],
 })
 export class AppModule {}
