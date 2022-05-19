@@ -13,6 +13,8 @@ import { reducers, metaReducers } from './state/reducer';
 import { environment } from '../environments/environment';
 import { AppEffects } from './state/effect/app.effects';
 
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -29,6 +31,7 @@ import { AppEffects } from './state/effect/app.effects';
       logOnly: environment.production,
     }),
     EffectsModule.forRoot([AppEffects]),
+    MatSnackBarModule
   ],
   bootstrap: [AppComponent],
 })
