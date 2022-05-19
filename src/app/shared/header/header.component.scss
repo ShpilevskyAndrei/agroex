@@ -5,10 +5,10 @@
     width: 100%;
     height: $header-height;
     background-color: $header-color;
-    margin: 0 0 $offset-large 0;
+    margin-left: 0 0 $offset-large 0;
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    box-shadow: 0 $offset-xsmall $offset-normal rgba(0, 0, 0, 0.08);
   }
 
   .points-container-header {
@@ -18,6 +18,11 @@
   }
 
   .logo-name {
+    width: 6rem;
+    height: 2rem;
+    font-style: normal;
+    font-size: $font-size-medium;
+    color: $header-logo-color;
     margin: 0 calc(2.5 * #{$offset-large}) 0 0;
     font-weight: bold;
   }
@@ -25,30 +30,47 @@
   .logo-img {
     width: 2.5rem;
     height: 2.5rem;
-    margin: 0 0 0 calc(2.5 * #{$offset-large});
+    margin: 0 $offset-normal 0 calc(2.5 * #{$offset-large});
   }
 
   .menu-items {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .menu-items p {
-    margin: 0 $offset-large;
+    cursor: pointer;
+    margin: 0;
     font-size: $font-size-medium;
   }
 
-  .account-in-header {
-    right: 0;
-    width: 3.3rem;
-    height: 3.3rem;
+  .img-in-header {
     margin: 0 $offset-large;
     vertical-align: middle;
+    cursor: pointer;
+  }
+
+  .account-img {
+    width: 3.5rem;
+    margin-right: 0;
+  }
+
+  .login-img {
+    width: 1.5rem;
+    margin-right: calc(2.5 * #{$offset-xlarge});
+    padding: 0;
   }
 
   .account-container-header {
     display: flex;
     align-items: center;
+  }
+
+  .my-account-select {
+    width: 0;
+    height: 100%;
+    visibility: hidden;
+    right: 0;
+    position: fixed;
+  }
+
+  .my-account-vector {
+    margin-right: calc(2.5 * #{$offset-xlarge});
+    margin-left: $offset-normal;
   }
 }

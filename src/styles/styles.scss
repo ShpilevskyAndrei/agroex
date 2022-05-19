@@ -20,3 +20,7 @@ body {
   height: 100%;
   margin: 0;
 }
+
+.mat-select-unset-height {
+  max-height: unset !important;
+}
