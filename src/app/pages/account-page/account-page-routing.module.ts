@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AccountPageComponent } from './account-page.component';
+import { AccountPageContainerComponent } from './account-page-container.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AccountPageComponent,
+    component: AccountPageContainerComponent,
   },
 ];
 
