@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
+import { LoadingStatus } from '../../../shared/interfaces/loading-status';
 import { Category } from './model/category.model';
-import { CategoriesService } from './categories.service';
 import { CategoryItemModel } from './model/categoryItem.model';
 
 @Component({
@@ -11,9 +11,10 @@ import { CategoryItemModel } from './model/categoryItem.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CategoriesComponent {
-  public activeCategory: number;
+  @Input() public categories: Category[] | null;
+  @Input() public categoriesLoadingStatus: LoadingStatus | null;
 
-  public categories$ = this.categoriesService.getCategories();
+  public activeCategory: number;
 
   public categoriesItems: CategoryItemModel[] = [
     {
@@ -118,8 +119,6 @@ export class CategoriesComponent {
       title: 'almonds',
     },
   ];
-
-  constructor(private categoriesService: CategoriesService) {}
 
   public getCategoryList(category: Category): void {
     this.activeCategory = category.id;

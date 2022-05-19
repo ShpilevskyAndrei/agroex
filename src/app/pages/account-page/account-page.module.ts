@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { AccountPageContainerComponent } from './account-page-container.component';
 import { AccountPageComponent } from './account-page.component';
-import { HeaderModule } from '../../shared/header/header.module';
+import { HeaderModule } from '../../shared/components/header/header.module';
 import { AccountPageRoutingModule } from './account-page-routing.module';
 
 @NgModule({
-  declarations: [AccountPageComponent],
+  declarations: [AccountPageComponent, AccountPageContainerComponent],
   imports: [CommonModule, HeaderModule, AccountPageRoutingModule],
-  exports: [AccountPageComponent],
+  exports: [AccountPageContainerComponent],
 })
 export class AccountPageModule {}
