@@ -47,12 +47,14 @@
     cursor: pointer;
   }
 
-  .img-for-guest {
-    margin-left: calc(#{$font-size-xsmall}/2);
+  .icon-for-guest {
+    margin-left: calc(#{$font-size-xsmall} / 2);
+    color: $header-login-icon-color;
   }
+
   .account-img {
     width: 3.5rem;
-    margin-left: calc(2*#{$font-size-medium});
+    margin-left: calc(2 * #{$font-size-medium});
   }
 
   .account-container-header {
@@ -62,14 +64,7 @@
 
   .my-account-select {
     width: 0;
-    height: 100%;
     visibility: hidden;
-    right: 0;
-    position: fixed;
-  }
-
-  .my-account-vector {
-    margin-right: 0;
-    margin-left: 0;
+    margin-top: 8rem;
   }
 }

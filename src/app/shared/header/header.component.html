@@ -3,17 +3,12 @@
     <div class="points-container-header">
       <img class="logo-img" src="../../../assets/logo.svg" alt="" />
       <p class="logo-name">AGROEX</p>
-      <div class="menu-items"></div>
     </div>
     <div class="account-container-header">
       <ng-container *ngIf="userRole === userRoles.Guest; else loggedUser">
         <div class="account-container-header" (click)="onLogin()">
           <p class="menu-items">Log in</p>
-          <img
-            class="img-in-header img-for-guest"
-            alt=""
-            src="./assets/guest.svg"
-          />
+          <mat-icon class="img-in-header icon-for-guest">login</mat-icon>
         </div>
       </ng-container>
       <ng-template #loggedUser>
@@ -31,21 +26,22 @@
           <mat-icon
             *ngIf="userRole === userRoles.User"
             class="img-in-header my-account-vector"
-            >expand_more</mat-icon
           >
+            expand_more
+          </mat-icon>
         </div>
+        <mat-select
+          #userNavigationPanel
+          class="my-account-select"
+          panelClass="mat-select-unset-height"
+          disableOptionCentering
+          (valueChange)="navigateToUserOption($event, userNavigationPanel)"
+        >
+          <mat-option *ngFor="let option of userPanelOption" [value]="option">
+            {{ option.title }}
+          </mat-option>
+        </mat-select>
       </ng-template>
     </div>
   </div>
 </header>
-<mat-select
-  #userNavigationPanel
-  class="my-account-select"
-  panelClass="mat-select-unset-height"
-  disableOptionCentering
-  (valueChange)="goLink($event, userNavigationPanel)"
->
-  <mat-option *ngFor="let option of userPanelOption" [value]="option">
-    {{ option.title }}
-  </mat-option>
-</mat-select>
