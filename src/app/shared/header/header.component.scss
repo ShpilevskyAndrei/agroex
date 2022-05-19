@@ -33,15 +33,13 @@
     margin: 0 $offset-normal 0 calc(2.5 * #{$offset-large});
   }
 
-  .menu-items button,
-  p {
+  .menu-items {
     cursor: pointer;
     margin: 0;
     font-size: $font-size-medium;
   }
 
   .img-in-header {
-    right: 0;
     margin: 0 $offset-large;
     vertical-align: middle;
     cursor: pointer;
