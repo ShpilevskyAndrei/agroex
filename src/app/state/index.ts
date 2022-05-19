@@ -18,6 +18,10 @@ import {
   MAIN_DASHBOARD_REDUCER,
   MainDashboardState,
 } from './main-dashboard/main-dashboard.reducer';
+import {
+  REGISTRATION_PAGE_REDUCER,
+  RegistrationPageState,
+} from './registration-page/registration-page.reducer';
 
 export interface State {
   mainDashboard: MainDashboardState;
@@ -25,6 +29,7 @@ export interface State {
   accountPage: AccountPageState;
   errorPage: ErrorPageState;
   loginPage: LoginPageState;
+  registrationPage: RegistrationPageState;
 }
 
 export const ROOT_REDUCER: ActionReducerMap<State> = {
@@ -33,6 +38,7 @@ export const ROOT_REDUCER: ActionReducerMap<State> = {
   accountPage: ACCOUNT_PAGE_REDUCER,
   errorPage: ERROR_PAGE_REDUCER,
   loginPage: LOGIN_PAGE_REDUCER,
+  registrationPage: REGISTRATION_PAGE_REDUCER,
 };
 
 export const ROOT_EFFECT = [MainDashboardEffects];

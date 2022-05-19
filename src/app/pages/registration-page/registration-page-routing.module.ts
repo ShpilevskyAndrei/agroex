@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
-import { RegistrationPageComponent } from './registration-page.component';
+import { RegistrationPageContainerComponent } from './registration-page-container.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: RegistrationPageComponent,
+    component: RegistrationPageContainerComponent,
   },
 ];
 
