@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { AppContainerComponent } from './app-container.component';
 
+import { AppContainerComponent } from './app-container.component';
 import { AppComponent } from './app.component';
 import { MainDashboardModule } from './pages/main-dashboard/main-dashboard.module';
 import { AppRoutingModule } from './app-routing.module';
