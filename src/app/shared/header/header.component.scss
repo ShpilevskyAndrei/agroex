@@ -48,13 +48,13 @@
   }
 
   .icon-for-guest {
-    margin-left: calc(#{$font-size-xsmall} / 2);
+    margin-left: calc(#{$offset-normal} / 2);
     color: $header-login-icon-color;
   }
 
   .account-img {
     width: 3.5rem;
-    margin-left: calc(2 * #{$font-size-medium});
+    margin-left: calc(2 * #{$offset-medium});
   }
 
   .account-container-header {
