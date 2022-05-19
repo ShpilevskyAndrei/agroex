@@ -15,7 +15,7 @@
       />
     </ng-container>
     <ng-template #loggedUser>
-      <button mat-raised-button>Add advertisement</button>
+      <button mat-raised-button color="accent">+ Add advertisement</button>
       <img
         *ngIf="userRole === userRoles.User"
         class="img-in-header account-img"
@@ -36,10 +36,10 @@
   class="my-account-select"
   #userNavigationPanel
   panelClass="mat-select-unset-height"
-  (selectionChange)="goLink($event)"
+  (valueChange)="goLink($event, userNavigationPanel)"
 >
   <mat-option *ngFor="let option of userPanelOption" [value]="option">
     {{ option.title }}
   </mat-option>
-  <mat-option (click)="onLogout()"> Log out</mat-option>
+
 </mat-select>
