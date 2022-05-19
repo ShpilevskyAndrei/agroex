@@ -1,10 +1,10 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, of, switchMap } from 'rxjs';
 
 import { CategoriesService } from '../../pages/main-dashboard/categories/categories.service';
 import { Category } from '../../pages/main-dashboard/categories/model/category.model';
-
 import { MainDashboardActions } from './main-dashboard.actions';
 
 @Injectable()
@@ -16,7 +16,7 @@ export class MainDashboardEffects {
       map((categories: Category[]) =>
         MainDashboardActions.getCategoriesSuccess({ categories })
       ),
-      catchError((error) =>
+      catchError((error: HttpErrorResponse) =>
         of(MainDashboardActions.getCategoriesError({ error: error }))
       )
     );
