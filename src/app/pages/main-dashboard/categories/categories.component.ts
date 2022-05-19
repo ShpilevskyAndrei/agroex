@@ -124,7 +124,7 @@ export class CategoriesComponent {
     this.activeCategory = category.id;
 
     return this.categoriesItems.filter(
-      (item) => item.categoryId === category.id
+      (item: CategoryItemModel) => item.categoryId === category.id
     );
   }
 }

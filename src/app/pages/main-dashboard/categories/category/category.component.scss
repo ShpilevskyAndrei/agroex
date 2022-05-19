@@ -11,6 +11,7 @@
       width: 2rem;
       height: 2rem;
       color: #798787;
+
       .mat-tab-label-active & {
         color: $active-color;
       }
@@ -25,9 +26,6 @@
   .mat-tab-header {
     border: none;
     box-shadow: inset 0 -0.083rem 0 #E6E6E6;
-  }
-  .mat-tab-group.mat-warn .mat-ink-bar {
-    background-color: $active-color;
   }
   .mat-tab-label {
     opacity: 1;
