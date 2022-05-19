@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, of, switchMap } from 'rxjs';
 
-import { CategoriesService } from '../../categories/categories.service';
-import { Category } from '../../categories/model/category.model';
+import { CategoriesService } from '../../pages/main-dashboard/categories/categories.service';
+import { Category } from '../../pages/main-dashboard/categories/model/category.model';
+
 import { MainDashboardActions } from './main-dashboard.actions';
 
 @Injectable()

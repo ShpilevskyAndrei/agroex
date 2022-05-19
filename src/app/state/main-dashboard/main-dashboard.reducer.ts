@@ -1,8 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { Category } from '../../categories/model/category.model';
-import { DEFAULT_LOADING_STATUS } from '../../main-dashboard/constants/lodaing-default-status';
-import { LoadingStatus } from '../../main-dashboard/interfaces/loading-status';
+import { DEFAULT_LOADING_STATUS } from '../../shared/constants/lodaing-default-status';
+import { LoadingStatus } from '../../shared/interfaces/loading-status';
+import { Category } from '../../pages/main-dashboard/categories/model/category.model';
 import { MainDashboardActions } from './main-dashboard.actions';
 
 export const MAIN_DASHBOARD = 'mainDashboard';

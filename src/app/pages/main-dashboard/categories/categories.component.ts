@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
-import { LoadingStatus } from '../main-dashboard/interfaces/loading-status';
+import { LoadingStatus } from '../../../shared/interfaces/loading-status';
 import { Category } from './model/category.model';
 import { CategoryItemModel } from './model/categoryItem.model';
 
