@@ -21,6 +21,7 @@ import { StateModule } from './state/state.module';
     AppRoutingModule,
     StateModule,
   ],
+  providers: [IconSerializeService],
   bootstrap: [AppContainerComponent],
 })
 export class AppModule {}

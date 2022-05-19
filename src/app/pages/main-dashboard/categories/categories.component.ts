@@ -122,8 +122,9 @@ export class CategoriesComponent {
 
   public getCategoryList(category: Category): void {
     this.activeCategory = category.id;
-    console.log(
-      this.categoriesItems.filter((item) => item.categoryId === category.id)
+
+    return this.categoriesItems.filter(
+      (item) => item.categoryId === category.id
     );
   }
 }

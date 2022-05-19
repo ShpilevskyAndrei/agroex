@@ -1,21 +1,26 @@
-<div class="categories">
-  <ng-container *ngIf="categoriesLoadingStatus?.loaded; else notLoaded">
-    <div
-      class="categories__item"
-      *ngFor="let category of categories; let index = index"
-    >
-      <app-category
-        class="categories__content"
-        [ngClass]="{ active: category.id === activeCategory }"
-        [category]="category"
-        (click)="getCategoryList(category)"
-      ></app-category>
-    </div>
-  </ng-container>
-  <ng-template #notLoaded>
+<ng-container *ngIf="categoriesLoadingStatus?.loaded; else notLoaded">
+	<mat-tab-group
+	  mat-stretch-tabs
+	  animationDuration="0ms"
+	  color="warn"
+	>
+	  <mat-tab *ngFor="let category of categories$ | async;">
+	    <ng-template mat-tab-label>
+	      <app-category
+	        class="category"
+	        [ngClass]="{active: category.id === activeCategory}"
+	        [category]="category"
+	      ></app-category>
+	    </ng-template>
+	    <mat-list role="list">
+	      <mat-list-item role="listitem" *ngFor="let subCategory of getCategoryList(category)">{{subCategory.title}}</mat-list-item>
+	    </mat-list>
+	  </mat-tab>
+	</mat-tab-group>
+</ng-container>
+<ng-template #notLoaded>
     <p *ngIf="categoriesLoadingStatus?.loading; else categoriesError">LOADING...</p>
     <ng-template #categoriesError>
       <p>{{ categoriesLoadingStatus?.error?.statusText }}</p>
     </ng-template>
-  </ng-template>
-</div>
+</ng-template>
