@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MatSelect } from '@angular/material/select';
+import { Router } from '@angular/router';
 
 import { LOGGED_ROLE_CONFIG } from './constants/user-role-config';
 import { USER_PANEL_OPTION } from './constants/user-panel-option';
@@ -19,6 +20,8 @@ export class HeaderComponent {
   public userRoles = UserRole;
   public userPanelOption = USER_PANEL_OPTION;
 
+  constructor(private router: Router) {}
+
   public onLogin(): void {
     this.userRole = UserRole.User;
   }
@@ -34,6 +37,10 @@ export class HeaderComponent {
       return;
     }
     console.log(selectedOption.url);
+  }
+
+  public goToMainPage(): void {
+    this.router.navigate(['']);
   }
 
   private onLogout(): void {

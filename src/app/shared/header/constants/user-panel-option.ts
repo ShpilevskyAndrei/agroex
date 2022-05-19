@@ -7,7 +7,7 @@ export const USER_PANEL_OPTION: IUserOptionsType[] = [
     title: 'My Advertisements',
     url: '/Advertisements',
   },
-  { id: UserPanelOptionId.MyAccount, title: 'My Account', url: '/Account' },
+  { id: UserPanelOptionId.MyAccount, title: 'My Account', url: '/account' },
   {
     id: UserPanelOptionId.EditPersonalDetails,
     title: 'Edit personal details',
