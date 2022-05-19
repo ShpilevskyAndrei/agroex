@@ -14,10 +14,12 @@ import { environment } from '../environments/environment';
 import { AppEffects } from './state/effect/app.effects';
 
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    AppRoutingModule,
     HeaderModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -31,7 +33,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
       logOnly: environment.production,
     }),
     EffectsModule.forRoot([AppEffects]),
-    MatSnackBarModule
+    MatSnackBarModule,
   ],
   bootstrap: [AppComponent],
 })

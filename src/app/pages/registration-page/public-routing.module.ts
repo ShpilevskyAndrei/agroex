@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
   {
-    path: 'registration',
-    loadChildren: () =>
-      import('./pages/registration-page/public.module').then(
-        (m) => m.PublicModule
-      ),
+    path: '',
+    component: RegisterComponent,
   },
   {
     path: '**',
@@ -17,7 +15,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class PublicRoutingModule {}
