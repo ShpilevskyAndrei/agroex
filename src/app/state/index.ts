@@ -33,8 +33,8 @@ export interface State {
 }
 
 export const ROOT_REDUCER: ActionReducerMap<State> = {
-  mainDashboard: MAIN_DASHBOARD_REDUCER,
   appRoot: APP_ROOT_REDUCER,
+  mainDashboard: MAIN_DASHBOARD_REDUCER,
   accountPage: ACCOUNT_PAGE_REDUCER,
   errorPage: ERROR_PAGE_REDUCER,
   loginPage: LOGIN_PAGE_REDUCER,
