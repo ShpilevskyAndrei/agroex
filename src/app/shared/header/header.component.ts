@@ -1,9 +1,11 @@
 import { Component, Input } from '@angular/core';
-import { MatSelectChange } from '@angular/material/select';
+import { MatSelect } from '@angular/material/select';
 
 import { LOGGED_ROLE_CONFIG } from './constants/user-role-config';
 import { USER_PANEL_OPTION } from './constants/user-panel-option';
 import { UserRole } from './enums/user-role';
+import { IUserOptionsType } from './interfaces/user-options-type.interface';
+import { UserPanelOptionId } from './enums/user-panel-option-id';
 
 @Component({
   selector: 'app-header',
@@ -24,7 +26,16 @@ export class HeaderComponent {
     this.userRole = UserRole.Guest;
   }
 
-  public goLink(selectEvent: MatSelectChange): void {
-    console.log(selectEvent.value.url);
+  public goLink(
+    selectedOption: IUserOptionsType,
+    userNavigationPanel: MatSelect
+  ): void {
+    if (selectedOption.id === UserPanelOptionId.LogOut) {
+      userNavigationPanel.value = null;
+      this.onLogout();
+
+      return;
+    }
+    console.log(selectedOption.url);
   }
 }
