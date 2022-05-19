@@ -16,7 +16,7 @@ import {
 export class RegisterComponent {
   public MIN_USER_NAME_LENGTH = MIN_USER_NAME_LENGTH;
   public MIN_PASSWORD_LENGTH = MIN_PASSWORD_LENGTH;
-  public loginForm = false;
+  public loginForm = true;
 
   public form: FormGroup = new FormGroup(
     {
@@ -55,26 +55,37 @@ export class RegisterComponent {
   public onRegister(): void {
     if (this.form.valid) {
       this.userService
-        .create({
-          user: {
-            username: this.get('username').value,
-            email: this.get('email').value,
-            password: this.get('password').value,
-            phone: this.get('phoneNumber').value,
+        .create(
+          {
+            user: {
+              username: this.get('username').value,
+              email: this.get('email').value,
+              password: this.get('password').value,
+              phone: this.get('phoneNumber').value,
+            },
           },
-        })
+          'registration'
+        )
         .pipe(tap(() => this.router.navigate([''])))
         .subscribe();
     }
   }
 
   public onLogin(): void {
-    console.log(
-      `user: {
-        email: ${this.get('email').value},
-        password: ${this.get('password').value},
-      }`
-    );
+    if (this.loginForm) {
+      this.userService
+        .create(
+          {
+            user: {
+              email: this.get('email').value,
+              password: this.get('password').value,
+            },
+          },
+          'login'
+        )
+        .pipe(tap(() => this.router.navigate([''])))
+        .subscribe();
+    }
   }
 
   public switch(): void {

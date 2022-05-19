@@ -11,12 +11,9 @@ import { catchError, tap } from 'rxjs/operators';
 export class UserService {
   constructor(private http: HttpClient, private snackbar: MatSnackBar) {}
 
-  public create(user: ApiUser): Observable<ApiUser> {
+  public create(user: ApiUser, url: string): Observable<ApiUser> {
     return this.http
-      .post<ApiUser>(
-        'https://agroex-backend.herokuapp.com/users/registration',
-        user
-      )
+      .post<ApiUser>(`https://agroex-backend.herokuapp.com/users/${url}`, user)
       .pipe(
         tap((createdUser: ApiUser) =>
           this.snackbar.open(
