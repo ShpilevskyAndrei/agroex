@@ -1,5 +1,5 @@
 <h2 mat-dialog-title>AGROEX Privacy policy</h2>
-<mat-dialog-content class="mat-typography">
+<mat-dialog-content>
   <h3>When this policy applies</h3>
   <p>
     This Privacy Policy applies to all of the services offered by Google LLC and
@@ -9,12 +9,9 @@
     incorporate this Privacy Policy.
   </p>
 </mat-dialog-content>
-<section class="example-section">
-  <mat-checkbox class="example-margin">I am agree</mat-checkbox>
-</section>
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close="">Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>
-    Continue registration
+<mat-dialog-actions class="btn-modal-position">
+  <button mat-raised-button class="btn-cancel" mat-dialog-close="">Cancel</button>
+  <button mat-raised-button class="btn-accept" [mat-dialog-close]="true" >
+    Accept policy
   </button>
 </mat-dialog-actions>

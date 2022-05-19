@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { fromEvent, first, tap } from 'rxjs';
+
 import { PolicyModalContentComponent } from './policy-modal-content/policy-modal-content.component';
 
 @Component({
@@ -11,10 +13,14 @@ export class RegistrationPageComponent {
   constructor(public dialog: MatDialog) {}
 
   public openDialog(): void {
-    const dialogRef = this.dialog.open(PolicyModalContentComponent);
+    this.dialog
+      .open(PolicyModalContentComponent, {
+        autoFocus: false,
+      })
+      .afterClosed();
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
-    });
+    fromEvent(document.getElementsByClassName('btn-accept'), 'click')
+      .pipe(first(), tap(console.log))
+      .subscribe();
   }
 }
