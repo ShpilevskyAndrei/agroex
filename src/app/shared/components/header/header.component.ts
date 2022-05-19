@@ -1,20 +1,22 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { MatSelect } from '@angular/material/select';
 import { Router } from '@angular/router';
+import { UserFromApi } from '../../../pages/registration-page/interfaces/user-api-response.interface';
+import { USER_PANEL_OPTION } from './constants/user-panel-option';
 
 import { LOGGED_ROLE_CONFIG } from './constants/user-role-config';
-import { USER_PANEL_OPTION } from './constants/user-panel-option';
+import { UserPanelOptionId } from './enums/user-panel-option-id';
 import { UserRole } from './enums/user-role';
 import { IUserOptionsType } from './interfaces/user-options-type.interface';
-import { UserPanelOptionId } from './enums/user-panel-option-id';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnChanges {
   @Input() public userRole: UserRole = UserRole.Guest;
+  @Input() public user: UserFromApi | null;
 
   public userRoleConfig = LOGGED_ROLE_CONFIG;
   public userRoles = UserRole;
@@ -22,8 +24,14 @@ export class HeaderComponent {
 
   constructor(private router: Router) {}
 
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (changes.user && this.user) {
+      this.userRole = UserRole.User;
+    }
+  }
+
   public onLogin(): void {
-    this.userRole = UserRole.User;
+    this.router.navigate(['registration']);
   }
 
   public navigateToUserOption(

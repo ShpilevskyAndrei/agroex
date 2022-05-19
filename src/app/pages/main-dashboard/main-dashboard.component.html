@@ -1,7 +1,8 @@
-<app-header></app-header>
+<app-header [user]="user"></app-header>
 
 <app-categories [categories]="categories"
-                [categoriesLoadingStatus]="categoriesLoadingStatus">
+                [categoriesLoadingStatus]="categoriesLoadingStatus"
+>
 </app-categories>
 
 <a routerLinkActive="active" [routerLink]="['/login']">LogIn</a>

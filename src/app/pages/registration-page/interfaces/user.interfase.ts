@@ -4,5 +4,3 @@ export interface IUser {
   phone?: string;
   password: string;
 }
-
-export type ApiUser = Record<string, IUser>;
