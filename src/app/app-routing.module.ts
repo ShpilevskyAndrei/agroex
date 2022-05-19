@@ -6,8 +6,8 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () =>
-      import('./pages/login-page/login-page.module').then(
-        (m) => m.LoginPageModule
+      import('./pages/registration-page/public.module').then(
+        (m) => m.PublicModule
       ),
   },
   {
@@ -42,6 +42,7 @@ const routes: Routes = [
   {
     path: '**',
     redirectTo: 'error',
+    pathMatch: 'full',
   },
 ];
 
