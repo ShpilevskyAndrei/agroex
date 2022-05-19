@@ -22,11 +22,8 @@ export class HeaderComponent {
   public onLogin(): void {
     this.userRole = UserRole.User;
   }
-  public onLogout(): void {
-    this.userRole = UserRole.Guest;
-  }
 
-  public goLink(
+  public navigateToUserOption(
     selectedOption: IUserOptionsType,
     userNavigationPanel: MatSelect
   ): void {
@@ -37,5 +34,9 @@ export class HeaderComponent {
       return;
     }
     console.log(selectedOption.url);
+  }
+
+  private onLogout(): void {
+    this.userRole = UserRole.Guest;
   }
 }

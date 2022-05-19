@@ -5,10 +5,14 @@
     width: 100%;
     height: $header-height;
     background-color: $header-color;
-    margin-left: 0 0 $offset-large 0;
     display: flex;
     justify-content: space-between;
     box-shadow: 0 $offset-xsmall $offset-normal rgba(0, 0, 0, 0.08);
+  }
+
+  .main-header-content {
+    display: flex;
+    justify-content: space-between;
   }
 
   .points-container-header {
@@ -30,7 +34,6 @@
   .logo-img {
     width: 2.5rem;
     height: 2.5rem;
-    margin: 0 $offset-normal 0 calc(2.5 * #{$offset-large});
   }
 
   .menu-items {
@@ -40,20 +43,18 @@
   }
 
   .img-in-header {
-    margin: 0 $offset-large;
     vertical-align: middle;
     cursor: pointer;
   }
 
-  .account-img {
-    width: 3.5rem;
-    margin-right: 0;
+  .icon-for-guest {
+    margin-left: calc(#{$offset-normal} / 2);
+    color: $header-login-icon-color;
   }
 
-  .login-img {
-    width: 1.5rem;
-    margin-right: calc(2.5 * #{$offset-xlarge});
-    padding: 0;
+  .account-img {
+    width: 3.5rem;
+    margin-left: calc(2 * #{$offset-medium});
   }
 
   .account-container-header {
@@ -63,14 +64,7 @@
 
   .my-account-select {
     width: 0;
-    height: 100%;
     visibility: hidden;
-    right: 0;
-    position: fixed;
-  }
-
-  .my-account-vector {
-    margin-right: calc(2.5 * #{$offset-xlarge});
-    margin-left: $offset-normal;
+    margin-top: 8rem;
   }
 }
