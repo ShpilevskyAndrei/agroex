@@ -29,11 +29,13 @@
     color: $header-logo-color;
     margin: 0 calc(2.5 * #{$offset-large}) 0 0;
     font-weight: bold;
+    cursor: pointer;
   }
 
   .logo-img {
     width: 2.5rem;
     height: 2.5rem;
+    cursor: pointer;
   }
 
   .menu-items {

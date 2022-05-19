@@ -5,6 +5,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppComponent } from './app.component';
 import { reducers, metaReducers } from './state/reducer';
@@ -22,6 +23,7 @@ import { ErrorPageModule } from './pages/error-page/error-page.module';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatDialogModule,
     AppRoutingModule,
     StoreModule.forRoot(reducers, {
       metaReducers,
