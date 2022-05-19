@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ErrorPageComponent } from './error-page.component';
+import { ErrorPageContainerComponent } from './error-page-container.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: ErrorPageComponent,
+    component: ErrorPageContainerComponent,
   },
 ];
 
