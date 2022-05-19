@@ -12,7 +12,7 @@ import { Category } from './categories/model/category.model';
 
 @Component({
   selector: 'app-main-dashboard-container',
-  template: ` <app-main-dashboard
+  template: `<app-main-dashboard
     [categories]="categories$ | async"
     [categoriesLoadingStatus]="categoriesLoadingStatus$ | async"
   ></app-main-dashboard>`,
