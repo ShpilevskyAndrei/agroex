@@ -14,7 +14,24 @@
     
         &__button {
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
+            &-acc{
+                border: none;
+                cursor: pointer;
+                background: inherit;
+                padding-left: 0;
+            }
+        }
+
+        &__privacy {
+            display: flex;
+            flex-direction: row;
+            p, a {
+                margin-top: 0.1rem;
+            }
+            p {
+                margin-left: 0.8rem;
+            }
         }
     }
 }
