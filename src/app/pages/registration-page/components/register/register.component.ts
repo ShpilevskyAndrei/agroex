@@ -2,38 +2,43 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
-import { UserService } from '../../services/user-service/user.service';
-import { CustomValidators } from '../../_helpers/custom-validators';
-
+import { UserService } from '../../user-service/user.service';
+import { CustomValidators } from '../../interfaces/custom-validators';
+import {
+  MIN_USER_NAME_LENGTH,
+  MIN_PASSWORD_LENGTH,
+} from '../../constants/constants';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
-  public minCharForUserName = 4;
-  public minCharForPassword = 5;
-  public checkBoxConfirm = false;
+  public MIN_USER_NAME_LENGTH = MIN_USER_NAME_LENGTH;
+  public MIN_PASSWORD_LENGTH = MIN_PASSWORD_LENGTH;
 
   public form: FormGroup = new FormGroup(
     {
       email: new FormControl('', [Validators.required, Validators.email]),
       username: new FormControl('', [
         Validators.required,
-        Validators.minLength(this.minCharForUserName),
+        Validators.minLength(this.MIN_USER_NAME_LENGTH),
       ]),
-      phonenumber: new FormControl('', [
+      phoneNumber: new FormControl('', [
         Validators.required,
-        CustomValidators.phoneNumberValidator,
+        Validators.pattern(
+          /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/
+        ),
       ]),
       password: new FormControl('', [
         Validators.required,
-        Validators.minLength(this.minCharForPassword),
+        Validators.minLength(this.MIN_PASSWORD_LENGTH),
       ]),
       passwordConfirm: new FormControl('', [
         Validators.required,
-        Validators.minLength(this.minCharForPassword),
+        Validators.minLength(this.MIN_PASSWORD_LENGTH),
       ]),
+      checkBoxConfirm: new FormControl('', Validators.requiredTrue),
     },
     {
       validators: CustomValidators.passwordsMatching,
@@ -42,35 +47,19 @@ export class RegisterComponent {
 
   constructor(private userService: UserService, private router: Router) {}
 
-  public get email(): FormControl {
-    return this.form.get('email') as FormControl;
+  public get(key: string): FormControl {
+    return this.form.get(key) as FormControl;
   }
 
-  public get username(): FormControl {
-    return this.form.get('username') as FormControl;
-  }
-
-  public get phonenumber(): FormControl {
-    return this.form.get('phonenumber') as FormControl;
-  }
-
-  public get password(): FormControl {
-    return this.form.get('password') as FormControl;
-  }
-
-  public get passwordConfirm(): FormControl {
-    return this.form.get('passwordConfirm') as FormControl;
-  }
-
-  public register(): void {
+  public onRegister(): void {
     if (this.form.valid) {
       this.userService
         .create({
           user: {
-            username: this.username.value,
-            phonenumber: this.phonenumber.value,
-            email: this.email.value,
-            password: this.password.value,
+            username: this.get('username').value,
+            phoneNumber: this.get('phoneNumber').value,
+            email: this.get('email').value,
+            password: this.get('password').value,
           },
         })
         .pipe(tap(() => this.router.navigate([''])))
@@ -79,16 +68,11 @@ export class RegisterComponent {
     console.log(
       `'user': 
       {
-        'username': ${this.username.value},
-        'phonenumber': ${this.phonenumber.value},
-        'email': ${this.email.value},
-        'password' : ${this.password.value}
+        'username': ${this.get('username').value},
+        'phoneNumber': ${this.get('phoneNumber').value},
+        'email': ${this.get('email').value},
+        'password' : ${this.get('password').value}
       }`
     );
-  }
-
-  public checkSwitch(): boolean {
-    this.checkBoxConfirm = this.checkBoxConfirm == true ? false : true;
-    return this.checkBoxConfirm;
   }
 }

@@ -15,7 +15,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { ErrorPageModule } from './pages/error-page/error-page.module';
 
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,7 +22,6 @@ import { AppRoutingModule } from './app-routing.module';
     MainDashboardModule,
     ErrorPageModule,
     AppRoutingModule,
-    HeaderModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
