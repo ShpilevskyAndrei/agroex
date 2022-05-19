@@ -33,8 +33,8 @@
     margin: 0 $offset-normal 0 calc(2.5 * #{$offset-large});
   }
 
-  .menu-items p,
-  button {
+  .menu-items button,
+  p {
     cursor: pointer;
     margin: 0;
     font-size: $font-size-medium;
@@ -55,6 +55,7 @@
   .login-img {
     width: 1.5rem;
     margin-right: calc(2.5 * #{$offset-xlarge});
+    padding: 0;
   }
 
   .account-container-header {
@@ -63,18 +64,15 @@
   }
 
   .my-account-select {
-    height: 0.001rem;
-    width: 0.001rem;
+    width: 0;
+    height: 100%;
     visibility: hidden;
+    right: 0;
+    position: fixed;
   }
 
   .my-account-vector {
     margin-right: calc(2.5 * #{$offset-xlarge});
     margin-left: $offset-normal;
-  }
-
-  .button-add-advertisement {
-    border: none;
-    background: none;
   }
 }

@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
+import { MatSelectChange } from '@angular/material/select';
 
 import { LOGGED_ROLE_CONFIG } from './constants/user-role-config';
-import { UserRole } from './enums/user-role';
 import { USER_PANEL_OPTION } from './constants/user-panel-option';
+import { UserRole } from './enums/user-role';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,6 @@ export class HeaderComponent {
 
   public userRoleConfig = LOGGED_ROLE_CONFIG;
   public userRoles = UserRole;
-
   public userPanelOption = USER_PANEL_OPTION;
 
   public onLogin(): void {
@@ -24,7 +24,7 @@ export class HeaderComponent {
     this.userRole = UserRole.Guest;
   }
 
-  public goLink(url: string): void {
-    console.log(url);
+  public goLink(selectEvent: MatSelectChange): void {
+    console.log(selectEvent.value.url);
   }
 }

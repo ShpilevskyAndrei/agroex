@@ -1,6 +1,6 @@
-type UserOptionsType = { title: string; url: string };
+import { IUserOptionsType } from '../interfaces/i-user-options';
 
-export const USER_PANEL_OPTION: UserOptionsType[] = [
+export const USER_PANEL_OPTION: IUserOptionsType[] = [
   { title: 'My Advertisements', url: '/Advertisements' },
   { title: 'My Account', url: '/Account' },
   { title: 'Edit personal details', url: '/Details' },
