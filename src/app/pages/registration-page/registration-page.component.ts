@@ -17,9 +17,7 @@ export class RegistrationPageComponent {
       .open(PolicyModalContentComponent, {
         autoFocus: false,
       })
-      .afterClosed();
-
-    fromEvent(document.getElementsByClassName('btn-accept'), 'click')
+      .afterClosed()
       .pipe(first(), tap(console.log))
       .subscribe();
   }
