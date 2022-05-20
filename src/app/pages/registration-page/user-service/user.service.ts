@@ -17,7 +17,7 @@ export class UserService {
       .pipe(
         tap((createdUser: ApiUser) =>
           this.snackbar.open(
-            `User ${createdUser['user'].username} created successfully`,
+            `User ${createdUser['user'].username} ${url} will success`,
             'Close',
             {
               duration: 2000,

@@ -23,6 +23,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     HttpClientModule,
     AppRoutingModule,
     StateModule,
+    MatSnackBarModule,
   ],
   bootstrap: [AppContainerComponent],
 })

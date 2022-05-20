@@ -71,6 +71,10 @@ export class RegisterComponent {
     }
   }
 
+  public close(): void {
+    this.router.navigate(['']);
+  }
+
   public onLogin(): void {
     if (this.loginForm) {
       this.userService
