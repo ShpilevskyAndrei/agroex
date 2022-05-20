@@ -1,12 +1,7 @@
 <header class="main-header">
   <div class="container main-header-content">
-<<<<<<<< HEAD:src/app/shared/header/header.component.html
     <div class="points-container-header" (click)="goToMainPage()">
-      <img class="logo-img" src="../../../assets/logo.svg" alt="" />
-========
-    <div class="points-container-header" (click)='goToMainPage()'>
-      <img class="logo-img" src="../../../../assets/logo.svg" alt=""/>
->>>>>>>> dev:src/app/shared/components/header/header.component.html
+      <img class="logo-img" src="../../../../assets/logo.svg" alt="" />
       <p class="logo-name">AGROEX</p>
     </div>
     <div class="account-container-header">
@@ -44,16 +39,11 @@
           disableOptionCentering
           (valueChange)="navigateToUserOption($event, userNavigationPanel)"
         >
-<<<<<<<< HEAD:src/app/shared/header/header.component.html
           <mat-option
             *ngFor="let option of userPanelOption"
             [value]="option"
             [routerLink]="option.url"
           >
-========
-          <mat-option *ngFor="let option of userPanelOption" [value]="option"
-                      [routerLink]="option.url">
->>>>>>>> dev:src/app/shared/components/header/header.component.html
             {{ option.title }}
           </mat-option>
         </mat-select>

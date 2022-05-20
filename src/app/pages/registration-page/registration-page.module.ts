@@ -9,17 +9,18 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { PolicyModalContentComponent } from './policy-modal-content/policy-modal-content.component';
 
 @NgModule({
-  declarations: [RegistrationPageComponent, RegistrationPageContainerComponent],
-  imports: [CommonModule, RegistrationPageRoutingModule],
-  exports: [RegistrationPageContainerComponent],
-  declarations: [RegistrationPageComponent, PolicyModalContentComponent],
-  entryComponents: [PolicyModalContentComponent],
+  declarations: [
+    RegistrationPageComponent,
+    PolicyModalContentComponent,
+    RegistrationPageContainerComponent,
+  ],
   imports: [
     CommonModule,
     RegistrationPageRoutingModule,
     MatButtonModule,
     MatDialogModule,
   ],
-  exports: [RegistrationPageComponent],
+  exports: [RegistrationPageContainerComponent],
+  entryComponents: [PolicyModalContentComponent],
 })
 export class RegistrationPageModule {}
