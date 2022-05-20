@@ -1,56 +1,63 @@
 <header class="main-header">
   <div class="container main-header-content">
+<<<<<<<< HEAD:src/app/shared/header/header.component.html
     <div class="points-container-header" (click)="goToMainPage()">
-      <img class="logo-img" src="../../../../assets/logo.svg" alt="" />
-      <div class="points-container-header" (click)="goToMainPage()">
-        <img class="logo-img" src="../../../../assets/logo.svg" alt="" />
-        <p class="logo-name">AGROEX</p>
-      </div>
-      <div class="account-container-header">
-        <ng-container *ngIf="userRole === userRoles.Guest; else loggedUser">
-          <div class="account-container-header" (click)="onLogin()">
-            <p class="menu-items">Log in</p>
-            <mat-icon class="img-in-header icon-for-guest">login</mat-icon>
-          </div>
-        </ng-container>
-        <ng-template #loggedUser>
-          <button mat-raised-button class="btn-add-advertisement">
-            <mat-icon>add</mat-icon>&nbsp; &nbsp; Advertisement
-          </button>
-          <div
-            class="account-container-header"
-            (click)="userNavigationPanel.open()"
+      <img class="logo-img" src="../../../assets/logo.svg" alt="" />
+========
+    <div class="points-container-header" (click)='goToMainPage()'>
+      <img class="logo-img" src="../../../../assets/logo.svg" alt=""/>
+>>>>>>>> dev:src/app/shared/components/header/header.component.html
+      <p class="logo-name">AGROEX</p>
+    </div>
+    <div class="account-container-header">
+      <ng-container *ngIf="userRole === userRoles.Guest; else loggedUser">
+        <div class="account-container-header" (click)="onLogin()">
+          <p class="menu-items">Log in</p>
+          <mat-icon class="img-in-header icon-for-guest">login</mat-icon>
+        </div>
+      </ng-container>
+      <ng-template #loggedUser>
+        <button mat-raised-button class="btn-add-advertisement">
+          <mat-icon>add</mat-icon>&nbsp; &nbsp; Advertisement
+        </button>
+        <div
+          class="account-container-header"
+          (click)="userNavigationPanel.open()"
+        >
+          <img
+            *ngIf="userRole === userRoles.User"
+            class="img-in-header account-img"
+            alt=""
+            [src]="userRoleConfig[userRole].src"
+          />
+          <mat-icon
+            *ngIf="userRole === userRoles.User"
+            class="img-in-header my-account-vector"
           >
-            <img
-              *ngIf="userRole === userRoles.User"
-              class="img-in-header account-img"
-              alt=""
-              [src]="userRoleConfig[userRole].src"
-            />
-            <mat-icon
-              *ngIf="userRole === userRoles.User"
-              class="img-in-header my-account-vector"
-            >
-              expand_more
-            </mat-icon>
-          </div>
-          <mat-select
-            #userNavigationPanel
-            class="my-account-select"
-            panelClass="mat-select-unset-height"
-            disableOptionCentering
-            (valueChange)="navigateToUserOption($event, userNavigationPanel)"
+            expand_more
+          </mat-icon>
+        </div>
+        <mat-select
+          #userNavigationPanel
+          class="my-account-select"
+          panelClass="mat-select-unset-height"
+          disableOptionCentering
+          (valueChange)="navigateToUserOption($event, userNavigationPanel)"
+        >
+<<<<<<<< HEAD:src/app/shared/header/header.component.html
+          <mat-option
+            *ngFor="let option of userPanelOption"
+            [value]="option"
+            [routerLink]="option.url"
           >
-            <mat-option
-              *ngFor="let option of userPanelOption"
-              [value]="option"
-              [routerLink]="option.url"
-            >
-              {{ option.title }}
-            </mat-option>
-          </mat-select>
-        </ng-template>
-      </div>
+========
+          <mat-option *ngFor="let option of userPanelOption" [value]="option"
+                      [routerLink]="option.url">
+>>>>>>>> dev:src/app/shared/components/header/header.component.html
+            {{ option.title }}
+          </mat-option>
+        </mat-select>
+      </ng-template>
     </div>
   </div>
 </header>
