@@ -1,4 +1,6 @@
 import { CommonModule } from '@angular/common';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatListModule } from '@angular/material/list';
 import { NgModule } from '@angular/core';
 
 import { CategoriesComponent } from './categories.component';
@@ -7,7 +9,7 @@ import { CategoryModule } from './category/category.module';
 
 @NgModule({
   declarations: [CategoriesComponent],
-  imports: [CommonModule, CategoryModule],
+  imports: [CommonModule, CategoryModule, MatTabsModule, MatListModule],
   providers: [CategoriesService],
   exports: [CategoriesComponent],
 })

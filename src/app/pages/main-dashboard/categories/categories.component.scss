@@ -2,28 +2,12 @@
 
 :host {
   .categories {
-    display: flex;
-    justify-content: center;
-    gap: $offset-large;
-
-    &__content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 10rem;
-      height: 9rem;
-      border-radius: $border-radius;
-      background-color: #0cb80c;
-
-      &:not(.active):hover {
-        cursor: pointer;
-        background-color: green;
-      }
-
-      &.active {
-        background-color: green;
-      }
+    &__wrap {
+      background-color: $color-white;
     }
+  }
+  .category {
+    display: flex;
+    align-items: center;
   }
 }
