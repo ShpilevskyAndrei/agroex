@@ -1,4 +1,4 @@
-import { ActionReducerMap, MetaReducer } from '@ngrx/store';
+import { ActionReducer, ActionReducerMap, INIT, MetaReducer, UPDATE } from '@ngrx/store';
 
 import { AccountPageEffects } from './account-page/account-page.effects';
 import {
@@ -55,4 +55,25 @@ export const ROOT_EFFECT = [
   RegistrationPageEffects,
 ];
 
-export const META_REDUCER: MetaReducer<State>[] = [];
+export const hydrationMetaReducer = (
+  reducer: ActionReducer<State>
+): ActionReducer<State> => {
+  return (state, action) => {
+    if (action.type === INIT || action.type === UPDATE) {
+      const storageValue = localStorage.getItem('state');
+      if (storageValue) {
+        try {
+          return JSON.parse(storageValue);
+        } catch {
+          localStorage.removeItem('state');
+        }
+      }
+    }
+    const nextState = reducer(state, action);
+    localStorage.setItem('state', JSON.stringify(nextState));
+    return nextState;
+  };
+};
+
+export const META_REDUCER: MetaReducer<State>[] = [hydrationMetaReducer];
+
