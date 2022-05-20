@@ -6,7 +6,6 @@ import { RegistrationPageRoutingModule } from './registration-page-routing.modul
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PolicyModalContentComponent } from './policy-modal-content/policy-modal-content.component';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [RegistrationPageComponent, PolicyModalContentComponent],
@@ -16,7 +15,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     RegistrationPageRoutingModule,
     MatButtonModule,
     MatDialogModule,
-    MatCheckboxModule,
   ],
   exports: [RegistrationPageComponent],
 })

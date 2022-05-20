@@ -1,0 +1,80 @@
+@import "../../../styles/general-styles";
+
+:host {
+  .main-header {
+    position: relative;
+    width: 100%;
+    height: $header-height;
+    background-color: $header-color;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 $offset-xsmall $offset-normal rgba(0, 0, 0, 0.08);
+  }
+
+  .main-header-content {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .points-container-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .logo-name {
+    width: 6rem;
+    height: 2rem;
+    font-style: normal;
+    font-size: $font-size-medium;
+    color: $header-logo-color;
+    margin: 0 0 0 1rem;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .logo-img {
+    width: 2.5rem;
+    height: 2.5rem;
+    cursor: pointer;
+  }
+
+  .menu-items {
+    margin: 0;
+    font-size: $font-size-medium;
+  }
+
+  .img-in-header {
+    vertical-align: middle;
+  }
+
+  .icon-for-guest {
+    margin-left: calc(#{$offset-normal} / 2);
+    color: $header-login-icon-color;
+  }
+
+  .account-img {
+    width: 3.5rem;
+    margin-left: calc(2 * #{$offset-medium});
+  }
+
+  .account-container-header {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .my-account-select {
+    width: 0;
+    visibility: hidden;
+    margin-top: 8rem;
+  }
+
+  .btn-add-advertisement {
+    color: $color-white;
+    background: $color-tradewind;
+    border-radius: 0.125rem;
+    border: 0.063rem solid $color-tradewind;
+  }
+}
