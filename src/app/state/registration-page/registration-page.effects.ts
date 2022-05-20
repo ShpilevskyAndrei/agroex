@@ -13,12 +13,17 @@ export class RegistrationPageEffects {
   public user$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(RegistrationPageActions.getUserRequest),
-      switchMap(({ user, url }) => this.userService.create(user, url)),
-      map((userApiResponse: UserApiResponse) =>
-        RegistrationPageActions.getUserSuccess({ user: userApiResponse.user })
-      ),
-      catchError((error: HttpErrorResponse) =>
-        of(MainDashboardActions.getCategoriesError({ error: error }))
+      switchMap(({ user, url }) =>
+        this.userService.create(user, url).pipe(
+          map((userApiResponse: UserApiResponse) =>
+            RegistrationPageActions.getUserSuccess({
+              user: userApiResponse.user,
+            })
+          ),
+          catchError((error: HttpErrorResponse) =>
+            of(MainDashboardActions.getCategoriesError({ error: error }))
+          )
+        )
       )
     );
   });
