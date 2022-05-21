@@ -31,11 +31,13 @@
     color: $header-logo-color;
     margin: 0 0 0 1rem;
     font-weight: bold;
+    cursor: pointer;
   }
 
   .logo-img {
     width: 2.5rem;
     height: 2.5rem;
+    cursor: pointer;
   }
 
   .menu-items {
@@ -67,5 +69,24 @@
     width: 0;
     visibility: hidden;
     margin-top: 8rem;
+  }
+
+  .add-advertisement-button {
+    color: $color-white;
+    background: $color-tradewind;
+    border-radius: 0.125rem;
+    border: 0.063rem solid $color-tradewind;
+  }
+
+  .add-advertisement-button-container {
+    display: flex;
+    align-items: center;
+    width: auto;
+    height: 3rem;
+  }
+  p {
+    margin: 0;
+    padding: $offset-small;
+    font-size: $font-size-small;
   }
 }

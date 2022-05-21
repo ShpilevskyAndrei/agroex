@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppContainerComponent } from './app-container.component';
 import { AppComponent } from './app.component';
@@ -19,6 +20,7 @@ import { IconSerializeService } from './shared/services/icon-serialize.service';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatDialogModule,
     AppRoutingModule,
     StateModule,
   ],

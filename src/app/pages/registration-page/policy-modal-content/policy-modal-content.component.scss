@@ -1,0 +1,22 @@
+@import "../../../styles/general-styles";
+
+:host {
+  .buttons-position-in-modal {
+    float: right;
+  }
+
+  .accept-policy-button {
+    background: $color-tradewind;
+    border-radius: 0.125rem;
+    border: 0.063rem solid $color-tradewind;
+    color: $color-white;
+    margin: 0.250rem;
+  }
+
+  .cancel-policy-button {
+    color: $color-tradewind;
+    border-radius: 0.125rem;
+    border: 0.063rem solid $color-tradewind;
+    margin: 0.250rem;
+  }
+}
