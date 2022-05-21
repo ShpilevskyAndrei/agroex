@@ -18,7 +18,10 @@ export class RegistrationPageComponent {
         autoFocus: false,
       })
       .afterClosed()
-      .pipe(first(), tap(console.log))
+      .pipe(
+        first(),
+        tap((accepted: boolean) => console.log(accepted))
+      )
       .subscribe();
   }
 }

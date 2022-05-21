@@ -71,10 +71,22 @@
     margin-top: 8rem;
   }
 
-  .btn-add-advertisement {
+  .add-advertisement-button {
     color: $color-white;
     background: $color-tradewind;
     border-radius: 0.125rem;
     border: 0.063rem solid $color-tradewind;
+  }
+
+  .add-advertisement-button-container {
+    display: flex;
+    align-items: center;
+    width: auto;
+    height: 3rem;
+  }
+  p {
+    margin: 0;
+    padding: $offset-small;
+    font-size: $font-size-small;
   }
 }
