@@ -1,9 +1,11 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { MatSelect } from '@angular/material/select';
 import { Router } from '@angular/router';
-import { UserFromApi } from '../../../pages/registration-page/interfaces/user-api-response.interface';
-import { USER_PANEL_OPTION } from './constants/user-panel-option';
+import { Store } from '@ngrx/store';
 
+import { UserFromApi } from '../../../pages/registration-page/interfaces/user-api-response.interface';
+import { LoginPageActions } from '../../../state/login-page/login-page.actions';
+import { USER_PANEL_OPTION } from './constants/user-panel-option';
 import { LOGGED_ROLE_CONFIG } from './constants/user-role-config';
 import { UserPanelOptionId } from './enums/user-panel-option-id';
 import { UserRole } from './enums/user-role';
@@ -22,7 +24,7 @@ export class HeaderComponent implements OnChanges {
   public userRoles = UserRole;
   public userPanelOption = USER_PANEL_OPTION;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private store: Store) {}
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.user && this.user) {
@@ -53,5 +55,6 @@ export class HeaderComponent implements OnChanges {
 
   private onLogout(): void {
     this.userRole = UserRole.Guest;
+    this.store.dispatch(LoginPageActions.getLogoutSuccess());
   }
 }

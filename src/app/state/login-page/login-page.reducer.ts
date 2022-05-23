@@ -40,5 +40,12 @@ export const LOGIN_PAGE_REDUCER = createReducer(
       ...state,
       loginLoadingStatus: { loading: false, loaded: false, error },
     })
+  ),
+  on(
+    LoginPageActions.getLogoutSuccess,
+    (state): LoginPageState => ({
+      ...state,
+      user: null,
+    })
   )
 );

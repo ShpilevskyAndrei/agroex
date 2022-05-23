@@ -19,4 +19,6 @@ export const LoginPageActions = {
     '[LOGIN_PAGE] login error',
     props<{ error: HttpErrorResponse }>()
   ),
+
+  getLogoutSuccess: createAction('[LOGIN_PAGE] logout success'),
 };
