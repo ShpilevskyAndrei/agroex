@@ -5,7 +5,6 @@ import { catchError, map, of, switchMap } from 'rxjs';
 
 import { UserApiResponse } from '../../pages/registration-page/interfaces/user-api-response.interface';
 import { UserService } from '../../pages/registration-page/services/user.service';
-import { MainDashboardActions } from '../main-dashboard/main-dashboard.actions';
 import { RegistrationPageActions } from './registration-page.actions';
 
 @Injectable()
@@ -21,7 +20,7 @@ export class RegistrationPageEffects {
             })
           ),
           catchError((error: HttpErrorResponse) =>
-            of(MainDashboardActions.getCategoriesError({ error: error }))
+            of(RegistrationPageActions.getUserError({ error: error }))
           )
         )
       )

@@ -25,6 +25,7 @@ import {
 })
 export class RegistrationPageComponent implements OnChanges {
   @Input() public authorizationLoadingStatus: LoadingStatus | null;
+  @Input() public loginLoadingStatus: LoadingStatus | null;
 
   @Output() public authorizeUser: EventEmitter<AuthorizationCombineInfo> =
     new EventEmitter<AuthorizationCombineInfo>();
@@ -94,6 +95,10 @@ export class RegistrationPageComponent implements OnChanges {
         url: 'login',
       });
     }
+    console.log({
+      email: this.get('email').value,
+      password: this.get('password').value,
+    });
   }
 
   public switch(): void {

@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
+import { selectLoginData } from '../../state/login-page/login-page.selectors';
 import { MainDashboardActions } from '../../state/main-dashboard/main-dashboard.actions';
 import {
   selectCategoriesData,
@@ -28,6 +29,7 @@ export class MainDashboardContainerComponent implements OnInit {
   constructor(private store: Store) {
     this.categories$ = this.store.select(selectCategoriesData);
     this.user$ = this.store.select(selectUserData);
+    this.user$ = this.store.select(selectLoginData); // ??
     this.categoriesLoadingStatus$ = this.store.select(
       selectCategoriesLoadingStatus
     );
