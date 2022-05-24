@@ -1,7 +1,9 @@
-<app-header></app-header>
+<app-header [user]="user" (logout)="onLogout()"></app-header>
 
-<app-categories [categories]="categories"
-                [categoriesLoadingStatus]="categoriesLoadingStatus">
+<app-categories
+  [categories]="categories"
+  [categoriesLoadingStatus]="categoriesLoadingStatus"
+>
 </app-categories>
 
 <a routerLinkActive="active" [routerLink]="['/registration']">Log in</a>

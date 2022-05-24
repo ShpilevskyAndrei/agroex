@@ -8,21 +8,28 @@ import {
   selectCategoriesData,
   selectCategoriesLoadingStatus,
 } from '../../state/main-dashboard/main-dashboard.selectors';
+import { RegistrationPageActions } from '../../state/registration-page/registration-page.actions';
+import { selectUserData } from '../../state/registration-page/registration-page.selectors';
+import { IUser } from '../registration-page/interfaces/user-api-response.interface';
 import { Category } from './categories/model/category.model';
 
 @Component({
   selector: 'app-main-dashboard-container',
-  template: `<app-main-dashboard
+  template: ` <app-main-dashboard
     [categories]="categories$ | async"
     [categoriesLoadingStatus]="categoriesLoadingStatus$ | async"
+    [user]="user$ | async"
+    (logout)="onLogout()"
   ></app-main-dashboard>`,
 })
 export class MainDashboardContainerComponent implements OnInit {
   public categories$: Observable<Category[] | null>;
   public categoriesLoadingStatus$: Observable<LoadingStatus | null>;
+  public user$: Observable<IUser | null>;
 
   constructor(private store: Store) {
     this.categories$ = this.store.select(selectCategoriesData);
+    this.user$ = this.store.select(selectUserData);
     this.categoriesLoadingStatus$ = this.store.select(
       selectCategoriesLoadingStatus
     );
@@ -30,5 +37,9 @@ export class MainDashboardContainerComponent implements OnInit {
 
   public ngOnInit(): void {
     this.store.dispatch(MainDashboardActions.getCategoriesRequest());
+  }
+
+  public onLogout(): void {
+    this.store.dispatch(RegistrationPageActions.getUserLogout());
   }
 }

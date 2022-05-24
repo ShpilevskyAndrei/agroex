@@ -12,12 +12,15 @@ export class MainDashboardEffects {
   public categories$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(MainDashboardActions.getCategoriesRequest),
-      switchMap(() => this.categoriesService.getCategories()),
-      map((categories: Category[]) =>
-        MainDashboardActions.getCategoriesSuccess({ categories })
-      ),
-      catchError((error: HttpErrorResponse) =>
-        of(MainDashboardActions.getCategoriesError({ error: error }))
+      switchMap(() =>
+        this.categoriesService.getCategories().pipe(
+          map((categories: Category[]) =>
+            MainDashboardActions.getCategoriesSuccess({ categories })
+          ),
+          catchError((error: HttpErrorResponse) =>
+            of(MainDashboardActions.getCategoriesError({ error: error }))
+          )
+        )
       )
     );
   });

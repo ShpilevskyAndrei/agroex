@@ -1,20 +1,31 @@
-import { Component, Input } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { MatSelect } from '@angular/material/select';
 import { Router } from '@angular/router';
 
-import { LOGGED_ROLE_CONFIG } from './constants/user-role-config';
+import { IUser } from '../../../pages/registration-page/interfaces/user-api-response.interface';
 import { USER_PANEL_OPTION } from './constants/user-panel-option';
+import { LOGGED_ROLE_CONFIG } from './constants/user-role-config';
+import { UserPanelOptionId } from './enums/user-panel-option-id';
 import { UserRole } from './enums/user-role';
 import { IUserOptionsType } from './interfaces/user-options-type.interface';
-import { UserPanelOptionId } from './enums/user-panel-option-id';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnChanges {
   @Input() public userRole: UserRole = UserRole.Guest;
+  @Input() public user: IUser | null;
+
+  @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
 
   public userRoleConfig = LOGGED_ROLE_CONFIG;
   public userRoles = UserRole;
@@ -22,8 +33,14 @@ export class HeaderComponent {
 
   constructor(private router: Router) {}
 
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (changes.user && this.user) {
+      this.userRole = UserRole.User;
+    }
+  }
+
   public onLogin(): void {
-    this.userRole = UserRole.User;
+    this.router.navigate(['registration']);
   }
 
   public navigateToUserOption(
@@ -45,5 +62,6 @@ export class HeaderComponent {
 
   private onLogout(): void {
     this.userRole = UserRole.Guest;
+    this.logout.emit();
   }
 }
