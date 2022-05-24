@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
+interface GetArguments {
+  token?: string;
+  params?: Record<string, string>;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -16,8 +21,17 @@ export class BaseServiceService {
 
   constructor(protected httpClient: HttpClient) {}
 
-  public get<T>(url: string, params?: { params: HttpParams }): Observable<T> {
-    return this.httpClient.get<T>(this.apiUrl + url, params);
+  public get<T>(url: string, arg?: GetArguments): Observable<T> {
+    if (arg?.params && Object.keys(arg?.params)) {
+      return this.httpClient.get<T>(this.apiUrl + url, {
+        params: arg.params,
+        headers: this.setHeaders(arg.token).headers,
+      });
+    }
+    return this.httpClient.get<T>(
+      this.apiUrl + url,
+      this.setHeaders(arg?.token)
+    );
   }
 
   public post<T>(url: string, data: object, token?: string): Observable<T> {
