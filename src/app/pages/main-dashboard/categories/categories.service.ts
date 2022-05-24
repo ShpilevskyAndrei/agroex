@@ -9,6 +9,8 @@ export class CategoriesService {
   constructor(private http: HttpClient) {}
 
   public getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>('http://localhost:5000/categories');
+    return this.http.get<Category[]>(
+      'https://agroex-backend.herokuapp.com/categories'
+    );
   }
 }
