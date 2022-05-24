@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders,
-} from '@angular/common/http';
-import { catchError, Observable, throwError } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -20,44 +16,43 @@ export class BaseServiceService {
 
   constructor(protected httpClient: HttpClient) {}
 
-  public get<T>(url: string, token?: string): Observable<T> {
-    return this.httpClient
-      .get<T>(this.apiUrl + url, this.setHeaders(token))
-      .pipe(catchError(this.handleError));
+  public get<T>(url: string, params?: { params: HttpParams }): Observable<T> {
+    return this.httpClient.get<T>(this.apiUrl + url, params);
   }
 
   public post<T>(url: string, data: object, token?: string): Observable<T> {
-    return this.httpClient
-      .post<T>(this.apiUrl + url, data, this.setHeaders(token))
-      .pipe(catchError(this.handleError));
+    return this.httpClient.post<T>(
+      this.apiUrl + url,
+      data,
+      this.setHeaders(token)
+    );
   }
 
   public put<T>(url: string, data: object, token?: string): Observable<T> {
-    return this.httpClient
-      .put<T>(this.apiUrl + url, data, this.setHeaders(token))
-      .pipe(catchError(this.handleError));
+    return this.httpClient.put<T>(
+      this.apiUrl + url,
+      data,
+      this.setHeaders(token)
+    );
   }
 
   public delete<T>(url: string, token?: string): Observable<T> {
-    return this.httpClient
-      .delete<T>(this.apiUrl + url, this.setHeaders(token))
-      .pipe(catchError(this.handleError));
+    return this.httpClient.delete<T>(this.apiUrl + url, this.setHeaders(token));
   }
 
   private setHeaders(token?: string): { headers: HttpHeaders } {
-    if (token) {
-      this.httpOptions.headers = this.httpOptions.headers.set(
-        'Authorization',
-        `Bearer ${token}`
-      );
-
-      return this.httpOptions;
-    } else {
-      return this.httpOptions;
-    }
+    return token
+      ? {
+          ...this.httpOptions,
+          headers: this.httpOptions.headers.set(
+            'Authorization',
+            `Bearer ${token}`
+          ),
+        }
+      : this.httpOptions;
   }
 
-  private handleError(error: HttpErrorResponse): Observable<never> {
-    return throwError('Something wrong happened' + error);
-  }
+  /*private handleError(error: HttpErrorResponse): Observable<never> {
+      return throwError(() => new Error('Something wrong happened'));
+    }*/
 }
