@@ -105,4 +105,8 @@ export class RegistrationPageComponent implements OnChanges {
       this.router.navigate(['']);
     }
   }
+
+  public close(): void {
+    this.router.navigate(['']);
+  }
 }
