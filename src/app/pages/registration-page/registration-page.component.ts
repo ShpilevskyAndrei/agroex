@@ -26,8 +26,8 @@ import {
 export class RegistrationPageComponent implements OnChanges {
   @Input() public authorizationLoadingStatus: LoadingStatus | null;
 
-  @Output() public authorizeUser: EventEmitter<AuthorizationCombineInfo> =
-    new EventEmitter<AuthorizationCombineInfo>();
+  @Output()
+  public authorizationCombineInfo: EventEmitter<AuthorizationCombineInfo> = new EventEmitter<AuthorizationCombineInfo>();
 
   public MIN_USER_NAME_LENGTH = MIN_USER_NAME_LENGTH;
   public MIN_PASSWORD_LENGTH = MIN_PASSWORD_LENGTH;
@@ -69,7 +69,7 @@ export class RegistrationPageComponent implements OnChanges {
 
   public onRegister(): void {
     if (this.form.valid) {
-      this.authorizeUser.emit({
+      this.authorizationCombineInfo.emit({
         user: {
           username: this.get('username').value,
           email: this.get('email').value,
@@ -83,7 +83,7 @@ export class RegistrationPageComponent implements OnChanges {
 
   public onLogin(): void {
     if (this.loginForm) {
-      this.authorizeUser.emit({
+      this.authorizationCombineInfo.emit({
         user: {
           email: this.get('email').value,
           password: this.get('password').value,

@@ -11,7 +11,7 @@ import { AuthorizationCombineInfo } from './interfaces/user-api-response.interfa
   selector: 'app-registration-page-container',
   template: ` <app-registration-page
     [authorizationLoadingStatus]="authorizationLoadingStatus$ | async"
-    (authorizeUser)="onAuthorizeUser($event)"
+    (authorizationCombineInfo)="onAuthorizeUser($event)"
   >
   </app-registration-page>`,
 })
@@ -24,11 +24,13 @@ export class RegistrationPageContainerComponent {
     );
   }
 
-  public onAuthorizeUser(authorizeUser: AuthorizationCombineInfo): void {
+  public onAuthorizeUser(
+    authorizationCombineInfo: AuthorizationCombineInfo
+  ): void {
     this.store.dispatch(
       RegistrationPageActions.getUserRequest({
-        user: authorizeUser.user,
-        url: authorizeUser.url,
+        user: authorizationCombineInfo.user,
+        url: authorizationCombineInfo.url,
       })
     );
   }

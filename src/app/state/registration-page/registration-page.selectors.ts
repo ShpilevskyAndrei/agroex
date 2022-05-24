@@ -12,6 +12,7 @@ export const selectUserLoadingStatus = createSelector(
   selectGetFeatureState,
   (state) => state.registrationLoadingStatus
 );
+
 export const selectUserData = createSelector(
   selectGetFeatureState,
   (state) => state.user
