@@ -19,4 +19,6 @@ export const RegistrationPageActions = {
     '[REGISTRATION_PAGE] registration error',
     props<{ error: HttpErrorResponse }>()
   ),
+
+  getUserLogout: createAction('[REGISTRATION_PAGE] logout success'),
 };

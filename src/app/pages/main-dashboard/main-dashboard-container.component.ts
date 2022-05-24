@@ -3,13 +3,12 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
-import { LoginPageActions } from '../../state/login-page/login-page.actions';
-import { selectLoginData } from '../../state/login-page/login-page.selectors';
 import { MainDashboardActions } from '../../state/main-dashboard/main-dashboard.actions';
 import {
   selectCategoriesData,
   selectCategoriesLoadingStatus,
 } from '../../state/main-dashboard/main-dashboard.selectors';
+import { RegistrationPageActions } from '../../state/registration-page/registration-page.actions';
 import { selectUserData } from '../../state/registration-page/registration-page.selectors';
 import { UserFromApi } from '../registration-page/interfaces/user-api-response.interface';
 import { Category } from './categories/model/category.model';
@@ -31,7 +30,6 @@ export class MainDashboardContainerComponent implements OnInit {
   constructor(private store: Store) {
     this.categories$ = this.store.select(selectCategoriesData);
     this.user$ = this.store.select(selectUserData);
-    this.user$ = this.store.select(selectLoginData); // ??
     this.categoriesLoadingStatus$ = this.store.select(
       selectCategoriesLoadingStatus
     );
@@ -42,6 +40,6 @@ export class MainDashboardContainerComponent implements OnInit {
   }
 
   public onLogout(): void {
-    this.store.dispatch(LoginPageActions.getLogout());
+    this.store.dispatch(RegistrationPageActions.getUserLogout());
   }
 }

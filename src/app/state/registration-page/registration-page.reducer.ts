@@ -40,5 +40,13 @@ export const REGISTRATION_PAGE_REDUCER = createReducer(
       ...state,
       registrationLoadingStatus: { loading: false, loaded: false, error },
     })
+  ),
+  on(
+    RegistrationPageActions.getUserLogout,
+    (state): RegistrationPageState => ({
+      ...state,
+      user: null,
+      registrationLoadingStatus: DEFAULT_LOADING_STATUS,
+    })
   )
 );
