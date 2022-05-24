@@ -1,15 +1,15 @@
-import { IUser } from './user.interfase';
+import { UserCredentials } from './user.interfase';
 
 export interface UserApiResponse {
-  user: UserFromApi;
+  user: IUser;
 }
 
 export interface AuthorizationCombineInfo {
-  user: IUser;
+  user: UserCredentials;
   url: string;
 }
 
-export interface UserFromApi {
+export interface IUser {
   username: string;
   email: string;
   password: string;

@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable, throwError } from 'rxjs';
 
 import { UserApiResponse } from '../interfaces/user-api-response.interface';
-import { IUser } from '../interfaces/user.interfase';
+import { UserCredentials } from '../interfaces/user.interfase';
 import { catchError, tap } from 'rxjs/operators';
 
 @Injectable({
@@ -13,7 +13,10 @@ import { catchError, tap } from 'rxjs/operators';
 export class UserService {
   constructor(private http: HttpClient, private snackbar: MatSnackBar) {}
 
-  public create(user: IUser, url: string): Observable<UserApiResponse> {
+  public create(
+    user: UserCredentials,
+    url: string
+  ): Observable<UserApiResponse> {
     return this.http
       .post<UserApiResponse>(
         `https://agroex-backend.herokuapp.com/users/${url}`,

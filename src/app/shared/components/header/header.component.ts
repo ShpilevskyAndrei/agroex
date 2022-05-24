@@ -9,7 +9,7 @@ import {
 import { MatSelect } from '@angular/material/select';
 import { Router } from '@angular/router';
 
-import { UserFromApi } from '../../../pages/registration-page/interfaces/user-api-response.interface';
+import { IUser } from '../../../pages/registration-page/interfaces/user-api-response.interface';
 import { USER_PANEL_OPTION } from './constants/user-panel-option';
 import { LOGGED_ROLE_CONFIG } from './constants/user-role-config';
 import { UserPanelOptionId } from './enums/user-panel-option-id';
@@ -23,7 +23,7 @@ import { IUserOptionsType } from './interfaces/user-options-type.interface';
 })
 export class HeaderComponent implements OnChanges {
   @Input() public userRole: UserRole = UserRole.Guest;
-  @Input() public user: UserFromApi | null;
+  @Input() public user: IUser | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
 

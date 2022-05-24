@@ -10,7 +10,7 @@ import {
 } from '../../state/main-dashboard/main-dashboard.selectors';
 import { RegistrationPageActions } from '../../state/registration-page/registration-page.actions';
 import { selectUserData } from '../../state/registration-page/registration-page.selectors';
-import { UserFromApi } from '../registration-page/interfaces/user-api-response.interface';
+import { IUser } from '../registration-page/interfaces/user-api-response.interface';
 import { Category } from './categories/model/category.model';
 
 @Component({
@@ -25,7 +25,7 @@ import { Category } from './categories/model/category.model';
 export class MainDashboardContainerComponent implements OnInit {
   public categories$: Observable<Category[] | null>;
   public categoriesLoadingStatus$: Observable<LoadingStatus | null>;
-  public user$: Observable<UserFromApi | null>;
+  public user$: Observable<IUser | null>;
 
   constructor(private store: Store) {
     this.categories$ = this.store.select(selectCategoriesData);
