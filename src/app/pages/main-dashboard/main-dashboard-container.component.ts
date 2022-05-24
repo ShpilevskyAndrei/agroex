@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
+import { LoginPageActions } from '../../state/login-page/login-page.actions';
 import { selectLoginData } from '../../state/login-page/login-page.selectors';
 import { MainDashboardActions } from '../../state/main-dashboard/main-dashboard.actions';
 import {
@@ -19,6 +20,7 @@ import { Category } from './categories/model/category.model';
     [categories]="categories$ | async"
     [categoriesLoadingStatus]="categoriesLoadingStatus$ | async"
     [user]="user$ | async"
+    (logout)="onLogout()"
   ></app-main-dashboard>`,
 })
 export class MainDashboardContainerComponent implements OnInit {
@@ -37,5 +39,9 @@ export class MainDashboardContainerComponent implements OnInit {
 
   public ngOnInit(): void {
     this.store.dispatch(MainDashboardActions.getCategoriesRequest());
+  }
+
+  public onLogout(): void {
+    this.store.dispatch(LoginPageActions.getLogout());
   }
 }

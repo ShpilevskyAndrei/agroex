@@ -27,9 +27,7 @@ export class RegistrationPageContainerComponent {
     this.authorizationLoadingStatus$ = this.store.select(
       selectUserLoadingStatus
     );
-    this.authorizationLoadingStatus$ = this.store.select(
-      selectLoginLoadingStatus
-    );
+    this.loginLoadingStatus$ = this.store.select(selectLoginLoadingStatus);
   }
 
   public onAuthorizeUser(authorizeUser: AuthorizationCombineInfo): void {

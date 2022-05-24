@@ -1,10 +1,15 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { MatSelect } from '@angular/material/select';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
 
 import { UserFromApi } from '../../../pages/registration-page/interfaces/user-api-response.interface';
-import { LoginPageActions } from '../../../state/login-page/login-page.actions';
 import { USER_PANEL_OPTION } from './constants/user-panel-option';
 import { LOGGED_ROLE_CONFIG } from './constants/user-role-config';
 import { UserPanelOptionId } from './enums/user-panel-option-id';
@@ -20,11 +25,13 @@ export class HeaderComponent implements OnChanges {
   @Input() public userRole: UserRole = UserRole.Guest;
   @Input() public user: UserFromApi | null;
 
+  @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
+
   public userRoleConfig = LOGGED_ROLE_CONFIG;
   public userRoles = UserRole;
   public userPanelOption = USER_PANEL_OPTION;
 
-  constructor(private router: Router, private store: Store) {}
+  constructor(private router: Router) {}
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.user && this.user) {
@@ -55,6 +62,6 @@ export class HeaderComponent implements OnChanges {
 
   private onLogout(): void {
     this.userRole = UserRole.Guest;
-    this.store.dispatch(LoginPageActions.getLogoutSuccess());
+    this.logout.emit();
   }
 }

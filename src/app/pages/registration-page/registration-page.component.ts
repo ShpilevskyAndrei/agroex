@@ -95,10 +95,6 @@ export class RegistrationPageComponent implements OnChanges {
         url: 'login',
       });
     }
-    console.log({
-      email: this.get('email').value,
-      password: this.get('password').value,
-    });
   }
 
   public switch(): void {

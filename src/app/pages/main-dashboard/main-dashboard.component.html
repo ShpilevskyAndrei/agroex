@@ -1,4 +1,4 @@
-<app-header [user]="user"></app-header>
+<app-header [user]="user" (logout)="onLogout()"></app-header>
 
 <app-categories [categories]="categories"
                 [categoriesLoadingStatus]="categoriesLoadingStatus"

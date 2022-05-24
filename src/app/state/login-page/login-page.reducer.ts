@@ -42,10 +42,11 @@ export const LOGIN_PAGE_REDUCER = createReducer(
     })
   ),
   on(
-    LoginPageActions.getLogoutSuccess,
+    LoginPageActions.getLogout,
     (state): LoginPageState => ({
       ...state,
       user: null,
+      loginLoadingStatus: DEFAULT_LOADING_STATUS,
     })
   )
 );
