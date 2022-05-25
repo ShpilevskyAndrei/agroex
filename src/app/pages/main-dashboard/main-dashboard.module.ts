@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MainDashboardContainerComponent } from './main-dashboard-container.component';
 
 import { MainDashboardContainerComponent } from './main-dashboard-container.component';
 import { MainDashboardComponent } from './main-dashboard.component';

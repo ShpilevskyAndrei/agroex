@@ -6,9 +6,8 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { fromEvent, first, tap } from 'rxjs';
+import { first, tap } from 'rxjs';
 
 import { PolicyModalContentComponent } from './policy-modal-content/policy-modal-content.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -66,7 +65,7 @@ export class RegistrationPageComponent implements OnChanges {
     }
   );
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, public dialog: MatDialog) {}
 
   public get(key: string): FormControl {
     return this.form.get(key) as FormControl;
