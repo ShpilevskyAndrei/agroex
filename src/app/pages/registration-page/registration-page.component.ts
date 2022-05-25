@@ -20,12 +20,20 @@ import { CustomValidators } from './interfaces/custom-validators';
 import {
   MIN_USER_NAME_LENGTH,
   MIN_PASSWORD_LENGTH,
+  APPEARANCE,
 } from './constants/constants';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-registration-page',
   templateUrl: './registration-page.component.html',
   styleUrls: ['./registration-page.component.scss'],
+  providers: [
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: APPEARANCE,
+    }
+  ],
 })
 export class RegistrationPageComponent implements OnChanges {
   @Input() public authorizationLoadingStatus: LoadingStatus | null;
@@ -36,6 +44,8 @@ export class RegistrationPageComponent implements OnChanges {
   public MIN_USER_NAME_LENGTH = MIN_USER_NAME_LENGTH;
   public MIN_PASSWORD_LENGTH = MIN_PASSWORD_LENGTH;
   public loginForm = true;
+  public hide = true;
+  public hideConf = true;
 
   public form: FormGroup = new FormGroup(
     {
@@ -98,6 +108,10 @@ export class RegistrationPageComponent implements OnChanges {
   }
 
   public switch(): void {
+    for (let item in this.form.value) {
+      this.get(item).setValue('');
+    }
+    this.form.markAsUntouched();
     this.loginForm = !this.loginForm;
   }
 
@@ -122,7 +136,9 @@ export class RegistrationPageComponent implements OnChanges {
       .afterClosed()
       .pipe(
         first(),
-        tap((accepted: boolean) => console.log(accepted))
+        tap((accepted: boolean): void => 
+          this.get('checkBoxConfirm').setValue(accepted)
+        )
       )
       .subscribe();
   }

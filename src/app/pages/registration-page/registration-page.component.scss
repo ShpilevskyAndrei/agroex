@@ -1,16 +1,24 @@
+@import '../../styles/general-styles.scss';
+
 .container {
     display: flex;
     justify-content: center;
     margin-top: 10rem;
     min-width: 35rem;
+    
+    .mat-card {
+        min-width: 310px;
+        max-width: 320px;
+        box-shadow: 0px 0px 4px rgba(0, 32, 51, 0.08), 0px 0px 24px rgba(0, 32, 51, 0.16);
+    }
 
     .close {
         cursor: pointer;
         position: absolute;
-        right: 22px;
+        right: 12px;
         top: 22px;
-        width: 32px;
-        height: 32px;
+        width: 22px;
+        height: 22px;
         opacity: 0.3;
     }
     .close:hover {
@@ -18,9 +26,10 @@
     }
     .close:before, .close:after {
         position: absolute;
-        left: 15px;
+        right: 10px;
+        top: 2px;
         content: ' ';
-        height: 33px;
+        height: 17px;
         width: 2px;
         background-color: #333;
     }
@@ -35,30 +44,71 @@
         display: flex;
         flex-direction: column;
         justify-content:  center;
+
+        &-forgot {
+            color: $color-tradewind;
+            border: none;
+            cursor: pointer;
+            background: inherit;
+            padding-left: 0;
+            padding-top: 2rem;
+        }
+
+        &-ask {
+            text-align: center;
+            cursor: default;
+            color: #4A4853;
+        }
+
         &__field {
             min-width: 25rem;
         }
     
         &__button {
             display: flex;
-            justify-content: space-between;
-            &-acc{
+            flex-direction: column;
+            width: 100%;
+            &-acc {
                 border: none;
                 cursor: pointer;
                 background: inherit;
                 padding-left: 0;
+            }
+            &-switch {
+                background: #fff;
+                border: 0.063rem solid #131314;
+                color: #131314;
+            }
+            &-log {
+                margin-top: 2rem;
             }
         }
 
         &__privacy {
             display: flex;
             flex-direction: row;
-            p, a {
+            margin-top: 1rem;
+            &-wrapper {
+                width: 292px;
+            }
+            p, a, span {
                 margin-top: 0.1rem;
             }
             p {
                 margin-left: 0.8rem;
             }
+            &-click {
+                cursor: pointer;
+                color: $color-tradewind;
+            }
         }
+    }
+
+    hr {
+        border: none;
+        background-color: #EBEEF1;
+        height: 1px;
+        width: 100%;
+        margin-top: 2rem;
     }
 }

@@ -1,0 +1,20 @@
+@import "../colors.scss";
+@import "../font-sizes.scss";
+@import "../offsets.scss";
+@import "../sizes.scss";
+
+.mat-raised-button {
+    background: $color-tradewind;
+    border-radius: 0.250rem;
+    border: 0.063rem solid $color-tradewind;
+    color: $color-white;
+    margin: 0.250rem;
+}
+
+.mat-button {
+    background: $color-tradewind;
+    border-radius: 0.250rem;
+    border: 0.063rem solid $color-tradewind;
+    color: $color-white;
+    margin: 0.250rem;
+}
