@@ -2,12 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { API_URL } from '../constants/app-consts';
-
-interface GetArguments {
-  token?: string;
-  params?: Record<string, string>;
-}
+import { GetArguments } from './models/get-arguments.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +15,7 @@ export class BaseService {
     }),
   };
 
-  private apiUrl = API_URL;
+  private apiUrl = environment.apiUrl;
 
   constructor(protected httpClient: HttpClient) {}
 
