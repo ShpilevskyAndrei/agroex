@@ -12,7 +12,7 @@ interface GetArguments {
 @Injectable({
   providedIn: 'root',
 })
-export class Base2xService {
+export class BaseService {
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
