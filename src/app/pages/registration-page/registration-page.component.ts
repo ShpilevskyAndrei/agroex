@@ -6,6 +6,11 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
+import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { fromEvent, first, tap } from 'rxjs';
+
+import { PolicyModalContentComponent } from './policy-modal-content/policy-modal-content.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -108,5 +113,18 @@ export class RegistrationPageComponent implements OnChanges {
 
   public close(): void {
     this.router.navigate(['']);
+  }
+
+  public openDialog(): void {
+    this.dialog
+      .open(PolicyModalContentComponent, {
+        autoFocus: false,
+      })
+      .afterClosed()
+      .pipe(
+        first(),
+        tap((accepted: boolean) => console.log(accepted))
+      )
+      .subscribe();
   }
 }

@@ -23,7 +23,7 @@
                     <mat-error *ngIf="this.get('phoneNumber').touched && this.get('phoneNumber').hasError('required')">Phone number is required</mat-error>
                     <mat-error *ngIf="this.get('phoneNumber').touched && this.get('phoneNumber').hasError('pattern')">Phone number is incorrect</mat-error>
                 </mat-form-field>
-                
+
                 <mat-form-field class="form_login__field">
                     <input type="password" matInput placeholder="Password" formControlName="password">
                     <mat-error *ngIf="this.get('password').touched && this.get('password').hasError('required')">Password is required</mat-error>
@@ -36,11 +36,11 @@
                 </mat-form-field>
 
                 <mat-error *ngIf="this.get('password').value && this.get('passwordConfirm').value && this.get('password').touched && this.get('passwordConfirm').touched && form.hasError('passwordsNotMatching')">Password not matching</mat-error>
-                
+
                 <div *ngIf="!this.loginForm" class="form_login__privacy">
                     <mat-checkbox formControlName="checkBoxConfirm"></mat-checkbox>
                     <p>&nbsp;Confirm with the&nbsp;</p>
-                    <a href="">privace policy</a>
+                  <span mat-button (click)="openDialog()">Privacy policy</span>
                 </div>
 
                 <div class="form_login__button">
@@ -51,5 +51,5 @@
                 </div>
             </form>
         </mat-card-content>
-    </mat-card>      
+    </mat-card>
 </div>

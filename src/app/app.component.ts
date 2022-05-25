@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+
+import { IconSerializeService } from './shared/services/icon-serialize.service';
 import { TITLE } from './shared/constants/application-title';
 
 @Component({
@@ -8,4 +10,6 @@ import { TITLE } from './shared/constants/application-title';
 })
 export class AppComponent {
   public title = TITLE;
+
+  constructor(private iconSerialize: IconSerializeService) {}
 }

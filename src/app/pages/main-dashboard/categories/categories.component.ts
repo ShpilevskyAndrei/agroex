@@ -120,10 +120,11 @@ export class CategoriesComponent {
     },
   ];
 
-  public getCategoryList(category: Category): void {
+  public getCategoryList(category: Category): CategoryItemModel[] {
     this.activeCategory = category.id;
-    console.log(
-      this.categoriesItems.filter((item) => item.categoryId === category.id)
+
+    return this.categoriesItems.filter(
+      (item: CategoryItemModel) => item.categoryId === category.id
     );
   }
 }
