@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+import { API_URL } from '../constants/app-consts';
+
 interface GetArguments {
   token?: string;
   params?: Record<string, string>;
@@ -10,14 +12,14 @@ interface GetArguments {
 @Injectable({
   providedIn: 'root',
 })
-export class BaseServiceService {
+export class Base2xService {
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     }),
   };
 
-  private apiUrl = 'https://agroex-backend.herokuapp.com/';
+  private apiUrl = API_URL;
 
   constructor(protected httpClient: HttpClient) {}
 
@@ -55,15 +57,16 @@ export class BaseServiceService {
   }
 
   private setHeaders(token?: string): { headers: HttpHeaders } {
-    return token
-      ? {
-          ...this.httpOptions,
-          headers: this.httpOptions.headers.set(
-            'Authorization',
-            `Bearer ${token}`
-          ),
-        }
-      : this.httpOptions;
+    if (token) {
+      return {
+        ...this.httpOptions,
+        headers: this.httpOptions.headers.set(
+          'Authorization',
+          `Bearer ${token}`
+        ),
+      };
+    }
+    return this.httpOptions;
   }
 
   /*private handleError(error: HttpErrorResponse): Observable<never> {

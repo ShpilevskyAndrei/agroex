@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { Category } from './model/category.model';
-import { BaseServiceService } from '../../../shared/services/base-service.service';
+import { Base2xService } from '../../../shared/services/base-2x.service';
 
 @Injectable()
-export class CategoriesService extends BaseServiceService {
+export class CategoriesService extends Base2xService {
   public getCategories(): Observable<Category[]> {
     return this.get<Category[]>('categories');
   }
