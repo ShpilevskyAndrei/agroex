@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { GetArguments } from './models/get-arguments.model';
+import { IHttpGetRequestArguments } from '../interfaces/http-get-request-arguments.interface';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -19,7 +19,7 @@ export class BaseService {
 
   constructor(protected httpClient: HttpClient) {}
 
-  public get<T>(url: string, arg?: GetArguments): Observable<T> {
+  public get<T>(url: string, arg?: IHttpGetRequestArguments): Observable<T> {
     if (arg?.params && Object.keys(arg?.params)) {
       return this.httpClient.get<T>(this.apiUrl + url, {
         params: arg.params,
