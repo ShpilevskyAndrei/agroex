@@ -15,7 +15,7 @@
 
                 <mat-form-field *ngIf="!this.loginForm" class="form_login__field">
                     <mat-label>Username</mat-label>
-                    <input type="Username" matInput placeholder="Username" formControlName="username">
+                    <input type="text" matInput placeholder="Username" formControlName="username">
                     <mat-error *ngIf="this.get('username').touched && this.get('username').hasError('required')">Username is required</mat-error>
                     <mat-error *ngIf="this.get('username').hasError('minlength')">Password must bigger than {{this.MIN_USER_NAME_LENGTH}} char</mat-error>
                 </mat-form-field>

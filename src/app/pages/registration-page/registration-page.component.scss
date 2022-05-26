@@ -3,24 +3,22 @@
 .container {
     display: flex;
     justify-content: center;
-  align-items: center;
+    align-items: center;
     min-width: 35rem;
-  min-height: 100vh;
-  height: 100%;
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+    min-height: 100vh;
+    height: 100%;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
 
     .mat-card {
-      padding: 3rem;
-      width: 408px;
+        padding: 3rem;
+        width: 408px;
         box-shadow: 0px 0px 4px rgba(0, 32, 51, 0.08), 0px 0px 24px rgba(0, 32, 51, 0.16);
     }
 
     .close {
         cursor: pointer;
         position: absolute;
-        right: 3rem;
-        top: 3rem;
         width: 22px;
         height: 22px;
         opacity: 0.3;
