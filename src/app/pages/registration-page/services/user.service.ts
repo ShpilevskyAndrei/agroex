@@ -19,7 +19,7 @@ export class UserService {
   ): Observable<UserApiResponse> {
     return this.http
       .post<UserApiResponse>(
-        `https://agroex-backend.herokuapp.com/users/${url}`,
+        `https://agroex-backend.herokuapp.com/auth/${url}`,
         { user }
       )
       .pipe(

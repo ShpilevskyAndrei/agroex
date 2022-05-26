@@ -1,64 +1,107 @@
+@import '../../styles/general-styles.scss';
+
 .container {
     display: flex;
     justify-content: center;
-    margin-top: 10rem;
+    align-items: center;
     min-width: 35rem;
+    height: 100%;
+    min-height: 100vh;
+
+    .mat-card {
+        padding: 3rem;
+        min-height: max-content;
+        width: 408px;
+        box-shadow: 0px 0px 4px rgba(0, 32, 51, 0.08), 0px 0px 24px rgba(0, 32, 51, 0.16);
+    }
 
     .close {
         cursor: pointer;
         position: absolute;
-        right: 22px;
-        top: 22px;
-        width: 32px;
-        height: 32px;
+        right: 2.6rem;
+        top: 3rem;
         opacity: 0.3;
     }
     .close:hover {
         opacity: 1;
-    }
-    .close:before, .close:after {
-        position: absolute;
-        left: 15px;
-        content: ' ';
-        height: 33px;
-        width: 2px;
-        background-color: #333;
-    }
-    .close:before {
-        transform: rotate(45deg);
-    }
-    .close:after {
-        transform: rotate(-45deg);
     }
 
     .form_login {
         display: flex;
         flex-direction: column;
         justify-content:  center;
-        &__field {
-            min-width: 25rem;
+
+        &-forgot {
+            color: $color-tradewind;
+            border: none;
+            cursor: pointer;
+            background: inherit;
+            padding-left: 0;
+            padding-top: $offset-xlarge;
         }
-    
+
+        &-ask {
+            text-align: center;
+            cursor: default;
+            color: $color-ask;
+          padding: 0;
+        }
+
         &__button {
             display: flex;
-            justify-content: space-between;
-            &-acc{
+            flex-direction: column;
+            width: 100%;
+            &-acc {
                 border: none;
                 cursor: pointer;
                 background: inherit;
                 padding-left: 0;
+            }
+            &-switch {
+                background: $color-white;
+                border: 1px solid $primary-color;
+                color: $primary-color;
+            }
+            &-log {
+                margin-top: 2rem;
             }
         }
 
         &__privacy {
             display: flex;
             flex-direction: row;
-            p, a {
+            margin-top: 1rem;
+            &-wrapper {
+                width: 26rem;
+            }
+            p, a, span {
                 margin-top: 0.1rem;
             }
             p {
                 margin-left: 0.8rem;
             }
+            &-click {
+                cursor: pointer;
+                color: $color-tradewind;
+            }
         }
+
+        &-copy {
+            margin-top: 1rem;
+            font-style: normal;
+            font-weight: 400;
+            font-size: $font-size-xsmall;
+            text-align: center;
+            letter-spacing: -0.03em;
+            color: $color-copy;     
+        }
+    }
+
+    hr {
+        border: none;
+        background-color: #EBEEF1;
+        height: 1px;
+        width: 100%;
+        margin: 2rem 0;
     }
 }

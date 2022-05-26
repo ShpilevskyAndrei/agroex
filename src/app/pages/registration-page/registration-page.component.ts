@@ -7,20 +7,22 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { first, tap } from 'rxjs';
-
-import { PolicyModalContentComponent } from './policy-modal-content/policy-modal-content.component';
+import { filter, tap } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { PolicyModalContentComponent } from './policy-modal-content/policy-modal-content.component';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
-
 import { AuthorizationCombineInfo } from './interfaces/user-api-response.interface';
 import { CustomValidators } from './interfaces/custom-validators';
 import {
   MIN_USER_NAME_LENGTH,
   MIN_PASSWORD_LENGTH,
-} from './constants/constants';
+} from './constants/inputs-length';
+import {
+  REGEXP_FOR_EMAIL,
+  REGEXP_FOR_PHONE,
+} from 'src/app/shared/constants/regexp';
 
 @Component({
   selector: 'app-registration-page',
@@ -35,20 +37,25 @@ export class RegistrationPageComponent implements OnChanges {
 
   public MIN_USER_NAME_LENGTH = MIN_USER_NAME_LENGTH;
   public MIN_PASSWORD_LENGTH = MIN_PASSWORD_LENGTH;
-  public loginForm = true;
+  public REGEXP_FOR_PHONE = REGEXP_FOR_PHONE;
+  public REGEXP_FOR_EMAIL = REGEXP_FOR_EMAIL;
+  public isLoginForm = true;
+  public isHidePass = true;
+  public isHidePassConf = true;
 
   public form: FormGroup = new FormGroup(
     {
-      email: new FormControl('', [Validators.required, Validators.email]),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.pattern(REGEXP_FOR_EMAIL),
+      ]),
       username: new FormControl('', [
         Validators.required,
         Validators.minLength(this.MIN_USER_NAME_LENGTH),
       ]),
       phoneNumber: new FormControl('', [
         Validators.required,
-        Validators.pattern(
-          /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/
-        ),
+        Validators.pattern(REGEXP_FOR_PHONE),
       ]),
       password: new FormControl('', [
         Validators.required,
@@ -71,7 +78,9 @@ export class RegistrationPageComponent implements OnChanges {
     return this.form.get(key) as FormControl;
   }
 
-  public onRegister(): void {
+  public onRegister(clickEvent: MouseEvent): void {
+    clickEvent.preventDefault();
+
     if (this.form.valid) {
       this.authorizationCombineInfo.emit({
         user: {
@@ -80,13 +89,15 @@ export class RegistrationPageComponent implements OnChanges {
           password: this.get('password').value,
           phone: this.get('phoneNumber').value,
         },
-        url: 'registration',
+        url: 'register',
       });
     }
   }
 
-  public onLogin(): void {
-    if (this.loginForm) {
+  public onLogin(clickEvent: MouseEvent): void {
+    clickEvent.preventDefault();
+
+    if (this.isLoginForm) {
       this.authorizationCombineInfo.emit({
         user: {
           email: this.get('email').value,
@@ -97,8 +108,17 @@ export class RegistrationPageComponent implements OnChanges {
     }
   }
 
-  public switch(): void {
-    this.loginForm = !this.loginForm;
+  public switchForms(clickEvent: MouseEvent): void {
+    clickEvent.preventDefault();
+
+    this.isHidePass = true;
+    this.isHidePassConf = true;
+
+    for (let item in this.form.value) {
+      this.get(item).setValue('');
+    }
+    this.form.markAsUntouched();
+    this.isLoginForm = !this.isLoginForm;
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
@@ -114,15 +134,27 @@ export class RegistrationPageComponent implements OnChanges {
     this.router.navigate(['']);
   }
 
-  public openDialog(): void {
+  public changePaswordVisibility(clickEvent: MouseEvent): void {
+    clickEvent.preventDefault();
+    this.isHidePass = !this.isHidePass;
+  }
+
+  public changePaswordVisibilityConf(clickEvent: MouseEvent): void {
+    clickEvent.preventDefault();
+    this.isHidePassConf = !this.isHidePassConf;
+  }
+
+  public openPolicyModal(): void {
     this.dialog
       .open(PolicyModalContentComponent, {
         autoFocus: false,
       })
       .afterClosed()
       .pipe(
-        first(),
-        tap((accepted: boolean) => console.log(accepted))
+        filter(Boolean),
+        tap((): void => {
+          this.get('checkBoxConfirm').setValue(true);
+        })
       )
       .subscribe();
   }
