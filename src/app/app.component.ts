@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
+import { TITLE } from './shared/constants/app-consts';
 import { IconSerializeService } from './shared/services/icon-serialize.service';
-import { TITLE } from './shared/constants/application-title';
 
 @Component({
   selector: 'app-root',
