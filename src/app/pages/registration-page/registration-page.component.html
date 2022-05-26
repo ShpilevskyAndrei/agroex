@@ -30,7 +30,7 @@
                 <mat-form-field class="form_login__field">
                     <mat-label>Password</mat-label>
                     <input [type]="this.isHidePass ? 'password' : 'text'" matInput placeholder="Password" formControlName="password">
-                    <button mat-icon-button matSuffix (click)="showHidePass()" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="this.isHidePass">
+                    <button mat-icon-button matSuffix (click)="showHidePass($event)" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="this.isHidePass">
                         <mat-icon>{{this.isHidePass ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
                     <mat-error *ngIf="this.get('password').touched && this.get('password').hasError('required')">Password is required</mat-error>
@@ -40,7 +40,7 @@
                 <mat-form-field *ngIf="!this.isLoginForm" class="form_login__field">
                     <mat-label>Password Confirm</mat-label>
                     <input [type]="this.isHidePassConf ? 'password' : 'text'" matInput placeholder="Password Confirm" formControlName="passwordConfirm">
-                    <button mat-icon-button matSuffix (click)="showHidePassConf()" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="this.isHidePassConf">
+                    <button mat-icon-button matSuffix (click)="showHidePassConf($event)" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="this.isHidePassConf">
                         <mat-icon>{{this.isHidePassConf ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
                     <mat-error *ngIf="this.get('passwordConfirm').touched && this.get('passwordConfirm').hasError('required')">Password confirm is required</mat-error>
@@ -63,17 +63,17 @@
 
                 <div *ngIf="this.isLoginForm else registerPage" class="form_login__button">
                     <button class="form_login-forgot" [disabled]="true">Forgot your pasword?</button>                
-                    <button mat-button (click)="onLogin()" [disabled]="this.get('password').hasError('required') || this.get('email').hasError('required')" class="form_login__button-log">Log in</button>
+                    <button mat-button (click)="onLogin($event)" [disabled]="this.get('password').hasError('required') || this.get('email').hasError('required')" class="form_login__button-log">Log in</button>
                     <hr>
                     <p class="form_login-forgot form_login-ask">Don't have an account?</p>
-                    <button mat-button class="form_login__button-switch" (click)="switchForms()">Sign up</button>
+                    <button mat-button class="form_login__button-switch" (click)="switchForms($event)">Sign up</button>
                 </div>
 
                 <ng-template #registerPage>
-                    <button mat-button (click)="onRegister()" [disabled]="!form.valid" class="form_login__button-log">Sign up</button>
+                    <button mat-button (click)="onRegister($event)" [disabled]="!form.valid" class="form_login__button-log">Sign up</button>
                     <hr>
                     <p class="form_login-forgot form_login-ask">Already have an account?</p>
-                    <button mat-button (click)="switchForms()" class="form_login__button-switch">Log in</button>
+                    <button mat-button (click)="switchForms($event)" class="form_login__button-switch">Log in</button>
                 </ng-template>
 
                 <small class="form_login-copy">&copy; 2022 AGROEX</small>

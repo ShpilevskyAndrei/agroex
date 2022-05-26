@@ -71,7 +71,8 @@ export class RegistrationPageComponent implements OnChanges {
     return this.form.get(key) as FormControl;
   }
 
-  public onRegister(): void {
+  public onRegister(e: MouseEvent): void {
+    e.preventDefault();
     if (this.form.valid) {
       this.authorizationCombineInfo.emit({
         user: {
@@ -85,7 +86,8 @@ export class RegistrationPageComponent implements OnChanges {
     }
   }
 
-  public onLogin(): void {
+  public onLogin(e: MouseEvent): void {
+    e.preventDefault();
     if (this.isLoginForm) {
       this.authorizationCombineInfo.emit({
         user: {
@@ -97,7 +99,8 @@ export class RegistrationPageComponent implements OnChanges {
     }
   }
 
-  public switchForms(): void {
+  public switchForms(e: MouseEvent): void {
+    e.preventDefault();
     for (let item in this.form.value) {
       this.get(item).setValue('');
     }
@@ -118,11 +121,13 @@ export class RegistrationPageComponent implements OnChanges {
     this.router.navigate(['']);
   }
 
-  public showHidePass(): void {
+  public showHidePass(e: MouseEvent): void {
+    e.preventDefault();
     this.isHidePass = !this.isHidePass;
   }
 
-  public showHidePassConf(): void {
+  public showHidePassConf(e: MouseEvent): void {
+    e.preventDefault();
     this.isHidePassConf = !this.isHidePassConf;
   }
 
