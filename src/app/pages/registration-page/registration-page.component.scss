@@ -5,13 +5,12 @@
     justify-content: center;
     align-items: center;
     min-width: 35rem;
-    min-height: 100vh;
     height: 100%;
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+    min-height: 100vh;
 
     .mat-card {
         padding: 3rem;
+        min-height: max-content;
         width: 408px;
         box-shadow: 0px 0px 4px rgba(0, 32, 51, 0.08), 0px 0px 24px rgba(0, 32, 51, 0.16);
     }
@@ -19,27 +18,12 @@
     .close {
         cursor: pointer;
         position: absolute;
-        right: 3rem;
+        right: 2.6rem;
         top: 3rem;
         opacity: 0.3;
     }
     .close:hover {
         opacity: 1;
-    }
-    .close:before, .close:after {
-        position: absolute;
-        right: 6px;
-        top: 2px;
-        content: ' ';
-        height: 17px;
-        width: 2px;
-        background-color: #333;
-    }
-    .close:before {
-        transform: rotate(45deg);
-    }
-    .close:after {
-        transform: rotate(-45deg);
     }
 
     .form_login {
@@ -75,7 +59,7 @@
             }
             &-switch {
                 background: $color-white;
-                border: 0.063rem solid $primary-color;
+                border: 1px solid $primary-color;
                 color: $primary-color;
             }
             &-log {
@@ -104,11 +88,9 @@
 
         &-copy {
             margin-top: 1rem;
-            font-family: 'Poppins';
             font-style: normal;
             font-weight: 400;
-            font-size: 10px;
-            line-height: 15px;
+            font-size: $font-size-xsmall;
             text-align: center;
             letter-spacing: -0.03em;
             color: $color-copy;     

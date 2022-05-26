@@ -7,7 +7,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { tap } from 'rxjs';
+import { filter, tap } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -39,16 +39,19 @@ export class RegistrationPageComponent implements OnChanges {
 
   public form: FormGroup = new FormGroup(
     {
-      email: new FormControl('', [Validators.required, Validators.email]),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.pattern(
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        ),
+      ]),
       username: new FormControl('', [
         Validators.required,
         Validators.minLength(this.MIN_USER_NAME_LENGTH),
       ]),
       phoneNumber: new FormControl('', [
         Validators.required,
-        Validators.pattern(
-          /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/
-        ),
+        Validators.pattern(/^([+]?[0-9\s-\(\)]{3,25})*$/i),
       ]),
       password: new FormControl('', [
         Validators.required,
@@ -71,8 +74,9 @@ export class RegistrationPageComponent implements OnChanges {
     return this.form.get(key) as FormControl;
   }
 
-  public onRegister(e: MouseEvent): void {
-    e.preventDefault();
+  public onRegister(clickEvent: MouseEvent): void {
+    clickEvent.preventDefault();
+
     if (this.form.valid) {
       this.authorizationCombineInfo.emit({
         user: {
@@ -86,8 +90,9 @@ export class RegistrationPageComponent implements OnChanges {
     }
   }
 
-  public onLogin(e: MouseEvent): void {
-    e.preventDefault();
+  public onLogin(clickEvent: MouseEvent): void {
+    clickEvent.preventDefault();
+
     if (this.isLoginForm) {
       this.authorizationCombineInfo.emit({
         user: {
@@ -99,8 +104,12 @@ export class RegistrationPageComponent implements OnChanges {
     }
   }
 
-  public switchForms(e: MouseEvent): void {
-    e.preventDefault();
+  public switchForms(clickEvent: MouseEvent): void {
+    clickEvent.preventDefault();
+
+    this.isHidePass = true;
+    this.isHidePassConf = true;
+
     for (let item in this.form.value) {
       this.get(item).setValue('');
     }
@@ -121,27 +130,26 @@ export class RegistrationPageComponent implements OnChanges {
     this.router.navigate(['']);
   }
 
-  public showHidePass(e: MouseEvent): void {
-    e.preventDefault();
+  public changePaswordVisibility(clickEvent: MouseEvent): void {
+    clickEvent.preventDefault();
     this.isHidePass = !this.isHidePass;
   }
 
-  public showHidePassConf(e: MouseEvent): void {
-    e.preventDefault();
+  public changePaswordVisibilityConf(clickEvent: MouseEvent): void {
+    clickEvent.preventDefault();
     this.isHidePassConf = !this.isHidePassConf;
   }
 
-  public openDialog(): void {
+  public openPolicyModal(): void {
     this.dialog
       .open(PolicyModalContentComponent, {
         autoFocus: false,
       })
       .afterClosed()
       .pipe(
-        tap((accepted: boolean): void => {
-          if (accepted) {
-            this.get('checkBoxConfirm').setValue(true);
-          }
+        tap((): void => {
+          filter((accepted) => accepted === true);
+          this.get('checkBoxConfirm').setValue(true);
         })
       )
       .subscribe();

@@ -13,7 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ErrorPageModule } from './pages/error-page/error-page.module';
 import { IconSerializeService } from './shared/services/icon-serialize.service';
 import { StateModule } from './state/state.module';
-import { APPEARANCE } from './pages/registration-page/constants/constants';
+import { APPEARANCE } from './shared/constants/appearance-outline';
 
 @NgModule({
   declarations: [AppComponent, AppContainerComponent],

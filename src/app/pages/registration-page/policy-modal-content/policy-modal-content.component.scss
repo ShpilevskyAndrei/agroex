@@ -1,4 +1,4 @@
-@import "../../../styles/general-styles";
+@import "../../../styles/general-styles.scss";
 
 :host {
   .buttons-position-in-modal {
@@ -7,6 +7,6 @@
 
   .cancel-policy-button {
     color: $color-tradewind;
-    background: #fff;
+    background: $color-white;
   }
 }
