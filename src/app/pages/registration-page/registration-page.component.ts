@@ -18,7 +18,11 @@ import { CustomValidators } from './interfaces/custom-validators';
 import {
   MIN_USER_NAME_LENGTH,
   MIN_PASSWORD_LENGTH,
-} from './constants/constants';
+} from './constants/inputs-length';
+import {
+  REGEXP_FOR_EMAIL,
+  REGEXP_FOR_PHONE,
+} from 'src/app/shared/constants/regexp';
 
 @Component({
   selector: 'app-registration-page',
@@ -33,6 +37,8 @@ export class RegistrationPageComponent implements OnChanges {
 
   public MIN_USER_NAME_LENGTH = MIN_USER_NAME_LENGTH;
   public MIN_PASSWORD_LENGTH = MIN_PASSWORD_LENGTH;
+  public REGEXP_FOR_PHONE = REGEXP_FOR_PHONE;
+  public REGEXP_FOR_EMAIL = REGEXP_FOR_EMAIL;
   public isLoginForm = true;
   public isHidePass = true;
   public isHidePassConf = true;
@@ -41,9 +47,7 @@ export class RegistrationPageComponent implements OnChanges {
     {
       email: new FormControl('', [
         Validators.required,
-        Validators.pattern(
-          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        ),
+        Validators.pattern(REGEXP_FOR_EMAIL),
       ]),
       username: new FormControl('', [
         Validators.required,
@@ -51,7 +55,7 @@ export class RegistrationPageComponent implements OnChanges {
       ]),
       phoneNumber: new FormControl('', [
         Validators.required,
-        Validators.pattern(/^([+]?[0-9\s-\(\)]{3,25})*$/i),
+        Validators.pattern(REGEXP_FOR_PHONE),
       ]),
       password: new FormControl('', [
         Validators.required,
@@ -85,7 +89,7 @@ export class RegistrationPageComponent implements OnChanges {
           password: this.get('password').value,
           phone: this.get('phoneNumber').value,
         },
-        url: 'registration',
+        url: 'register',
       });
     }
   }
@@ -147,8 +151,8 @@ export class RegistrationPageComponent implements OnChanges {
       })
       .afterClosed()
       .pipe(
+        filter(Boolean),
         tap((): void => {
-          filter((accepted) => accepted === true);
           this.get('checkBoxConfirm').setValue(true);
         })
       )
