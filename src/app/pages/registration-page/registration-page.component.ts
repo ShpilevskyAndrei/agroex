@@ -128,6 +128,14 @@ export class RegistrationPageComponent implements OnChanges {
     this.router.navigate(['']);
   }
 
+  public showHidePass(): void {
+    this.hide = !this.hide;
+  }
+
+  public showHidePassConf(): void {
+    this.hideConf = !this.hideConf;
+  }
+
   public openDialog(): void {
     this.dialog
       .open(PolicyModalContentComponent, {
@@ -135,7 +143,6 @@ export class RegistrationPageComponent implements OnChanges {
       })
       .afterClosed()
       .pipe(
-        first(),
         tap((accepted: boolean): void => 
           this.get('checkBoxConfirm').setValue(accepted)
         )
