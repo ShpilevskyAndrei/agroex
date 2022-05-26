@@ -101,6 +101,18 @@
                 color: $color-tradewind;
             }
         }
+
+        &-copy {
+            margin-top: 1rem;
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 10px;
+            line-height: 15px;
+            text-align: center;
+            letter-spacing: -0.03em;
+            color: $color-copy;     
+        }
     }
 
     hr {
