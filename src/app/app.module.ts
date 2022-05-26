@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 import { AppContainerComponent } from './app-container.component';
 import { AppComponent } from './app.component';
@@ -12,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ErrorPageModule } from './pages/error-page/error-page.module';
 import { IconSerializeService } from './shared/services/icon-serialize.service';
 import { StateModule } from './state/state.module';
+import { APPEARANCE } from './pages/registration-page/constants/constants';
 
 @NgModule({
   declarations: [AppComponent, AppContainerComponent],
@@ -26,7 +28,13 @@ import { StateModule } from './state/state.module';
     MatDialogModule,
     StateModule,
   ],
-  providers: [IconSerializeService],
+  providers: [
+    IconSerializeService,
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: APPEARANCE,
+    },
+  ],
   bootstrap: [AppContainerComponent],
 })
 export class AppModule {}

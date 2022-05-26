@@ -19,8 +19,8 @@
     .close {
         cursor: pointer;
         position: absolute;
-        width: 22px;
-        height: 22px;
+        right: 3rem;
+        top: 3rem;
         opacity: 0.3;
     }
     .close:hover {
@@ -28,7 +28,7 @@
     }
     .close:before, .close:after {
         position: absolute;
-        right: 10px;
+        right: 6px;
         top: 2px;
         content: ' ';
         height: 17px;
@@ -53,13 +53,13 @@
             cursor: pointer;
             background: inherit;
             padding-left: 0;
-            padding-top: 2rem;
+            padding-top: $offset-xlarge;
         }
 
         &-ask {
             text-align: center;
             cursor: default;
-            color: #4A4853;
+            color: $color-ask;
           padding: 0;
         }
 
@@ -74,9 +74,9 @@
                 padding-left: 0;
             }
             &-switch {
-                background: #fff;
-                border: 0.063rem solid #131314;
-                color: #131314;
+                background: $color-white;
+                border: 0.063rem solid $primary-color;
+                color: $primary-color;
             }
             &-log {
                 margin-top: 2rem;
@@ -88,7 +88,7 @@
             flex-direction: row;
             margin-top: 1rem;
             &-wrapper {
-                width: 292px;
+                width: 26rem;
             }
             p, a, span {
                 margin-top: 0.1rem;
