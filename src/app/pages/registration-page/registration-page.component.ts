@@ -148,6 +148,7 @@ export class RegistrationPageComponent implements OnChanges {
     this.dialog
       .open(PolicyModalContentComponent, {
         autoFocus: false,
+        width: '70vw',
       })
       .afterClosed()
       .pipe(
