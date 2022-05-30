@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 
 import { RouterModule, Routes } from '@angular/router';
 
+import { AuthenticationGuard } from './authentication.guard';
+
 const routes: Routes = [
   {
     path: 'registration',
@@ -9,6 +11,7 @@ const routes: Routes = [
       import('./pages/registration-page/registration-page.module').then(
         (m) => m.RegistrationPageModule
       ),
+    canActivate: []
   },
   {
     path: 'account',
@@ -16,6 +19,7 @@ const routes: Routes = [
       import('./pages/account-page/account-page.module').then(
         (m) => m.AccountPageModule
       ),
+    canActivate: [AuthenticationGuard],
   },
   {
     path: 'error',
