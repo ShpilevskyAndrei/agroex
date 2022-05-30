@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
+  CanLoad,
+  Route,
   Router,
   UrlTree,
 } from '@angular/router';
 import { map, Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Store } from '@ngrx/store';
 
 import { selectUserToken } from './state/registration-page/registration-page.selectors';
 import { RegistrationPageActions } from './state/registration-page/registration-page.actions';
@@ -15,7 +17,7 @@ import { RegistrationPageActions } from './state/registration-page/registration-
 @Injectable({
   providedIn: 'root',
 })
-export class AuthenticationGuard implements CanActivate {
+export class AuthGuard implements CanLoad {
   private token$: Observable<string | undefined>;
 
   constructor(
@@ -32,8 +34,8 @@ export class AuthenticationGuard implements CanActivate {
     );
   }
 
-  public canActivate(
-    route: ActivatedRouteSnapshot
+  public canLoad(
+    route: Route
   ):
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree>
@@ -41,12 +43,12 @@ export class AuthenticationGuard implements CanActivate {
     | UrlTree {
     return this.isAuthenticated().pipe(
       map((item: boolean): boolean => {
-        if (!item && !route.data.isReverse) {
+        if (!item && !route.data) {
           this.router.navigate(['registration']);
           this.store.dispatch(RegistrationPageActions.getUserLogout());
         }
 
-        return route.data.isReverse ? !item : item;
+        return route.data && route.data.isNotAuth ? !item : item;
       })
     );
   }

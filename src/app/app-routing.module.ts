@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthenticationGuard } from './authentication.guard';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {
@@ -11,9 +11,9 @@ const routes: Routes = [
         (m) => m.RegistrationPageModule
       ),
     data: {
-      isReverse: true,
+      isNotAuth: true,
     },
-    canActivate: [AuthenticationGuard],
+    canLoad: [AuthGuard],
   },
   {
     path: 'account',
@@ -21,7 +21,7 @@ const routes: Routes = [
       import('./pages/account-page/account-page.module').then(
         (m) => m.AccountPageModule
       ),
-    canActivate: [AuthenticationGuard],
+    canLoad: [AuthGuard],
   },
   {
     path: 'error',
