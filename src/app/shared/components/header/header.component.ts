@@ -60,6 +60,10 @@ export class HeaderComponent implements OnChanges {
     this.router.navigate(['']);
   }
 
+  public goToCreateAdvertisement(): void {
+    this.router.navigate(['createadvertisement']);
+  }
+
   private onLogout(): void {
     this.userRole = UserRole.Guest;
     this.logout.emit();

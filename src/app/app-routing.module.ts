@@ -25,6 +25,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'createadvertisement',
+    loadChildren: () =>
+      import(
+        './pages/create-advertisement-page/create-advertisement-page.module'
+      ).then((m) => m.CreateAdvertisementPageModule),
+  },
+  {
     path: '',
     loadChildren: () =>
       import('./pages/main-dashboard/main-dashboard.module').then(
