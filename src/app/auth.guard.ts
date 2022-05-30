@@ -43,13 +43,13 @@ export class AuthGuard implements CanLoad {
     | UrlTree {
     return this.isAuthenticated().pipe(
       map((item: boolean): boolean => {
-        if (!item && !route.data?.isRegistrationGuard) {
+        if (!item && !route.data?.isRegistrationPage) {
           this.router.navigate(['registration']);
           this.store.dispatch(RegistrationPageActions.getUserLogout());
           return false;
         }
 
-        if (item && route.data?.isRegistrationGuard) {
+        if (item && route.data?.isRegistrationPage) {
           this.router.navigate(['']);
           return false;
         }

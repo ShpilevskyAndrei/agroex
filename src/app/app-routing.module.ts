@@ -11,7 +11,7 @@ const routes: Routes = [
         (m) => m.RegistrationPageModule
       ),
     data: {
-      isRegistrationGuard: true,
+      isRegistrationPage: true,
     },
     canLoad: [AuthGuard],
   },
