@@ -11,7 +11,7 @@ import { selectUserToken } from './state/registration-page/registration-page.sel
   providedIn: 'root',
 })
 export class AuthorizationGuard implements CanActivate {
-  public token$: Observable<string | undefined>;
+  private token$: Observable<string | undefined>;
 
   constructor(public jwtHelper: JwtHelperService, private store: Store) {
     this.token$ = this.store.select(selectUserToken);

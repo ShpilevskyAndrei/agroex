@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router, UrlTree } from "@angular/router";
+import { CanActivate, Router, UrlTree } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { tap } from 'rxjs/operators';
@@ -12,9 +12,13 @@ import { RegistrationPageActions } from './state/registration-page/registration-
   providedIn: 'root',
 })
 export class AuthenticationGuard implements CanActivate {
-  public token$: Observable<string | undefined>;
+  private token$: Observable<string | undefined>;
 
-  constructor(public jwtHelper: JwtHelperService, private store: Store, private router: Router) {
+  constructor(
+    public jwtHelper: JwtHelperService,
+    private store: Store,
+    private router: Router
+  ) {
     this.token$ = this.store.select(selectUserToken);
   }
 
