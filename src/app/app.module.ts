@@ -14,9 +14,17 @@ import { ErrorPageModule } from './pages/error-page/error-page.module';
 import { IconSerializeService } from './shared/services/icon-serialize.service';
 import { StateModule } from './state/state.module';
 import { APPEARANCE } from './shared/constants/appearance-outline';
+import { AdvertisementsComponent } from './advertisements/advertisements.component';
+import { AdvertisementTitleComponent } from './advertisement-title/advertisement-title.component';
+import { AdvertisementPriceComponent } from './advertisement-price/advertisement-price.component';
+import { AdvertisementButtonsComponent } from './advertisement-buttons/advertisement-buttons.component';
+import { AdvertisementComponent } from './advertisement/advertisement.component';
 
 @NgModule({
-  declarations: [AppComponent, AppContainerComponent],
+  declarations: [
+    AppComponent,
+    AppContainerComponent,
+  ],
   imports: [
     MainDashboardModule,
     ErrorPageModule,
