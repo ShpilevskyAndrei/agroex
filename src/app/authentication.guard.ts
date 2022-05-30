@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router, UrlTree } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  Router,
+  UrlTree,
+} from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -27,7 +32,9 @@ export class AuthenticationGuard implements CanActivate {
     );
   }
 
-  public canActivate():
+  public canActivate(
+    route: ActivatedRouteSnapshot
+  ):
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree>
     | boolean
@@ -39,7 +46,7 @@ export class AuthenticationGuard implements CanActivate {
           this.store.dispatch(RegistrationPageActions.getUserLogout());
         }
 
-        return item;
+        return route.data.isReverse ? !item : item;
       })
     );
   }

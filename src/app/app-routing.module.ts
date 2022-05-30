@@ -10,6 +10,10 @@ const routes: Routes = [
       import('./pages/registration-page/registration-page.module').then(
         (m) => m.RegistrationPageModule
       ),
+    data: {
+      isReverse: true,
+    },
+    canActivate: [AuthenticationGuard],
   },
   {
     path: 'account',
