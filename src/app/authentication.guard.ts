@@ -41,7 +41,7 @@ export class AuthenticationGuard implements CanActivate {
     | UrlTree {
     return this.isAuthenticated().pipe(
       map((item: boolean): boolean => {
-        if (!item) {
+        if (!item && !route.data.isReverse) {
           this.router.navigate(['registration']);
           this.store.dispatch(RegistrationPageActions.getUserLogout());
         }
