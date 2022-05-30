@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { CanActivate, Router, UrlTree } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { tap } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 import { selectUserToken } from './state/registration-page/registration-page.selectors';
@@ -34,12 +33,13 @@ export class AuthenticationGuard implements CanActivate {
     | boolean
     | UrlTree {
     return this.isAuthenticated().pipe(
-      tap((item) => {
-        if (item) return true;
+      map((item: boolean): boolean => {
+        if (!item) {
+          this.router.navigate(['registration']);
+          this.store.dispatch(RegistrationPageActions.getUserLogout());
+        }
 
-        this.router.navigate(['registration']);
-        this.store.dispatch(RegistrationPageActions.getUserLogout());
-        return false;
+        return item;
       })
     );
   }
