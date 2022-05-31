@@ -73,11 +73,7 @@
             >
           </mat-form-field>
   
-          <mat-form-field class="form_login__field" [ngClass]="{'not-matching':(this.get('password').value &&
-                                                                        this.get('passwordConfirm').value &&
-                                                                        this.get('password').touched &&
-                                                                        this.get('passwordConfirm').touched &&
-                                                                        form.hasError('passwordsNotMatching'))}">
+          <mat-form-field class="form_login__field" [ngClass]="{'not-matching' : isPasswordsMatching()}">
             <mat-label>Password</mat-label>
             <input
               [type]="this.isHidePass ? 'password' : 'text'"
@@ -109,11 +105,7 @@
             >
           </mat-form-field>
   
-          <mat-form-field *ngIf="!this.isLoginForm" class="form_login__field" [ngClass]="{'not-matching':(this.get('password').value &&
-                                                                                                          this.get('passwordConfirm').value &&
-                                                                                                          this.get('password').touched &&
-                                                                                                          this.get('passwordConfirm').touched &&
-                                                                                                          form.hasError('passwordsNotMatching'))}">
+          <mat-form-field *ngIf="!this.isLoginForm" class="form_login__field" [ngClass]="{'not-matching' : isPasswordsMatching()}">
             <mat-label>Password Confirm</mat-label>
             <input
               [type]="this.isHidePassConf ? 'password' : 'text'"

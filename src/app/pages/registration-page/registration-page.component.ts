@@ -160,4 +160,14 @@ export class RegistrationPageComponent implements OnChanges {
       )
       .subscribe();
   }
+
+  public isPasswordsMatching(): Boolean {
+    return (
+      this.get('password').value &&
+      this.get('passwordConfirm').value &&
+      this.get('password').touched &&
+      this.get('passwordConfirm').touched &&
+      this.form.hasError('passwordsNotMatching')
+    )
+  }
 }

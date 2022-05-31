@@ -32,7 +32,7 @@
   }
 
   .form-content {
-    max-width: 27.333rem;
+    max-width: 27rem;
   }
 
   .form_login {
@@ -56,7 +56,6 @@
       cursor: default;
       color: $color-ask;
       padding: 0;
-      font-size: $font-size-small;
       font-weight: 400;
     }
 
@@ -65,7 +64,7 @@
       &-error_match {
         position: relative;
         font-size: $font-size-xsmall;
-        line-height: 1.333rem;
+        line-height: 1.3rem;
         padding-left: 0;
         margin-top: $offset-xsmall;
       }
@@ -93,13 +92,12 @@
       flex-direction: row;
       margin-top: 1rem;
       font-size: $font-size-medium;
-      line-height: 2.333rem;
-      letter-spacing: 0.4px;
+      line-height: 2.3rem;
       font-weight: 400;
       padding-top: 1.8rem;
 
       &-wrapper {
-        max-width: 24.333rem;
+        max-width: 24.4rem;
       }
 
       p, a, span {
@@ -120,9 +118,8 @@
       margin-top: 1rem;
       font-style: normal;
       font-weight: 400;
-      font-size: 0.8333rem;
+      font-size: 0.84rem;
       text-align: center;
-      letter-spacing: -0.03rem;
       color: $color-copy;
     }
   }
