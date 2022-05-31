@@ -161,7 +161,7 @@ export class RegistrationPageComponent implements OnChanges {
       .subscribe();
   }
 
-  public isPasswordsMatching(): Boolean {
+  public isPasswordsMatching(): boolean {
     return (
       this.get('password').value &&
       this.get('passwordConfirm').value &&
