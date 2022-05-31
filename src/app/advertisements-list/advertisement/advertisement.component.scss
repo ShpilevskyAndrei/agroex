@@ -1,0 +1,60 @@
+@import "../../styles/general-styles";
+
+.adv-wrap {
+  padding: 2rem;
+  display: flex;
+  column-gap: 24px;
+
+  &__img {
+    width: 340px;
+    height: 188px;
+
+    img {
+      display: block;
+      width: inherit;
+      height: inherit;
+      object-fit: cover;
+    }
+  }
+
+  &__desc {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-grow: 1;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    width: 308px;
+  }
+
+  &__btns {
+    display: none;
+    margin-top: auto;
+    .adv-wrap:hover & {
+      display: block;
+    }
+  }
+
+  &__location {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+
+    .adv-pointer-icon {
+      width: 20px;
+      height: 20px;
+      margin: 0 $offset-small 0 0;
+    }
+
+    p {
+      margin: 0;
+      font-size: 1.333rem;
+      line-height: 2rem;
+      letter-spacing: 0.15px;
+      color: $primary-color;
+    }
+  }
+}

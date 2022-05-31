@@ -12,5 +12,25 @@ export class IconSerializeService {
       'category-icon',
       sanitizer.bypassSecurityTrustResourceUrl('assets/category-icon.svg')
     );
+    this.matIconRegistry.addSvgIcon(
+      'caret-icon',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/caret-icon.svg')
+    );
+    this.matIconRegistry.addSvgIcon(
+      'bet-icon',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/bet-icon.svg')
+    );
+    this.matIconRegistry.addSvgIcon(
+      'timer-icon',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/timer-icon.svg')
+    );
+    this.matIconRegistry.addSvgIcon(
+      'map-pointer-icon',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/map-pointer-icon.svg')
+    );
+    this.matIconRegistry.addSvgIcon(
+      'clock-icon',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/clock-icon.svg')
+    );
   }
 }
