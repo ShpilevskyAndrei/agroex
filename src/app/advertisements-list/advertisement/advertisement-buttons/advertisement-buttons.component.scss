@@ -1,5 +1,8 @@
+@import "../../../styles/general-styles";
+
 .adv-btns {
   display: flex;
+  @include column-gap-small;
 
   button {
     display: flex;
