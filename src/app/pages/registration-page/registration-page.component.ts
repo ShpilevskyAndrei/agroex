@@ -37,8 +37,6 @@ export class RegistrationPageComponent implements OnChanges {
 
   public MIN_USER_NAME_LENGTH = MIN_USER_NAME_LENGTH;
   public MIN_PASSWORD_LENGTH = MIN_PASSWORD_LENGTH;
-  public REGEXP_FOR_PHONE = REGEXP_FOR_PHONE;
-  public REGEXP_FOR_EMAIL = REGEXP_FOR_EMAIL;
   public isLoginForm = true;
   public isHidePass = true;
   public isHidePassConf = true;
@@ -61,10 +59,7 @@ export class RegistrationPageComponent implements OnChanges {
         Validators.required,
         Validators.minLength(this.MIN_PASSWORD_LENGTH),
       ]),
-      passwordConfirm: new FormControl('', [
-        Validators.required,
-        Validators.minLength(this.MIN_PASSWORD_LENGTH),
-      ]),
+      passwordConfirm: new FormControl('', [Validators.required]),
       checkBoxConfirm: new FormControl(false, Validators.requiredTrue),
     },
     {
@@ -80,6 +75,7 @@ export class RegistrationPageComponent implements OnChanges {
 
   public onRegister(clickEvent: MouseEvent): void {
     clickEvent.preventDefault();
+    this.form.markAllAsTouched();
 
     if (this.form.valid) {
       this.authorizationCombineInfo.emit({
@@ -96,8 +92,13 @@ export class RegistrationPageComponent implements OnChanges {
 
   public onLogin(clickEvent: MouseEvent): void {
     clickEvent.preventDefault();
+    this.form.markAllAsTouched();
 
-    if (this.isLoginForm) {
+    if (
+      this.isLoginForm &&
+      this.get('email').valid &&
+      this.get('password').valid
+    ) {
       this.authorizationCombineInfo.emit({
         user: {
           email: this.get('email').value,

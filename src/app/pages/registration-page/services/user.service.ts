@@ -37,7 +37,9 @@ export class UserService extends BaseService {
       ),
       catchError((e) => {
         this.snackbar.open(
-          `User could not be created, due to: ${e.error.message}`,
+          `User could not be ${
+            url === 'register' ? 'created' : 'login'
+          }, due to: ${e.error.message}`,
           'Close',
           {
             duration: 5000,

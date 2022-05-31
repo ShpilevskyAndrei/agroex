@@ -3,7 +3,10 @@
 @import "../offsets.scss";
 @import "../sizes.scss";
 
-.mat-raised-button {
+.mat-raised-button,
+.mat-button,
+[mat-button],
+[mat-raised-button] {
     background: $color-tradewind;
     border-radius: 0.250rem;
     border: 0.063rem solid $color-tradewind;
@@ -11,10 +14,14 @@
     margin: 0.250rem;
 }
 
-.mat-button {
-    background: $color-tradewind;
-    border-radius: 0.250rem;
-    border: 0.063rem solid $color-tradewind;
-    color: $color-white;
-    margin: 0.250rem;
+.mat-button.btn_ghost {
+    background: $color-white;
+    border: 1px solid $primary-color;
+    color: $primary-color;
+}
+
+.mat-raised-button.btn_ghost {
+    background: $color-white;
+    border: 1px solid $primary-color;
+    color: $primary-color;
 }

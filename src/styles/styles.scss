@@ -5,7 +5,7 @@
 
 @import './theme-styles';
 @import "../app/styles/reusable_components/reusable_components.scss";
-@import "../app/styles/general-styles";
+@import "../app/styles/general-styles.scss";
 
 * {
   -webkit-font-smoothing: antialiased;
@@ -37,5 +37,3 @@ body {
 .mat-select-unset-height {
   max-height: unset !important;
 }
-
-

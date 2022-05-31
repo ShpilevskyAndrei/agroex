@@ -13,20 +13,26 @@
   .mat-card {
     padding: 3rem;
     min-height: max-content;
-    width: 408px;
+    width: 34rem;
     box-shadow: 0px 0px 4px rgba(0, 32, 51, 0.08), 0px 0px 24px rgba(0, 32, 51, 0.16);
+    &-title {
+      margin-bottom: 1.5rem;
+    }
   }
-
   .close {
     cursor: pointer;
     position: absolute;
-    right: 2.6rem;
+    right: 3.6rem;
     top: 3rem;
     opacity: 0.3;
   }
 
   .close:hover {
     opacity: 1;
+  }
+
+  .form-content {
+    max-width: 27.333rem;
   }
 
   .form_login {
@@ -41,6 +47,8 @@
       background: inherit;
       padding-left: 0;
       padding-top: $offset-xlarge;
+      font-weight: 500;
+      font-size: $font-size-small;
     }
 
     &-ask {
@@ -48,6 +56,19 @@
       cursor: default;
       color: $color-ask;
       padding: 0;
+      font-size: $font-size-small;
+      font-weight: 400;
+    }
+
+    &__field {
+      position: relative;
+      &-error_match {
+        position: relative;
+        font-size: $font-size-xsmall;
+        line-height: 1.333rem;
+        padding-left: 0;
+        margin-top: $offset-xsmall;
+      }
     }
 
     &__button {
@@ -62,12 +83,6 @@
         padding-left: 0;
       }
 
-      &-switch {
-        background: $color-white;
-        border: 1px solid $primary-color;
-        color: $primary-color;
-      }
-
       &-log {
         margin-top: 2rem;
       }
@@ -77,9 +92,14 @@
       display: flex;
       flex-direction: row;
       margin-top: 1rem;
+      font-size: $font-size-medium;
+      line-height: 2.333rem;
+      letter-spacing: 0.4px;
+      font-weight: 400;
+      padding-top: 1.8rem;
 
       &-wrapper {
-        width: 26rem;
+        max-width: 24.333rem;
       }
 
       p, a, span {
@@ -87,7 +107,7 @@
       }
 
       p {
-        margin-left: 0.8rem;
+        margin-left: 1.5rem;
       }
 
       &-click {
@@ -100,9 +120,9 @@
       margin-top: 1rem;
       font-style: normal;
       font-weight: 400;
-      font-size: $font-size-xsmall;
+      font-size: 0.8333rem;
       text-align: center;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.03rem;
       color: $color-copy;
     }
   }
