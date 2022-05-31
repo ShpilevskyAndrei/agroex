@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
-import { MatDialogModule } from '@angular/material/dialog';
 
 import { AdvertisementComponent } from './advertisement.component';
 import { AdvertisementTitleModule } from './advertisement-title/advertisement-title.module';
@@ -21,7 +20,6 @@ import { BetModalComponent } from './bet-modal/bet-modal.component';
     MatIconModule,
     MatFormFieldModule,
     FormsModule,
-    MatDialogModule,
   ],
   exports: [AdvertisementComponent],
 })
