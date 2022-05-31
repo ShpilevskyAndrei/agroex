@@ -60,17 +60,19 @@
         </div>
       </div>
     </div>
-    <div class="form__button"></div>
-    <button mat-button [disabled]="advertisementForm.invalid" type="submit">
-      Place an advertisement
-    </button>
-    <div>
-      <span class="form__title">This ad will be placed on the site after review by a moderator and will be valid
-        for the next 30 days.</span>
+    <div class="form__btns">
+      <div class="form__btns-wrap">
+        <button mat-button [disabled]="advertisementForm.invalid" type="submit">
+          Place an advertisement
+        </button>
+      </div>
+      <p class="form__footnote">
+        This ad will be placed on the site after review by a moderator and will
+        be valid for the next 30 days.
+      </p>
     </div>
   </form>
 </div>
-
 
 <!--<div class="form">-->
 <!--  <div class="form__item">-->

@@ -46,8 +46,27 @@
       }
     }
 
-    &__button {
+    &__btns {
       width: 50%;
+      margin-top: 64px;
+
+      &-wrap {
+        display: flex;
+        column-gap: 16px;
+
+        button {
+          width: 50%;
+        }
+      }
+    }
+
+
+    &__footnote {
+      display: block;
+      font-size: 1.5rem;
+      color: $primary-color;
+      font-weight: 500;
+      margin-top: 16px;
     }
   }
 }
