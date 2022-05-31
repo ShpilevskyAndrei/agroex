@@ -2,6 +2,7 @@
 
 .adv-price {
   display: flex;
+  @include column-gap-small;
 
   & > div {
     display: flex;
