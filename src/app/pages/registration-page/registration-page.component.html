@@ -3,8 +3,29 @@
       <mat-card-title *ngIf="!this.isLoginForm">Sign up</mat-card-title>
       <mat-card-title *ngIf="this.isLoginForm">Log in</mat-card-title>
       <mat-icon class="close" (click)="close()">close</mat-icon>
-      <mat-card-content>
+      <mat-card-content class="form-content">
         <form [formGroup]="form" class="form_login">
+          <mat-form-field *ngIf="!this.isLoginForm" class="form_login__field">
+            <mat-label>Name</mat-label>
+            <input
+              type="text"
+              matInput
+              placeholder="Name"
+              formControlName="username"
+            />
+            <mat-error
+              *ngIf="
+                this.get('username').touched &&
+                this.get('username').hasError('required')
+              "
+              >Enter your Name</mat-error
+            >
+            <mat-error *ngIf="this.get('username').hasError('minlength')"
+              >Name must bigger than
+              {{ this.MIN_USER_NAME_LENGTH }} char</mat-error
+            >
+          </mat-form-field>
+
           <mat-form-field class="form_login__field">
             <mat-label>Email</mat-label>
             <input
@@ -18,7 +39,7 @@
                 this.get('email').touched &&
                 this.get('email').hasError('required')
               "
-              >Email is required</mat-error
+              >Enter your email</mat-error
             >
             <mat-error
               *ngIf="
@@ -29,32 +50,11 @@
           </mat-form-field>
   
           <mat-form-field *ngIf="!this.isLoginForm" class="form_login__field">
-            <mat-label>Username</mat-label>
+            <mat-label>Phone</mat-label>
             <input
               type="text"
               matInput
-              placeholder="Username"
-              formControlName="username"
-            />
-            <mat-error
-              *ngIf="
-                this.get('username').touched &&
-                this.get('username').hasError('required')
-              "
-              >Username is required</mat-error
-            >
-            <mat-error *ngIf="this.get('username').hasError('minlength')"
-              >Password must bigger than
-              {{ this.MIN_USER_NAME_LENGTH }} char</mat-error
-            >
-          </mat-form-field>
-  
-          <mat-form-field *ngIf="!this.isLoginForm" class="form_login__field">
-            <mat-label>Phone number</mat-label>
-            <input
-              type="text"
-              matInput
-              placeholder="Phone number"
+              placeholder="Phone"
               formControlName="phoneNumber"
             />
             <mat-error
@@ -62,18 +62,18 @@
                 this.get('phoneNumber').touched &&
                 this.get('phoneNumber').hasError('required')
               "
-              >Phone number is required</mat-error
+              >Enter your Phone</mat-error
             >
             <mat-error
               *ngIf="
                 this.get('phoneNumber').touched &&
                 this.get('phoneNumber').hasError('pattern')
               "
-              >Phone number is incorrect</mat-error
+              >Enter a valid phone</mat-error
             >
           </mat-form-field>
   
-          <mat-form-field class="form_login__field">
+          <mat-form-field class="form_login__field" [ngClass]="{'not-matching' : isPasswordsMatching()}">
             <mat-label>Password</mat-label>
             <input
               [type]="this.isHidePass ? 'password' : 'text'"
@@ -97,15 +97,15 @@
                 this.get('password').touched &&
                 this.get('password').hasError('required')
               "
-              >Password is required</mat-error
+              >Enter your password</mat-error
             >
             <mat-error *ngIf="this.get('password').hasError('minlength')"
-              >Password must bigger than
-              {{ this.MIN_PASSWORD_LENGTH }} char</mat-error
+              >Minimum
+              {{ this.MIN_PASSWORD_LENGTH }} characters</mat-error
             >
           </mat-form-field>
   
-          <mat-form-field *ngIf="!this.isLoginForm" class="form_login__field">
+          <mat-form-field *ngIf="!this.isLoginForm" class="form_login__field" [ngClass]="{'not-matching' : isPasswordsMatching()}">
             <mat-label>Password Confirm</mat-label>
             <input
               [type]="this.isHidePassConf ? 'password' : 'text'"
@@ -129,7 +129,7 @@
                 this.get('passwordConfirm').touched &&
                 this.get('passwordConfirm').hasError('required')
               "
-              >Password confirm is required</mat-error
+              >Confirm your password </mat-error
             >
           </mat-form-field>
   
@@ -141,6 +141,7 @@
               this.get('passwordConfirm').touched &&
               form.hasError('passwordsNotMatching')
             "
+            class="form_login__field-error_match"
             >Passwords not matching</mat-error
           >
   
@@ -175,10 +176,6 @@
             <button
               mat-button
               (click)="onLogin($event)"
-              [disabled]="
-                this.get('password').hasError('required') ||
-                this.get('email').hasError('required')
-              "
               class="form_login__button-log"
             >
               Log in
@@ -187,7 +184,7 @@
             <p class="form_login-forgot form_login-ask">Don't have an account?</p>
             <button
               mat-button
-              class="form_login__button-switch"
+              class="btn_ghost"
               (click)="switchForms($event)"
             >
               Sign up
@@ -198,7 +195,6 @@
             <button
               mat-button
               (click)="onRegister($event)"
-              [disabled]="!form.valid"
               class="form_login__button-log"
             >
               Sign up
@@ -210,7 +206,7 @@
             <button
               mat-button
               (click)="switchForms($event)"
-              class="form_login__button-switch"
+              class="btn_ghost"
             >
               Log in
             </button>
