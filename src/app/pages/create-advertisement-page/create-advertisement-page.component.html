@@ -11,6 +11,7 @@
             <textarea
               matInput
               #images
+              maxlength="9"
               placeholder="Acceptable formats: jpeg, png. Maximum size: 10 MB."
               formControlName="file"
             ></textarea>
@@ -40,71 +41,36 @@
           </p>
         </div>
       </div>
+      <div class="form__item">
+        <div class="form__field">
+          <div class="form__title">Description</div>
+          <mat-form-field class="form__input" appearance="fill">
+            <mat-label>Describe the product in detail</mat-label>
+            <textarea
+              matInput
+              #input
+              maxlength="4000"
+              placeholder="Describe the product in detail"
+              formControlName="description"
+            ></textarea>
+            <mat-hint align="start"
+            >{{ input.value?.length || 0 }} of 4000 characters
+            </mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="form__button"></div>
+    <button mat-button [disabled]="advertisementForm.invalid" type="submit">
+      Place an advertisement
+    </button>
+    <div>
+      <span class="form__title">This ad will be placed on the site after review by a moderator and will be valid
+        for the next 30 days.</span>
     </div>
   </form>
 </div>
 
-<!--      <div class="productImages">-->
-<!--        <div class="productImages__title">Product images</div>-->
-<!--        <mat-form-field class="productImages__file" appearance="fill">-->
-<!--          <mat-label>Choose a file or drag and drop it here</mat-label>-->
-<!--          <textarea-->
-<!--            matInput-->
-<!--            #images-->
-<!--            placeholder="Acceptable formats: jpeg, png. Maximum size: 10 MB."-->
-<!--            formControlName="file"-->
-<!--          ></textarea>-->
-<!--          <mat-hint align="start"-->
-<!--          >{{ images.value?.length || 0 }} of 9 images-->
-<!--          </mat-hint>-->
-<!--        </mat-form-field>-->
-<!--      </div>-->
-
-<!--      <div class="form_input_wrap">-->
-<!--        <div class="mat_input__title">Title</div>-->
-<!--        <mat-form-field>-->
-<!--          <mat-label>Enter a title</mat-label>-->
-<!--          <input-->
-<!--            type="text"-->
-<!--            matInput-->
-<!--            placeholder="Enter a title"-->
-<!--            formControlName="title"-->
-<!--          />-->
-<!--        </mat-form-field>-->
-<!--      </div>-->
-<!--      <div class="form_input_wrap">-->
-<!--        <div class="mat_input__title">Title</div>-->
-<!--        <mat-form-field>-->
-<!--          <mat-label>Enter a title</mat-label>-->
-<!--          <input-->
-<!--            type="text"-->
-<!--            matInput-->
-<!--            placeholder="Enter a title"-->
-<!--            formControlName="title"-->
-<!--          />-->
-<!--        </mat-form-field>-->
-<!--      </div>-->
-<!--      <mat-form-field class="example-full-width" appearance="fill">-->
-<!--        <mat-label>Leave a comment</mat-label>-->
-<!--        <textarea matInput placeholder="Ex. It makes me feel..."></textarea>-->
-<!--      </mat-form-field>-->
-
-<!--      <mat-form-field appearance="fill">-->
-<!--        <mat-label>Describe the product in detail</mat-label>-->
-<!--        <textarea-->
-<!--          matInput-->
-<!--          #input-->
-<!--          maxlength="4000"-->
-<!--          placeholder="Describe the product in detail"-->
-<!--        ></textarea>-->
-<!--        <mat-hint align="start"-->
-<!--        >{{ input.value?.length || 0 }} of 4000 characters-->
-<!--        </mat-hint>-->
-<!--      </mat-form-field>-->
-
-<!--      <button mat-button [disabled]="advertisementForm.invalid" type="submit">-->
-<!--        Send-->
-<!--      </button>-->
 
 <!--<div class="form">-->
 <!--  <div class="form__item">-->
