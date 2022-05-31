@@ -2,111 +2,48 @@
 
 :host {
   .form {
-    padding-left: 3.3rem;
-    padding-top: 1.3rem;
+    padding: 36px 40px 40px;
     background: $color-white;
 
     &__advertisementTitle {
       font-size: 2rem;
       color: $primary-color;
       font-weight: 500;
-      padding-top: 1.667rem;
-      padding-bottom: 1.667rem;
+    }
+
+    &__wrap {
+      margin-top: 36px;
     }
 
     &__item {
+      display: flex;
+
+      & + .form__item {
+        margin-top: 24px;
+      }
+    }
+
+    &__field {
       width: 50%;
+    }
 
-      .form__field {
+    &__title {
+      font-size: 1.5rem;
+      color: $primary-color;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    &__input {
+      width: 100%;
+    }
+
+    &__desc {
+      margin-left: 1.333rem;
+
+      p {
+        font-size: 16px;
       }
-
-      .form__title {
-        //background-color: green;
-        font-size: 1.5rem;
-        color: $primary-color;
-        font-weight: 500;
-      }
-
-      .form__input {
-        //background-color: blue;
-        width: 100%;
-      }
-
-      //&__advertisementTitle {
-      //  font-size: 2rem;
-      //  color: $primary-color;
-      //  font-weight: 500;
-      //  padding-top: 1.667rem;
-      //  padding-bottom: 1.667rem;
-      //}
-      //
-      //.productImages {
-      //  &__title {
-      //    font-size: 1.5rem;
-      //    color: $primary-color;
-      //    font-weight: 500;
-      //  }
-      //
-      //  &__file {
-      //    background: $color-white;
-      //  }
-      //}
-      //
-      //.form_input_wrap {
-      //  &__title {
-      //    font-size: 1.5rem;
-      //    color: $primary-color;
-      //    font-weight: 500;
-      //    padding-top: 2rem;
-      //  }
-      //
-      //  &__description {
-      //  }
-      //}
     }
   }
 }
-
-//:host {
-//  .form_advertisement {
-//    padding-left: 3.3rem;
-//    padding-top: 1.3rem;
-//    background: $color-white;
-//
-//    .form__item {
-//      width: 50%;
-//
-//      &__advertisementTitle {
-//        font-size: 2rem;
-//        color: $primary-color;
-//        font-weight: 500;
-//        padding-top: 1.667rem;
-//        padding-bottom: 1.667rem;
-//      }
-//
-//      .productImages {
-//        &__title {
-//          font-size: 1.5rem;
-//          color: $primary-color;
-//          font-weight: 500;
-//        }
-//
-//        &__file {
-//          background: $color-white;
-//        }
-//      }
-//
-//      .form_input_wrap {
-//        &__title {
-//          font-size: 1.5rem;
-//          color: $primary-color;
-//          font-weight: 500;
-//          padding-top: 2rem;
-//        }
-//
-//        &__description {
-//        }
-//      }
-//    }
-//  }
-//}
