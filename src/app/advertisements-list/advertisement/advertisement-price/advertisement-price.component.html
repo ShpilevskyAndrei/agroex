@@ -1,0 +1,24 @@
+<div class="adv-price">
+  <div class="adv-price__bet">
+    <span class="label">Bet</span>
+    <ng-container *ngIf="true; then betBlock; else noBetBlock"></ng-container>
+    <ng-template #betBlock>
+      <span class="value">11,000$</span>
+      <div class="adv-timer">
+        <mat-icon svgIcon="timer-icon" class="adv-timer__icon"></mat-icon>
+        <span>01:25:54</span>
+      </div>
+    </ng-template>
+    <ng-template #noBetBlock>
+      <span class="no-bets">No bets</span>
+    </ng-template>
+  </div>
+  <div class="adv-price__total">
+    <span class="label">Total price</span>
+    <span class="value">12,000$</span>
+    <div class="adv-created">
+      <mat-icon svgIcon="clock-icon" class="adv-created__icon"></mat-icon>
+      <span>2d 23h</span>
+    </div>
+  </div>
+</div>
