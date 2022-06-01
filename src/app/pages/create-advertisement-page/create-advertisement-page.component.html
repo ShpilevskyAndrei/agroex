@@ -6,19 +6,25 @@
       <div class="form__item">
         <div class="form__field">
           <div class="form__title">Product images</div>
-          <mat-form-field class="form__input" appearance="fill">
-            <mat-label>Choose a file or drag and drop it here</mat-label>
-            <textarea
-              matInput
-              #images
-              maxlength="9"
-              placeholder="Acceptable formats: jpeg, png. Maximum size: 10 MB."
-              formControlName="file"
-            ></textarea>
-            <mat-hint align="start"
-            >{{ images.value?.length || 0 }} of 9 images
-            </mat-hint>
-          </mat-form-field>
+          <div class="form__dropzone" ngx-dropzone (change)="onSelect($event)">
+            <div class="form__dropzone-wrap">
+              <div>
+                <span class="form__dropzone-file-text">Choose a file</span> <span
+                class="form__dropzone-drop-text"> or drag and drop it here!</span>
+              </div>
+              <div class="form__dropzone-footnote">Acceptable formats: jpeg, png. Maximum
+                size: 10 MB.
+              </div>
+            </div>
+            <ngx-dropzone-image-preview
+              ngProjectAs="ngx-dropzone-preview"
+              *ngFor="let f of files"
+              [file]="f"
+              [removable]="true"
+              (removed)="onRemove(f)"
+            >
+            </ngx-dropzone-image-preview>
+          </div>
         </div>
       </div>
       <div class="form__item">
@@ -58,6 +64,25 @@
             </mat-hint>
           </mat-form-field>
         </div>
+      </div>
+      <div class="form__dropzone" ngx-dropzone (change)="onSelect($event)">
+        <div class="form__dropzone-wrap">
+          <div>
+            <span class="form__dropzone-file-text">Choose a file</span> <span
+            class="form__dropzone-drop-text"> or drag and drop it here!</span>
+          </div>
+          <div class="form__dropzone-footnote">Acceptable formats: jpeg, png. Maximum
+            size: 10 MB.
+          </div>
+        </div>
+        <ngx-dropzone-image-preview
+          ngProjectAs="ngx-dropzone-preview"
+          *ngFor="let f of files"
+          [file]="f"
+          [removable]="true"
+          (removed)="onRemove(f)"
+        >
+        </ngx-dropzone-image-preview>
       </div>
     </div>
     <div class="form__btns">

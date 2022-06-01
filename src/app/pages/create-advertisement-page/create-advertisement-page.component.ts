@@ -13,6 +13,8 @@ export class CreateAdvertisementPageComponent {
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
 
+  public files: File[] = [];
+
   public advertisementForm: FormGroup = new FormGroup({
     file: new FormControl('', [Validators.required]),
     title: new FormControl('', [Validators.required]),
@@ -25,5 +27,16 @@ export class CreateAdvertisementPageComponent {
 
   public submitForm(): void {
     console.log(this.advertisementForm.value);
+  }
+
+  //@typescript-eslint/no-explicit-any
+  public onSelect(event: { addedFiles: File[] }): void {
+    console.log(event);
+    this.files.push(...event.addedFiles);
+  }
+
+  public onRemove(event: File): void {
+    console.log(event);
+    this.files.splice(this.files.indexOf(event), 1);
   }
 }

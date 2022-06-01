@@ -15,6 +15,38 @@
       margin-top: 36px;
     }
 
+    &__dropzone {
+
+      &-file-text {
+        color: $active-color;
+        font-weight: 600;
+        font-size: 1.2rem;
+      }
+
+      &-drop-text {
+        color: $primary-color;
+        font-weight: 500;
+        font-size: 1.2rem;
+      }
+
+      &-footnote {
+        color: $color-copy;
+        font-size: 1rem;
+        font-weight: 400;
+      }
+
+      &-wrap {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+
+        div {
+          margin-top: 8px;
+        }
+      }
+    }
+
     &__item {
       display: flex;
 
