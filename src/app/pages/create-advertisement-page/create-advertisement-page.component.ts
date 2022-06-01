@@ -22,7 +22,7 @@ export class CreateAdvertisementPageComponent {
   public files: File[] = [];
 
   public countries: ICountry[] = [
-    { value: 'uzbekistan-0', viewValue: 'Uzbekistan' },
+    { value: 'uzbekistan', viewValue: 'Uzbekistan' },
   ];
 
   public units: IUnit[] = [
@@ -38,20 +38,20 @@ export class CreateAdvertisementPageComponent {
   ];
 
   public locations: ILocation[] = [
-    { value: 'andijan-0', viewValue: 'Andijan Region' },
-    { value: 'bukhara-1', viewValue: 'Bukhara Region' },
-    { value: 'fergana-2', viewValue: 'Fergana Region' },
-    { value: 'jizzakh-3', viewValue: 'Jizzakh Region' },
-    { value: 'xorazm-4', viewValue: 'Xorazm Region' },
-    { value: 'namangan-5', viewValue: 'Namangan Region' },
-    { value: 'navoiy-6', viewValue: 'Navoiy Region' },
-    { value: 'qashqadaryo-7', viewValue: 'Qashqadaryo Region' },
-    { value: 'samarqand-8', viewValue: 'Samarqand Region' },
-    { value: 'sirdaryo-9', viewValue: 'Sirdaryo Region' },
-    { value: 'surxondaryo-10', viewValue: 'Surxondaryo Region' },
-    { value: 'tashkent-11', viewValue: 'Tashkent Region' },
-    { value: 'karakalpakstan-12', viewValue: 'Republic of Karakalpakstan' },
-    { value: 'tashkent-14', viewValue: 'Republic of Tashkent city' },
+    { value: 'andijan', viewValue: 'Andijan Region' },
+    { value: 'bukhara', viewValue: 'Bukhara Region' },
+    { value: 'fergana', viewValue: 'Fergana Region' },
+    { value: 'jizzakh', viewValue: 'Jizzakh Region' },
+    { value: 'xorazm', viewValue: 'Xorazm Region' },
+    { value: 'namangan', viewValue: 'Namangan Region' },
+    { value: 'navoiy', viewValue: 'Navoiy Region' },
+    { value: 'qashqadaryo', viewValue: 'Qashqadaryo Region' },
+    { value: 'samarqand', viewValue: 'Samarqand Region' },
+    { value: 'sirdaryo', viewValue: 'Sirdaryo Region' },
+    { value: 'surxondaryo', viewValue: 'Surxondaryo Region' },
+    { value: 'tashkent', viewValue: 'Tashkent Region' },
+    { value: 'karakalpakstan', viewValue: 'Republic of Karakalpakstan' },
+    { value: 'tashkent', viewValue: 'Tashkent city' },
   ];
   public advertisementForm: FormGroup = new FormGroup({
     title: new FormControl('', [Validators.required]),
