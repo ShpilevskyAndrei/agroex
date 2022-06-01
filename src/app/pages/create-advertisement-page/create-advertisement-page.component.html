@@ -51,6 +51,19 @@
           </p>
         </div>
       </div>
+      <div class="form__item">
+        <div class="form__field">
+          <div class="form__title">Location</div>
+          <mat-form-field class="form__input several">
+            <mat-label>Select a location</mat-label>
+            <mat-select formControlName="location">
+              <mat-option *ngFor="let location of locations" [value]="location.value">
+                {{location.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
     </div>
     <div class="form__btns">
       <div class="form__btns-wrap">

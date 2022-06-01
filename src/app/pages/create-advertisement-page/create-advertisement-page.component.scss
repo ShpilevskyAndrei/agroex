@@ -16,7 +16,6 @@
     }
 
     &__dropzone {
-
       &-file-text {
         color: $active-color;
         font-weight: 600;
@@ -68,6 +67,10 @@
 
     &__input {
       width: 100%;
+
+      &.several {
+        width: 50%;
+      }
     }
 
     &__desc {
@@ -91,7 +94,6 @@
         }
       }
     }
-
 
     &__footnote {
       display: block;
