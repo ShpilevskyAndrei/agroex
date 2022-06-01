@@ -9,19 +9,33 @@
 [mat-raised-button] {
     background: $color-tradewind;
     border-radius: 0.250rem;
-    border: 0.063rem solid $color-tradewind;
     color: $color-white;
     margin: 0.250rem;
+    .mat-ripple {
+        border: 1px solid $color-tradewind;
+    }
 }
 
-.mat-button.btn_ghost {
+.mat-button.btn_ghost,
+.mat-raised-button.btn_ghost,
+[mat-button].btn_ghost,
+[mat-raised-button].btn_ghost
+ {
     background: $color-white;
-    border: 1px solid $primary-color;
     color: $primary-color;
+    .mat-ripple {
+        border: 1px solid $primary-color;
+    }
 }
 
-.mat-raised-button.btn_ghost {
-    background: $color-white;
-    border: 1px solid $primary-color;
-    color: $primary-color;
+.mat-button.mat-button-disabled,
+.mat-raised-button.mat-button-disabled,
+[mat-button].mat-button-disabled,
+[mat-raised-button].mat-button-disabled
+ {
+    background: $color-button-disable;
+    color: $color-border-input;
+    .mat-ripple {
+        border: 1px solid $color-button-disable;
+    }
 }
