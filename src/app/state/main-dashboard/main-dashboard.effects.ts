@@ -4,7 +4,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, of, switchMap } from 'rxjs';
 
 import { CategoriesService } from '../../pages/main-dashboard/categories/categories.service';
-import { Category } from '../../pages/main-dashboard/categories/model/category.model';
+import { Category } from '../../pages/main-dashboard/categories/interfaces/category.model';
 import { MainDashboardActions } from './main-dashboard.actions';
 
 @Injectable()

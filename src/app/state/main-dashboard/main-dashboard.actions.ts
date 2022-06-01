@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { createAction, props } from '@ngrx/store';
 
-import { Category } from '../../pages/main-dashboard/categories/model/category.model';
+import { Category } from '../../pages/main-dashboard/categories/interfaces/category.model';
 
 export const MainDashboardActions = {
   getCategoriesRequest: createAction('[MAIN_DASHBOARD] categories requested'),

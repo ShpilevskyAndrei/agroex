@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { LoadingStatus } from '../../../shared/interfaces/loading-status';
-import { Category } from './model/category.model';
-import { CategoryItemModel } from './model/categoryItem.model';
+import { Category } from './interfaces/category.model';
+import { CategoryItemModel } from './interfaces/categoryItem.model';
 
 @Component({
   selector: 'app-categories',
