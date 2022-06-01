@@ -93,11 +93,11 @@
 }
 
 .cdk-overlay-pane {
-    margin-top: 2.5rem;
-    transform: translateX(-11px) !important;
-    max-height: 21.333rem;
 
     .mat-select-panel {
+        max-height: 21.333rem;
+        margin-top: 2.5rem;
+        transform: translateX(5px) !important;
         min-width: calc(100% + 22px) !important;
         max-height: 21.333rem;
     }
