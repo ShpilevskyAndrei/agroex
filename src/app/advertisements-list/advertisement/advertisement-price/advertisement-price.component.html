@@ -1,7 +1,7 @@
 <div class="adv-price">
   <div class="adv-price__bet">
     <span class="label">Bet</span>
-    <ng-container *ngIf="true; then betBlock; else noBetBlock"></ng-container>
+    <ng-container *ngIf="false; then betBlock; else noBetBlock"></ng-container>
     <ng-template #betBlock>
       <span class="value">11,000$</span>
       <div class="adv-timer">
@@ -15,7 +15,7 @@
   </div>
   <div class="adv-price__total">
     <span class="label">Total price</span>
-    <span class="value">12,000$</span>
+    <span class="value">{{advertisement.price}}$</span>
     <div class="adv-created">
       <mat-icon svgIcon="clock-icon" class="adv-created__icon"></mat-icon>
       <span>2d 23h</span>

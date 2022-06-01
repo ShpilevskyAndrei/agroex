@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { IUser } from '../registration-page/interfaces/user-api-response.interface';
+import { IUser } from '../../shared/interfaces/user.interface';
 
 @Component({
   selector: 'app-account-page',
