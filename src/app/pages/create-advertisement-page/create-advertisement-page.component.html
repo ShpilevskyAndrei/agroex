@@ -5,33 +5,6 @@
     <div class="form__wrap">
       <div class="form__item">
         <div class="form__field">
-          <div class="form__title">Product images</div>
-          <div class="form__dropzone" ngx-dropzone (change)="onSelect($event)">
-            <ngx-dropzone-label>
-              <div class="form__dropzone-wrap">
-                <div>
-                  <span class="form__dropzone-file-text">Choose a file</span> <span
-                  class="form__dropzone-drop-text"> or drag and drop it here!</span>
-                </div>
-                <div class="form__dropzone-footnote">Acceptable formats: jpeg, png.
-                  Maximum
-                  size: 10 MB.
-                </div>
-              </div>
-            </ngx-dropzone-label>
-            <ngx-dropzone-image-preview
-              ngProjectAs="ngx-dropzone-preview"
-              *ngFor="let f of files"
-              [file]="f"
-              [removable]="true"
-              (removed)="onRemove(f)"
-            >
-            </ngx-dropzone-image-preview>
-          </div>
-        </div>
-      </div>
-      <div class="form__item">
-        <div class="form__field">
           <div class="form__title">Title</div>
           <mat-form-field class="form__input">
             <mat-label>Enter a title</mat-label>
@@ -42,12 +15,6 @@
               formControlName="title"
             />
           </mat-form-field>
-        </div>
-        <div class="form__desc">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Accusantium, illum.
-          </p>
         </div>
       </div>
       <div class="form__item">
@@ -68,24 +35,39 @@
           </mat-form-field>
         </div>
       </div>
-      <div class="form__dropzone" ngx-dropzone (change)="onSelect($event)">
-        <div class="form__dropzone-wrap">
-          <div>
-            <span class="form__dropzone-file-text">Choose a file</span> <span
-            class="form__dropzone-drop-text"> or drag and drop it here!</span>
-          </div>
-          <div class="form__dropzone-footnote">Acceptable formats: jpeg, png. Maximum
-            size: 10 MB.
+      <div class="form__item">
+        <div class="form__field">
+          <div class="form__title">Product images</div>
+          <div class="form__dropzone" ngx-dropzone (change)="onSelect($event)">
+            <ngx-dropzone-label>
+              <div class="form__dropzone-wrap">
+                <div>
+                  <span class="form__dropzone-file-text">Choose a file</span>
+                  <span class="form__dropzone-drop-text">
+                    or drag and drop it here!</span
+                  >
+                </div>
+                <div class="form__dropzone-footnote">
+                  Acceptable formats: jpeg, png. Maximum size: 10 MB.
+                </div>
+              </div>
+            </ngx-dropzone-label>
+            <ngx-dropzone-image-preview
+              ngProjectAs="ngx-dropzone-preview"
+              *ngFor="let f of files"
+              [file]="f"
+              [removable]="true"
+              (removed)="onRemove(f)"
+            >
+            </ngx-dropzone-image-preview>
           </div>
         </div>
-        <ngx-dropzone-image-preview
-          ngProjectAs="ngx-dropzone-preview"
-          *ngFor="let f of files"
-          [file]="f"
-          [removable]="true"
-          (removed)="onRemove(f)"
-        >
-        </ngx-dropzone-image-preview>
+        <div class="form__desc">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Accusantium, illum.
+          </p>
+        </div>
       </div>
     </div>
     <div class="form__btns">
