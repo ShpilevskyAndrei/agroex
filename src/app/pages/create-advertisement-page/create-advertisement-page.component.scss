@@ -15,7 +15,18 @@
       margin-top: 36px;
     }
 
+    &__input-wrap {
+      display: flex;
+      column-gap: 16px;
+
+      .mat-form-field + .mat-form-field {
+        margin: 0;
+      }
+    }
+
     &__dropzone {
+      overflow-y: hidden;
+
       &-file-text {
         color: $active-color;
         font-weight: 600;
