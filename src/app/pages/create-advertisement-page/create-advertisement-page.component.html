@@ -3,6 +3,7 @@
   <form [formGroup]="advertisementForm" (ngSubmit)="submitForm()" class="form">
     <div class="form__advertisementTitle">New advertisement</div>
     <div class="form__wrap">
+      <!--      title -->
       <div class="form__item">
         <div class="form__field">
           <div class="form__title">Title</div>
@@ -19,12 +20,37 @@
           <div class="form__helper-text">No more 40 characters</div>
         </div>
       </div>
+      <!--      location-->
       <div class="form__item">
         <div class="form__field">
           <div class="form__title">Location</div>
+          <div class="form__input-wrap">
+            <mat-form-field class="form__input several">
+              <mat-label>Select a location</mat-label>
+              <mat-select formControlName="country">
+                <mat-option *ngFor="let country of countries" [value]="country.value">
+                  {{country.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="form__input several">
+              <mat-label>Select a location</mat-label>
+              <mat-select formControlName="location">
+                <mat-option *ngFor="let location of locations" [value]="location.value">
+                  {{location.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <!--      category-->
+      <div class="form__item">
+        <div class="form__field">
+          <div class="form__title">Category</div>
           <mat-form-field class="form__input several">
-            <mat-label>Select a location</mat-label>
-            <mat-select formControlName="location">
+            <mat-label>Select a category</mat-label>
+            <mat-select formControlName="category">
               <mat-option *ngFor="let location of locations" [value]="location.value">
                 {{location.viewValue}}
               </mat-option>
@@ -32,6 +58,7 @@
           </mat-form-field>
         </div>
       </div>
+      <!--      drag and drop file-->
       <div class="form__item">
         <div class="form__field">
           <div class="form__title">Product images</div>

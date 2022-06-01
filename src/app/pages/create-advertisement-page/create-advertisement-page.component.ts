@@ -8,6 +8,11 @@ interface Location {
   viewValue: string;
 }
 
+interface Country {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-create-advertisement-page',
   templateUrl: './create-advertisement-page.component.html',
@@ -20,17 +25,38 @@ export class CreateAdvertisementPageComponent {
 
   public files: File[] = [];
 
+  public countries: Country[] = [
+    { value: 'uzbekistan-0', viewValue: 'Uzbekistan' },
+  ];
+
   public locations: Location[] = [
-    { value: 'minsk-0', viewValue: 'Minsk' },
-    { value: 'grodno-1', viewValue: 'Grodno' },
-    { value: 'brest-2', viewValue: 'Brest' },
-    { value: 'gomel-3', viewValue: 'Gomel' },
-    { value: 'mogilev-4', viewValue: 'Mogilev' },
-    { value: 'vitebsk-5', viewValue: 'Vitebsk' },
+    { value: 'andijan-0', viewValue: 'Andijan Region' },
+    { value: 'bukhara-1', viewValue: 'Bukhara Region' },
+    { value: 'fergana-2', viewValue: 'Fergana Region' },
+    { value: 'jizzakh-3', viewValue: 'Jizzakh Region' },
+    { value: 'xorazm-4', viewValue: 'Xorazm Region' },
+    { value: 'namangan-5', viewValue: 'Namangan Region' },
+    { value: 'navoiy-6', viewValue: 'Navoiy Region' },
+    { value: 'qashqadaryo-7', viewValue: 'Qashqadaryo Region' },
+    { value: 'samarqand-8', viewValue: 'Samarqand Region' },
+    { value: 'sirdaryo-9', viewValue: 'Sirdaryo Region' },
+    { value: 'surxondaryo-10', viewValue: 'Surxondaryo Region' },
+    { value: 'tashkent-11', viewValue: 'Tashkent Region' },
+    { value: 'karakalpakstan-12', viewValue: 'Republic of Karakalpakstan' },
+    { value: 'tashkent-14', viewValue: 'Republic of Tashkent city' },
   ];
   public advertisementForm: FormGroup = new FormGroup({
     title: new FormControl('', [Validators.required]),
-    file: new FormControl('', [Validators.required]),
+    country: new FormControl(
+      {
+        value: this.countries[0].value,
+        disabled: true,
+      },
+      [Validators.required]
+    ),
+    location: new FormControl('', [Validators.required]),
+    category: new FormControl('', [Validators.required]),
+    file: new FormControl(''),
   });
 
   public onLogout(): void {
