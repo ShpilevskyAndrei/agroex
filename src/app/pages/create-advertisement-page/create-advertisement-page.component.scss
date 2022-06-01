@@ -102,5 +102,12 @@
       font-weight: 400;
       margin-top: 16px;
     }
+
+    &__helper-text {
+      font-size: 1rem;
+      font-weight: 400;
+      color: $color-copy;
+      margin-top: 4px;
+    }
   }
 }

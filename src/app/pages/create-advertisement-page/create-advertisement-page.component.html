@@ -10,10 +10,25 @@
             <mat-label>Enter a title</mat-label>
             <input
               type="text"
+              maxlength="40"
               matInput
               placeholder="Enter a title"
               formControlName="title"
             />
+          </mat-form-field>
+          <div class="form__helper-text">No more 40 characters</div>
+        </div>
+      </div>
+      <div class="form__item">
+        <div class="form__field">
+          <div class="form__title">Location</div>
+          <mat-form-field class="form__input several">
+            <mat-label>Select a location</mat-label>
+            <mat-select formControlName="location">
+              <mat-option *ngFor="let location of locations" [value]="location.value">
+                {{location.viewValue}}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
         </div>
       </div>
@@ -49,19 +64,6 @@
             Lorem ipsum dolor sit amet, consectetur adipisicing elit.
             Accusantium, illum.
           </p>
-        </div>
-      </div>
-      <div class="form__item">
-        <div class="form__field">
-          <div class="form__title">Location</div>
-          <mat-form-field class="form__input several">
-            <mat-label>Select a location</mat-label>
-            <mat-select formControlName="location">
-              <mat-option *ngFor="let location of locations" [value]="location.value">
-                {{location.viewValue}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
         </div>
       </div>
     </div>
