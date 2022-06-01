@@ -26,7 +26,6 @@
           <div class="form__title">Location</div>
           <div class="form__input-wrap">
             <mat-form-field class="form__input several">
-              <mat-label>Select a location</mat-label>
               <mat-select formControlName="country">
                 <mat-option
                   *ngFor="let country of countries"
@@ -37,7 +36,7 @@
               </mat-select>
             </mat-form-field>
             <mat-form-field class="form__input several">
-              <mat-label>Select a location</mat-label>
+              <mat-label>Select a region</mat-label>
               <mat-select formControlName="location">
                 <mat-option
                   *ngFor="let location of locations"
@@ -67,7 +66,7 @@
           </mat-form-field>
         </div>
       </div>
-      <!--      quantity -->
+      <!--      quantity and unit-->
       <div class="form__item">
         <div class="form__field">
           <div class="form__title">Quantity</div>
@@ -89,6 +88,34 @@
               >
                 <mat-option *ngFor="let unit of units" [value]="unit.value">
                   {{ unit.viewValue }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <!--      price and currency -->
+      <div class="form__item">
+        <div class="form__field">
+          <div class="form__title">Price</div>
+          <div class="form__input-wrap">
+            <mat-form-field class="form__input several">
+              <mat-label>Enter the price</mat-label>
+              <input
+                type="text"
+                maxlength="40"
+                matInput
+                placeholder="Enter the price"
+                formControlName="price"
+              />
+            </mat-form-field>
+            <mat-form-field class="form__input select-small">
+              <mat-select
+                class="form__select-small-text"
+                formControlName="currency"
+              >
+                <mat-option *ngFor="let currency of currencies" [value]="currency.value">
+                  {{ currency.viewValue }}
                 </mat-option>
               </mat-select>
             </mat-form-field>

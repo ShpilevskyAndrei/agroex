@@ -18,6 +18,11 @@ interface Unit {
   viewValue: string;
 }
 
+interface Currency {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-create-advertisement-page',
   templateUrl: './create-advertisement-page.component.html',
@@ -38,6 +43,12 @@ export class CreateAdvertisementPageComponent {
     { value: 'ton', viewValue: 'ton' },
     { value: 'kg', viewValue: 'kg' },
     { value: 'pcs', viewValue: 'pcs.' },
+  ];
+
+  public currencies: Currency[] = [
+    { value: 'usd', viewValue: 'USD' },
+    { value: 'eur', viewValue: 'EUR' },
+    { value: 'uzs', viewValue: 'UZS' },
   ];
 
   public locations: Location[] = [
@@ -71,6 +82,14 @@ export class CreateAdvertisementPageComponent {
     unit: new FormControl({ value: this.units[0].value, disabled: false }, [
       Validators.required,
     ]),
+    price: new FormControl('', [Validators.required]),
+    currency: new FormControl(
+      {
+        value: this.currencies[0].value,
+        disabled: false,
+      },
+      [Validators.required]
+    ),
     file: new FormControl(''),
   });
 
