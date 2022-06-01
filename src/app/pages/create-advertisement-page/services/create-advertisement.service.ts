@@ -5,9 +5,9 @@ import { catchError } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
 
 import { BaseService } from '../../../shared/services/base.service';
-import { UserApiResponse } from '../../registration-page/interfaces/user-api-response.interface';
-import { UserCredentials } from '../../registration-page/interfaces/user.interfase';
+import { IAdvertisementApiResponse } from '../interfaces/create-advertisement-api-response.interface';
 import {
+  IAdvertisementFormCredentials,
   ICountry,
   ICurrency,
   ILocation,
@@ -56,14 +56,12 @@ export class CreateAdvertisementService extends BaseService {
   }
 
   public create(
-    formAdvertisement: UserCredentials
-  ): Observable<UserApiResponse> {
+    formAdvertisement: IAdvertisementFormCredentials
+  ): Observable<IAdvertisementApiResponse> {
     return this.httpClient
-      .post<UserApiResponse>(
+      .post<IAdvertisementApiResponse>(
         `${environment.apiUrl}advertisements`,
-        {
-          formAdvertisement,
-        },
+        formAdvertisement,
         {
           headers: new HttpHeaders({
             'Content-Type': 'multipart/form-data',
