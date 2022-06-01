@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable, throwError } from 'rxjs';
 
-import { UserApiResponse } from '../interfaces/user-api-response.interface';
-import { UserCredentials } from '../interfaces/user.interfase';
+import { UserApiResponse } from '../../../shared/interfaces/user.interface';
+import { IUserCredentials } from '../../../shared/interfaces/user-credentials.interfase';
 import { catchError, tap } from 'rxjs/operators';
 import { BaseService } from 'src/app/shared/services/base.service';
 
@@ -20,7 +20,7 @@ export class UserService extends BaseService {
   }
 
   public create(
-    user: UserCredentials,
+    user: IUserCredentials,
     url: string
   ): Observable<UserApiResponse> {
     return this.post<UserApiResponse>(`auth/${url}`, { user }).pipe(

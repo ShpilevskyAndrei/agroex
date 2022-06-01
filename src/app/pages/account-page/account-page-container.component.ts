@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { RegistrationPageActions } from '../../state/registration-page/registration-page.actions';
 import { selectUserData } from '../../state/registration-page/registration-page.selectors';
-import { IUser } from '../registration-page/interfaces/user-api-response.interface';
+import { IUser } from '../../shared/interfaces/user.interface';
 
 @Component({
   selector: 'app-account-page-container',
