@@ -4,129 +4,130 @@
 @import "../sizes.scss";
 
 .mat-form-field-type-mat-select {
-    &.mat-form-field-appearance-outline {
-        .mat-form-field-flex {
-            .mat-form-field-infix {
-                &::after {
-                    content: "";
-                    width: 8px;
-                    height: 8px;
-                    background-color: transparent;
-                    border-bottom: 2px solid $color-copy;
-                    border-right: 2px solid $color-copy;
-                    border-left: 0px solid transparent;
-                    border-top: 0px solid transparent;
-                    position: absolute;
-                    top: calc(50% - 4px);
-                    right: 0.5rem;
-                    margin-top: 0rem;
-                    transform: rotate(45deg);
-                }
-
-                .mat-select-arrow {
-                    display: none;
-                }
-            } 
+  &.mat-form-field-appearance-outline {
+    .mat-form-field-flex {
+      .mat-form-field-infix {
+        &::after {
+          content: "";
+          width: 8px;
+          height: 8px;
+          background-color: transparent;
+          border-bottom: 2px solid $color-copy;
+          border-right: 2px solid $color-copy;
+          border-left: 0 solid transparent;
+          border-top: 0 solid transparent;
+          position: absolute;
+          top: calc(50% - 4px);
+          right: 0.5rem;
+          margin-top: 0;
+          transform: rotate(45deg);
         }
 
-        .mat-select:not(.mat-select-empty) + .mat-form-field-label-wrapper {
-            .mat-form-field-label {
-                display: none;
-            }
+        .mat-select-arrow {
+          display: none;
         }
-
-        &.mat-form-field-can-float.mat-form-field-should-float {
-            .mat-form-field-outline-gap {
-                border-top-color: inherit;
-            }
-            .mat-form-field-label-wrapper {
-                .mat-form-field-label {
-                    transform: translateY(0rem) scale(1);
-                }
-            }
-        }
-
-        .mat-select.mat-select-empty + .mat-form-field-label-wrapper {
-            .mat-form-field-label {
-                transform: translateY(0rem) scale(1);
-            }
-        }
-
-        mat-label {
-            color: $color-copy;
-            font-size: $font-size-normal;
-        }
-
-        .mat-select {
-            &-value {
-                &-text {
-                    font-size: $font-size-normal;
-                    line-height: 2rem;
-                    color: $primary-color;
-                }
-            }
-        }
+      }
     }
 
-    &.mat-form-field-disabled {
-        .mat-form-field-outline {
-            &-start, &-gap, &-end {
-                background: $color-select-disable;
-            }
-        }
-        &:hover {
-            .mat-form-field-infix {
-                &::after {
-                    border-color: $color-copy !important;
-                }
-            } 
-        }
+    .mat-select:not(.mat-select-empty) + .mat-form-field-label-wrapper {
+      .mat-form-field-label {
+        display: none;
+      }
     }
 
+    &.mat-form-field-can-float.mat-form-field-should-float {
+      .mat-form-field-outline-gap {
+        border-top-color: inherit;
+      }
+      .mat-form-field-label-wrapper {
+        .mat-form-field-label {
+          transform: translateY(0) scale(1);
+        }
+      }
+    }
+
+    .mat-select.mat-select-empty + .mat-form-field-label-wrapper {
+      .mat-form-field-label {
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    mat-label {
+      color: $color-copy;
+      font-size: $font-size-normal;
+    }
+
+    .mat-select {
+      &-value {
+        &-text {
+          font-size: $font-size-normal;
+          line-height: 2rem;
+          color: $primary-color;
+        }
+      }
+    }
+  }
+
+  &.mat-form-field-disabled {
+    .mat-form-field-outline {
+      &-start,
+      &-gap,
+      &-end {
+        background: $color-select-disable;
+      }
+    }
     &:hover {
-        .mat-form-field-infix {
-            &::after {
-                border-color: $color-ask !important;
-            }
-        } 
+      .mat-form-field-infix {
+        &::after {
+          border-color: $color-copy !important;
+        }
+      }
     }
+  }
+
+  &:hover {
+    .mat-form-field-infix {
+      &::after {
+        border-color: $color-ask !important;
+      }
+    }
+  }
 }
 
 .cdk-overlay-pane {
+  .mat-select-panel {
+    max-height: 21.333rem;
+    margin-top: 2.5rem;
+    transform: translateX(5px) !important;
+    min-width: calc(100% + 22px) !important;
+    max-height: 21.333rem;
+  }
 
-    .mat-select-panel {
-        max-height: 21.333rem;
-        margin-top: 2.5rem;
-        transform: translateX(5px) !important;
-        min-width: calc(100% + 22px) !important;
-        max-height: 21.333rem;
+  .mat-option {
+    padding: 0;
+    &-text {
+      color: $primary-color;
+      margin-left: 1.5rem;
+      line-height: 2.3rem;
+      font-size: $font-size-medium;
     }
+  }
 
-    .mat-option {
-        padding: 0;
-        &-text {
-            color: $primary-color;
-            margin-left: 1.5rem;
-            line-height: 2.3rem;
-            font-size: $font-size-medium;
-        }
-    }
+  ::-webkit-scrollbar {
+    width: 0.666rem;
+  }
 
-    ::-webkit-scrollbar {
-        width: 0.666rem;
-    }
-  
-    ::-webkit-scrollbar-track {
-        background: $scroll-bar-track-color;
-        border-radius: 0.333rem;
-    }
-     
-    ::-webkit-scrollbar-thumb {
-        background: $color-copy; 
-        border-radius: 0.333rem;
-    }
-    
-    ::-webkit-scrollbar-thumb:hover {
-        background: $color-copy; 
-    }
+  ::-webkit-scrollbar-track {
+    background: $scroll-bar-track-color;
+    border-radius: 0.333rem;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: $color-copy;
+    border-radius: 0.333rem;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: $color-copy;
+  }
 }
