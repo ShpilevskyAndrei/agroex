@@ -7,15 +7,18 @@
         <div class="form__field">
           <div class="form__title">Product images</div>
           <div class="form__dropzone" ngx-dropzone (change)="onSelect($event)">
-            <div class="form__dropzone-wrap">
-              <div>
-                <span class="form__dropzone-file-text">Choose a file</span> <span
-                class="form__dropzone-drop-text"> or drag and drop it here!</span>
+            <ngx-dropzone-label>
+              <div class="form__dropzone-wrap">
+                <div>
+                  <span class="form__dropzone-file-text">Choose a file</span> <span
+                  class="form__dropzone-drop-text"> or drag and drop it here!</span>
+                </div>
+                <div class="form__dropzone-footnote">Acceptable formats: jpeg, png.
+                  Maximum
+                  size: 10 MB.
+                </div>
               </div>
-              <div class="form__dropzone-footnote">Acceptable formats: jpeg, png. Maximum
-                size: 10 MB.
-              </div>
-            </div>
+            </ngx-dropzone-label>
             <ngx-dropzone-image-preview
               ngProjectAs="ngx-dropzone-preview"
               *ngFor="let f of files"
