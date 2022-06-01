@@ -19,24 +19,6 @@
       </div>
       <div class="form__item">
         <div class="form__field">
-          <div class="form__title">Description</div>
-          <mat-form-field class="form__input" appearance="fill">
-            <mat-label>Describe the product in detail</mat-label>
-            <textarea
-              matInput
-              #input
-              maxlength="4000"
-              placeholder="Describe the product in detail"
-              formControlName="description"
-            ></textarea>
-            <mat-hint align="start"
-            >{{ input.value?.length || 0 }} of 4000 characters
-            </mat-hint>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="form__item">
-        <div class="form__field">
           <div class="form__title">Product images</div>
           <div class="form__dropzone" ngx-dropzone (change)="onSelect($event)">
             <ngx-dropzone-label>
@@ -83,20 +65,3 @@
     </div>
   </form>
 </div>
-
-<!--<div class="form">-->
-<!--  <div class="form__item">-->
-<!--    -&#45;&#45; 50%-->
-<!--    <div class="form__field">-->
-<!--      <label class="form__title"> title </label>-->
-<!--      <div class="form__input">-->
-<!--        <input type="text"/>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    -&ndash;&gt; левый-->
-<!--    <div class="form__desc">-->
-<!--      <p></p>-->
-<!--    </div>-->
-<!--    -&ndash;&gt; правый-->
-<!--  </div>-->
-<!--</div>-->

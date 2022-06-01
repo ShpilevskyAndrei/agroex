@@ -16,9 +16,8 @@ export class CreateAdvertisementPageComponent {
   public files: File[] = [];
 
   public advertisementForm: FormGroup = new FormGroup({
-    file: new FormControl('', [Validators.required]),
     title: new FormControl('', [Validators.required]),
-    description: new FormControl('', [Validators.required]),
+    file: new FormControl('', [Validators.required]),
   });
 
   public onLogout(): void {
