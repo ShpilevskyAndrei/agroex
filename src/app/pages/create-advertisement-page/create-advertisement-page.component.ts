@@ -2,26 +2,12 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { IUser } from '../registration-page/interfaces/user-api-response.interface';
-
-interface Location {
-  value: string;
-  viewValue: string;
-}
-
-interface Country {
-  value: string;
-  viewValue: string;
-}
-
-interface Unit {
-  value: string;
-  viewValue: string;
-}
-
-interface Currency {
-  value: string;
-  viewValue: string;
-}
+import {
+  ICountry,
+  ICurrency,
+  ILocation,
+  IUnit,
+} from './interfaces/create-advertisement.interface';
 
 @Component({
   selector: 'app-create-advertisement-page',
@@ -35,23 +21,23 @@ export class CreateAdvertisementPageComponent {
 
   public files: File[] = [];
 
-  public countries: Country[] = [
+  public countries: ICountry[] = [
     { value: 'uzbekistan-0', viewValue: 'Uzbekistan' },
   ];
 
-  public units: Unit[] = [
+  public units: IUnit[] = [
     { value: 'ton', viewValue: 'ton' },
     { value: 'kg', viewValue: 'kg' },
     { value: 'pcs', viewValue: 'pcs.' },
   ];
 
-  public currencies: Currency[] = [
+  public currencies: ICurrency[] = [
     { value: 'usd', viewValue: 'USD' },
     { value: 'eur', viewValue: 'EUR' },
     { value: 'uzs', viewValue: 'UZS' },
   ];
 
-  public locations: Location[] = [
+  public locations: ILocation[] = [
     { value: 'andijan-0', viewValue: 'Andijan Region' },
     { value: 'bukhara-1', viewValue: 'Bukhara Region' },
     { value: 'fergana-2', viewValue: 'Fergana Region' },
