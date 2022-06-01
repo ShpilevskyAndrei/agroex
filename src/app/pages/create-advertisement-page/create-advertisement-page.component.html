@@ -28,16 +28,22 @@
             <mat-form-field class="form__input several">
               <mat-label>Select a location</mat-label>
               <mat-select formControlName="country">
-                <mat-option *ngFor="let country of countries" [value]="country.value">
-                  {{country.viewValue}}
+                <mat-option
+                  *ngFor="let country of countries"
+                  [value]="country.value"
+                >
+                  {{ country.viewValue }}
                 </mat-option>
               </mat-select>
             </mat-form-field>
             <mat-form-field class="form__input several">
               <mat-label>Select a location</mat-label>
               <mat-select formControlName="location">
-                <mat-option *ngFor="let location of locations" [value]="location.value">
-                  {{location.viewValue}}
+                <mat-option
+                  *ngFor="let location of locations"
+                  [value]="location.value"
+                >
+                  {{ location.viewValue }}
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -51,11 +57,42 @@
           <mat-form-field class="form__input several">
             <mat-label>Select a category</mat-label>
             <mat-select formControlName="category">
-              <mat-option *ngFor="let location of locations" [value]="location.value">
-                {{location.viewValue}}
+              <mat-option
+                *ngFor="let location of locations"
+                [value]="location.value"
+              >
+                {{ location.viewValue }}
               </mat-option>
             </mat-select>
           </mat-form-field>
+        </div>
+      </div>
+      <!--      quantity -->
+      <div class="form__item">
+        <div class="form__field">
+          <div class="form__title">Quantity</div>
+          <div class="form__input-wrap">
+            <mat-form-field class="form__input several">
+              <mat-label>Enter the quantity</mat-label>
+              <input
+                type="text"
+                maxlength="40"
+                matInput
+                placeholder="Enter the quantity"
+                formControlName="quantity"
+              />
+            </mat-form-field>
+            <mat-form-field class="form__input select-small">
+              <mat-select
+                class="form__select-small-text"
+                formControlName="unit"
+              >
+                <mat-option *ngFor="let unit of units" [value]="unit.value">
+                  {{ unit.viewValue }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
         </div>
       </div>
       <!--      drag and drop file-->

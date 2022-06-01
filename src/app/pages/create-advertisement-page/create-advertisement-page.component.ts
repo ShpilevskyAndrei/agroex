@@ -13,6 +13,11 @@ interface Country {
   viewValue: string;
 }
 
+interface Unit {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-create-advertisement-page',
   templateUrl: './create-advertisement-page.component.html',
@@ -27,6 +32,12 @@ export class CreateAdvertisementPageComponent {
 
   public countries: Country[] = [
     { value: 'uzbekistan-0', viewValue: 'Uzbekistan' },
+  ];
+
+  public units: Unit[] = [
+    { value: 'ton', viewValue: 'ton' },
+    { value: 'kg', viewValue: 'kg' },
+    { value: 'pcs', viewValue: 'pcs.' },
   ];
 
   public locations: Location[] = [
@@ -56,6 +67,10 @@ export class CreateAdvertisementPageComponent {
     ),
     location: new FormControl('', [Validators.required]),
     category: new FormControl('', [Validators.required]),
+    quantity: new FormControl('', [Validators.required]),
+    unit: new FormControl({ value: this.units[0].value, disabled: false }, [
+      Validators.required,
+    ]),
     file: new FormControl(''),
   });
 
@@ -67,7 +82,6 @@ export class CreateAdvertisementPageComponent {
     console.log(this.advertisementForm.value);
   }
 
-  //@typescript-eslint/no-explicit-any
   public onSelect(event: { addedFiles: File[] }): void {
     console.log(event);
     this.files.push(...event.addedFiles);
