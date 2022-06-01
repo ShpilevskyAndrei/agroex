@@ -26,6 +26,7 @@
 
     &__dropzone {
       overflow-y: hidden;
+      position: relative;
 
       &-file-text {
         color: $active-color;
@@ -90,6 +91,12 @@
 
     &__desc {
       margin-left: 1.333rem;
+      position: relative;
+
+      &-image {
+        position: absolute;
+        top: 35px;
+      }
 
       p {
         font-size: 16px;

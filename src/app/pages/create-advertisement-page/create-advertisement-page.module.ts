@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 
 import { HeaderModule } from '../../shared/components/header/header.module';
@@ -27,6 +28,7 @@ import { CreateAdvertisementPageComponent } from './create-advertisement-page.co
     MatButtonModule,
     NgxDropzoneModule,
     MatSelectModule,
+    MatTooltipModule,
   ],
   exports: [CreateAdvertisementPageContainerComponent],
 })
