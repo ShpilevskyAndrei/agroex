@@ -6,7 +6,6 @@ import { MainDashboardComponent } from './main-dashboard.component';
 import { HeaderModule } from '../../shared/components/header/header.module';
 import { CategoriesModule } from './categories/categories.module';
 import { MainDashboardRoutingModule } from './main-dashboard-routing.module';
-import { AdvertisementModule } from '../../advertisements-list/advertisement/advertisement.module';
 import { AdvertisementsListModule } from '../../advertisements-list/advertisements-list.module';
 
 @NgModule({
@@ -17,7 +16,6 @@ import { AdvertisementsListModule } from '../../advertisements-list/advertisemen
     CategoriesModule,
     MainDashboardRoutingModule,
     AdvertisementsListModule,
-    AdvertisementModule,
   ],
   exports: [MainDashboardContainerComponent],
 })
