@@ -2,22 +2,22 @@
 
 :host {
   .form {
-    padding: 36px 40px 40px;
+    padding: 3rem 3.3rem 3.3rem;
     background: $color-white;
 
     &__advertisementTitle {
-      font-size: 2rem;
+      font-size: $font-size-large;
       color: $primary-color;
       font-weight: 500;
     }
 
     &__wrap {
-      margin-top: 36px;
+      margin-top: calc(3 * #{$offset-normal});
     }
 
     &__input-wrap {
       display: flex;
-      column-gap: 16px;
+      column-gap: $offset-medium;
 
       .mat-form-field + .mat-form-field {
         margin: 0;
@@ -31,18 +31,18 @@
       &-file-text {
         color: $active-color;
         font-weight: 600;
-        font-size: 1.2rem;
+        font-size: $font-size-small;
       }
 
       &-drop-text {
         color: $primary-color;
         font-weight: 500;
-        font-size: 1.2rem;
+        font-size: $font-size-small;
       }
 
       &-footnote {
         color: $color-copy;
-        font-size: 1rem;
+        font-size: $font-size-xsmall;
         font-weight: 400;
       }
 
@@ -53,7 +53,7 @@
         align-items: center;
 
         div {
-          margin-top: 8px;
+          margin-top: $offset-small;
         }
       }
     }
@@ -62,7 +62,7 @@
       display: flex;
 
       & + .form__item {
-        margin-top: 24px;
+        margin-top: $offset-xlarge;
       }
     }
 
@@ -71,10 +71,10 @@
     }
 
     &__title {
-      font-size: 1.5rem;
+      font-size: $font-size-medium;
       color: $primary-color;
       font-weight: 500;
-      margin-bottom: 8px;
+      margin-bottom: $offset-small;
     }
 
     &__input {
@@ -90,7 +90,7 @@
     }
 
     &__desc {
-      margin-left: 1.333rem;
+      margin-left: $font-size-normal;
       position: relative;
 
       &-image {
@@ -99,17 +99,17 @@
       }
 
       p {
-        font-size: 16px;
+        font-size: $font-size-normal;
       }
     }
 
     &__btns {
       width: 50%;
-      margin-top: 64px;
+      margin-top: 5.3rem;
 
       &-wrap {
         display: flex;
-        column-gap: 16px;
+        column-gap: $offset-medium;
 
         button {
           width: 50%;
@@ -119,17 +119,17 @@
 
     &__footnote {
       display: block;
-      font-size: 1rem;
+      font-size: $font-size-xsmall;
       color: $color-copy;
       font-weight: 400;
-      margin-top: 16px;
+      margin-top: $offset-medium;
     }
 
     &__helper-text {
-      font-size: 1rem;
+      font-size: $font-size-xsmall;
       font-weight: 400;
       color: $color-copy;
-      margin-top: 4px;
+      margin-top: 0.3rem;
     }
   }
 }
