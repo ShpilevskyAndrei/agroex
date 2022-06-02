@@ -5,6 +5,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 
 import { AppContainerComponent } from './app-container.component';
 import { AppComponent } from './app.component';
@@ -14,6 +15,7 @@ import { ErrorPageModule } from './pages/error-page/error-page.module';
 import { IconSerializeService } from './shared/services/icon-serialize.service';
 import { StateModule } from './state/state.module';
 import { APPEARANCE } from './shared/constants/appearance-outline';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [AppComponent, AppContainerComponent],
@@ -29,6 +31,9 @@ import { APPEARANCE } from './shared/constants/appearance-outline';
     StateModule,
   ],
   providers: [
+    AuthGuard,
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService,
     IconSerializeService,
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,

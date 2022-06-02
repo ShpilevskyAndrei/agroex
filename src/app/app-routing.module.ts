@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
-
 import { RouterModule, Routes } from '@angular/router';
+
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {
@@ -9,6 +10,10 @@ const routes: Routes = [
       import('./pages/registration-page/registration-page.module').then(
         (m) => m.RegistrationPageModule
       ),
+    data: {
+      isRegistrationPage: true,
+    },
+    canLoad: [AuthGuard],
   },
   {
     path: 'account',
@@ -16,6 +21,7 @@ const routes: Routes = [
       import('./pages/account-page/account-page.module').then(
         (m) => m.AccountPageModule
       ),
+    canLoad: [AuthGuard],
   },
   {
     path: 'error',
