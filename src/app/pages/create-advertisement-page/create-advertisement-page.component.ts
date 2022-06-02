@@ -69,22 +69,18 @@ export class CreateAdvertisementPageComponent {
   }
 
   public submitForm(): void {
-    console.log(this.advertisementForm.value);
+    const rawValue = this.advertisementForm.getRawValue();
     const formData = new FormData();
-    // formData.append('file', this.files[0]);
-    // formData.append('files', {
-    //   uri: this.files[0].,
-    //   type: values.image.assets[0].type,
-    //   name: values.image.assets[0].fileName,
-    // });
-    formData.append('title', this.advertisementForm.value.country);
-    formData.append('country', this.advertisementForm.value.country);
-    formData.append('location', this.advertisementForm.value.location);
-    formData.append('category', this.advertisementForm.value.category);
-    formData.append('quantity', this.advertisementForm.value.quantity);
-    formData.append('unit', this.advertisementForm.value.unit);
-    formData.append('price', this.advertisementForm.value.price);
-    formData.append('currency', this.advertisementForm.value.currency);
+
+    formData.append('files', this.files[0]);
+    formData.append('title', rawValue.title);
+    formData.append('country', rawValue.country);
+    formData.append('location', rawValue.location);
+    formData.append('category', rawValue.category);
+    formData.append('quantity', rawValue.quantity);
+    formData.append('unit', rawValue.unit);
+    formData.append('price', rawValue.price);
+    formData.append('currency', rawValue.currency);
     this.formAdvertisement.emit(formData);
   }
 
