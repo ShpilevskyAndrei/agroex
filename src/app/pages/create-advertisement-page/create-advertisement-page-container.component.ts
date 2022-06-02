@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
-
 import { CreateAdvertisementPageActions } from '../../state/create-advertisement-page/create-advertisement-page.actions';
-
 import { RegistrationPageActions } from '../../state/registration-page/registration-page.actions';
 import {
   selectUserData,
