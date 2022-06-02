@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Observable, throwError } from 'rxjs';
+import { AgroexToastService, ToastType } from 'ngx-agroex-toast';
+import { EMPTY, Observable } from 'rxjs';
 
 import { UserApiResponse } from '../interfaces/user-api-response.interface';
 import { UserCredentials } from '../interfaces/user.interfase';
@@ -13,7 +13,7 @@ import { BaseService } from 'src/app/shared/services/base.service';
 })
 export class UserService extends BaseService {
   constructor(
-    private snackbar: MatSnackBar,
+    private toastService: AgroexToastService,
     protected override httpClient: HttpClient
   ) {
     super(httpClient);
@@ -25,29 +25,23 @@ export class UserService extends BaseService {
   ): Observable<UserApiResponse> {
     return this.post<UserApiResponse>(`auth/${url}`, { user }).pipe(
       tap((createdUser: UserApiResponse) =>
-        this.snackbar.open(
-          `User ${createdUser['user'].username} ${url} will success`,
-          'Close',
-          {
-            duration: 2000,
-            horizontalPosition: 'right',
-            verticalPosition: 'top',
-          }
-        )
+        this.toastService.addToast({
+          title: `User ${createdUser['user'].username} ${url} will success`,
+          toastType: ToastType.Success,
+          width: '60vw',
+          buttonText: 'Ok',
+        })
       ),
       catchError((e) => {
-        this.snackbar.open(
-          `User could not be ${
+        this.toastService.addToast({
+          title: `User could not be ${
             url === 'register' ? 'created' : 'login'
-          }, due to: ${e.error.message}`,
-          'Close',
-          {
-            duration: 5000,
-            horizontalPosition: 'right',
-            verticalPosition: 'top',
-          }
-        );
-        return throwError(() => e);
+          }:`,
+          message: `${e.error.message}`,
+          toastType: ToastType.Error,
+          width: '408px',
+        });
+        return EMPTY;
       })
     );
   }
