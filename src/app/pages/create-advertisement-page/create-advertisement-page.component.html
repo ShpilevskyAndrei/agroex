@@ -11,13 +11,22 @@
             <mat-label>Enter a title</mat-label>
             <input
               type="text"
-              maxlength="40"
               matInput
+              required
               placeholder="Enter a title"
               formControlName="title"
             />
+            <mat-error *ngIf="this.get('title').hasError('required')"
+            >Title is required
+            </mat-error>
+            <mat-error *ngIf="this.get('title').hasError('minlength')"
+            >Values must be not shorter than 5 characters
+            </mat-error>
+            <mat-error *ngIf="this.get('title').hasError('maxlength')"
+            >Values must be not shorter than 5 characters
+            </mat-error>
           </mat-form-field>
-          <div class="form__helper-text">No more 40 characters</div>
+          <mat-hint class="form__helper-text">No more 40 characters</mat-hint>
         </div>
       </div>
       <!--      location-->
@@ -114,7 +123,10 @@
                 class="form__select-small-text"
                 formControlName="currency"
               >
-                <mat-option *ngFor="let currency of currencies" [value]="currency.value">
+                <mat-option
+                  *ngFor="let currency of currencies"
+                  [value]="currency.value"
+                >
                   {{ currency.viewValue }}
                 </mat-option>
               </mat-select>
@@ -126,7 +138,15 @@
       <div class="form__item">
         <div class="form__field">
           <div class="form__title">Product images</div>
-          <div class="form__dropzone" ngx-dropzone (change)="onSelect($event)">
+          <div
+            class="form__dropzone"
+            ngx-dropzone
+            accept="image/jpeg,image/png"
+            [maxFileSize]="maxFileSize"
+            [multiple]="false"
+            (change)="onSelect($event)"
+            (click)="onClickFile($event)"
+          >
             <ngx-dropzone-label>
               <div class="form__dropzone-wrap">
                 <div>
@@ -151,12 +171,14 @@
           </div>
         </div>
         <div class="form__desc">
-          <img src="assets/question.svg"
-               class="form__desc-image"
-               matTooltip="Pictures work much better than the most talented text. The more photos, the better."
-               matTooltipPosition="right"
-               matTooltipHideDelay="100"
-               alt="question"/>
+          <img
+            src="assets/question.svg"
+            class="form__desc-image"
+            matTooltip="Pictures work much better than the most talented text. The more photos, the better."
+            matTooltipPosition="right"
+            matTooltipHideDelay="100"
+            alt="question"
+          />
         </div>
       </div>
     </div>
