@@ -44,5 +44,12 @@ export const CREATE_ADVERTISEMENT_PAGE_REDUCER = createReducer(
         error,
       },
     })
+  ),
+  on(
+    CreateAdvertisementPageActions.dropAdvertisementLoadingStatus,
+    (state): CreateAdvertisementPageState => ({
+      ...state,
+      createAdvertisementLoadingStatus: DEFAULT_LOADING_STATUS,
+    })
   )
 );
