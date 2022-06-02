@@ -1,8 +1,19 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoadingStatus } from '../../shared/interfaces/loading-status';
+import { Router } from '@angular/router';
+import { NgxDropzoneChangeEvent } from 'ngx-dropzone';
 
+import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IUser } from '../registration-page/interfaces/user-api-response.interface';
+import { MAX_FILE_SIZE } from './constant/max-file-sizes';
 import {
   ICategory,
   ICountry,
@@ -17,13 +28,16 @@ import { CreateAdvertisementService } from './services/create-advertisement.serv
   templateUrl: './create-advertisement-page.component.html',
   styleUrls: ['./create-advertisement-page.component.scss'],
 })
-export class CreateAdvertisementPageComponent {
+export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
   @Input() public user: IUser | null;
   @Input() public createAdvertisementLoadingStatus: LoadingStatus | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
+  @Output() public dropLoadingStatus: EventEmitter<void> =
+    new EventEmitter<void>();
   @Output()
   public formAdvertisement: EventEmitter<FormData> = new EventEmitter<FormData>();
+  public maxFileSize = MAX_FILE_SIZE;
 
   public files: File[] = [];
 
@@ -34,7 +48,11 @@ export class CreateAdvertisementPageComponent {
   public categories: ICategory[] = this.createAdvertisementService.categories;
 
   public advertisementForm: FormGroup = new FormGroup({
-    title: new FormControl('', [Validators.required]),
+    title: new FormControl('', [
+      Validators.required,
+      Validators.minLength(5),
+      Validators.maxLength(40),
+    ]),
     country: new FormControl(
       {
         value: this.countries[0].value,
@@ -62,7 +80,14 @@ export class CreateAdvertisementPageComponent {
     ),
   });
 
-  constructor(private createAdvertisementService: CreateAdvertisementService) {}
+  constructor(
+    private router: Router,
+    private createAdvertisementService: CreateAdvertisementService
+  ) {}
+
+  public get(key: string): FormControl {
+    return this.advertisementForm.get(key) as FormControl;
+  }
 
   public onLogout(): void {
     this.logout.emit();
@@ -84,13 +109,38 @@ export class CreateAdvertisementPageComponent {
     this.formAdvertisement.emit(formData);
   }
 
-  public onSelect(event: { addedFiles: File[] }): void {
-    console.log(event);
+  public onSelect(event: NgxDropzoneChangeEvent): void {
+    if (this.files.length) {
+      return;
+    }
+    if (event.rejectedFiles.length) {
+      console.log(event.rejectedFiles);
+      event.rejectedFiles.forEach((el) => el.reason);
+      //inject service toast --- your file was rejected because (reason in array)
+    }
     this.files.push(...event.addedFiles);
   }
 
   public onRemove(event: File): void {
-    console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
+  }
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (
+      changes.createAdvertisementLoadingStatus &&
+      this.createAdvertisementLoadingStatus?.loaded
+    ) {
+      this.router.navigate(['']);
+    }
+  }
+
+  public ngOnDestroy(): void {
+    this.dropLoadingStatus.emit();
+  }
+
+  public onClickFile(event: MouseEvent): void {
+    if (this.files.length) {
+      event.preventDefault();
+    }
   }
 }
