@@ -2,7 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 
 import { DEFAULT_LOADING_STATUS } from '../../shared/constants/lodaing-default-status';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
-import { Category } from '../../pages/main-dashboard/categories/model/category.model';
+import { Category } from '../../pages/main-dashboard/categories/interfaces/category.model';
 import { MainDashboardActions } from './main-dashboard.actions';
 
 export const MAIN_DASHBOARD = 'mainDashboard';

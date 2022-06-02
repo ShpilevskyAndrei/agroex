@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { IUser } from '../../pages/registration-page/interfaces/user-api-response.interface';
+import { IUser } from '../../shared/interfaces/user.interface';
 import { DEFAULT_LOADING_STATUS } from '../../shared/constants/lodaing-default-status';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { RegistrationPageActions } from './registration-page.actions';

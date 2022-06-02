@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { RegistrationPageActions } from '../../state/registration-page/registration-page.actions';
 import { selectUserLoadingStatus } from '../../state/registration-page/registration-page.selectors';
-import { AuthorizationCombineInfo } from './interfaces/user-api-response.interface';
+import { AuthorizationCombineInfo } from '../../shared/interfaces/user.interface';
 
 @Component({
   selector: 'app-registration-page-container',

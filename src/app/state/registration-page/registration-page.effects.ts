@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, of, switchMap } from 'rxjs';
 
-import { UserApiResponse } from '../../pages/registration-page/interfaces/user-api-response.interface';
+import { UserApiResponse } from '../../shared/interfaces/user.interface';
 import { UserService } from '../../pages/registration-page/services/user.service';
 import { RegistrationPageActions } from './registration-page.actions';
 

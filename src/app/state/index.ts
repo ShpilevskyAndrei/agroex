@@ -33,6 +33,11 @@ import {
   REGISTRATION_PAGE_REDUCER,
   RegistrationPageState,
 } from './registration-page/registration-page.reducer';
+import {
+  ADVERTISEMENTS_LIST_PAGE_REDUCER,
+  AdvertisementsListPageState,
+} from './advertisements-list-page/advertisements-list-page.reducer';
+import { AdvertisementsListPageEffects } from './advertisements-list-page/advertisements-list-page.effects';
 
 export interface State {
   mainDashboard: MainDashboardState;
@@ -41,6 +46,7 @@ export interface State {
   errorPage: ErrorPageState;
   registrationPage: RegistrationPageState;
   createAdvertisementPage: CreateAdvertisementPageState;
+  advertisementsListPage: AdvertisementsListPageState;
 }
 
 export const ROOT_REDUCER: ActionReducerMap<State> = {
@@ -50,6 +56,7 @@ export const ROOT_REDUCER: ActionReducerMap<State> = {
   errorPage: ERROR_PAGE_REDUCER,
   registrationPage: REGISTRATION_PAGE_REDUCER,
   createAdvertisementPage: CREATE_ADVERTISEMENT_PAGE_REDUCER,
+  advertisementsListPage: ADVERTISEMENTS_LIST_PAGE_REDUCER,
 };
 
 export const ROOT_EFFECT = [
@@ -59,6 +66,7 @@ export const ROOT_EFFECT = [
   ErrorPageEffects,
   RegistrationPageEffects,
   CreateAdvertisementPageEffects,
+  AdvertisementsListPageEffects,
 ];
 
 export const hydrationMetaReducer = (
