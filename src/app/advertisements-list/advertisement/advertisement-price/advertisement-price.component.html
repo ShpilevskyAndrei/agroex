@@ -18,7 +18,7 @@
     <span class="value">{{advertisement.price}}$</span>
     <div class="adv-created">
       <mat-icon svgIcon="clock-icon" class="adv-created__icon"></mat-icon>
-      <span>2d 23h</span>
+      <span>{{advertisement.createAt | availableDateFormat: 'days': 3}}</span>
     </div>
   </div>
 </div>
