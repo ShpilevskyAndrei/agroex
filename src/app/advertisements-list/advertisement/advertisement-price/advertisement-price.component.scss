@@ -1,0 +1,73 @@
+@import "../../../styles/general-styles";
+@import "../../styles/advertisement-const";
+
+:host {
+  .advertisement-price {
+    display: flex;
+    @include column-gap-small;
+
+    & > div {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 50%;
+    }
+
+    .label, .value, .per-item {
+      display: block;
+    }
+    .label, .per-item {
+      color: $color-copy;
+    }
+    .label {
+      font-size: 0.833rem;
+    }
+
+    .value, .no-bets {
+      line-height: 2.667rem;
+      margin: $offset-small 0 0 0;
+    }
+    .value {
+      font-size: $font-size-large;
+      font-weight: 500;
+    }
+
+    .no-bets {
+      font-size: $font-size-normal;
+      color: #BCC3C3;
+    }
+
+    &__bet .value {
+      color: #F87E25;
+    }
+
+    &__total .value {
+      color: $primary-color;
+    }
+
+    .advertisement-timer, .advertisement-created {
+      display: flex;
+      align-items: center;
+      padding: 0 0.667rem;
+      margin: $offset-small 0 0 0;
+      border-radius: 0.333rem;
+      span {
+        line-height: 2.333rem;
+      }
+      &__icon {
+        @include advertisement-icon-size;
+        margin: 0 0.5rem 0 0;
+      }
+    }
+
+    .advertisement-timer {
+      background-color: #F87E25;
+      color: $color-white;
+    }
+
+    .advertisement-created {
+      background-color: #EEF7FF;
+      color: #2978B8;
+    }
+  }
+}
