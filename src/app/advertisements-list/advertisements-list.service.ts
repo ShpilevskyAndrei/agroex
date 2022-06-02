@@ -2,13 +2,11 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { BaseService } from '../shared/services/base.service';
-import { AdvertisementRequest } from './interfaces/advertisement-request';
+import { IAdvertisementRequestInterface } from './interfaces/advertisement-request.interface';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class AdvertisementsListService extends BaseService {
-  public getAdvertisements(): Observable<AdvertisementRequest> {
-    return this.get<AdvertisementRequest>('advertisements');
+  public getAdvertisements(): Observable<IAdvertisementRequestInterface> {
+    return this.get<IAdvertisementRequestInterface>('advertisements');
   }
 }

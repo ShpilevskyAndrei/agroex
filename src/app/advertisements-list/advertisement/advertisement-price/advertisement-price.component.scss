@@ -1,7 +1,8 @@
 @import "../../../styles/general-styles";
+@import "../../styles/advertisement-const";
 
 :host {
-  .adv-price {
+  .advertisement-price {
     display: flex;
     @include column-gap-small;
 
@@ -20,8 +21,6 @@
     }
     .label {
       font-size: 0.833rem;
-      line-height: 1rem;
-      letter-spacing: 0.2px;
     }
 
     .value, .no-bets {
@@ -29,13 +28,12 @@
       margin: $offset-small 0 0 0;
     }
     .value {
-      font-size: 2rem;
+      font-size: $font-size-large;
       font-weight: 500;
     }
 
     .no-bets {
-      font-size: 1.333rem;
-      letter-spacing: 0.15px;
+      font-size: $font-size-normal;
       color: #BCC3C3;
     }
 
@@ -47,28 +45,27 @@
       color: $primary-color;
     }
 
-    .adv-timer, .adv-created {
+    .advertisement-timer, .advertisement-created {
       display: flex;
       align-items: center;
-      padding: 0 8px;
+      padding: 0 0.667rem;
       margin: $offset-small 0 0 0;
-      border-radius: 4px;
+      border-radius: 0.333rem;
       span {
         line-height: 2.333rem;
       }
       &__icon {
-        width: 16px;
-        height: 16px;
-        margin: 0 6px 0 0;
+        @include advertisement-icon-size;
+        margin: 0 0.5rem 0 0;
       }
     }
 
-    .adv-timer {
+    .advertisement-timer {
       background-color: #F87E25;
       color: $color-white;
     }
 
-    .adv-created {
+    .advertisement-created {
       background-color: #EEF7FF;
       color: #2978B8;
     }

@@ -1,7 +1,8 @@
 @import "../../../styles/general-styles";
+@import "../../styles/advertisement-const";
 
 :host {
-  .adv-btns {
+  .advertisement-btns {
     display: flex;
     @include column-gap-small;
 
@@ -11,14 +12,13 @@
       justify-content: center;
       width: 50%;
       span {
-        line-height: 32px;
+        line-height: 2.667rem;
       }
     }
 
     &__icon {
-      width: 16px;
-      height: 16px;
-      margin: 0 10px 0 0;
+      @include advertisement-icon-size;
+      margin: 0 0.833rem 0 0;
     }
   }
 }

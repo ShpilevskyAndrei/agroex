@@ -12,7 +12,7 @@ import { RegistrationPageActions } from '../../state/registration-page/registrat
 import { selectUserData } from '../../state/registration-page/registration-page.selectors';
 import { IUser } from '../../shared/interfaces/user.interface';
 import { Category } from './categories/interfaces/category.model';
-import { AdvertisementRequest } from '../../advertisements-list/interfaces/advertisement-request';
+import { IAdvertisementRequestInterface } from '../../advertisements-list/interfaces/advertisement-request.interface';
 import {
   selectAdvertisementsData,
   selectAdvertisementsLoadingStatus,
@@ -25,16 +25,16 @@ import { AdvertisementsListPageActions } from '../../state/advertisements-list-p
     [categories]="categories$ | async"
     [categoriesLoadingStatus]="categoriesLoadingStatus$ | async"
     [user]="user$ | async"
-    (logout)="onLogout()"
     [advertisementsRequest]="advertisementsRequest$ | async"
     [advertisementsLoadingStatus]="advertisementsLoadingStatus$ | async"
+    (logout)="onLogout()"
   ></app-main-dashboard>`,
 })
 export class MainDashboardContainerComponent implements OnInit {
   public categories$: Observable<Category[] | null>;
   public categoriesLoadingStatus$: Observable<LoadingStatus | null>;
   public user$: Observable<IUser | null>;
-  public advertisementsRequest$: Observable<AdvertisementRequest | null>;
+  public advertisementsRequest$: Observable<IAdvertisementRequestInterface | null>;
   public advertisementsLoadingStatus$: Observable<LoadingStatus | null>;
 
   constructor(private store: Store) {

@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { LoadingStatus } from '../shared/interfaces/loading-status';
-import { AdvertisementRequest } from './interfaces/advertisement-request';
+import { IAdvertisementRequestInterface } from './interfaces/advertisement-request.interface';
 
 @Component({
   selector: 'app-advertisements-list',
@@ -9,6 +9,6 @@ import { AdvertisementRequest } from './interfaces/advertisement-request';
   styleUrls: ['./advertisements-list.component.scss'],
 })
 export class AdvertisementsListComponent {
-  @Input() public advertisementsRequest: AdvertisementRequest | null;
+  @Input() public advertisementsRequest: IAdvertisementRequestInterface | null;
   @Input() public advertisementsLoadingStatus: LoadingStatus | null;
 }

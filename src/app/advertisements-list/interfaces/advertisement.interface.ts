@@ -1,12 +1,13 @@
 import { IUser } from '../../shared/interfaces/user.interface';
 
-export interface Advertisement {
+export interface IAdvertisementInterface {
   id: number;
   title: string;
+  country: string;
+  location: string;
   slug: string;
   category: string;
-  subCategory: string;
-  description: string;
+  subCategory: string | null;
   isModerated: boolean;
   price: string;
   currency: string;

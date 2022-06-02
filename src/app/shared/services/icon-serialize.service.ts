@@ -32,5 +32,9 @@ export class IconSerializeService {
       'clock-icon',
       sanitizer.bypassSecurityTrustResourceUrl('assets/clock-icon.svg')
     );
+    this.matIconRegistry.addSvgIcon(
+      'quantity-icon',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/quantity-icon.svg')
+    );
   }
 }
