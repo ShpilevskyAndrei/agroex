@@ -1,9 +1,11 @@
 @import "../styles/general-styles";
 
-.advs-list {
-  margin: 5rem 0 0 0;
+:host {
+  .advs-list {
+    margin: 5rem 0 0 0;
 
-  &__wrap {
-    background-color: $color-white;
+    &__wrap {
+      background-color: $color-white;
+    }
   }
 }
