@@ -1,14 +1,14 @@
 @import "../../styles/general-styles";
 
 :host {
-  .adv-wrap {
-    padding: 2rem;
+  .advertisement-wrap {
+    padding: $offset-xlarge;
     display: flex;
-    column-gap: 24px;
+    column-gap: $offset-xlarge;
 
     &__img {
-      width: 340px;
-      height: 188px;
+      width: 28rem;
+      height: 16rem;
 
       img {
         display: block;
@@ -28,7 +28,7 @@
     &__actions {
       display: flex;
       flex-direction: column;
-      width: 308px;
+      width: 33rem;
     }
 
     &__btns {
@@ -36,29 +36,30 @@
       margin-top: auto;
     }
 
-    &__location {
+    &__quantity, &__location {
       display: flex;
       align-items: center;
-      margin-top: auto;
-
-      .adv-pointer-icon {
-        width: 20px;
-        height: 20px;
+      .advertisement-quantity-icon,
+      .advertisement-pointer-icon {
+        width: 1.667rem;
+        height: 1.667rem;
         margin: 0 $offset-small 0 0;
+        color: #798787;
       }
-
       p {
         margin: 0;
-        font-size: 1.333rem;
+        font-size: $font-size-normal;
         line-height: 2rem;
-        letter-spacing: 0.15px;
         color: $primary-color;
       }
+    }
+    &__quantity {
+      margin: auto 0 $offset-normal;
     }
   }
 }
 
-.adv-wrap {
+.advertisement-wrap {
   &:hover &__btns {
     display: block;
   }

@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { HttpErrorResponse } from '@angular/common/http';
 
-import { AdvertisementRequest } from '../../advertisements-list/interfaces/advertisement-request';
+import { IAdvertisementRequestInterface } from '../../advertisements-list/interfaces/advertisement-request.interface';
 
 export const AdvertisementsListPageActions = {
   getAdvertisementsRequest: createAction(
@@ -10,7 +10,7 @@ export const AdvertisementsListPageActions = {
 
   getAdvertisementsSuccess: createAction(
     '[ADVERTISEMENTS_LIST] advertisements success',
-    props<{ advertisements: AdvertisementRequest }>()
+    props<{ advertisements: IAdvertisementRequestInterface }>()
   ),
 
   getAdvertisementsError: createAction(

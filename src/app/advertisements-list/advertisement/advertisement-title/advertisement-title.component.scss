@@ -1,29 +1,22 @@
 @import "../../../styles/general-styles";
 
 :host {
-  .adv-title {
+  .advertisement-title {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     .title {
-      font-size: 1.667rem;
+      font-size: $font-size-medium;
       line-height: 2.333rem;
       font-weight: 500;
       color: $primary-color;
     }
     .desc {
-      font-size: 1.167rem;
-      line-height: 1.667rem;
+      font-size: $font-size-medium;
     }
     .create {
-      font-size: 1rem;
-      line-height: 1.333rem;
+      font-size: $font-size-xsmall;
       font-weight: 300;
-      letter-spacing: 0.2px;
-    }
-
-    .title, .desc {
-      letter-spacing: 0.15px;
     }
 
     .desc, .create {

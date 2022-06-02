@@ -18,13 +18,13 @@ export interface IUserRole {
 }
 
 export interface IUser {
-  banReason: string;
-  banned: boolean;
-  email: string;
   id: number;
-  image: string;
-  phone: string;
+  email: string;
   username: string;
+  phone: string;
+  image: string;
   token?: string;
   userRoles?: IUserRole[];
+  banned: boolean;
+  banReason: string;
 }

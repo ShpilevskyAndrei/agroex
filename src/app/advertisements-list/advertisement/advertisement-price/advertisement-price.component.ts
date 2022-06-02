@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Advertisement } from '../../interfaces/advertisement';
+import { IAdvertisementInterface } from '../../interfaces/advertisement.interface';
 
 @Component({
   selector: 'app-advertisement-price',
@@ -8,5 +8,5 @@ import { Advertisement } from '../../interfaces/advertisement';
   styleUrls: ['./advertisement-price.component.scss'],
 })
 export class AdvertisementPriceComponent {
-  @Input() public advertisement: Advertisement;
+  @Input() public advertisement: IAdvertisementInterface;
 }

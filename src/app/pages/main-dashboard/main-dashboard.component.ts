@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IUser } from '../../shared/interfaces/user.interface';
 import { Category } from './categories/interfaces/category.model';
-import { AdvertisementRequest } from '../../advertisements-list/interfaces/advertisement-request';
+import { IAdvertisementRequestInterface } from '../../advertisements-list/interfaces/advertisement-request.interface';
 
 @Component({
   selector: 'app-main-dashboard',
@@ -14,7 +14,7 @@ export class MainDashboardComponent {
   @Input() public categories: Category[] | null;
   @Input() public categoriesLoadingStatus: LoadingStatus | null;
   @Input() public user: IUser | null;
-  @Input() public advertisementsRequest: AdvertisementRequest | null;
+  @Input() public advertisementsRequest: IAdvertisementRequestInterface | null;
   @Input() public advertisementsLoadingStatus: LoadingStatus | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
