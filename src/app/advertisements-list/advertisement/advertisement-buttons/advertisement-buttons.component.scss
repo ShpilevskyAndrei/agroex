@@ -1,22 +1,24 @@
 @import "../../../styles/general-styles";
 
-.adv-btns {
-  display: flex;
-  @include column-gap-small;
-
-  button {
+:host {
+  .adv-btns {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50%;
-    span {
-      line-height: 32px;
-    }
-  }
+    @include column-gap-small;
 
-  &__icon {
-    width: 16px;
-    height: 16px;
-    margin: 0 10px 0 0;
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50%;
+      span {
+        line-height: 32px;
+      }
+    }
+
+    &__icon {
+      width: 16px;
+      height: 16px;
+      margin: 0 10px 0 0;
+    }
   }
 }
