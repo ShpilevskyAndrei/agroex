@@ -3,11 +3,11 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
+import { IUser } from '../../shared/interfaces/user.interface';
 import { CreateAdvertisementPageActions } from '../../state/create-advertisement-page/create-advertisement-page.actions';
 import { selectCreateAdvertisementLoadingStatus } from '../../state/create-advertisement-page/create-advertisement-page.selectors';
 import { RegistrationPageActions } from '../../state/registration-page/registration-page.actions';
 import { selectUserData } from '../../state/registration-page/registration-page.selectors';
-import { IUser } from '../registration-page/interfaces/user-api-response.interface';
 
 @Component({
   selector: 'app-create-advertisement-page-container',

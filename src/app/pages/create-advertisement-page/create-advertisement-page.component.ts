@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 import { NgxDropzoneChangeEvent } from 'ngx-dropzone';
 
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
-import { IUser } from '../registration-page/interfaces/user-api-response.interface';
+import { IUser } from '../../shared/interfaces/user.interface';
 import { MAX_FILE_SIZE } from './constant/max-file-sizes';
 import { REGEXP_FOR_IS_NUMBER } from './constant/regexp';
 import {
