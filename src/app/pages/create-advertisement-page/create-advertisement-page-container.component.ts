@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
+import { CreateAdvertisementPageActions } from '../../state/create-advertisement-page/create-advertisement-page.actions';
+
 import { RegistrationPageActions } from '../../state/registration-page/registration-page.actions';
 import { selectUserData } from '../../state/registration-page/registration-page.selectors';
 import { IUser } from '../registration-page/interfaces/user-api-response.interface';
@@ -22,5 +24,13 @@ export class CreateAdvertisementPageContainerComponent {
 
   public onLogout(): void {
     this.store.dispatch(RegistrationPageActions.getUserLogout());
+  }
+
+  public onSubmitFormData(formAdvertisement: FormData): void {
+    this.store.dispatch(
+      CreateAdvertisementPageActions.createAdvertisementRequest({
+        formAdvertisement,
+      })
+    );
   }
 }

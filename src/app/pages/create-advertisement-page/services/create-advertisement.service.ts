@@ -7,7 +7,6 @@ import { environment } from '../../../../environments/environment';
 import { BaseService } from '../../../shared/services/base.service';
 import { IAdvertisementApiResponse } from '../interfaces/create-advertisement-api-response.interface';
 import {
-  IAdvertisementFormCredentials,
   ICountry,
   ICurrency,
   ILocation,
@@ -56,7 +55,7 @@ export class CreateAdvertisementService extends BaseService {
   }
 
   public create(
-    formAdvertisement: IAdvertisementFormCredentials
+    formAdvertisement: FormData
   ): Observable<IAdvertisementApiResponse> {
     return this.httpClient
       .post<IAdvertisementApiResponse>(

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { IUser } from '../registration-page/interfaces/user-api-response.interface';
@@ -15,7 +15,7 @@ import { CreateAdvertisementService } from './services/create-advertisement.serv
   templateUrl: './create-advertisement-page.component.html',
   styleUrls: ['./create-advertisement-page.component.scss'],
 })
-export class CreateAdvertisementPageComponent implements OnInit {
+export class CreateAdvertisementPageComponent {
   @Input() public user: IUser | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
@@ -54,7 +54,6 @@ export class CreateAdvertisementPageComponent implements OnInit {
       },
       [Validators.required]
     ),
-    file: new FormControl(''),
   });
 
   constructor(private createAdvertisementService: CreateAdvertisementService) {}
@@ -65,6 +64,19 @@ export class CreateAdvertisementPageComponent implements OnInit {
 
   public submitForm(): void {
     console.log(this.advertisementForm.value);
+    const formData = new FormData();
+    formData.append('file', this.files[0]);
+    // formData.append('files', {
+    //   uri: this.files[0].,
+    //   type: values.image.assets[0].type,
+    //   name: values.image.assets[0].fileName,
+    // });
+    formData.append('title', this.advertisementForm.value.country);
+    formData.append('country', this.advertisementForm.value.country);
+    formData.append('location', this.advertisementForm.value.location);
+    formData.append('unit', this.advertisementForm.value.unit);
+    formData.append('price', this.advertisementForm.value.price);
+    formData.append('currency', this.advertisementForm.value.currency);
   }
 
   public onSelect(event: { addedFiles: File[] }): void {
@@ -75,13 +87,5 @@ export class CreateAdvertisementPageComponent implements OnInit {
   public onRemove(event: File): void {
     console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
-  }
-
-  public ngOnInit(): void {
-    this.advertisementForm.controls.title.setValue('test');
-    this.advertisementForm.get('title');
-
-    console.log(this.advertisementForm.controls.title.value);
-    console.log(this.advertisementForm.get('title')?.value);
   }
 }
