@@ -65,8 +65,7 @@ export class CreateAdvertisementService extends BaseService {
 
   public create(
     formAdvertisement: FormData,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    token: string | undefined
+    token?: string
   ): Observable<IAdvertisementApiResponse> {
     return this.httpClient
       .post<IAdvertisementApiResponse>(
@@ -74,8 +73,7 @@ export class CreateAdvertisementService extends BaseService {
         formAdvertisement,
         {
           headers: new HttpHeaders({
-            // 'Content-Type': 'multipart/form-data',
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ1c2VyQHVzZXIudXNlciIsInVzZXJSb2xlcyI6W3siaWQiOjEsInVzZXJfaWQiOjEsInJvbGVfaWQiOjEsImNyZWF0ZWRfYXQiOiIyMDIyLTA2LTAxVDEwOjI5OjIyLjk5MloiLCJ1cGRhdGVkX2F0IjoiMjAyMi0wNi0wMVQxMDoyOToyMi45OTJaIiwicm9sZSI6eyJpZCI6MSwidmFsdWUiOiJ1c2VyIiwiZGVzY3JpcHRpb24iOiLQn9C-0LvRjNC30L7QstCw0YLQtdC70YwifX1dLCJpYXQiOjE2NTQwODA2MjMsImV4cCI6MTY1NDY4NTQyM30.BLHJn0EHYNr5FrTO226GQV_RKx2zur56VLtgUG_yhpc`,
+            Authorization: `Bearer ${token} `,
           }),
         }
       )
