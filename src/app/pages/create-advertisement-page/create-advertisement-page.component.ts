@@ -14,6 +14,7 @@ import { NgxDropzoneChangeEvent } from 'ngx-dropzone';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IUser } from '../registration-page/interfaces/user-api-response.interface';
 import { MAX_FILE_SIZE } from './constant/max-file-sizes';
+import { REGEXP_FOR_IS_NUMBER } from './constant/regexp';
 import {
   ICategory,
   ICountry,
@@ -46,7 +47,7 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
   public locations: ILocation[] = this.createAdvertisementService.locations;
   public currencies: ICurrency[] = this.createAdvertisementService.currencies;
   public categories: ICategory[] = this.createAdvertisementService.categories;
-
+  public IS_NUMBER = REGEXP_FOR_IS_NUMBER;
   public advertisementForm: FormGroup = new FormGroup({
     title: new FormControl('', [
       Validators.required,
@@ -62,7 +63,11 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
     ),
     location: new FormControl('', [Validators.required]),
     category: new FormControl('', [Validators.required]),
-    quantity: new FormControl('', [Validators.required]),
+    quantity: new FormControl('', [
+      Validators.required,
+      Validators.pattern(this.IS_NUMBER),
+      Validators.maxLength(9),
+    ]),
     unit: new FormControl(
       {
         value: this.units[0].value,
