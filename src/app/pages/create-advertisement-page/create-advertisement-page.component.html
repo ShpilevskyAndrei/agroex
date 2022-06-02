@@ -23,7 +23,7 @@
             >Values must be not shorter than 5 characters
             </mat-error>
             <mat-error *ngIf="this.get('title').hasError('maxlength')"
-            >Values must be not shorter than 5 characters
+            >Values must be not longer than 40 characters
             </mat-error>
           </mat-form-field>
           <mat-hint class="form__helper-text">No more 40 characters</mat-hint>
@@ -35,7 +35,7 @@
           <div class="form__title">Location</div>
           <div class="form__input-wrap">
             <mat-form-field class="form__input several">
-              <mat-select formControlName="country">
+              <mat-select formControlName="country" required>
                 <mat-option
                   *ngFor="let country of countries"
                   [value]="country.value"
@@ -54,6 +54,9 @@
                   {{ location.viewValue }}
                 </mat-option>
               </mat-select>
+              <mat-error *ngIf="this.get('location').hasError('required')"
+              >Location is required
+              </mat-error>
             </mat-form-field>
           </div>
         </div>
@@ -72,6 +75,9 @@
                 {{ category.viewValue }}
               </mat-option>
             </mat-select>
+            <mat-error *ngIf="this.get('category').hasError('required')"
+            >Category is required
+            </mat-error>
           </mat-form-field>
         </div>
       </div>
@@ -84,11 +90,16 @@
               <mat-label>Enter the quantity</mat-label>
               <input
                 type="text"
-                maxlength="40"
                 matInput
                 placeholder="Enter the quantity"
                 formControlName="quantity"
               />
+              <mat-error *ngIf="this.get('quantity').hasError('required')"
+              >Quantity is required
+              </mat-error>
+              <mat-error *ngIf="this.get('quantity').hasError('pattern')"
+              >Please use valid quantity. It should be less 1 billion
+              </mat-error>
             </mat-form-field>
             <mat-form-field class="form__input select-small">
               <mat-select
@@ -112,11 +123,16 @@
               <mat-label>Enter the price</mat-label>
               <input
                 type="text"
-                maxlength="40"
                 matInput
                 placeholder="Enter the price"
                 formControlName="price"
               />
+              <mat-error *ngIf="this.get('price').hasError('required')"
+              >Price is required
+              </mat-error>
+              <mat-error *ngIf="this.get('price').hasError('pattern')"
+              >Please use valid price. It should be less 1 billion
+              </mat-error>
             </mat-form-field>
             <mat-form-field class="form__input select-small">
               <mat-select

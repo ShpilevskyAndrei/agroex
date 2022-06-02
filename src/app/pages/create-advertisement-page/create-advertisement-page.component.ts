@@ -38,7 +38,9 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
     new EventEmitter<void>();
   @Output()
   public formAdvertisement: EventEmitter<FormData> = new EventEmitter<FormData>();
+
   public maxFileSize = MAX_FILE_SIZE;
+  public IS_NUMBER = REGEXP_FOR_IS_NUMBER;
 
   public files: File[] = [];
 
@@ -47,7 +49,7 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
   public locations: ILocation[] = this.createAdvertisementService.locations;
   public currencies: ICurrency[] = this.createAdvertisementService.currencies;
   public categories: ICategory[] = this.createAdvertisementService.categories;
-  public IS_NUMBER = REGEXP_FOR_IS_NUMBER;
+
   public advertisementForm: FormGroup = new FormGroup({
     title: new FormControl('', [
       Validators.required,
@@ -66,7 +68,6 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
     quantity: new FormControl('', [
       Validators.required,
       Validators.pattern(this.IS_NUMBER),
-      Validators.maxLength(9),
     ]),
     unit: new FormControl(
       {
@@ -75,7 +76,10 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
       },
       [Validators.required]
     ),
-    price: new FormControl('', [Validators.required]),
+    price: new FormControl('', [
+      Validators.required,
+      Validators.pattern(this.IS_NUMBER),
+    ]),
     currency: new FormControl(
       {
         value: this.currencies[0].value,
@@ -99,6 +103,10 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
   }
 
   public submitForm(): void {
+    if (this.files.length < 1) {
+      console.log('TUT TOAST!!!!!');
+      return;
+    }
     const rawValue = this.advertisementForm.getRawValue();
     const formData = new FormData();
 
