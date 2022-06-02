@@ -1,6 +1,6 @@
-const express = require('express');
-const path = require('path');
-const app = express();
+express = require('express');
+path = require('path');
+app = express();
 app.use(express.static(__dirname + '/dist/<agroex-fe>'));
 app.get('/*', function(req,res) {
 res.sendFile(path.join(__dirname+
