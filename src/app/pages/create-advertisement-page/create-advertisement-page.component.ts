@@ -40,7 +40,6 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
   public formAdvertisement: EventEmitter<FormData> = new EventEmitter<FormData>();
 
   public maxFileSize = MAX_FILE_SIZE;
-  public IS_NUMBER = REGEXP_FOR_IS_NUMBER;
 
   public files: File[] = [];
 
@@ -67,7 +66,7 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
     category: new FormControl('', [Validators.required]),
     quantity: new FormControl('', [
       Validators.required,
-      Validators.pattern(this.IS_NUMBER),
+      Validators.pattern(REGEXP_FOR_IS_NUMBER),
     ]),
     unit: new FormControl(
       {
@@ -78,7 +77,7 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
     ),
     price: new FormControl('', [
       Validators.required,
-      Validators.pattern(this.IS_NUMBER),
+      Validators.pattern(REGEXP_FOR_IS_NUMBER),
     ]),
     currency: new FormControl(
       {
@@ -107,6 +106,7 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
       console.log('TUT TOAST!!!!!');
       return;
     }
+
     const rawValue = this.advertisementForm.getRawValue();
     const formData = new FormData();
 
@@ -126,6 +126,7 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
     if (this.files.length) {
       return;
     }
+
     if (event.rejectedFiles.length) {
       console.log(event.rejectedFiles);
       event.rejectedFiles.forEach((el) => el.reason);

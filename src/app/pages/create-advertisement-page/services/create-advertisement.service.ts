@@ -4,7 +4,6 @@ import { EMPTY, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { environment } from '../../../../environments/environment';
-import { BaseService } from '../../../shared/services/base.service';
 import { IAdvertisementApiResponse } from '../interfaces/create-advertisement-api-response.interface';
 import {
   ICategory,
@@ -17,7 +16,7 @@ import {
 @Injectable({
   providedIn: 'root',
 })
-export class CreateAdvertisementService extends BaseService {
+export class CreateAdvertisementService {
   public countries: ICountry[] = [
     { value: 'Uzbekistan', viewValue: 'Uzbekistan' },
   ];
@@ -59,9 +58,7 @@ export class CreateAdvertisementService extends BaseService {
     { value: 'Tashkent city', viewValue: 'Tashkent city' },
   ];
 
-  constructor(protected override httpClient: HttpClient) {
-    super(httpClient);
-  }
+  constructor(private httpClient: HttpClient) {}
 
   public create(
     formAdvertisement: FormData,

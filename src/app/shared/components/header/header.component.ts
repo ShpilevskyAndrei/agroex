@@ -61,7 +61,7 @@ export class HeaderComponent implements OnChanges {
   }
 
   public goToCreateAdvertisement(): void {
-    this.router.navigate(['createadvertisement']);
+    this.router.navigate(['create-advertisement']);
   }
 
   private onLogout(): void {

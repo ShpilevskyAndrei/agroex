@@ -15,6 +15,7 @@ export const CreateAdvertisementPageActions = {
     '[CREATE_ADVERTISEMENT_PAGE] advertisement error',
     props<{ error: HttpErrorResponse }>()
   ),
+
   dropAdvertisementLoadingStatus: createAction(
     '[CREATE_ADVERTISEMENT_PAGE] advertisement drop loading status'
   ),

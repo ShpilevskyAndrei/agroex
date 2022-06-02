@@ -31,7 +31,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'createadvertisement',
+    path: 'create-advertisement',
     loadChildren: () =>
       import(
         './pages/create-advertisement-page/create-advertisement-page.module'
