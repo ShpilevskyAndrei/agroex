@@ -21,8 +21,8 @@ export class CreateAdvertisementPageComponent {
   @Input() public createAdvertisementLoadingStatus: LoadingStatus | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
-  @Output() public formAdvertisement: EventEmitter<FormData> =
-    new EventEmitter<FormData>();
+  @Output()
+  public formAdvertisement: EventEmitter<FormData> = new EventEmitter<FormData>();
 
   public files: File[] = [];
 
@@ -81,7 +81,7 @@ export class CreateAdvertisementPageComponent {
     formData.append('unit', this.advertisementForm.value.unit);
     formData.append('price', this.advertisementForm.value.price);
     formData.append('currency', this.advertisementForm.value.currency);
-    this.formAdvertisement.emit();
+    this.formAdvertisement.emit(formData);
   }
 
   public onSelect(event: { addedFiles: File[] }): void {
