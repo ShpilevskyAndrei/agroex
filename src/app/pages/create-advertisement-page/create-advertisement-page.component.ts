@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { LoadingStatus } from '../../shared/interfaces/loading-status';
 
 import { IUser } from '../registration-page/interfaces/user-api-response.interface';
 import {
@@ -17,8 +18,11 @@ import { CreateAdvertisementService } from './services/create-advertisement.serv
 })
 export class CreateAdvertisementPageComponent {
   @Input() public user: IUser | null;
+  @Input() public createAdvertisementLoadingStatus: LoadingStatus | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
+  @Output() public formAdvertisement: EventEmitter<FormData> =
+    new EventEmitter<FormData>();
 
   public files: File[] = [];
 
@@ -77,6 +81,7 @@ export class CreateAdvertisementPageComponent {
     formData.append('unit', this.advertisementForm.value.unit);
     formData.append('price', this.advertisementForm.value.price);
     formData.append('currency', this.advertisementForm.value.currency);
+    this.formAdvertisement.emit();
   }
 
   public onSelect(event: { addedFiles: File[] }): void {
