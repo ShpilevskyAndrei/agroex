@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { EMPTY, Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 import { environment } from '../../../../environments/environment';
 import { IAdvertisementApiResponse } from '../interfaces/create-advertisement-api-response.interface';
@@ -64,20 +63,14 @@ export class CreateAdvertisementService {
     formAdvertisement: FormData,
     token?: string
   ): Observable<IAdvertisementApiResponse> {
-    return this.httpClient
-      .post<IAdvertisementApiResponse>(
-        `${environment.apiUrl}advertisements`,
-        formAdvertisement,
-        {
-          headers: new HttpHeaders({
-            Authorization: `Bearer ${token} `,
-          }),
-        }
-      )
-      .pipe(
-        catchError(() => {
-          return EMPTY;
-        })
-      );
+    return this.httpClient.post<IAdvertisementApiResponse>(
+      `${environment.apiUrl}advertisements`,
+      formAdvertisement,
+      {
+        headers: new HttpHeaders({
+          Authorization: `Bearer ${token} `,
+        }),
+      }
+    );
   }
 }

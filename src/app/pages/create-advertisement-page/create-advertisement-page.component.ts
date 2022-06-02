@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AgroexToastService, ToastType } from 'ngx-agroex-toast';
 import { NgxDropzoneChangeEvent } from 'ngx-dropzone';
 
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
@@ -90,7 +91,8 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
 
   constructor(
     private router: Router,
-    private createAdvertisementService: CreateAdvertisementService
+    private createAdvertisementService: CreateAdvertisementService,
+    private toastService: AgroexToastService
   ) {}
 
   public get(key: string): FormControl {
@@ -103,7 +105,11 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
 
   public submitForm(): void {
     if (this.files.length < 1) {
-      console.log('TUT TOAST!!!!!');
+      this.toastService.addToast({
+        toastType: ToastType.Error,
+        title: 'You can add only one image!',
+        width: '50vw',
+      });
       return;
     }
 
@@ -128,9 +134,13 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
     }
 
     if (event.rejectedFiles.length) {
-      console.log(event.rejectedFiles);
-      event.rejectedFiles.forEach((el) => el.reason);
-      //inject service toast --- your file was rejected because (reason in array)
+      event.rejectedFiles.forEach((el) => {
+        this.toastService.addToast({
+          toastType: ToastType.Error,
+          title: `Import failed due ${el.reason} !`,
+          width: '50vw',
+        });
+      });
     }
     this.files.push(...event.addedFiles);
   }

@@ -201,7 +201,8 @@
     <!--    button-->
     <div class="form__btns">
       <div class="form__btns-wrap">
-        <button mat-button [disabled]="advertisementForm.invalid" type="submit">
+        <button mat-button [disabled]="advertisementForm.invalid || !files.length"
+                type="submit">
           Place an advertisement
         </button>
       </div>
