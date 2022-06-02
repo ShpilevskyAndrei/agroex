@@ -1,7 +1,7 @@
 <header class="main-header">
   <div class="container main-header-content">
     <div class="points-container-header" (click)="goToMainPage()">
-      <img class="logo-img" src="../../../../assets/logo.svg" alt="" />
+      <img class="logo-img" src="../../../../assets/logo.svg" alt=""/>
       <p class="logo-name">AGROEX</p>
     </div>
     <div class="account-container-header">
@@ -12,7 +12,11 @@
         </div>
       </ng-container>
       <ng-template #loggedUser>
-        <button mat-raised-button class="add-advertisement-button">
+        <button
+          mat-raised-button
+          class="add-advertisement-button"
+          (click)="goToCreateAdvertisement()"
+        >
           <mat-icon class="add-advertisement-button-container">add</mat-icon>
           <span>Advertisement</span>
         </button>

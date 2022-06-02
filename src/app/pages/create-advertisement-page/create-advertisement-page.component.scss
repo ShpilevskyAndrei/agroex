@@ -1,0 +1,135 @@
+@import "../../styles/general-styles.scss";
+
+:host {
+  .form {
+    padding: 3rem 3.3rem 3.3rem;
+    background: $color-white;
+
+    &__advertisementTitle {
+      font-size: $font-size-large;
+      color: $primary-color;
+      font-weight: 500;
+    }
+
+    &__wrap {
+      margin-top: calc(3 * #{$offset-normal});
+    }
+
+    &__input-wrap {
+      display: flex;
+      column-gap: $offset-medium;
+
+      .mat-form-field + .mat-form-field {
+        margin: 0;
+      }
+    }
+
+    &__dropzone {
+      overflow-y: hidden;
+      position: relative;
+
+      &-file-text {
+        color: $active-color;
+        font-weight: 600;
+        font-size: $font-size-small;
+      }
+
+      &-drop-text {
+        color: $primary-color;
+        font-weight: 500;
+        font-size: $font-size-small;
+      }
+
+      &-footnote {
+        color: $color-copy;
+        font-size: $font-size-xsmall;
+        font-weight: 400;
+      }
+
+      &-wrap {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+
+        div {
+          margin-top: $offset-small;
+        }
+      }
+    }
+
+    &__item {
+      display: flex;
+
+      & + .form__item {
+        margin-top: $offset-xlarge;
+      }
+    }
+
+    &__field {
+      width: 50%;
+    }
+
+    &__title {
+      font-size: $font-size-medium;
+      color: $primary-color;
+      font-weight: 500;
+      margin-bottom: $offset-small;
+    }
+
+    &__input {
+      width: 100%;
+
+      &.several {
+        width: 50%;
+      }
+
+      &.select-small {
+        width: 17.6%;
+      }
+    }
+
+    &__desc {
+      margin-left: $font-size-normal;
+      position: relative;
+
+      &-image {
+        position: absolute;
+        top: 35px;
+      }
+
+      p {
+        font-size: $font-size-normal;
+      }
+    }
+
+    &__btns {
+      width: 50%;
+      margin-top: 5.3rem;
+
+      &-wrap {
+        display: flex;
+        column-gap: $offset-medium;
+
+        button {
+          width: 50%;
+        }
+      }
+    }
+
+    &__footnote {
+      display: block;
+      font-size: $font-size-xsmall;
+      color: $color-copy;
+      font-weight: 400;
+      margin-top: $offset-medium;
+    }
+
+    &__helper-text {
+      font-size: $font-size-xsmall;
+      font-weight: 400;
+      color: $color-copy;
+      margin-top: 0.3rem;
+    }
+  }
+}
