@@ -18,13 +18,7 @@ export interface ICurrency {
   viewValue: string;
 }
 
-export interface IAdvertisementFormCredentials {
-  title: string;
-  country?: string;
-  location?: string;
-  price: string;
-  currency: string;
-  quantity: string;
-  unit: string;
-  category: string;
+export interface ICategory {
+  value: string;
+  viewValue: string;
 }

@@ -4,6 +4,7 @@ import { LoadingStatus } from '../../shared/interfaces/loading-status';
 
 import { IUser } from '../registration-page/interfaces/user-api-response.interface';
 import {
+  ICategory,
   ICountry,
   ICurrency,
   ILocation,
@@ -30,6 +31,7 @@ export class CreateAdvertisementPageComponent {
   public units: IUnit[] = this.createAdvertisementService.units;
   public locations: ILocation[] = this.createAdvertisementService.locations;
   public currencies: ICurrency[] = this.createAdvertisementService.currencies;
+  public categories: ICategory[] = this.createAdvertisementService.categories;
 
   public advertisementForm: FormGroup = new FormGroup({
     title: new FormControl('', [Validators.required]),
@@ -69,7 +71,7 @@ export class CreateAdvertisementPageComponent {
   public submitForm(): void {
     console.log(this.advertisementForm.value);
     const formData = new FormData();
-    formData.append('file', this.files[0]);
+    // formData.append('file', this.files[0]);
     // formData.append('files', {
     //   uri: this.files[0].,
     //   type: values.image.assets[0].type,
@@ -78,6 +80,8 @@ export class CreateAdvertisementPageComponent {
     formData.append('title', this.advertisementForm.value.country);
     formData.append('country', this.advertisementForm.value.country);
     formData.append('location', this.advertisementForm.value.location);
+    formData.append('category', this.advertisementForm.value.category);
+    formData.append('quantity', this.advertisementForm.value.quantity);
     formData.append('unit', this.advertisementForm.value.unit);
     formData.append('price', this.advertisementForm.value.price);
     formData.append('currency', this.advertisementForm.value.currency);
