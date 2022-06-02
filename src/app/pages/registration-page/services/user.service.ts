@@ -34,10 +34,12 @@ export class UserService extends BaseService {
       ),
       catchError((e) => {
         this.toastService.addToast({
-          title: `User could not be ${
-            url === 'register' ? 'created' : 'login'
-          }:`,
-          message: `${e.error.message}`,
+          title: `The user can not ${
+            url === 'register' ? 'created' : 'log in'
+          }`,
+          message: `${
+            url === 'register' ? e.error.message : 'Incorrect data entered'
+          }`,
           toastType: ToastType.Error,
           width: '408px',
         });
