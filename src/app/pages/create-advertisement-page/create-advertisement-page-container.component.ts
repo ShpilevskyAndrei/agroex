@@ -4,11 +4,9 @@ import { Observable } from 'rxjs';
 
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { CreateAdvertisementPageActions } from '../../state/create-advertisement-page/create-advertisement-page.actions';
+import { selectCreateAdvertisementLoadingStatus } from '../../state/create-advertisement-page/create-advertisement-page.selectors';
 import { RegistrationPageActions } from '../../state/registration-page/registration-page.actions';
-import {
-  selectUserData,
-  selectUserLoadingStatus,
-} from '../../state/registration-page/registration-page.selectors';
+import { selectUserData } from '../../state/registration-page/registration-page.selectors';
 import { IUser } from '../registration-page/interfaces/user-api-response.interface';
 
 @Component({
@@ -20,6 +18,7 @@ import { IUser } from '../registration-page/interfaces/user-api-response.interfa
       createAdvertisementLoadingStatus$ | async
     "
     (formAdvertisement)="onSubmitAdvertisementFormData($event)"
+    (dropLoadingStatus)="onDropLoadingStatus()"
   ></app-create-advertisement-page>`,
 })
 export class CreateAdvertisementPageContainerComponent {
@@ -29,7 +28,7 @@ export class CreateAdvertisementPageContainerComponent {
   constructor(private store: Store) {
     this.user$ = this.store.select(selectUserData);
     this.createAdvertisementLoadingStatus$ = this.store.select(
-      selectUserLoadingStatus
+      selectCreateAdvertisementLoadingStatus
     );
   }
 
@@ -42,6 +41,12 @@ export class CreateAdvertisementPageContainerComponent {
       CreateAdvertisementPageActions.createAdvertisementRequest({
         formAdvertisement,
       })
+    );
+  }
+
+  public onDropLoadingStatus(): void {
+    this.store.dispatch(
+      CreateAdvertisementPageActions.dropAdvertisementLoadingStatus()
     );
   }
 }
