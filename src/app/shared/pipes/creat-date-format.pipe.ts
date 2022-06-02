@@ -19,6 +19,6 @@ export class CreatDateFormatPipe implements PipeTransform {
 
     return moment().diff(creatDate, 'days') >= 2
       ? moment(creatDate).fromNow()
-      : moment(creatDate).calendar().split(' ').join(' ');
+      : moment(creatDate).calendar();
   }
 }

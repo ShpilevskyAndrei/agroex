@@ -10,18 +10,18 @@ export class AvailableDateFormatPipe implements PipeTransform {
     type: 'days' | 'hours' = 'days',
     term: number = 3
   ): string {
-    const nowDateFormat = moment(new Date()).format('YYYY-MM-DD HH:mm'),
-      availabilityFormat = moment(creatDate)
-        .add(term, type)
-        .format('YYYY-MM-DD HH:mm'),
-      duration = moment.duration(
-        moment(availabilityFormat).diff(moment(nowDateFormat))
-      ),
-      days = Math.floor(duration.asDays()),
-      daysFormat = days >= 0 ? `${days}d ` : '0d ',
-      hoursFormat = duration.hours() >= 0 ? `${duration.hours()}h ` : '0h ',
-      minutesFormat = `${duration.minutes()}m`;
+    const nowDateFormat = moment(moment()).format('YYYY-MM-DD HH:mm');
+    const availabilityFormat = moment(creatDate)
+      .add(term, type)
+      .format('YYYY-MM-DD HH:mm');
+    const duration = moment.duration(
+      moment(availabilityFormat).diff(moment(nowDateFormat))
+    );
+    const days = Math.floor(duration.asDays());
+    const daysFormat = days >= 0 ? `${days}d` : '0d';
+    const hoursFormat = duration.hours() >= 0 ? `${duration.hours()}h ` : '0h';
+    const minutesFormat = `${duration.minutes()}m`;
 
-    return [daysFormat, hoursFormat].join('');
+    return `${daysFormat} ${hoursFormat}`;
   }
 }
