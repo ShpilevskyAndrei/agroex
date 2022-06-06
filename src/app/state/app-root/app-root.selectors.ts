@@ -1,9 +1,7 @@
-import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { createFeatureSelector } from '@ngrx/store';
 import { APP_ROOT, AppRootState } from './app-root.reducer';
 
-const selectGetFeatureState = createFeatureSelector<AppRootState>(APP_ROOT);
+//TODO: need to delete this disable eslint in future, when you will have app-root selector.
 
-export const selectAppRootLoadingStatus = createSelector(
-  selectGetFeatureState,
-  (state) => state.appRootLoadingStatus
-);
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const selectGetFeatureState = createFeatureSelector<AppRootState>(APP_ROOT);

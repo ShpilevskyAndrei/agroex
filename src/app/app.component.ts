@@ -1,7 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { TITLE } from './shared/constants/app-consts';
-import { LoadingStatus } from './shared/interfaces/loading-status';
 import { IconSerializeService } from './shared/services/icon-serialize.service';
 
 @Component({
@@ -10,7 +9,6 @@ import { IconSerializeService } from './shared/services/icon-serialize.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  @Input() public appRootLoadingStatus: LoadingStatus | null;
   public title = TITLE;
 
   constructor(private iconSerialize: IconSerializeService) {}
