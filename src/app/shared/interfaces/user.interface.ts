@@ -1,11 +1,11 @@
-import { UserCredentials } from './user.interfase';
+import { IUserCredentials } from './user-credentials.interfase';
 
 export interface UserApiResponse {
   user: IUser;
 }
 
 export interface AuthorizationCombineInfo {
-  user: UserCredentials;
+  user: IUserCredentials;
   url: string;
 }
 
@@ -18,13 +18,13 @@ export interface IUserRole {
 }
 
 export interface IUser {
-  banReason: string;
-  banned: boolean;
-  email: string;
   id: number;
-  image: string;
-  phone: string;
-  token: string;
-  userRoles: IUserRole[];
+  email: string;
   username: string;
+  phone: string;
+  image: string;
+  token?: string;
+  userRoles?: IUserRole[];
+  banned: boolean;
+  banReason: string;
 }

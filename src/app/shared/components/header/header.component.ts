@@ -9,7 +9,7 @@ import {
 import { MatSelect } from '@angular/material/select';
 import { Router } from '@angular/router';
 
-import { IUser } from '../../../pages/registration-page/interfaces/user-api-response.interface';
+import { IUser } from '../../interfaces/user.interface';
 import { USER_PANEL_OPTION } from './constants/user-panel-option';
 import { LOGGED_ROLE_CONFIG } from './constants/user-role-config';
 import { UserPanelOptionId } from './enums/user-panel-option-id';
@@ -58,6 +58,10 @@ export class HeaderComponent implements OnChanges {
 
   public goToMainPage(): void {
     this.router.navigate(['']);
+  }
+
+  public goToCreateAdvertisement(): void {
+    this.router.navigate(['create-advertisement']);
   }
 
   private onLogout(): void {

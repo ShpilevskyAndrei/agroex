@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 
 import { PolicyModalContentComponent } from './policy-modal-content/policy-modal-content.component';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
-import { AuthorizationCombineInfo } from './interfaces/user-api-response.interface';
+import { AuthorizationCombineInfo } from '../../shared/interfaces/user.interface';
 import { CustomValidators } from './interfaces/custom-validators';
 import {
   MIN_USER_NAME_LENGTH,
