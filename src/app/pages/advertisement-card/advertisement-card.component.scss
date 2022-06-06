@@ -1,0 +1,11 @@
+@import "../../styles/general-styles";
+
+:host {
+  .ad-card-container {
+    width: 100%;
+    background: $color-white;
+    box-shadow: inset 0px -1px 0px $color-button-disable;
+    height: 1000px; //TEST
+    padding: 16px 40px;
+  }
+}

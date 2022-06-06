@@ -16,6 +16,8 @@ import { IconSerializeService } from './shared/services/icon-serialize.service';
 import { StateModule } from './state/state.module';
 import { APPEARANCE } from './shared/constants/appearance-outline';
 import { AuthGuard } from './auth.guard';
+import { HeaderModule } from './shared/components/header/header.module';
+import { BreadcrumbsModule } from './shared/components/breadcrumbs/breadcrumbs.module';
 
 @NgModule({
   declarations: [AppComponent, AppContainerComponent],
@@ -29,6 +31,8 @@ import { AuthGuard } from './auth.guard';
     MatSnackBarModule,
     MatDialogModule,
     StateModule,
+    HeaderModule,
+    BreadcrumbsModule,
   ],
   providers: [
     AuthGuard,
