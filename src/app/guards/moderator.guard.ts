@@ -19,22 +19,15 @@ export class ModeratorGuard implements CanLoad {
     return this.role$.pipe(map((currentRole) => currentRole));
   }
 
-  public canLoad(
-    route: Route
-  ):
+  public canLoad():
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
     return this.isModerator().pipe(
       map((item: string | undefined): boolean => {
-        if (!item && !route.data?.isRegistrationPage) {
-          this.router.navigate(['registration']);
-          return false;
-        }
-
-        if (item !== 'moderator' && route.data?.isRegistrationPage) {
-          this.router.navigate(['']);
+        if (item !== 'moderator') {
+          this.router.navigate(['error']);
           return false;
         }
 
