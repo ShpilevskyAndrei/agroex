@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
-import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { AppContainerComponent } from './app-container.component';
 import { AppComponent } from './app.component';
@@ -29,7 +28,6 @@ import { AuthGuard } from './auth.guard';
     AppRoutingModule,
     MatSnackBarModule,
     MatDialogModule,
-    NgxSpinnerModule,
     StateModule,
   ],
   providers: [
