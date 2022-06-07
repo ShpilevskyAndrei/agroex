@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { MainDashboardContainerComponent } from './main-dashboard-container.component';
 import { MainDashboardComponent } from './main-dashboard.component';
@@ -16,6 +17,7 @@ import { AdvertisementsListModule } from '../../advertisements-list/advertisemen
     CategoriesModule,
     MainDashboardRoutingModule,
     AdvertisementsListModule,
+    NgxSpinnerModule,
   ],
   exports: [MainDashboardContainerComponent],
 })
