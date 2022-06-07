@@ -1,3 +1,5 @@
+<ng-container *ngIf="categoriesLoadingStatus?.loaded; else notLoaded">
+
 <app-header [user]="user" (logout)="onLogout()"></app-header>
 
 <app-categories
@@ -11,3 +13,19 @@
   [advertisementsRequest]="advertisementsRequest"
   [advertisementsLoadingStatus]="advertisementsLoadingStatus"
 ></app-advertisements-list>
+</ng-container>
+
+<ng-template #notLoaded>
+  <ngx-spinner
+    *ngIf="categoriesLoadingStatus?.loading; else categoriesError"
+    bdColor="rgba(0, 0, 0, 0.8)"
+    size="medium"
+    color="#fff"
+    type="ball-clip-rotate"
+    [fullScreen]="true"
+  ><p style="color: white">Loading...</p></ngx-spinner
+  >
+  <ng-template #categoriesError>
+    <p>{{ categoriesLoadingStatus?.error?.statusText }}</p>
+  </ng-template>
+</ng-template>
