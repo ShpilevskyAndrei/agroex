@@ -38,6 +38,13 @@ const routes: Routes = [
       ).then((m) => m.CreateAdvertisementPageModule),
   },
   {
+    path: 'moderation-advertisments',
+    loadChildren: () =>
+      import(
+        './pages/moderation-advertisments/moderation-advertisments.module'
+      ).then((m) => m.ModerationAdvertismentsPageModule),
+  },
+  {
     path: '',
     loadChildren: () =>
       import('./pages/main-dashboard/main-dashboard.module').then(

@@ -35,7 +35,7 @@
           <div class="form__title">Location</div>
           <div class="form__input-wrap">
             <mat-form-field class="form__input several">
-              <mat-select formControlName="country" required>
+              <mat-select formControlName="country" required disableOptionCentering="true">
                 <mat-option
                   *ngFor="let country of countries"
                   [value]="country.value"

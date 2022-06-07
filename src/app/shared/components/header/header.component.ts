@@ -35,7 +35,8 @@ export class HeaderComponent implements OnChanges {
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.user && this.user) {
-      this.userRole = UserRole.User;
+      console.log(this.checkUserRole(this.user));
+      this.userRole = this.checkUserRole(this.user);
     }
   }
 
@@ -64,8 +65,33 @@ export class HeaderComponent implements OnChanges {
     this.router.navigate(['create-advertisement']);
   }
 
+  public goToModerateAdvertisement(): void {
+    this.router.navigate(['moderation-advertisments']);
+  }
+
   private onLogout(): void {
     this.userRole = UserRole.Guest;
     this.logout.emit();
+  }
+
+  private checkUserRole(user: IUser): UserRole {
+    if (
+      user?.userRoles!.length === 1 &&
+      user?.userRoles![0].role.value === 'user'
+    ) {
+      return UserRole.User;
+    } else if (
+      user?.userRoles!.length !== 1 &&
+      user?.userRoles![1].role.value === 'moderator'
+    ) {
+      return UserRole.Moderator;
+    } else if (
+      user?.userRoles!.length !== 1 &&
+      user?.userRoles![1].role.value === 'admin'
+    ) {
+      return UserRole.Admin;
+    } else {
+      return UserRole.Guest;
+    }
   }
 }
