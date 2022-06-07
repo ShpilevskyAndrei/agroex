@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
 
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
@@ -37,7 +38,7 @@ export class MainDashboardContainerComponent implements OnInit {
   public advertisementsRequest$: Observable<IAdvertisementRequestInterface | null>;
   public advertisementsLoadingStatus$: Observable<LoadingStatus | null>;
 
-  constructor(private store: Store) {
+  constructor(private store: Store, private spinner: NgxSpinnerService) {
     this.categories$ = this.store.select(selectCategoriesData);
     this.user$ = this.store.select(selectUserData);
     this.categoriesLoadingStatus$ = this.store.select(
@@ -54,6 +55,7 @@ export class MainDashboardContainerComponent implements OnInit {
     this.store.dispatch(
       AdvertisementsListPageActions.getAdvertisementsRequest()
     );
+    this.spinner.show();
   }
 
   public onLogout(): void {
