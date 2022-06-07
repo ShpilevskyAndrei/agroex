@@ -21,3 +21,7 @@ export const selectUserToken = createSelector(
   selectGetFeatureState,
   (state) => state.user?.token
 );
+export const selectUserRole = createSelector(
+  selectGetFeatureState,
+  (state) => state.user?.userRoles![1]?.role.value
+);

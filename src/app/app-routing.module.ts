@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './guards/auth.guard';
+import { ModeratorGuard } from './guards/moderator.guard';
 
 const routes: Routes = [
   {
@@ -43,6 +44,7 @@ const routes: Routes = [
       import(
         './pages/moderation-advertisments/moderation-advertisments.module'
       ).then((m) => m.ModerationAdvertismentsPageModule),
+    canLoad: [ModeratorGuard],
   },
   {
     path: '',

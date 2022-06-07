@@ -4,8 +4,8 @@ import { map, Observable } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Store } from '@ngrx/store';
 
-import { selectUserToken } from './state/registration-page/registration-page.selectors';
-import { RegistrationPageActions } from './state/registration-page/registration-page.actions';
+import { selectUserToken } from '../state/registration-page/registration-page.selectors';
+import { RegistrationPageActions } from '../state/registration-page/registration-page.actions';
 
 @Injectable({
   providedIn: 'root',

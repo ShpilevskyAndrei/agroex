@@ -35,7 +35,6 @@ export class HeaderComponent implements OnChanges {
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.user && this.user) {
-      console.log(this.checkUserRole(this.user));
       this.userRole = this.checkUserRole(this.user);
     }
   }
@@ -54,7 +53,6 @@ export class HeaderComponent implements OnChanges {
 
       return;
     }
-    console.log(selectedOption.url);
   }
 
   public goToMainPage(): void {
