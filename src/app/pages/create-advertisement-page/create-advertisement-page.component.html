@@ -35,7 +35,8 @@
           <div class="form__title">Location</div>
           <div class="form__input-wrap">
             <mat-form-field class="form__input several">
-              <mat-select formControlName="country" required>
+              <mat-select formControlName="country" required
+                          disableOptionCentering="true">
                 <mat-option
                   *ngFor="let country of countries"
                   [value]="country.value"
@@ -46,7 +47,7 @@
             </mat-form-field>
             <mat-form-field class="form__input several">
               <mat-label>Select a region</mat-label>
-              <mat-select formControlName="location">
+              <mat-select formControlName="location" disableOptionCentering="true">
                 <mat-option
                   *ngFor="let location of locations"
                   [value]="location.value"
@@ -67,7 +68,7 @@
           <div class="form__title">Category</div>
           <mat-form-field class="form__input several">
             <mat-label>Select a category</mat-label>
-            <mat-select formControlName="category">
+            <mat-select formControlName="category" disableOptionCentering="true">
               <mat-option
                 *ngFor="let category of categories"
                 [value]="category.value"
@@ -105,6 +106,7 @@
               <mat-select
                 class="form__select-small-text"
                 formControlName="unit"
+                disableOptionCentering="true"
               >
                 <mat-option *ngFor="let unit of units" [value]="unit.value">
                   {{ unit.viewValue }}
@@ -138,6 +140,7 @@
               <mat-select
                 class="form__select-small-text"
                 formControlName="currency"
+                disableOptionCentering="true"
               >
                 <mat-option
                   *ngFor="let currency of currencies"
