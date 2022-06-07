@@ -1,5 +1,4 @@
-<ng-container *ngIf="categoriesLoadingStatus?.loaded; else notLoaded">
-  <div class="categories">
+<div class="categories">
   <div class="container">
     <mat-tab-group
       class="categories__wrap"
@@ -11,22 +10,19 @@
         <ng-template mat-tab-label>
           <app-category
             class="category"
-            [ngClass]="{active: category.id === activeCategory}"
+            [ngClass]="{ active: category.id === activeCategory }"
             [category]="category"
           ></app-category>
         </ng-template>
         <mat-list role="list">
-          <mat-list-item role="listitem" *ngFor="let subCategory of getCategoryList(category)">{{subCategory.title}}</mat-list-item>
+          <mat-list-item
+            role="listitem"
+            *ngFor="let subCategory of getCategoryList(category)"
+          >
+            {{ subCategory.title }}
+          </mat-list-item>
         </mat-list>
       </mat-tab>
     </mat-tab-group>
   </div>
 </div>
-</ng-container>
-<ng-template #notLoaded>
-    <p *ngIf="categoriesLoadingStatus?.loading; else categoriesError">LOADING...</p>
-    <ng-template #categoriesError>
-      <p>{{ categoriesLoadingStatus?.error?.statusText }}</p>
-    </ng-template>
-</ng-template>
-
