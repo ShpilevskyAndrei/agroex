@@ -5,7 +5,146 @@
     width: 100%;
     background: $color-white;
     box-shadow: inset 0px -1px 0px $color-button-disable;
-    height: 1000px; //TEST
     padding: 16px 40px;
+  }
+
+  .ad-card-container-without-map {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+  }
+
+  .ad-card-image-container {
+    width: 50%;
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
+  }
+
+  .ad-card-image {
+    width: 100%;
+  }
+
+  .ad-card-info {
+    margin-left: 12px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .discription-container,
+  .buttons-container,
+  .title-container,
+  .price-container {
+    margin: 10px;
+  }
+  .ad-card-map {
+    width: 100%;
+  }
+
+  .ad-card-discription_string {
+    display: flex;
+    p {
+      width: 50%;
+      margin: 0;
+    }
+  }
+
+  .ad-params-options {
+    color: #131314;
+    font-weight: bold;
+  }
+
+  .ad-params {
+    color: #798787;
+    font-weight: 500;
+  }
+
+  .material-icons {
+    font-size: 15px;
+    color: $active-color;
+  }
+
+  .hide-map-container {
+    margin: 30px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .show-map-icon {
+    color: $active-color;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .location-container {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    p {
+      width: 100%;
+    }
+    mat-icon {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .show-map-text {
+    margin: 0;
+    color: $active-color;
+    cursor: pointer;
+    align-self: center;
+  }
+
+  .map-container {
+    width: 100%;
+  }
+
+  .map-img {
+    width: 100%;
+  }
+
+  .map-slide-in {
+    animation: slideIn 3s ease-out;
+  }
+
+  @keyframes slideIn {
+    0% {
+      opacity: 0;
+      margin-top: -1%;
+    }
+    50% {
+      margin-top: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .map-slide-out {
+    animation: slideOut 3s ease-out;
+  }
+
+  @keyframes slideOut {
+    0% {
+      opacity: 1;
+      margin-top: 0;
+    }
+    50% {
+      margin-top: -1%;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  hr {
+    border: 0;
+    border-top: 0.5px solid lightgrey;
   }
 }

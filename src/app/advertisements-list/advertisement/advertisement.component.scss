@@ -60,6 +60,7 @@
 }
 
 .advertisement-wrap {
+  cursor: pointer;
   &:hover &__btns {
     display: block;
   }

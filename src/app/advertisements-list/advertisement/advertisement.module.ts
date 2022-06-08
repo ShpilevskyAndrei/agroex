@@ -9,6 +9,7 @@ import { AdvertisementTitleModule } from './advertisement-title/advertisement-ti
 import { AdvertisementButtonsModule } from './advertisement-buttons/advertisement-buttons.module';
 import { AdvertisementPriceModule } from './advertisement-price/advertisement-price.module';
 import { BetModalComponent } from './bet-modal/bet-modal.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [AdvertisementComponent, BetModalComponent],
@@ -20,6 +21,7 @@ import { BetModalComponent } from './bet-modal/bet-modal.component';
     MatIconModule,
     MatFormFieldModule,
     FormsModule,
+    RouterModule,
   ],
   exports: [AdvertisementComponent],
 })
