@@ -33,8 +33,10 @@ export class AdvertisementButtonsComponent {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      this.bet = result;
-      this.setBet.emit({ newBet: this.bet, slug: this.advertisement.slug });
+      if (result) {
+        this.bet = result;
+        this.setBet.emit({ newBet: this.bet, slug: this.advertisement.slug });
+      }
     });
   }
 }
