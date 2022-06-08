@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { IAdvertisementInterface } from '../interfaces/advertisement.interface';
 
@@ -9,4 +9,9 @@ import { IAdvertisementInterface } from '../interfaces/advertisement.interface';
 })
 export class AdvertisementComponent {
   @Input() public advertisement: IAdvertisementInterface;
+  @Output() public setBet: EventEmitter<string> = new EventEmitter<string>();
+
+  public onSetBet(bet: string): void {
+    this.setBet.emit(bet);
+  }
 }

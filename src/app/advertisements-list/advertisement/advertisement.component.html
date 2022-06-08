@@ -14,7 +14,12 @@
     </div>
   </div>
   <div class="advertisement-wrap__actions">
-    <app-advertisement-price class="advertisement-wrap__price" [advertisement]="advertisement"></app-advertisement-price>
-    <app-advertisement-buttons class="advertisement-wrap__btns"></app-advertisement-buttons>
+    <app-advertisement-price class="advertisement-wrap__price"
+                             [advertisement]="advertisement"></app-advertisement-price>
+    <app-advertisement-buttons class="advertisement-wrap__btns"
+                               [advertisement]="advertisement"
+                               (setBet)="onSetBet($event)"
+    >
+    </app-advertisement-buttons>
   </div>
 </div>
