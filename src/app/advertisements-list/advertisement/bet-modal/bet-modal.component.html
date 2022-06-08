@@ -17,7 +17,7 @@
           [(ngModel)]="data.bet"
         >
       </mat-form-field>
-      <p class="bet-modal__hint">Bet from {{'1' | currency: data.currency: 'symbol-narrow': '1.0'}}
+      <p class="bet-modal__hint">Bet from {{(data.actualBet.length ? +data.actualBet[0].betValue + 1 : '1') | currency: data.currency: 'symbol-narrow': '1.0'}}
         to {{+data.price - 1}}</p>
     </div>
     <div mat-dialog-actions class="bet-modal__actions">

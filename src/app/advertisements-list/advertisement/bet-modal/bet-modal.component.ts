@@ -3,11 +3,13 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { BetValidators } from './intefaces/bet-validator';
+import { IAdvertisementBetInterface } from '../../interfaces/advertisement-bet.interface';
 
 export interface DialogData {
   bet: string;
   price: string;
   currency: string;
+  actualBet: IAdvertisementBetInterface[];
 }
 
 @Component({
@@ -21,7 +23,10 @@ export class BetModalComponent {
       validators: [
         Validators.required,
         Validators.maxLength(9),
-        BetValidators.passwordsMatching('', this.data.price),
+        BetValidators.passwordsMatching(
+          this.data.actualBet.length ? this.data.actualBet[0].betValue : '0',
+          this.data.price
+        ),
       ],
       updateOn: 'change',
     }),

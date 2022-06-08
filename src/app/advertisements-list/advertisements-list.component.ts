@@ -11,9 +11,10 @@ import { IAdvertisementRequestInterface } from './interfaces/advertisement-reque
 export class AdvertisementsListComponent {
   @Input() public advertisementsRequest: IAdvertisementRequestInterface | null;
   @Input() public advertisementsLoadingStatus: LoadingStatus | null;
-  @Output() public setBet: EventEmitter<string> = new EventEmitter<string>();
+  @Output() public setBet: EventEmitter<Record<string, string | number>> =
+    new EventEmitter<Record<string, string | number>>();
 
-  public onSetBet(bet: string): void {
-    this.setBet.emit(bet);
+  public onSetBet(newBetOptions: Record<string, string | number>): void {
+    this.setBet.emit(newBetOptions);
   }
 }
