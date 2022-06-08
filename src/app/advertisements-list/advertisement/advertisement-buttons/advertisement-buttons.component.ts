@@ -11,7 +11,8 @@ import { IAdvertisementInterface } from '../../interfaces/advertisement.interfac
 })
 export class AdvertisementButtonsComponent {
   @Input() public advertisement: IAdvertisementInterface;
-  @Output() public setBet: EventEmitter<string> = new EventEmitter<string>();
+  @Output() public setBet: EventEmitter<Record<string, string>> =
+    new EventEmitter<Record<string, string>>();
 
   public bet: string;
 
@@ -26,13 +27,14 @@ export class AdvertisementButtonsComponent {
       data: {
         currency: this.advertisement.currency,
         price: this.advertisement.price,
+        actualBet: this.advertisement.userBets,
         bet: this.bet,
       },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       this.bet = result;
-      this.setBet.emit(this.bet);
+      this.setBet.emit({ newBet: this.bet, slug: this.advertisement.slug });
     });
   }
 }

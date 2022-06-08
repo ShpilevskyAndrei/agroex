@@ -18,3 +18,19 @@ export const AdvertisementsListPageActions = {
     props<{ error: HttpErrorResponse }>()
   ),
 };
+
+export const AdvertisementsListBetActions = {
+  getAdvertisementsBetRequest: createAction(
+    '[ADVERTISEMENTS_LIST_BET] bet requested',
+    props<{ newBetOptions: Record<string, string | number> }>()
+  ),
+
+  getAdvertisementsBetSuccess: createAction(
+    '[ADVERTISEMENTS_LIST_BET] bet success'
+  ),
+
+  getAdvertisementsBetError: createAction(
+    '[ADVERTISEMENTS_LIST_BET] bet error',
+    props<{ error: HttpErrorResponse }>()
+  ),
+};
