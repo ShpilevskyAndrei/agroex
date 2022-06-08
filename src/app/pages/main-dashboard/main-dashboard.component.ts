@@ -19,7 +19,14 @@ export class MainDashboardComponent {
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
 
+  @Output() public setBet: EventEmitter<string> = new EventEmitter<string>();
+
   public onLogout(): void {
     this.logout.emit();
+  }
+
+  public onSetBet(bet: string): void {
+    console.log(bet);
+    this.setBet.emit(bet);
   }
 }
