@@ -18,7 +18,10 @@ import {
   selectAdvertisementsData,
   selectAdvertisementsLoadingStatus,
 } from '../../state/advertisements-list-page/advertisements-list-page.selectors';
-import { AdvertisementsListPageActions } from '../../state/advertisements-list-page/advertisements-list-page.actions';
+import {
+  AdvertisementsListBetActions,
+  AdvertisementsListPageActions,
+} from '../../state/advertisements-list-page/advertisements-list-page.actions';
 
 @Component({
   selector: 'app-main-dashboard-container',
@@ -29,6 +32,8 @@ import { AdvertisementsListPageActions } from '../../state/advertisements-list-p
     [advertisementsRequest]="advertisementsRequest$ | async"
     [advertisementsLoadingStatus]="advertisementsLoadingStatus$ | async"
     (logout)="onLogout()"
+    (setBet)="onSetBet($event)"
+    (betTimerDown)="onBetTimerDown($event)"
   ></app-main-dashboard>`,
 })
 export class MainDashboardContainerComponent implements OnInit {
@@ -60,5 +65,19 @@ export class MainDashboardContainerComponent implements OnInit {
 
   public onLogout(): void {
     this.store.dispatch(RegistrationPageActions.getUserLogout());
+  }
+
+  public onSetBet(newBetOptions: Record<string, string | number>): void {
+    this.store.dispatch(
+      AdvertisementsListBetActions.getAdvertisementsBetRequest({
+        newBetOptions,
+      })
+    );
+  }
+
+  public onBetTimerDown(slug: string): void {
+    this.store.dispatch(
+      AdvertisementsListBetActions.getAdvertisementsBetExpired({ slug })
+    );
   }
 }

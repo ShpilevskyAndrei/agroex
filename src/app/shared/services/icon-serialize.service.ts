@@ -21,16 +21,8 @@ export class IconSerializeService {
       sanitizer.bypassSecurityTrustResourceUrl('assets/bet-icon.svg')
     );
     this.matIconRegistry.addSvgIcon(
-      'timer-icon',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/timer-icon.svg')
-    );
-    this.matIconRegistry.addSvgIcon(
       'map-pointer-icon',
       sanitizer.bypassSecurityTrustResourceUrl('assets/map-pointer-icon.svg')
-    );
-    this.matIconRegistry.addSvgIcon(
-      'clock-icon',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/clock-icon.svg')
     );
     this.matIconRegistry.addSvgIcon(
       'quantity-icon',

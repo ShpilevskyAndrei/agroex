@@ -1,4 +1,5 @@
 import { IUser } from '../../shared/interfaces/user.interface';
+import { IAdvertisementBetInterface } from './advertisement-bet.interface';
 
 export interface IAdvertisementInterface {
   id: number;
@@ -17,4 +18,5 @@ export interface IAdvertisementInterface {
   createAt: string;
   updatedAt: string;
   author: IUser;
+  userBets: IAdvertisementBetInterface[];
 }
