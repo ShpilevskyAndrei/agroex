@@ -3,6 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, of, switchMap, withLatestFrom } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Store } from '@ngrx/store';
+import { AgroexToastService, ToastType } from 'ngx-agroex-toast';
 
 import {
   AdvertisementsListBetActions,
@@ -52,16 +53,30 @@ export class AdvertisementsListPageEffects {
             selectUserToken
           )
           .pipe(
-            map(() =>
-              AdvertisementsListBetActions.getAdvertisementsBetSuccess()
-            ),
-            catchError((error: HttpErrorResponse) =>
-              of(
+            map(() => {
+              this.toastService.addToast({
+                toastType: ToastType.Success,
+                title: 'Bet accepted',
+                width: '25vw',
+                buttonText: 'Ok',
+              });
+
+              return AdvertisementsListBetActions.getAdvertisementsBetSuccess();
+            }),
+            catchError((error: HttpErrorResponse) => {
+              this.toastService.addToast({
+                title: 'Bet not accepted',
+                message: error.error.message,
+                toastType: ToastType.Error,
+                width: '25vw',
+              });
+
+              return of(
                 AdvertisementsListBetActions.getAdvertisementsBetError({
                   error: error,
                 })
-              )
-            )
+              );
+            })
           )
       )
     );
@@ -70,6 +85,7 @@ export class AdvertisementsListPageEffects {
   constructor(
     private actions$: Actions,
     private store: Store,
-    private advertisementsListService: AdvertisementsListService
+    private advertisementsListService: AdvertisementsListService,
+    private toastService: AgroexToastService
   ) {}
 }

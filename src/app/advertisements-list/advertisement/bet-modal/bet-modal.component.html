@@ -4,9 +4,9 @@
     <h1 mat-dialog-title class="bet-modal__title">Place a bet</h1>
     <div mat-dialog-content class="bet-modal__content">
       <mat-form-field class="bet-modal__field" [ngSwitch]="data.currency">
-        <span matPrefix *ngSwitchCase="'USD'">$&nbsp;</span>
-        <span matPrefix *ngSwitchCase="'EUR'">€&nbsp;</span>
-        <span matPrefix *ngSwitchDefault>{{data.currency}}&nbsp;</span>
+        <span matPrefix *ngSwitchCase="currenciesEnum.USD">$</span>
+        <span matPrefix *ngSwitchCase="currenciesEnum.EUR">€</span>
+        <span matPrefix *ngSwitchDefault>{{data.currency}}</span>
         <input
           matInput
           type="number"

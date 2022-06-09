@@ -4,7 +4,7 @@
     <ng-container *ngIf="advertisement.userBets.length; else noBetBlock">
       <span class="value">{{advertisement.userBets[0].betValue | currency: advertisement.currency: 'symbol-narrow': '0.2': 'fr'}}</span>
       <div class="advertisement-timer">
-        <mat-icon svgIcon="timer-icon" class="advertisement-timer__icon"></mat-icon>
+        <mat-icon class="advertisement-timer__icon">access_alarm</mat-icon>
         <span>{{timer$ | async | timeFormat}}</span>
       </div>
     </ng-container>
@@ -16,7 +16,7 @@
     <span class="label">Total price</span>
     <span class="value">{{advertisement.price | currency: advertisement.currency: 'symbol-narrow': '0.2': 'fr'}}</span>
     <div class="advertisement-created">
-      <mat-icon svgIcon="clock-icon" class="advertisement-created__icon"></mat-icon>
+      <mat-icon class="advertisement-created__icon">access_time</mat-icon>
       <span>{{advertisement.createAt | availableDateFormat: 'days': 3}}</span>
     </div>
   </div>

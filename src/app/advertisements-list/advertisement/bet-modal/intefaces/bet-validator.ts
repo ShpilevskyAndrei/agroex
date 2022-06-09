@@ -1,7 +1,7 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 export class BetValidators {
-  public static passwordsMatching(
+  public static checkBetValue(
     actualBet: string,
     totalPrice: string
   ): ValidatorFn {
@@ -9,7 +9,7 @@ export class BetValidators {
       const currentBet = control.value;
       return currentBet > actualBet && currentBet < totalPrice
         ? null
-        : { inValidBet: true };
+        : { invalidBet: true };
     };
   }
 }

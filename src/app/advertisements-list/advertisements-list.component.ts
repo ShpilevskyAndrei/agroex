@@ -19,6 +19,7 @@ export class AdvertisementsListComponent {
   public onSetBet(newBetOptions: Record<string, string | number>): void {
     this.setBet.emit(newBetOptions);
   }
+
   public onBetTimerDown(slug: string): void {
     this.betTimerDown.emit(slug);
   }

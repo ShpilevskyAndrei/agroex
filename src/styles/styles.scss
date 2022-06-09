@@ -57,6 +57,9 @@ body {
   .mat-form-field-invalid.mat-form-field-appearance-outline .mat-form-field-wrapper .mat-form-field-subscript-wrapper {
     display: none;
   }
+  .mat-form-field-prefix {
+    margin-right: $offset-small;
+  }
 }
 
 .bet-modal-container {

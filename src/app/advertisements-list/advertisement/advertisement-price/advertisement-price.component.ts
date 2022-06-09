@@ -24,13 +24,11 @@ export class AdvertisementPriceComponent implements OnInit {
 
     this.timer$ = timer(0, 1000).pipe(
       map(() => expireTime - moment().add(179, 'minutes').valueOf()),
-      takeWhile((x) => {
-        if (x >= 0) {
-          return true;
-        } else {
+      takeWhile((time: number) => {
+        if (time < 0) {
           this.betTimerDown.emit(this.advertisement.slug);
-          return false;
         }
+        return true;
       })
     );
   }
