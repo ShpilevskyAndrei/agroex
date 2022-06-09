@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanLoad, Route, Router, UrlTree } from '@angular/router';
+import { CanLoad, Router, UrlTree } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 

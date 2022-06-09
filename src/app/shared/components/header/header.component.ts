@@ -73,21 +73,18 @@ export class HeaderComponent implements OnChanges {
   }
 
   private checkUserRole(user: IUser): UserRole {
-    if (
-      user?.userRoles!.length === 1 &&
-      user?.userRoles![0].role.value === 'user'
-    ) {
+    if (user?.userRoles!.length === 1 && user?.userRoles![0].role_id === 1) {
       return UserRole.User;
     } else if (
       user?.userRoles!.length !== 1 &&
-      user?.userRoles![1].role.value === 'moderator'
-    ) {
-      return UserRole.Moderator;
-    } else if (
-      user?.userRoles!.length !== 1 &&
-      user?.userRoles![1].role.value === 'admin'
+      user?.userRoles![1].role_id === 2
     ) {
       return UserRole.Admin;
+    } else if (
+      user?.userRoles!.length !== 1 &&
+      user?.userRoles![1].role_id === 3
+    ) {
+      return UserRole.Moderator;
     } else {
       return UserRole.Guest;
     }

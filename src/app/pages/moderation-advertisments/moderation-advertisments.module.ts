@@ -12,6 +12,7 @@ import { HeaderModule } from '../../shared/components/header/header.module';
 import { ModerationAdvertismentsContainerComponent } from './moderation-advertisments-container.component';
 import { ModerationAdvertismentsPageRoutingModule } from './moderation-advertisments-routing.module';
 import { ModerationAdvertismentsComponent } from './moderation-advertisments.component';
+import { ModerationAdvertisementsListModule } from 'src/app/moderation-advertisments-list/moderation-advertisements-list.module';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ModerationAdvertismentsComponent } from './moderation-advertisments.com
     NgxDropzoneModule,
     MatSelectModule,
     MatTooltipModule,
+    ModerationAdvertisementsListModule,
   ],
   exports: [ModerationAdvertismentsContainerComponent],
 })

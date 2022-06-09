@@ -11,6 +11,6 @@ import { AvailableDateFormatPipe } from '../../../shared/pipes/available-date-fo
 @NgModule({
   declarations: [AdvertisementPriceComponent, AvailableDateFormatPipe],
   imports: [CommonModule, MatIconModule],
-  exports: [AdvertisementPriceComponent],
+  exports: [AdvertisementPriceComponent, AvailableDateFormatPipe],
 })
 export class AdvertisementPriceModule {}

@@ -1,0 +1,8 @@
+<div class="advertisement-list">
+  <div class="container">
+    <div class="advertisement-list__wrap">
+      <app-moderation-advertisement *ngFor="let advertisement of advertisementsRequest?.advertisements"
+                         [advertisement]="advertisement" (moderationDecision)="onModerationDecision($event)"></app-moderation-advertisement>
+    </div>
+  </div>
+</div>

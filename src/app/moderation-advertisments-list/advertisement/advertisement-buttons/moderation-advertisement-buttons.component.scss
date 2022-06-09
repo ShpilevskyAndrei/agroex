@@ -1,5 +1,5 @@
 @import "../../../styles/general-styles.scss";
-@import "../../styles/advertisement-const.scss";
+@import "../../styles/moderation-advertisement-const.scss";
 
 :host {
   .advertisement-btns {
@@ -14,11 +14,6 @@
       span {
         line-height: 2.667rem;
       }
-    }
-
-    &__icon {
-      @include advertisement-icon-size;
-      margin: 0 0.833rem 0 0;
     }
   }
 }

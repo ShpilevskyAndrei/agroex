@@ -1,1 +1,9 @@
-<p>moderation-advertisments works!</p>
+<app-header [user]="user" (logout)="onLogout()"></app-header>
+
+<!-- IGOR -->
+<app-moderation-advertisements-list
+  [user]="user"
+  [advertisementsRequest]="advertisementsRequest"
+  [advertisementsLoadingStatus]="advertisementsLoadingStatus"
+  (moderationDecision)="onModerationDecision($event)"
+></app-moderation-advertisements-list>
