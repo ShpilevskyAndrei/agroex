@@ -3,6 +3,7 @@ import { Component, Input } from '@angular/core';
 import { IAdvertisementInterface } from '../interfaces/advertisement.interface';
 import { Router } from '@angular/router';
 import { IAdvertisementRequestInterface } from '../interfaces/advertisement-request.interface';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-advertisement',
@@ -13,29 +14,20 @@ export class AdvertisementComponent {
   @Input() public advertisement: IAdvertisementInterface;
   @Input() public advertisementsRequest: IAdvertisementRequestInterface | null;
 
-  public thisAd: Object;
-
-  constructor(private router: Router) {}
+  constructor(private router: Router, private store: Store) {}
 
   public stopPropagation(event: any): void {
     event.stopPropagation();
   }
 
-  public openAd(): Object {
-    const thisAdSlug: string = this.advertisement.slug;
-    console.log(thisAdSlug);
-    this.thisAd = this.advertisement;
-    console.log(this.thisAd);
-    this.router.navigate(['advertisement-card']);
-    return this.thisAd;
-
-    // const thisAd: Object = this.advertisementsRequest?.advertisements.find(
-    //   (x) => x.slug === thisAdSlug
-    // );
+  public openAd(): void {
+    // const thisAdSlug: string = this.advertisement.slug;
+    // console.log(thisAdSlug);
+    // const advertisement: IAdvertisementInterface = this.advertisement;
     // console.log(thisAd);
-  }
-
-  public test(): void {
-    console.log('buttons works');
+    // this.store.dispatch(
+    //   AdvertisementActions.getAdvertisementRequest({ advertisement })
+    // ); // output to card // dp в контейнер!!!
+    this.router.navigate(['/advertisement', this.advertisement.slug]);
   }
 }

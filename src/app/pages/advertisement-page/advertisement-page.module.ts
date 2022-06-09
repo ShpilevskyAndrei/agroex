@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { HeaderModule } from '../../shared/components/header/header.module';
-import { AdvertisementCardComponent } from './advertisement-card.component';
-import { AdvertisementCardContainerComponent } from './advertisement-card-container.component';
-import { AdvertisementCardRoutingModule } from './advertisement-card-routing.module';
+import { AdvertisementPageComponent } from './advertisement-page.component';
+import { AdvertisementPageContainerComponent } from './advertisement-page-container.component';
+import { AdvertisementPageRoutingModule } from './advertisement-page-routing.module';
 import { BreadcrumbsModule } from '../../shared/components/breadcrumbs/breadcrumbs.module';
 import { AdvertisementButtonsModule } from '../../advertisements-list/advertisement/advertisement-buttons/advertisement-buttons.module';
 import { AdvertisementPriceModule } from '../../advertisements-list/advertisement/advertisement-price/advertisement-price.module';
@@ -14,8 +14,8 @@ import { AdvertisementModule } from '../../advertisements-list/advertisement/adv
 
 @NgModule({
   declarations: [
-    AdvertisementCardContainerComponent,
-    AdvertisementCardComponent,
+    AdvertisementPageContainerComponent,
+    AdvertisementPageComponent,
   ],
   imports: [
     CommonModule,
@@ -25,9 +25,9 @@ import { AdvertisementModule } from '../../advertisements-list/advertisement/adv
     AdvertisementModule,
     AdvertisementPriceModule,
     AdvertisementTitleModule,
-    AdvertisementCardRoutingModule,
+    AdvertisementPageRoutingModule,
     MatIconModule,
   ],
-  exports: [AdvertisementCardContainerComponent],
+  exports: [AdvertisementPageContainerComponent],
 })
-export class AdvertisementCardModule {}
+export class AdvertisementPageModule {}

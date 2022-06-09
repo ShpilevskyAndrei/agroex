@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AdvertisementCardContainerComponent } from './advertisement-card-container.component';
+import { AdvertisementPageContainerComponent } from './advertisement-page-container.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AdvertisementCardContainerComponent,
+    component: AdvertisementPageContainerComponent,
   },
 ];
 
@@ -15,4 +15,4 @@ const routes: Routes = [
   imports: [CommonModule, RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AdvertisementCardRoutingModule {}
+export class AdvertisementPageRoutingModule {}

@@ -38,10 +38,10 @@ const routes: Routes = [
       ).then((m) => m.CreateAdvertisementPageModule),
   },
   {
-    path: 'advertisement-card',
+    path: 'advertisement/:slug',
     loadChildren: () =>
-      import('./pages/advertisement-card/advertisement-card.module').then(
-        (m) => m.AdvertisementCardModule
+      import('./pages/advertisement-page/advertisement-page.module').then(
+        (m) => m.AdvertisementPageModule
       ),
   },
   {

@@ -1,32 +1,25 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 
-import { IUser } from '../../shared/interfaces/user.interface';
-import { selectUserData } from '../../state/registration-page/registration-page.selectors';
 import { IAdvertisementInterface } from '../../advertisements-list/interfaces/advertisement.interface';
+import { IAdvertisementRequestInterface } from '../../advertisements-list/interfaces/advertisement-request.interface';
+import { IUser } from '../../shared/interfaces/user.interface';
 
 @Component({
-  selector: 'app-advertisement-card',
-  templateUrl: './advertisement-card.component.html',
-  styleUrls: ['./advertisement-card.component.scss'],
+  selector: 'app-advertisement-page',
+  templateUrl: './advertisement-page.component.html',
+  styleUrls: ['./advertisement-page.component.scss'],
 })
-export class AdvertisementCardComponent {
+export class AdvertisementPageComponent {
   @Input() public user: IUser | null;
+  @Input() public advertisement: IAdvertisementInterface | null;
+  @Input() public slug: string | null;
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
-  @Input() public advertisement: IAdvertisementInterface;
-
-  public user$: Observable<IUser | null>;
 
   public isShownMap = {
     isShown: true,
     isShownText: 'Show map',
     isShownIcon: 'keyboard_arrow_down',
   };
-
-  constructor(private store: Store) {
-    this.user$ = this.store.select(selectUserData);
-  }
 
   public onLogout(): void {
     this.logout.emit();
