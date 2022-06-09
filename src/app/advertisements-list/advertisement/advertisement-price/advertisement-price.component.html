@@ -5,7 +5,7 @@
       <span class="value">{{advertisement.userBets[0].betValue | currency: advertisement.currency: 'symbol-narrow': '0.2': 'fr'}}</span>
       <div class="advertisement-timer">
         <mat-icon svgIcon="timer-icon" class="advertisement-timer__icon"></mat-icon>
-        <span>01:25:54</span>
+        <span>{{timer$ | async | timeFormat}}</span>
       </div>
     </ng-container>
     <ng-template #noBetBlock>

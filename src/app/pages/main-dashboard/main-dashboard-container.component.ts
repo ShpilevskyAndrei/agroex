@@ -33,6 +33,7 @@ import {
     [advertisementsLoadingStatus]="advertisementsLoadingStatus$ | async"
     (logout)="onLogout()"
     (setBet)="onSetBet($event)"
+    (betTimerDown)="onBetTimerDown($event)"
   ></app-main-dashboard>`,
 })
 export class MainDashboardContainerComponent implements OnInit {
@@ -67,11 +68,16 @@ export class MainDashboardContainerComponent implements OnInit {
   }
 
   public onSetBet(newBetOptions: Record<string, string | number>): void {
-    console.log(newBetOptions);
     this.store.dispatch(
       AdvertisementsListBetActions.getAdvertisementsBetRequest({
         newBetOptions,
       })
+    );
+  }
+
+  public onBetTimerDown(slug: string): void {
+    this.store.dispatch(
+      AdvertisementsListBetActions.getAdvertisementsBetExpired({ slug })
     );
   }
 }
