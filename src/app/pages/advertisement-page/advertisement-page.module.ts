@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { HeaderModule } from '../../shared/components/header/header.module';
 import { AdvertisementPageComponent } from './advertisement-page.component';
@@ -27,6 +28,7 @@ import { AdvertisementModule } from '../../advertisements-list/advertisement/adv
     AdvertisementTitleModule,
     AdvertisementPageRoutingModule,
     MatIconModule,
+    NgxSpinnerModule,
   ],
   exports: [AdvertisementPageContainerComponent],
 })

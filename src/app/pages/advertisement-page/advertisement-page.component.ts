@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { IAdRequestInterface } from '../../advertisements-list/interfaces/ad-request.interface';
+import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IUser } from '../../shared/interfaces/user.interface';
 
 @Component({
@@ -12,6 +13,7 @@ export class AdvertisementPageComponent {
   @Input() public user: IUser | null;
   @Input() public advertisement: IAdRequestInterface | null;
   @Input() public slug: string | null;
+  @Input() public advertisementLoadingStatus: LoadingStatus | null;
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
 
   public isShownMap = {

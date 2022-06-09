@@ -1,13 +1,18 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import { IAdRequestInterface } from '../../advertisements-list/interfaces/ad-request.interface';
+import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { AdvertisementPageActions } from '../../state/advertisement-page/advertisement-page.actions';
 import { IUser } from '../../shared/interfaces/user.interface';
-import { selectAdvertisementData } from '../../state/advertisement-page/advertisement-page.selectors';
+import {
+  selectAdvertisementData,
+  selectAdvertisementLoadingStatus,
+} from '../../state/advertisement-page/advertisement-page.selectors';
 import { selectUserData } from '../../state/registration-page/registration-page.selectors';
 import { RegistrationPageActions } from '../../state/registration-page/registration-page.actions';
 
@@ -17,6 +22,7 @@ import { RegistrationPageActions } from '../../state/registration-page/registrat
     [user]="user$ | async"
     [slug]="slug$ | async"
     [advertisement]="advertisement$ | async"
+    [advertisementLoadingStatus]="advertisementLoadingStatus$ | async"
     (logout)="onLogout()"
   ></app-advertisement-page>`,
 })
@@ -25,8 +31,13 @@ export class AdvertisementPageContainerComponent implements OnInit {
   public advertisement$: Observable<IAdRequestInterface | null>;
   public user$: Observable<IUser | null>;
   public slug: string | null;
+  public advertisementLoadingStatus$: Observable<LoadingStatus | null>;
 
-  constructor(private store: Store, private route: ActivatedRoute) {
+  constructor(
+    private store: Store,
+    private route: ActivatedRoute,
+    private spinner: NgxSpinnerService
+  ) {
     this.user$ = this.store.select(selectUserData);
     this.slug$ = route.params.pipe(map((p) => p.slug));
     // this.slug = route.paramMap.subscribe((params) => {
@@ -34,6 +45,9 @@ export class AdvertisementPageContainerComponent implements OnInit {
     // });
     this.slug = this.route.snapshot.paramMap.get('slug');
     this.advertisement$ = this.store.select(selectAdvertisementData);
+    this.advertisementLoadingStatus$ = this.store.select(
+      selectAdvertisementLoadingStatus
+    );
   }
 
   public onLogout(): void {
@@ -46,5 +60,6 @@ export class AdvertisementPageContainerComponent implements OnInit {
         slug: this.slug,
       })
     );
+    this.spinner.show();
   }
 }
