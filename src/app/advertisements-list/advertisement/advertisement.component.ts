@@ -1,6 +1,11 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  EventEmitter,
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  Output,
+} from '@angular/core';
 import { Router } from '@angular/router';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { IAdvertisementInterface } from '../interfaces/advertisement.interface';
 import { IAdvertisementRequestInterface } from '../interfaces/advertisement-request.interface';
@@ -13,10 +18,13 @@ import { IAdvertisementRequestInterface } from '../interfaces/advertisement-requ
 })
 export class AdvertisementComponent {
   @Input() public advertisement: IAdvertisementInterface;
+  @Input() public advertisementsRequest: IAdvertisementRequestInterface | null;
   @Output() public setBet: EventEmitter<Record<string, string | number>> =
     new EventEmitter<Record<string, string | number>>();
   @Output() public betTimerDown: EventEmitter<string> =
     new EventEmitter<string>();
+
+  constructor(private router: Router) {}
 
   public onSetBet(newBetOptions: Record<string, string | number>): void {
     this.setBet.emit(newBetOptions);
@@ -25,9 +33,6 @@ export class AdvertisementComponent {
   public onBetTimerDown(slug: string): void {
     this.betTimerDown.emit(slug);
   }
-  @Input() public advertisementsRequest: IAdvertisementRequestInterface | null;
-
-  constructor(private router: Router) {}
 
   public stopPropagation(event: MouseEvent): void {
     event.stopPropagation();
