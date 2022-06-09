@@ -22,6 +22,8 @@
 
   .ad-card-image {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .ad-card-info {
@@ -32,14 +34,20 @@
     justify-content: space-between;
   }
 
-  .discription-container,
   .buttons-container,
-  .title-container,
   .price-container {
-    margin: $offset-normal;
+    margin: $offset-normal 0;
   }
   .ad-card-map {
     width: 100%;
+  }
+
+  .discription-container {
+    margin-top: $offset-normal;
+  }
+
+  .title-container {
+    margin-bottom: $offset-normal;
   }
 
   .ad-card-discription_string {
@@ -58,6 +66,7 @@
   .ad-params {
     color: $color-copy;
     font-weight: 500;
+    align-self: center;
   }
 
   .material-icons {

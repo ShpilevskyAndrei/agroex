@@ -1,8 +1,8 @@
-import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+import { filter, Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import { IAdRequestInterface } from '../../advertisements-list/interfaces/ad-request.interface';
@@ -25,11 +25,10 @@ import { RegistrationPageActions } from '../../state/registration-page/registrat
     (logout)="onLogout()"
   ></app-advertisement-page>`,
 })
-export class AdvertisementPageContainerComponent implements OnInit {
-  public slug$: Observable<string | null>;
+export class AdvertisementPageContainerComponent implements OnInit, OnDestroy {
+  public slug$: Subscription;
   public advertisement$: Observable<IAdRequestInterface | null>;
   public user$: Observable<IUser | null>;
-  public slug: string | null;
   public advertisementLoadingStatus$: Observable<LoadingStatus | null>;
 
   constructor(
@@ -38,8 +37,6 @@ export class AdvertisementPageContainerComponent implements OnInit {
     private spinner: NgxSpinnerService
   ) {
     this.user$ = this.store.select(selectUserData);
-    this.slug$ = route.params.pipe(map((p) => p.slug));
-    this.slug = this.route.snapshot.paramMap.get('slug');
     this.advertisement$ = this.store.select(selectAdvertisementData);
     this.advertisementLoadingStatus$ = this.store.select(
       selectAdvertisementLoadingStatus
@@ -51,11 +48,21 @@ export class AdvertisementPageContainerComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.store.dispatch(
-      AdvertisementPageActions.getAdvertisementRequest({
-        slug: this.slug,
-      })
-    );
-    this.spinner.show();
+    this.slug$ = this.route.params
+      .pipe(
+        filter((params: Params) => !!params?.slug),
+        map((params: Params) => params?.slug),
+        tap((slug: string) => {
+          this.store.dispatch(
+            AdvertisementPageActions.getAdvertisementRequest({ slug })
+          );
+          this.spinner.show();
+        })
+      )
+      .subscribe();
+  }
+
+  public ngOnDestroy(): void {
+    this.slug$.unsubscribe();
   }
 }

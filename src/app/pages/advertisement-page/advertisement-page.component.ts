@@ -3,6 +3,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IAdRequestInterface } from '../../advertisements-list/interfaces/ad-request.interface';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IUser } from '../../shared/interfaces/user.interface';
+import { IisShownMapConfig } from './interfaces/is-shown-map-config.interface';
+import { IisShownMap } from './interfaces/is-shown-map.interface';
 
 @Component({
   selector: 'app-advertisement-page',
@@ -16,23 +18,33 @@ export class AdvertisementPageComponent {
   @Input() public advertisementLoadingStatus: LoadingStatus | null;
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
 
-  public isShownMap = {
+  public isShownMapConfig: IisShownMapConfig = {
     isShown: true,
-    isShownText: 'Show map',
-    isShownIcon: 'keyboard_arrow_down',
+    showMapText: 'Show map',
+    hideMapText: 'Hide map',
+    iconUp: 'keyboard_arrow_up',
+    iconDown: 'keyboard_arrow_down',
   };
 
-  public onLogout(): void {
-    this.logout.emit();
-  }
+  public isShownMap: IisShownMap = {
+    isShown: this.isShownMapConfig.isShown,
+    isShownText: this.isShownMapConfig.showMapText,
+    isShownIcon: this.isShownMapConfig.iconDown,
+  };
 
   public toggleShow(): void {
     this.isShownMap.isShown = !this.isShownMap.isShown;
     this.isShownMap.isShownText =
-      this.isShownMap.isShownText === 'Show map' ? 'Hide map' : 'Show map';
+      this.isShownMap.isShownText === this.isShownMapConfig.showMapText
+        ? this.isShownMapConfig.hideMapText
+        : this.isShownMapConfig.showMapText;
     this.isShownMap.isShownIcon =
-      this.isShownMap.isShownIcon === 'keyboard_arrow_down'
-        ? 'keyboard_arrow_up'
-        : 'keyboard_arrow_down';
+      this.isShownMap.isShownIcon === this.isShownMapConfig.iconDown
+        ? this.isShownMapConfig.iconUp
+        : this.isShownMapConfig.iconDown;
+  }
+
+  public onLogout(): void {
+    this.logout.emit();
   }
 }
