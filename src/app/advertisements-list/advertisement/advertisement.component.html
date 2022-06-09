@@ -15,7 +15,8 @@
   </div>
   <div class="advertisement-wrap__actions">
     <app-advertisement-price class="advertisement-wrap__price"
-                             [advertisement]="advertisement"></app-advertisement-price>
+                             [advertisement]="advertisement"
+                             (betTimerDown)="onBetTimerDown($event)"></app-advertisement-price>
     <app-advertisement-buttons class="advertisement-wrap__btns"
                                [advertisement]="advertisement"
                                (setBet)="onSetBet($event)"

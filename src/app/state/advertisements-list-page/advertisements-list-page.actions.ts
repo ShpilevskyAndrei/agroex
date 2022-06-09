@@ -33,4 +33,9 @@ export const AdvertisementsListBetActions = {
     '[ADVERTISEMENTS_LIST_BET] bet error',
     props<{ error: HttpErrorResponse }>()
   ),
+
+  getAdvertisementsBetExpired: createAction(
+    '[ADVERTISEMENTS_LIST_BET] bet-expired success',
+    props<{ slug: string }>()
+  ),
 };

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, of, switchMap, withLatestFrom } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Store } from '@ngrx/store';
 
 import {
   AdvertisementsListBetActions,
@@ -10,7 +11,6 @@ import {
 import { IAdvertisementRequestInterface } from '../../advertisements-list/interfaces/advertisement-request.interface';
 import { AdvertisementsListService } from '../../advertisements-list/advertisements-list.service';
 import { selectUserToken } from '../registration-page/registration-page.selectors';
-import { Store } from '@ngrx/store';
 
 @Injectable()
 export class AdvertisementsListPageEffects {

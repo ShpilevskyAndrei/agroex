@@ -7,6 +7,7 @@ import {
   AdvertisementsListBetActions,
   AdvertisementsListPageActions,
 } from './advertisements-list-page.actions';
+import { IAdvertisementInterface } from '../../advertisements-list/interfaces/advertisement.interface';
 
 export const ADVERTISEMENTS_LIST_PAGE = 'advertisementsListPage';
 
@@ -80,5 +81,30 @@ export const ADVERTISEMENTS_LIST_PAGE_REDUCER = createReducer(
       },
       advertisementsBetLoadingStatus: { loading: false, loaded: false, error },
     })
+  ),
+  on(
+    AdvertisementsListBetActions.getAdvertisementsBetExpired,
+    (state, { slug }): AdvertisementsListPageState => {
+      const test = state.advertisements.advertisements.map(
+        (adv: IAdvertisementInterface) => {
+          if (adv.slug === slug) {
+            return {
+              ...adv,
+              userBets: [],
+            };
+          }
+          return adv;
+        }
+      );
+      return {
+        ...state,
+        advertisements: {
+          ...state.advertisements,
+          advertisements: test,
+        },
+        advertisementsLoadingStatus: DEFAULT_LOADING_STATUS,
+        advertisementsBetLoadingStatus: DEFAULT_LOADING_STATUS,
+      };
+    }
   )
 );
