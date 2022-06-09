@@ -30,6 +30,7 @@
     <app-advertisement-buttons
       class="advertisement-wrap__btns"
       [advertisement]="advertisement"
+      (click)="stopPropagation($event)"
       (setBet)="onSetBet($event)"
     >
     </app-advertisement-buttons>

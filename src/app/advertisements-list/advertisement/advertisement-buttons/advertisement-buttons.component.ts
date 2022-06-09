@@ -12,6 +12,7 @@ import { IAdvertisementInterface } from '../../interfaces/advertisement.interfac
 })
 export class AdvertisementButtonsComponent {
   @Input() public advertisement: IAdvertisementInterface;
+  @Input() public isDisabled = false;
   @Output() public setBet: EventEmitter<Record<string, string>> =
     new EventEmitter<Record<string, string>>();
 

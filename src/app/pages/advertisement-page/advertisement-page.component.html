@@ -21,14 +21,18 @@
             [advertisement]="advertisement.advertisement"
           ></app-advertisement-title>
 
-          <app-advertisement-price
-            class="price-container"
-            [advertisement]="advertisement.advertisement"
-          ></app-advertisement-price>
+          <!--          <app-advertisement-price-->
+          <!--            class="advertisement-wrap__price price-container"-->
+          <!--            [advertisement]="advertisement.advertisement"-->
+          <!--            (betTimerDown)="onBetTimerDown($event)"-->
+          <!--          ></app-advertisement-price>-->
 
           <app-advertisement-buttons
-            class="buttons-container"
-          ></app-advertisement-buttons>
+            class="advertisement-wrap__btns buttons-container"
+            [advertisement]="advertisement.advertisement"
+            [isDisabled]="true"
+          >
+          </app-advertisement-buttons>
 
           <div class="ad-card-discription discription-container">
             <div class="ad-card-discription_string">
