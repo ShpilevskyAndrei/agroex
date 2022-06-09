@@ -4,8 +4,8 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
+import { IAdRequestInterface } from '../../advertisements-list/interfaces/ad-request.interface';
 import { AdvertisementPageActions } from '../../state/advertisement-page/advertisement-page.actions';
-import { IAdvertisementInterface } from '../../advertisements-list/interfaces/advertisement.interface';
 import { IUser } from '../../shared/interfaces/user.interface';
 import { selectAdvertisementData } from '../../state/advertisement-page/advertisement-page.selectors';
 import { selectUserData } from '../../state/registration-page/registration-page.selectors';
@@ -13,7 +13,7 @@ import { RegistrationPageActions } from '../../state/registration-page/registrat
 
 @Component({
   selector: 'app-advertisement-page-container',
-  template: `<app-advertisement-page
+  template: ` <app-advertisement-page
     [user]="user$ | async"
     [slug]="slug$ | async"
     [advertisement]="advertisement$ | async"
@@ -22,7 +22,7 @@ import { RegistrationPageActions } from '../../state/registration-page/registrat
 })
 export class AdvertisementPageContainerComponent implements OnInit {
   public slug$: Observable<string | null>;
-  public advertisement$: Observable<IAdvertisementInterface | null>;
+  public advertisement$: Observable<IAdRequestInterface | null>;
   public user$: Observable<IUser | null>;
   public slug: string | null;
 

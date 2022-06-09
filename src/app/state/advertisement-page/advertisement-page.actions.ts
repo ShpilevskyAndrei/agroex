@@ -1,21 +1,21 @@
 import { createAction, props } from '@ngrx/store';
 import { HttpErrorResponse } from '@angular/common/http';
 
-import { IAdvertisementInterface } from '../../advertisements-list/interfaces/advertisement.interface';
+import { IAdRequestInterface } from '../../advertisements-list/interfaces/ad-request.interface';
 
 export const AdvertisementPageActions = {
   getAdvertisementRequest: createAction(
-    '[ADVERTISEMENT] advertisement requested',
+    '[ADVERTISEMENT_PAGE] advertisement requested',
     props<{ slug: string | null }>()
   ),
 
   getAdvertisementSuccess: createAction(
-    '[ADVERTISEMENT] advertisement success',
-    props<{ advertisement: IAdvertisementInterface | null }>()
+    '[ADVERTISEMENT_PAGE] advertisement success',
+    props<{ advertisement: IAdRequestInterface | null }>()
   ),
 
   getAdvertisementError: createAction(
-    '[ADVERTISEMENT] advertisement error',
+    '[ADVERTISEMENT_PAGE] advertisement error',
     props<{ error: HttpErrorResponse }>()
   ),
 };

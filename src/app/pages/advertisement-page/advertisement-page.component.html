@@ -5,10 +5,10 @@
   <div class="ad-card-container">
     <div class="ad-card-container-without-map">
       <div class="ad-card-image-container">
-        <img class="ad-card-image" src="../../../assets/apples.jpg" alt="" />
+        <img class="ad-card-image" src="../../../assets/apples.jpg" alt=""/>
         <!--        <img *ngIf="advertisement.img" src="{{ advertisement.img }}" alt="apple" />-->
       </div>
-<p>title: {{advertisement?.title | json}}</p>
+      <p>id: {{ advertisement?.advertisement?.id}}</p>
       <div class="ad-card-info">
         <!--        <app-advertisement-title-->
         <!--          class="title-container"-->
@@ -16,11 +16,11 @@
         <!--        >-->
         <!--        </app-advertisement-title>-->
 
-<!--        <app-advertisement-price-->
-<!--          class="price-container"-->
-<!--          [advertisement]="advertisement"-->
-<!--        >-->
-<!--        </app-advertisement-price>-->
+        <!--        <app-advertisement-price-->
+        <!--          class="price-container"-->
+        <!--          [advertisement]="advertisement"-->
+        <!--        >-->
+        <!--        </app-advertisement-price>-->
 
         <app-advertisement-buttons
           class="buttons-container"
@@ -31,7 +31,7 @@
             <p class="ad-params">Variety</p>
             <p class="ad-params-options">-</p>
           </div>
-          <hr />
+          <hr/>
           <div class="ad-card-discription_string">
             <p class="ad-params">Quantity</p>
             <p class="ad-params-options">
@@ -39,17 +39,17 @@
               <!--              {{ advertisement.quantity }}-->
             </p>
           </div>
-          <hr />
+          <hr/>
           <div class="ad-card-discription_string">
             <p class="ad-params">Size</p>
             <p class="ad-params-options">-</p>
           </div>
-          <hr />
+          <hr/>
           <div class="ad-card-discription_string">
             <p class="ad-params">Packaging</p>
             <p class="ad-params-options">-</p>
           </div>
-          <hr />
+          <hr/>
           <div class="ad-card-discription_string">
             <p class="ad-params">Location</p>
             <div class="location-container">
@@ -60,7 +60,7 @@
               </p>
             </div>
           </div>
-          <hr />
+          <hr/>
         </div>
       </div>
     </div>
@@ -69,7 +69,7 @@
       <p class="show-map-text">{{ isShownMap.isShownText }}</p>
     </div>
     <div [hidden]="isShownMap.isShown" class="map-container map-slide-in">
-      <img class="map-img" src="../../../assets/apples.jpg" alt="map" />
+      <img class="map-img" src="../../../assets/apples.jpg" alt="map"/>
     </div>
   </div>
 </div>

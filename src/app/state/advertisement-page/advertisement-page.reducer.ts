@@ -1,15 +1,16 @@
 import { createReducer, on } from '@ngrx/store';
 
+import { IAdRequestInterface } from '../../advertisements-list/interfaces/ad-request.interface';
 import { AdvertisementPageActions } from './advertisement-page.actions';
 import { DEFAULT_LOADING_STATUS } from '../../shared/constants/lodaing-default-status';
-import { IAdvertisementInterface } from '../../advertisements-list/interfaces/advertisement.interface';
+
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 
 export const ADVERTISEMENT_PAGE = 'advertisementPage';
 
 export interface AdvertisementPageState {
   advertisementLoadingStatus: LoadingStatus;
-  advertisement: IAdvertisementInterface | null;
+  advertisement: IAdRequestInterface | null;
 }
 
 const initialState: AdvertisementPageState = {

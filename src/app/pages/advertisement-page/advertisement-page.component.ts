@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { IAdvertisementInterface } from '../../advertisements-list/interfaces/advertisement.interface';
-import { IAdvertisementRequestInterface } from '../../advertisements-list/interfaces/advertisement-request.interface';
+import { IAdRequestInterface } from '../../advertisements-list/interfaces/ad-request.interface';
 import { IUser } from '../../shared/interfaces/user.interface';
 
 @Component({
@@ -11,7 +10,7 @@ import { IUser } from '../../shared/interfaces/user.interface';
 })
 export class AdvertisementPageComponent {
   @Input() public user: IUser | null;
-  @Input() public advertisement: IAdvertisementInterface | null;
+  @Input() public advertisement: IAdRequestInterface | null;
   @Input() public slug: string | null;
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
 
