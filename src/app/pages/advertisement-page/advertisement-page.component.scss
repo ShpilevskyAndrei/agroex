@@ -5,18 +5,17 @@
     width: 100%;
     background: $color-white;
     box-shadow: inset 0px -1px 0px $color-button-disable;
-    padding: 16px 40px;
+    padding: $offset-medium $offset-xxlarge;
   }
 
   .ad-card-container-without-map {
     display: flex;
-    flex-flow: row nowrap;
     width: 100%;
   }
 
   .ad-card-image-container {
     width: 50%;
-    margin-right: 12px;
+    margin-right: $offset-normal;
     display: flex;
     align-items: center;
   }
@@ -26,7 +25,7 @@
   }
 
   .ad-card-info {
-    margin-left: 12px;
+    margin-left: $offset-normal;
     width: 50%;
     display: flex;
     flex-direction: column;
@@ -37,7 +36,7 @@
   .buttons-container,
   .title-container,
   .price-container {
-    margin: 10px;
+    margin: $offset-normal;
   }
   .ad-card-map {
     width: 100%;
@@ -52,22 +51,22 @@
   }
 
   .ad-params-options {
-    color: #131314;
+    color: $primary-color;
     font-weight: bold;
   }
 
   .ad-params {
-    color: #798787;
+    color: $color-copy;
     font-weight: 500;
   }
 
   .material-icons {
-    font-size: 15px;
+    font-size: $font-size-small;
     color: $active-color;
   }
 
   .hide-map-container {
-    margin: 30px 0;
+    margin: $offset-xlarge 0;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -123,23 +122,6 @@
     }
     100% {
       opacity: 1;
-    }
-  }
-
-  .map-slide-out {
-    animation: slideOut 3s ease-out;
-  }
-
-  @keyframes slideOut {
-    0% {
-      opacity: 1;
-      margin-top: 0;
-    }
-    50% {
-      margin-top: -1%;
-    }
-    100% {
-      opacity: 0;
     }
   }
 

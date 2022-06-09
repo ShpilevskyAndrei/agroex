@@ -2,6 +2,7 @@
 <app-breadcrumbs
   [advertisement]="advertisement!.advertisement"
 ></app-breadcrumbs>
+
 <ng-container *ngIf="advertisementLoadingStatus?.loaded; else notLoaded">
   <div class="container">
     <div class="ad-card-container">
@@ -10,15 +11,17 @@
           <img
             class="ad-card-image"
             src="{{ advertisement?.advertisement?.img }}"
-            alt="apple"
+            alt="{{ advertisement?.advertisement?.title }} image"
           />
         </div>
         <div class="ad-card-info">
           <app-advertisement-title
+            class="title-container"
             [advertisement]="advertisement!.advertisement"
           ></app-advertisement-title>
 
           <app-advertisement-price
+            class="price-container"
             [advertisement]="advertisement!.advertisement"
           ></app-advertisement-price>
 
@@ -31,7 +34,7 @@
               <p class="ad-params">Variety</p>
               <p class="ad-params-options">-</p>
             </div>
-            <hr/>
+            <hr />
             <div class="ad-card-discription_string">
               <p class="ad-params">Quantity</p>
               <p class="ad-params-options">
@@ -39,17 +42,17 @@
                 {{ advertisement?.advertisement?.unit }}
               </p>
             </div>
-            <hr/>
+            <hr />
             <div class="ad-card-discription_string">
               <p class="ad-params">Size</p>
               <p class="ad-params-options">-</p>
             </div>
-            <hr/>
+            <hr />
             <div class="ad-card-discription_string">
               <p class="ad-params">Packaging</p>
               <p class="ad-params-options">-</p>
             </div>
-            <hr/>
+            <hr />
             <div class="ad-card-discription_string">
               <p class="ad-params">Location</p>
               <div class="location-container">
@@ -60,7 +63,7 @@
                 </p>
               </div>
             </div>
-            <hr/>
+            <hr />
           </div>
         </div>
       </div>
@@ -69,7 +72,7 @@
         <p class="show-map-text">{{ isShownMap.isShownText }}</p>
       </div>
       <div [hidden]="isShownMap.isShown" class="map-container map-slide-in">
-        <img class="map-img" src="../../../assets/apples.jpg" alt="map"/>
+        <img class="map-img" src="../../../assets/mapUzTest.jpg" alt="map" />
       </div>
     </div>
   </div>

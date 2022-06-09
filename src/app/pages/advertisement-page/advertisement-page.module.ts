@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { HeaderModule } from '../../shared/components/header/header.module';
@@ -10,7 +11,6 @@ import { BreadcrumbsModule } from '../../shared/components/breadcrumbs/breadcrum
 import { AdvertisementButtonsModule } from '../../advertisements-list/advertisement/advertisement-buttons/advertisement-buttons.module';
 import { AdvertisementPriceModule } from '../../advertisements-list/advertisement/advertisement-price/advertisement-price.module';
 import { AdvertisementTitleModule } from '../../advertisements-list/advertisement/advertisement-title/advertisement-title.module';
-import { MatIconModule } from '@angular/material/icon';
 import { AdvertisementModule } from '../../advertisements-list/advertisement/advertisement.module';
 
 @NgModule({
