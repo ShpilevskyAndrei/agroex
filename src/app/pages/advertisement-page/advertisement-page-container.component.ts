@@ -20,7 +20,6 @@ import { RegistrationPageActions } from '../../state/registration-page/registrat
   selector: 'app-advertisement-page-container',
   template: ` <app-advertisement-page
     [user]="user$ | async"
-    [slug]="slug$ | async"
     [advertisement]="advertisement$ | async"
     [advertisementLoadingStatus]="advertisementLoadingStatus$ | async"
     (logout)="onLogout()"
@@ -40,9 +39,6 @@ export class AdvertisementPageContainerComponent implements OnInit {
   ) {
     this.user$ = this.store.select(selectUserData);
     this.slug$ = route.params.pipe(map((p) => p.slug));
-    // this.slug = route.paramMap.subscribe((params) => {
-    //   this.slug$ = params.get('slug');
-    // });
     this.slug = this.route.snapshot.paramMap.get('slug');
     this.advertisement$ = this.store.select(selectAdvertisementData);
     this.advertisementLoadingStatus$ = this.store.select(

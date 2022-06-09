@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+
 import { IAdvertisementInterface } from '../../../advertisements-list/interfaces/advertisement.interface';
 
 @Component({
