@@ -35,7 +35,6 @@ import {
     [advertisementsLoadingStatus]="advertisementsLoadingStatus$ | async"
     (logout)="onLogout()"
     (setBet)="onSetBet($event)"
-    (betTimerDown)="onBetTimerDown($event)"
     (selectTab)="onSelectTab($event)"
   ></app-main-dashboard>`,
 })

@@ -21,8 +21,6 @@ export class MainDashboardComponent {
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
   @Output() public setBet: EventEmitter<Record<string, string | number>> =
     new EventEmitter<Record<string, string | number>>();
-  @Output() public betTimerDown: EventEmitter<string> =
-    new EventEmitter<string>();
   @Output() public selectTab: EventEmitter<UserPanelOptionId> =
     new EventEmitter<UserPanelOptionId>();
 
@@ -32,10 +30,6 @@ export class MainDashboardComponent {
 
   public onSetBet(newBetOptions: Record<string, string | number>): void {
     this.setBet.emit(newBetOptions);
-  }
-
-  public onBetTimerDown(slug: string): void {
-    this.betTimerDown.emit(slug);
   }
 
   public onSelectTab(selectedOptionId: UserPanelOptionId): void {
