@@ -2,8 +2,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { filter, tap } from 'rxjs';
 
-import { BetModalComponent } from '../bet-modal/bet-modal.component';
-import { IAdvertisementInterface } from '../../interfaces/advertisement.interface';
+import { BetModalComponent } from '../../../advertisements-list/advertisement/bet-modal/bet-modal.component';
+import { IAdvertisementInterface } from '../../../advertisements-list/interfaces/advertisement.interface';
 
 @Component({
   selector: 'app-advertisements-list-buttons',

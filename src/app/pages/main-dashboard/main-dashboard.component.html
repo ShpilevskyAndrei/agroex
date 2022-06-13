@@ -12,7 +12,15 @@
     [advertisementsLoadingStatus]="advertisementsLoadingStatus"
     (setBet)="onSetBet($event)"
     (betTimerDown)="onBetTimerDown($event)"
-  ></app-advertisements-list>
+  >
+    <ng-template let-advertisement #actionButtons>
+      <app-advertisements-list-buttons
+        [advertisement]="advertisement"
+        (setBet)="onSetBet($event)"
+      >
+      </app-advertisements-list-buttons>
+    </ng-template>
+  </app-advertisements-list>
 </ng-container>
 
 <ng-template #notLoaded>

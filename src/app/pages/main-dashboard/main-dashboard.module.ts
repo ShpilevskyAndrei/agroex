@@ -8,6 +8,7 @@ import { HeaderModule } from '../../shared/components/header/header.module';
 import { CategoriesModule } from './categories/categories.module';
 import { MainDashboardRoutingModule } from './main-dashboard-routing.module';
 import { AdvertisementsListModule } from '../../advertisements-list/advertisements-list.module';
+import { AdvertisementsListButtonsModule } from './advertisements-list-buttons/advertisements-list-buttons.module';
 
 @NgModule({
   declarations: [MainDashboardComponent, MainDashboardContainerComponent],
@@ -18,6 +19,7 @@ import { AdvertisementsListModule } from '../../advertisements-list/advertisemen
     MainDashboardRoutingModule,
     AdvertisementsListModule,
     NgxSpinnerModule,
+    AdvertisementsListButtonsModule,
   ],
   exports: [MainDashboardContainerComponent],
 })

@@ -1,11 +1,21 @@
 <div class="advertisement-list">
   <div class="container">
     <div class="advertisement-list__wrap">
+
       <div class="advertisement-block" *ngFor="let advertisement of advertisementsRequest?.advertisements">
         <app-advertisement [advertisement]="advertisement"
                            (setBet)="onSetBet($event)"
-                           (betTimerDown)="onBetTimerDown($event)"></app-advertisement>
+                           (betTimerDown)="onBetTimerDown($event)">
+          <ng-container
+            *ngIf="actionButtonsTemplateRef"
+            [ngTemplateOutlet]="actionButtonsTemplateRef"
+            [ngTemplateOutletContext]="{$implicit:advertisement}"
+          >
+          </ng-container>
+        </app-advertisement>
       </div>
     </div>
   </div>
 </div>
+
+
