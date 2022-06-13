@@ -17,7 +17,6 @@ export class MainDashboardComponent {
   @Input() public user: IUser | null;
   @Input() public advertisementsRequest: IAdvertisementRequestInterface | null;
   @Input() public advertisementsLoadingStatus: LoadingStatus | null;
-  @Input() public selectAppRootOptionId: UserPanelOptionId | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
   @Output() public setBet: EventEmitter<Record<string, string | number>> =
