@@ -17,10 +17,15 @@
     <app-advertisement-price class="advertisement-wrap__price"
                              [advertisement]="advertisement"
                              (betTimerDown)="onBetTimerDown($event)"></app-advertisement-price>
-    <app-advertisement-buttons class="advertisement-wrap__btns"
-                               [advertisement]="advertisement"
-                               (setBet)="onSetBet($event)"
-    >
+    <app-advertisement-buttons class="advertisement-wrap__btns">
+      <!--<app-advertisements-list-buttons [advertisement]="advertisement"
+                                       (setBet)="onSetBet($event)"
+      >
+      </app-advertisements-list-buttons>-->
+
+      <app-my-advertisements-buttons></app-my-advertisements-buttons>
+
+
     </app-advertisement-buttons>
   </div>
 </div>

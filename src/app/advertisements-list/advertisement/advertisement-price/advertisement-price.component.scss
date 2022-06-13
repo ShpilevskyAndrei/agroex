@@ -1,5 +1,4 @@
 @import "../../../styles/general-styles";
-@import "../../styles/advertisement-const";
 
 :host {
   .advertisement-price {
@@ -56,7 +55,6 @@
       }
       &__icon {
         @include advertisement-icon-size;
-        font-size: 1.4rem;
         margin: 0 0.5rem 0 0;
       }
     }

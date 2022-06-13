@@ -1,3 +1,32 @@
 @mixin column-gap-small {
   column-gap: 8px;
 }
+
+@mixin advertisement-icon-size {
+  width: 1.333rem;
+  height: 1.333rem;
+  font-size: 1.4rem;
+}
+
+@mixin advertisements-buttons {
+  .advertisement-btns {
+    display: flex;
+    @include column-gap-small;
+
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50%;
+
+      span {
+        line-height: 2.667rem;
+      }
+    }
+
+    &__icon {
+      @include advertisement-icon-size;
+      margin: 0 0.833rem 0 0;
+    }
+  }
+}
