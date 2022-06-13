@@ -9,13 +9,13 @@ import { selectUserRole } from '../state/registration-page/registration-page.sel
   providedIn: 'root',
 })
 export class ModeratorGuard implements CanLoad {
-  private role$: Observable<string | undefined>;
+  private role$: Observable<number | undefined>;
 
   constructor(private store: Store, private router: Router) {
     this.role$ = this.store.select(selectUserRole);
   }
 
-  public isModerator(): Observable<string | undefined> {
+  public isModerator(): Observable<number | undefined> {
     return this.role$.pipe(map((currentRole) => currentRole));
   }
 
@@ -25,8 +25,8 @@ export class ModeratorGuard implements CanLoad {
     | boolean
     | UrlTree {
     return this.isModerator().pipe(
-      map((item: string | undefined): boolean => {
-        if (item !== 'moderator') {
+      map((item: number | undefined): boolean => {
+        if (item !== 3) {
           this.router.navigate(['error']);
           return false;
         }
