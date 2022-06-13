@@ -1,12 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-// import { MatDialog } from '@angular/material/dialog';
-// import { filter, tap } from 'rxjs';
 
 import { LoadingStatus } from '../shared/interfaces/loading-status';
 import { IUser } from '../shared/interfaces/user.interface';
 import { IAdvertisementRequestInterface } from './interfaces/advertisement-request.interface';
 import { IAdvertisementModerationRequest } from './interfaces/advertisement.interface';
-// import { PolicyModalContentComponent } from './advertisement/policy-modal-content/policy-modal-content.component';
 
 @Component({
   selector: 'app-moderation-advertisements-list',

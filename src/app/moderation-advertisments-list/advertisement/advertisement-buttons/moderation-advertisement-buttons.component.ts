@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { IAdvertisementInterface } from '../../interfaces/advertisement.interface';
 
 @Component({
   selector: 'app-moderation-advertisement-buttons',
@@ -6,6 +7,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./moderation-advertisement-buttons.component.scss'],
 })
 export class ModerationAdvertisementButtonsComponent {
+  @Input() public advertisement: IAdvertisementInterface;
+
   @Output() public reject: EventEmitter<void> = new EventEmitter<void>();
   @Output() public approve: EventEmitter<void> = new EventEmitter<void>();
 

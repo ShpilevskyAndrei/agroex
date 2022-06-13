@@ -57,7 +57,7 @@ export class ModerationAdvertisementsListPageEffects {
             mergeMap(() => {
               this.toastService.addToast({
                 toastType: ToastType.Success,
-                title: `Advertisement was moderate successfully!`,
+                title: `Advertisement was moderated successfully!`,
                 width: '50vw',
               });
 

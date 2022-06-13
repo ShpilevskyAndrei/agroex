@@ -9,7 +9,6 @@ import { IAdvertisementModerationRequest } from './interfaces/advertisement.inte
   providedIn: 'root',
 })
 export class ModerationAdvertisementsListService extends BaseService {
-
   public getNonModerateAdvertisements(
     token: string | undefined
   ): Observable<IAdvertisementRequestInterface> {
@@ -23,12 +22,12 @@ export class ModerationAdvertisementsListService extends BaseService {
 
   public decisionNonModerateAdvertisements(
     advertisement: IAdvertisementModerationRequest,
-    token: string | undefined,
+    token: string | undefined
   ): Observable<IAdvertisementRequestInterface> {
     return this.put<IAdvertisementRequestInterface>(
       'advertisements/moderation/set',
       advertisement,
-      token,
+      token
     );
   }
 }
