@@ -3,7 +3,7 @@ import { UserPanelOptionId } from '../../shared/components/header/enums/user-pan
 
 export const AppRootActions = {
   getUserSelectTab: createAction(
-    '[APP_ROOT] myAccount success',
+    '[APP_ROOT] select tab success',
     props<{ selectedOptionId: UserPanelOptionId }>()
   ),
 };
