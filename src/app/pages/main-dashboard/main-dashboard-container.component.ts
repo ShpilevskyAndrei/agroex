@@ -33,7 +33,6 @@ import {
     [advertisementsLoadingStatus]="advertisementsLoadingStatus$ | async"
     (logout)="onLogout()"
     (setBet)="onSetBet($event)"
-    (betTimerDown)="onBetTimerDown($event)"
   ></app-main-dashboard>`,
 })
 export class MainDashboardContainerComponent implements OnInit {
