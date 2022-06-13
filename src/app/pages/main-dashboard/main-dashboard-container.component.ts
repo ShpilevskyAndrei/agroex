@@ -3,7 +3,10 @@ import { Store } from '@ngrx/store';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
 
+import { UserPanelOptionId } from '../../shared/components/header/enums/user-panel-option-id';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
+import { AppRootActions } from '../../state/app-root/app-root.actions';
+import { selectAppRootOptionId } from '../../state/app-root/app-root.selectors';
 import { MainDashboardActions } from '../../state/main-dashboard/main-dashboard.actions';
 import {
   selectCategoriesData,
@@ -31,9 +34,11 @@ import {
     [user]="user$ | async"
     [advertisementsRequest]="advertisementsRequest$ | async"
     [advertisementsLoadingStatus]="advertisementsLoadingStatus$ | async"
+    [selectAppRootOptionId]="selectAppRootOptionId$ | async"
     (logout)="onLogout()"
     (setBet)="onSetBet($event)"
     (betTimerDown)="onBetTimerDown($event)"
+    (selectTab)="onSelectTab($event)"
   ></app-main-dashboard>`,
 })
 export class MainDashboardContainerComponent implements OnInit {
@@ -42,6 +47,7 @@ export class MainDashboardContainerComponent implements OnInit {
   public user$: Observable<IUser | null>;
   public advertisementsRequest$: Observable<IAdvertisementRequestInterface | null>;
   public advertisementsLoadingStatus$: Observable<LoadingStatus | null>;
+  public selectAppRootOptionId$: Observable<UserPanelOptionId | null>;
 
   constructor(private store: Store, private spinner: NgxSpinnerService) {
     this.categories$ = this.store.select(selectCategoriesData);
@@ -53,6 +59,7 @@ export class MainDashboardContainerComponent implements OnInit {
     this.advertisementsLoadingStatus$ = this.store.select(
       selectAdvertisementsLoadingStatus
     );
+    this.selectAppRootOptionId$ = this.store.select(selectAppRootOptionId);
   }
 
   public ngOnInit(): void {
@@ -79,5 +86,9 @@ export class MainDashboardContainerComponent implements OnInit {
     this.store.dispatch(
       AdvertisementsListBetActions.getAdvertisementsBetExpired({ slug })
     );
+  }
+
+  public onSelectTab(selectedOptionId: UserPanelOptionId): void {
+    this.store.dispatch(AppRootActions.getUserSelectTab({ selectedOptionId }));
   }
 }
