@@ -1,8 +1,10 @@
 <div class="advertisement-list">
   <div class="container">
     <div class="advertisement-list__wrap">
-      <app-advertisement *ngFor="let advertisement of advertisementsRequest?.advertisements"
-                         [advertisement]="advertisement"></app-advertisement>
+      <div class="advertisement-block" *ngFor="let advertisement of advertisementsRequest?.advertisements">
+        <app-advertisement [advertisement]="advertisement"
+                           (setBet)="onSetBet($event)"></app-advertisement>
+      </div>
     </div>
   </div>
 </div>

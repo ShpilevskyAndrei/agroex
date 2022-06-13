@@ -1,11 +1,35 @@
-<h1 mat-dialog-title>Place a bet</h1>
-<div mat-dialog-content>
-  <mat-form-field appearance="fill">
-    <mat-label>Favorite Animal</mat-label>
-    <input matInput>
-  </mat-form-field>
-  <p>Price from 11,100 to 11,900</p>
+<div class="bet-modal">
+  <mat-icon class="bet-modal__close" (click)="onCloseBetModal()">close</mat-icon>
+  <form [formGroup]="betForm">
+    <h1 mat-dialog-title class="bet-modal__title">Place a bet</h1>
+    <div mat-dialog-content class="bet-modal__content">
+      <mat-form-field class="bet-modal__field" [ngSwitch]="data.currency">
+        <span matPrefix *ngSwitchCase="currenciesEnum.USD">$</span>
+        <span matPrefix *ngSwitchCase="currenciesEnum.EUR">€</span>
+        <span matPrefix *ngSwitchDefault>{{data.currency}}</span>
+        <input
+          matInput
+          type="number"
+          class="bet-modal__input"
+          autocomplete="off"
+          placeholder="Enter a bet"
+          formControlName="bet"
+          [(ngModel)]="data.bet"
+        >
+      </mat-form-field>
+      <p class="bet-modal__hint">Bet from {{(data.actualBet.length ? +data.actualBet[0].betValue + 1 : '1') | currency: data.currency: 'symbol-narrow': '1.0'}}
+        to {{+data.price - 1}}</p>
+    </div>
+    <div mat-dialog-actions class="bet-modal__actions">
+      <button
+        mat-button
+        class="bet-modal__btn"
+        [disabled]="betForm.invalid"
+        (click)="onCloseBetModal()"
+      >
+        Bet {{!betForm.invalid ? (data.bet | currency: data.currency: 'symbol-narrow': '1.0': 'fr') : ''}}
+      </button>
+    </div>
+  </form>
 </div>
-<div mat-dialog-actions>
-  <button mat-button>Bet $11,100</button>
-</div>
+

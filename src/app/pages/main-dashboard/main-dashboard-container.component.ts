@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
 
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
@@ -17,7 +18,10 @@ import {
   selectAdvertisementsData,
   selectAdvertisementsLoadingStatus,
 } from '../../state/advertisements-list-page/advertisements-list-page.selectors';
-import { AdvertisementsListPageActions } from '../../state/advertisements-list-page/advertisements-list-page.actions';
+import {
+  AdvertisementsListBetActions,
+  AdvertisementsListPageActions,
+} from '../../state/advertisements-list-page/advertisements-list-page.actions';
 
 @Component({
   selector: 'app-main-dashboard-container',
@@ -28,6 +32,7 @@ import { AdvertisementsListPageActions } from '../../state/advertisements-list-p
     [advertisementsRequest]="advertisementsRequest$ | async"
     [advertisementsLoadingStatus]="advertisementsLoadingStatus$ | async"
     (logout)="onLogout()"
+    (setBet)="onSetBet($event)"
   ></app-main-dashboard>`,
 })
 export class MainDashboardContainerComponent implements OnInit {
@@ -37,7 +42,7 @@ export class MainDashboardContainerComponent implements OnInit {
   public advertisementsRequest$: Observable<IAdvertisementRequestInterface | null>;
   public advertisementsLoadingStatus$: Observable<LoadingStatus | null>;
 
-  constructor(private store: Store) {
+  constructor(private store: Store, private spinner: NgxSpinnerService) {
     this.categories$ = this.store.select(selectCategoriesData);
     this.user$ = this.store.select(selectUserData);
     this.categoriesLoadingStatus$ = this.store.select(
@@ -54,9 +59,24 @@ export class MainDashboardContainerComponent implements OnInit {
     this.store.dispatch(
       AdvertisementsListPageActions.getAdvertisementsRequest()
     );
+    this.spinner.show();
   }
 
   public onLogout(): void {
     this.store.dispatch(RegistrationPageActions.getUserLogout());
+  }
+
+  public onSetBet(newBetOptions: Record<string, string | number>): void {
+    this.store.dispatch(
+      AdvertisementsListBetActions.getAdvertisementsBetRequest({
+        newBetOptions,
+      })
+    );
+  }
+
+  public onBetTimerDown(slug: string): void {
+    this.store.dispatch(
+      AdvertisementsListBetActions.getAdvertisementsBetExpired({ slug })
+    );
   }
 }

@@ -18,8 +18,14 @@ export class MainDashboardComponent {
   @Input() public advertisementsLoadingStatus: LoadingStatus | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
+  @Output() public setBet: EventEmitter<Record<string, string | number>> =
+    new EventEmitter<Record<string, string | number>>();
 
   public onLogout(): void {
     this.logout.emit();
+  }
+
+  public onSetBet(newBetOptions: Record<string, string | number>): void {
+    this.setBet.emit(newBetOptions);
   }
 }
