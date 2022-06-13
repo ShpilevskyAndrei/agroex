@@ -1,5 +1,5 @@
 <div class="bet-modal">
-  <mat-icon class="bet-modal__close" (click)="onNoClick()">close</mat-icon>
+  <mat-icon class="bet-modal__close" (click)="onCloseBetModal()">close</mat-icon>
   <form [formGroup]="betForm">
     <h1 mat-dialog-title class="bet-modal__title">Place a bet</h1>
     <div mat-dialog-content class="bet-modal__content">
@@ -24,8 +24,8 @@
       <button
         mat-button
         class="bet-modal__btn"
-        [mat-dialog-close]="data.bet"
         [disabled]="betForm.invalid"
+        (click)="onCloseBetModal()"
       >
         Bet {{!betForm.invalid ? (data.bet | currency: data.currency: 'symbol-narrow': '1.0': 'fr') : ''}}
       </button>
