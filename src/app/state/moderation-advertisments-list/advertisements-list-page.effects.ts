@@ -54,7 +54,15 @@ export class ModerationAdvertisementsListPageEffects {
         this.moderateAdvertisementsListService
           .decisionNonModerateAdvertisements(decision, selectUserToken)
           .pipe(
-            mergeMap(() => EMPTY_ACTION),
+            mergeMap(() => {
+              this.toastService.addToast({
+                toastType: ToastType.Success,
+                title: `Advertisement was moderate successfully!`,
+                width: '50vw',
+              });
+
+              return EMPTY_ACTION;
+            }),
             catchError(() => {
               this.toastService.addToast({
                 toastType: ToastType.Error,
