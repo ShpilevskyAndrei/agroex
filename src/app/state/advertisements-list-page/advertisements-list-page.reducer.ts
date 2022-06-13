@@ -85,7 +85,7 @@ export const ADVERTISEMENTS_LIST_PAGE_REDUCER = createReducer(
   on(
     AdvertisementsListBetActions.getAdvertisementsBetExpired,
     (state, { slug }): AdvertisementsListPageState => {
-      const test = state.advertisements.advertisements.map(
+      const updateAdvertisements = state.advertisements.advertisements.map(
         (adv: IAdvertisementInterface) => {
           if (adv.slug === slug) {
             return {
@@ -100,7 +100,7 @@ export const ADVERTISEMENTS_LIST_PAGE_REDUCER = createReducer(
         ...state,
         advertisements: {
           ...state.advertisements,
-          advertisements: test,
+          advertisements: updateAdvertisements,
         },
         advertisementsLoadingStatus: DEFAULT_LOADING_STATUS,
         advertisementsBetLoadingStatus: DEFAULT_LOADING_STATUS,
