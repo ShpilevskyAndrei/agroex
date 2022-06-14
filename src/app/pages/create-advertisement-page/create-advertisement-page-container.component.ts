@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { UserPanelOptionId } from '../../shared/components/header/enums/user-panel-option-id';
 
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IUser } from '../../shared/interfaces/user.interface';
+import { AppRootActions } from '../../state/app-root/app-root.actions';
 import { CreateAdvertisementPageActions } from '../../state/create-advertisement-page/create-advertisement-page.actions';
 import { selectCreateAdvertisementLoadingStatus } from '../../state/create-advertisement-page/create-advertisement-page.selectors';
 import { RegistrationPageActions } from '../../state/registration-page/registration-page.actions';
@@ -24,6 +26,7 @@ import { UserRole } from '../../shared/components/header/enums/user-role';
     (logout)="onLogout()"
     (formAdvertisement)="onSubmitAdvertisementFormData($event)"
     (dropLoadingStatus)="onDropLoadingStatus()"
+    (selectTab)="onSelectTab($event)"
   ></app-create-advertisement-page>`,
 })
 export class CreateAdvertisementPageContainerComponent {
@@ -55,5 +58,9 @@ export class CreateAdvertisementPageContainerComponent {
     this.store.dispatch(
       CreateAdvertisementPageActions.dropAdvertisementLoadingStatus()
     );
+  }
+
+  public onSelectTab(selectedOptionId: UserPanelOptionId): void {
+    this.store.dispatch(AppRootActions.getUserSelectTab({ selectedOptionId }));
   }
 }

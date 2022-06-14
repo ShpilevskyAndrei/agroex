@@ -28,5 +28,25 @@ export class IconSerializeService {
       'quantity-icon',
       sanitizer.bypassSecurityTrustResourceUrl('assets/quantity-icon.svg')
     );
+    this.matIconRegistry.addSvgIcon(
+      'account-icon',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/account-icon.svg')
+    );
+    this.matIconRegistry.addSvgIcon(
+      'auction-icon',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/auction-icon.svg')
+    );
+    this.matIconRegistry.addSvgIcon(
+      'logout-icon',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/logout-icon.svg')
+    );
+    this.matIconRegistry.addSvgIcon(
+      'my-ads-icon',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/my_ads-icon.svg')
+    );
+    this.matIconRegistry.addSvgIcon(
+      'truck-icon',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/truck-icon.svg')
+    );
   }
 }

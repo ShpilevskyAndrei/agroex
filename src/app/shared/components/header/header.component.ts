@@ -26,6 +26,8 @@ export class HeaderComponent implements OnChanges {
   @Input() public userRole: UserRole | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
+  @Output() public selectTab: EventEmitter<UserPanelOptionId> =
+    new EventEmitter<UserPanelOptionId>();
 
   public userRoleConfig = LOGGED_ROLE_CONFIG;
   public userRoles = UserRole;
@@ -48,7 +50,7 @@ export class HeaderComponent implements OnChanges {
     selectedOption: IUserOptionsType,
     userNavigationPanel: MatSelect
   ): void {
-    if (selectedOption.id === UserPanelOptionId.LogOut) {
+    if (selectedOption.id === UserPanelOptionId.MyAccount) {
       userNavigationPanel.value = null;
       this.onLogout();
 
@@ -68,8 +70,12 @@ export class HeaderComponent implements OnChanges {
     this.router.navigate(['moderation-advertisements']);
   }
 
-  private onLogout(): void {
+  public onLogout(): void {
     this.userCurrentRole = UserRole.Guest;
     this.logout.emit();
+  }
+
+  public onSelectPage(selectedOptionId: IUserOptionsType): void {
+    this.selectTab.emit(selectedOptionId.id);
   }
 }
