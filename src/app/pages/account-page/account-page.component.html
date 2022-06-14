@@ -3,19 +3,25 @@
   (logout)="onLogout()"
   (selectTab)="onSelectTab($event)"
 ></app-header>
-
-
-<div class="wrap">
-  <div class="sidebar">
-    <app-sidebar [selectedTab]="this.selectedTab"></app-sidebar>
-  </div>
-
-  <div class="content" [ngSwitch]="this.selectedTab">
-    <app-my-advertisements *ngSwitchCase=""></app-my-advertisements>
-    <app-my-orders *ngSwitchCase=""></app-my-orders>
+<div class="account">
+  <div class="container">
+    <div class="account__wrap">
+      <div class="account__user">
+        <p>{{user?.username | titlecase}}</p>
+      </div>
+      <div class="account__content">
+        <app-sidebar
+          class="account__sidebar"
+          [userPanelOption]="this.userPanelOption"
+          [selectedTab]="this.selectedTab"
+          (logout)="onLogout()"
+          (selectTab)="onSelectTab($event)">
+        </app-sidebar>
+        <div class="account__info" [ngSwitch]="this.selectedTab">
+          <!--<app-my-advertisements *ngSwitchCase=""></app-my-advertisements>
+          <app-my-orders *ngSwitchCase=""></app-my-orders>-->
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
-
-
-<a routerLink="/">Main page</a>

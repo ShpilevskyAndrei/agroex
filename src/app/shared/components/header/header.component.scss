@@ -25,10 +25,13 @@
         background: $color-tradewind;
         border-radius: 0.125rem;
         border: 0.063rem solid $color-tradewind;
+        font-size: 1.5rem;
         line-height: 4rem;
         min-width: 16rem;
       }
       &-icon {
+        width: 2rem;
+        height: 2rem;
         margin-right: 1rem;
       }
     }

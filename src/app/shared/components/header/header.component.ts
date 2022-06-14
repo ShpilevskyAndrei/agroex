@@ -55,6 +55,7 @@ export class HeaderComponent implements OnChanges {
   public onLogout(): void {
     this.userRole = UserRole.Guest;
     this.logout.emit();
+    this.router.navigate(['']);
   }
 
   public onSelectPage(selectedOptionId: IUserOptionsType): void {
