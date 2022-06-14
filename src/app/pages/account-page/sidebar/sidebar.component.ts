@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { Router } from '@angular/router';
 
 import { IUserOptionsType } from '../../../shared/components/header/interfaces/user-options-type.interface';
@@ -9,6 +15,7 @@ import { UserRole } from '../../../shared/components/header/enums/user-role';
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidebarComponent {
   @Input() public userRole: UserRole = UserRole.Guest;

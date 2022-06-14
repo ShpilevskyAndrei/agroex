@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 
 import { UserPanelOptionId } from '../../shared/components/header/enums/user-panel-option-id';
 import { IUser } from '../../shared/interfaces/user.interface';
@@ -9,6 +15,7 @@ import { IUserOptionsType } from '../../shared/components/header/interfaces/user
   selector: 'app-account-page',
   templateUrl: './account-page.component.html',
   styleUrls: ['./account-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccountPageComponent {
   @Input() public user: IUser | null;

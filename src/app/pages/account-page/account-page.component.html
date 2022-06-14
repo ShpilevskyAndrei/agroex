@@ -17,10 +17,7 @@
           (logout)="onLogout()"
           (selectTab)="onSelectTab($event)">
         </app-sidebar>
-        <div class="account__info" [ngSwitch]="this.selectedTab">
-          <!--<app-my-advertisements *ngSwitchCase=""></app-my-advertisements>
-          <app-my-orders *ngSwitchCase=""></app-my-orders>-->
-        </div>
+        <div class="account__info"></div>
       </div>
     </div>
   </div>
