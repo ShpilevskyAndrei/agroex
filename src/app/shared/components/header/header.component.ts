@@ -6,7 +6,6 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { MatSelect } from '@angular/material/select';
 import { Router } from '@angular/router';
 
 import { IUser } from '../../interfaces/user.interface';
@@ -45,20 +44,6 @@ export class HeaderComponent implements OnChanges {
     this.router.navigate(['registration']);
   }
 
-  public navigateToUserOption(
-    selectedOption: IUserOptionsType,
-    userNavigationPanel: MatSelect
-  ): void {
-    if (selectedOption.id === UserPanelOptionId.LogOut) {
-      userNavigationPanel.value = null;
-      this.onLogout();
-
-      return;
-    }
-
-    this.onSelectTab(selectedOption.id);
-  }
-
   public goToMainPage(): void {
     this.router.navigate(['']);
   }
@@ -67,12 +52,12 @@ export class HeaderComponent implements OnChanges {
     this.router.navigate(['create-advertisement']);
   }
 
-  private onLogout(): void {
+  public onLogout(): void {
     this.userRole = UserRole.Guest;
     this.logout.emit();
   }
 
-  private onSelectTab(selectedOptionId: UserPanelOptionId): void {
-    this.selectTab.emit(selectedOptionId);
+  public onSelectPage(selectedOptionId: IUserOptionsType): void {
+    this.selectTab.emit(selectedOptionId.id);
   }
 }

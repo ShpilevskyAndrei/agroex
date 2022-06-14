@@ -4,4 +4,5 @@ export interface IUserOptionsType {
   id: UserPanelOptionId;
   title: string;
   url: string;
+  icon: string;
 }
