@@ -13,15 +13,20 @@ import {
   selectAdvertisementData,
   selectAdvertisementLoadingStatus,
 } from '../../state/advertisement-page/advertisement-page.selectors';
-import { selectUserData } from '../../state/registration-page/registration-page.selectors';
+import {
+  selectUserData,
+  selectUserRole,
+} from '../../state/registration-page/registration-page.selectors';
 import { RegistrationPageActions } from '../../state/registration-page/registration-page.actions';
 import { UserPanelOptionId } from '../../shared/components/header/enums/user-panel-option-id';
 import { AppRootActions } from '../../state/app-root/app-root.actions';
+import { UserRole } from '../../shared/components/header/enums/user-role';
 
 @Component({
   selector: 'app-advertisement-page-container',
   template: ` <app-advertisement-page
     [user]="user$ | async"
+    [userRole]="userRole$ | async"
     [advertisement]="advertisement$ | async"
     [advertisementLoadingStatus]="advertisementLoadingStatus$ | async"
     (logout)="onLogout()"
@@ -32,6 +37,7 @@ export class AdvertisementPageContainerComponent implements OnInit, OnDestroy {
   public slug$: Subscription;
   public advertisement$: Observable<IAdRequestInterface | null>;
   public user$: Observable<IUser | null>;
+  public userRole$: Observable<UserRole | null>;
   public advertisementLoadingStatus$: Observable<LoadingStatus | null>;
 
   constructor(
@@ -40,6 +46,7 @@ export class AdvertisementPageContainerComponent implements OnInit, OnDestroy {
     private spinner: NgxSpinnerService
   ) {
     this.user$ = this.store.select(selectUserData);
+    this.userRole$ = this.store.select(selectUserRole);
     this.advertisement$ = this.store.select(selectAdvertisementData);
     this.advertisementLoadingStatus$ = this.store.select(
       selectAdvertisementLoadingStatus

@@ -16,6 +16,7 @@ import { IShownMap } from './interfaces/shown-map.interface';
 import { CurrenciesEnum } from '../../advertisements-list/advertisement/bet-modal/enums/currencies.enum';
 import { UserPanelOptionId } from '../../shared/components/header/enums/user-panel-option-id';
 import { BetValidators } from '../../advertisements-list/advertisement/bet-modal/intefaces/bet-validator';
+import { UserRole } from '../../shared/components/header/enums/user-role';
 
 @Component({
   selector: 'app-advertisement-page',
@@ -27,6 +28,7 @@ export class AdvertisementPageComponent implements OnChanges {
   @Input() public advertisement: IAdRequestInterface | null;
   @Input() public slug: string | null;
   @Input() public advertisementLoadingStatus: LoadingStatus | null;
+  @Input() public userRole: UserRole | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
   @Output() public selectTab: EventEmitter<UserPanelOptionId> =

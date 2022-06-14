@@ -5,7 +5,10 @@ import { Observable } from 'rxjs';
 import { UserPanelOptionId } from '../../shared/components/header/enums/user-panel-option-id';
 import { AppRootActions } from '../../state/app-root/app-root.actions';
 import { RegistrationPageActions } from '../../state/registration-page/registration-page.actions';
-import {selectUserData, selectUserRole} from '../../state/registration-page/registration-page.selectors';
+import {
+  selectUserData,
+  selectUserRole,
+} from '../../state/registration-page/registration-page.selectors';
 import { IUser } from '../../shared/interfaces/user.interface';
 import { selectAppRootOptionId } from '../../state/app-root/app-root.selectors';
 import { UserRole } from '../../shared/components/header/enums/user-role';
