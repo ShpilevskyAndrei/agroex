@@ -12,7 +12,10 @@ import {
   selectCategoriesLoadingStatus,
 } from '../../state/main-dashboard/main-dashboard.selectors';
 import { RegistrationPageActions } from '../../state/registration-page/registration-page.actions';
-import { selectUserData } from '../../state/registration-page/registration-page.selectors';
+import {
+  selectUserData,
+  selectUserRole,
+} from '../../state/registration-page/registration-page.selectors';
 import { IUser } from '../../shared/interfaces/user.interface';
 import { Category } from './categories/interfaces/category.model';
 import { IAdvertisementRequestInterface } from '../../advertisements-list/interfaces/advertisement-request.interface';
@@ -24,6 +27,7 @@ import {
   AdvertisementsListBetActions,
   AdvertisementsListPageActions,
 } from '../../state/advertisements-list-page/advertisements-list-page.actions';
+import { UserRole } from '../../shared/components/header/enums/user-role';
 
 @Component({
   selector: 'app-main-dashboard-container',
@@ -31,6 +35,7 @@ import {
     [categories]="categories$ | async"
     [categoriesLoadingStatus]="categoriesLoadingStatus$ | async"
     [user]="user$ | async"
+    [userRole]="userRole$ | async"
     [advertisementsRequest]="advertisementsRequest$ | async"
     [advertisementsLoadingStatus]="advertisementsLoadingStatus$ | async"
     (logout)="onLogout()"
@@ -42,12 +47,14 @@ export class MainDashboardContainerComponent implements OnInit {
   public categories$: Observable<Category[] | null>;
   public categoriesLoadingStatus$: Observable<LoadingStatus | null>;
   public user$: Observable<IUser | null>;
+  public userRole$: Observable<UserRole | null>;
   public advertisementsRequest$: Observable<IAdvertisementRequestInterface | null>;
   public advertisementsLoadingStatus$: Observable<LoadingStatus | null>;
 
   constructor(private store: Store, private spinner: NgxSpinnerService) {
     this.categories$ = this.store.select(selectCategoriesData);
     this.user$ = this.store.select(selectUserData);
+    this.userRole$ = this.store.select(selectUserRole);
     this.categoriesLoadingStatus$ = this.store.select(
       selectCategoriesLoadingStatus
     );

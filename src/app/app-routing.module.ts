@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './guards/auth.guard';
+import { ModeratorGuard } from './guards/moderator.guard';
 
 const routes: Routes = [
   {
@@ -36,6 +37,14 @@ const routes: Routes = [
       import(
         './pages/create-advertisement-page/create-advertisement-page.module'
       ).then((m) => m.CreateAdvertisementPageModule),
+  },
+  {
+    path: 'moderation-advertisements',
+    loadChildren: () =>
+      import(
+        './pages/moderation-advertisements/moderation-advertisements.module'
+      ).then((m) => m.ModerationadvertisementsPageModule),
+    canLoad: [ModeratorGuard],
   },
   {
     path: 'advertisement/:slug',

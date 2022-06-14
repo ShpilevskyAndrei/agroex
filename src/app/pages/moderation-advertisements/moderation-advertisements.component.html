@@ -1,0 +1,8 @@
+<app-header [userRole]="userRole" [user]="user" (logout)="onLogout()"></app-header>
+
+<app-moderation-advertisements-list
+  [user]="user"
+  [advertisementsRequest]="advertisementsRequest"
+  [advertisementsLoadingStatus]="advertisementsLoadingStatus"
+  (moderationDecision)="onModerationDecision($event)"
+></app-moderation-advertisements-list>

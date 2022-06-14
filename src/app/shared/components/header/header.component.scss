@@ -9,6 +9,54 @@
     display: flex;
     justify-content: space-between;
     box-shadow: 0 $offset-xsmall $offset-normal rgba(0, 0, 0, 0.08);
+
+    &__menu {
+      &-user {
+        font-size: $font-size-normal;
+        line-height: 2rem;
+        font-weight: 500;
+        color: $primary-color;
+      }
+    }
+
+    &__add {
+      &-ads {
+        color: $color-white;
+        background: $color-tradewind;
+        border-radius: 0.125rem;
+        border: 0.063rem solid $color-tradewind;
+        font-size: 1.5rem;
+        line-height: 4rem;
+        min-width: 16rem;
+      }
+      &-icon {
+        width: 2rem;
+        height: 2rem;
+        margin-right: 1rem;
+      }
+    }
+
+    &__account {
+      &-btn {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        margin-left: 3rem;
+        p {
+          margin: 0;
+          font-size: $font-size-medium;
+        }
+        .icon-for-guest {
+          margin-left: $offset-normal;
+          color: $header-login-icon-color;
+        }
+      }
+      &-img {
+        width: 4rem;
+        height: 4rem;
+        object-fit: cover;
+      }
+    }
   }
 
   .main-header-content {
@@ -41,50 +89,9 @@
     cursor: pointer;
   }
 
-  .menu-items {
-    margin: 0;
-    font-size: $font-size-medium;
-  }
-
-  .img-in-header {
-    vertical-align: middle;
-  }
-
-  .icon-for-guest {
-    margin-left: calc(#{$offset-normal} / 2);
-    color: $header-login-icon-color;
-  }
-
-  .account-img {
-    width: 3.5rem;
-    margin-left: calc(2 * #{$offset-medium});
-  }
-
   .account-container-header {
     display: flex;
     align-items: center;
     cursor: pointer;
-  }
-
-  .my-account-select {
-    width: 0;
-    visibility: hidden;
-    margin-top: 4rem;
-  }
-
-  .add-advertisement-button {
-    color: $color-white;
-    background: $color-tradewind;
-    border-radius: 0.125rem;
-    border: 0.063rem solid $color-tradewind;
-  }
-
-  .add-advertisement-button-container {
-    margin-right: 1rem;
-  }
-  p {
-    margin: 0;
-    padding: $offset-small;
-    font-size: $font-size-small;
   }
 }

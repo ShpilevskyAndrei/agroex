@@ -1,0 +1,15 @@
+<ng-container *ngFor="let option of userPanelOption">
+  <span
+    class="account__sidebar-item"
+    [ngClass]="{'active': this.selectedTab === option.id}"
+    (click)="onSelectPage(option)">
+    <mat-icon svgIcon="{{option.icon}}" class="account__sidebar-icon"></mat-icon>
+    <span class="account__sidebar-text">{{option.title}}</span>
+  </span>
+</ng-container>
+<span
+  class="account__sidebar-item"
+  (click)="onLogout()">
+    <mat-icon svgIcon="logout-icon" class="account__sidebar-icon"></mat-icon>
+    <span class="account__sidebar-text">Logout</span>
+  </span>

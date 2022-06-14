@@ -1,0 +1,29 @@
+@import "../../styles/general-styles";
+
+:host {
+  .account {
+    &__wrap {
+      background-color: $color-white;
+    }
+
+    &__user {
+      padding: $offset-large 3.3rem;
+      box-shadow: inset 0 -.1rem 0 $color-button-disable;
+      p {
+        font-size: 2rem;
+        line-height: 2.7rem;
+        font-weight: 500;
+        color: $primary-color;
+      }
+    }
+
+    &__sidebar {
+      display: flex;
+      flex-direction: column;
+      width: 22.3rem;
+      min-height: 50vh;
+      padding-bottom: 2rem;
+      box-shadow: inset -.1rem 0 0 $color-button-disable;
+    }
+  }
+}

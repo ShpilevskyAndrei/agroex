@@ -22,8 +22,8 @@ import { IUserOptionsType } from './interfaces/user-options-type.interface';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnChanges {
-  @Input() public userRole: UserRole = UserRole.Guest;
   @Input() public user: IUser | null;
+  @Input() public userRole: UserRole | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
   @Output() public selectTab: EventEmitter<UserPanelOptionId> =
@@ -32,12 +32,13 @@ export class HeaderComponent implements OnChanges {
   public userRoleConfig = LOGGED_ROLE_CONFIG;
   public userRoles = UserRole;
   public userPanelOption = USER_PANEL_OPTION;
+  public userCurrentRole: UserRole | null = UserRole.Guest;
 
   constructor(private router: Router) {}
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.user && this.user) {
-      this.userRole = UserRole.User;
+      this.userCurrentRole = this.userRole;
     }
   }
 
@@ -49,14 +50,12 @@ export class HeaderComponent implements OnChanges {
     selectedOption: IUserOptionsType,
     userNavigationPanel: MatSelect
   ): void {
-    if (selectedOption.id === UserPanelOptionId.LogOut) {
+    if (selectedOption.id === UserPanelOptionId.MyAccount) {
       userNavigationPanel.value = null;
       this.onLogout();
 
       return;
     }
-
-    this.onSelectTab(selectedOption.id);
   }
 
   public goToMainPage(): void {
@@ -67,12 +66,17 @@ export class HeaderComponent implements OnChanges {
     this.router.navigate(['create-advertisement']);
   }
 
-  private onLogout(): void {
-    this.userRole = UserRole.Guest;
-    this.logout.emit();
+  public goToModerateAdvertisement(): void {
+    this.router.navigate(['moderation-advertisements']);
   }
 
-  private onSelectTab(selectedOptionId: UserPanelOptionId): void {
-    this.selectTab.emit(selectedOptionId);
+  public onLogout(): void {
+    this.userCurrentRole = UserRole.Guest;
+    this.logout.emit();
+    this.router.navigate(['']);
+  }
+
+  public onSelectPage(selectedOptionId: IUserOptionsType): void {
+    this.selectTab.emit(selectedOptionId.id);
   }
 }

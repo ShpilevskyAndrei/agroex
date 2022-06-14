@@ -43,6 +43,11 @@ import {
   AdvertisementPageState,
 } from './advertisement-page/advertisement-page.reducer';
 import { AdvertisementPageEffects } from './advertisement-page/advertisement-page.effects';
+import {
+  MODERATION_ADVERTISEMENTS_LIST_PAGE_REDUCER,
+  ModerateAdvertisementsListPageState,
+} from './moderation-advertisements-list/advertisements-list-page.reducer';
+import { ModerationAdvertisementsListPageEffects } from './moderation-advertisements-list/advertisements-list-page.effects';
 
 export interface State {
   mainDashboard: MainDashboardState;
@@ -53,6 +58,7 @@ export interface State {
   createAdvertisementPage: CreateAdvertisementPageState;
   advertisementsListPage: AdvertisementsListPageState;
   advertisementPage: AdvertisementPageState;
+  moderateAdvertisementsListPage: ModerateAdvertisementsListPageState;
 }
 
 export const ROOT_REDUCER: ActionReducerMap<State> = {
@@ -64,6 +70,7 @@ export const ROOT_REDUCER: ActionReducerMap<State> = {
   createAdvertisementPage: CREATE_ADVERTISEMENT_PAGE_REDUCER,
   advertisementsListPage: ADVERTISEMENTS_LIST_PAGE_REDUCER,
   advertisementPage: ADVERTISEMENT_PAGE_REDUCER,
+  moderateAdvertisementsListPage: MODERATION_ADVERTISEMENTS_LIST_PAGE_REDUCER,
 };
 
 export const ROOT_EFFECT = [
@@ -75,6 +82,7 @@ export const ROOT_EFFECT = [
   CreateAdvertisementPageEffects,
   AdvertisementsListPageEffects,
   AdvertisementPageEffects,
+  ModerationAdvertisementsListPageEffects,
 ];
 
 export const hydrationMetaReducer = (

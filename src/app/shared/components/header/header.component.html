@@ -5,53 +5,90 @@
       <p class="logo-name">AGROEX</p>
     </div>
     <div class="account-container-header">
-      <ng-container *ngIf="userRole === userRoles.Guest; else loggedUser">
-        <div class="account-container-header" (click)="onLogin()">
+      <ng-container *ngIf="this.userCurrentRole === userRoles.Guest">
+        <div class="main-header__account-btn" (click)="onLogin()">
           <p class="menu-items">Log in</p>
-          <mat-icon class="img-in-header icon-for-guest">login</mat-icon>
+          <mat-icon class="icon-for-guest">login</mat-icon>
         </div>
       </ng-container>
-      <ng-template #loggedUser>
+
+      <ng-container *ngIf="this.userCurrentRole === userRoles.User">
         <button
           mat-raised-button
-          class="add-advertisement-button"
+          class="main-header__add-ads"
           (click)="goToCreateAdvertisement()"
         >
-          <mat-icon class="add-advertisement-button-container">add</mat-icon>
+          <mat-icon class="main-header__add-icon">add</mat-icon>
           <span>Advertisement</span>
         </button>
         <div
-          class="account-container-header"
-          (click)="userNavigationPanel.open()"
-        >
+          class="main-header__account-btn"
+          [matMenuTriggerFor]="userMenu">
           <img
-            *ngIf="userRole === userRoles.User"
-            class="img-in-header account-img"
+            *ngIf="this.userCurrentRole === userRoles.User"
+            class="main-header__account-img"
             alt=""
-            [src]="userRoleConfig[userRole].src"
-          />
-          <mat-icon
-            *ngIf="userRole === userRoles.User"
-            class="img-in-header my-account-vector"
-          >
-            expand_more
-          </mat-icon>
+            [src]="userRoleConfig[this.userCurrentRole].src"/>
         </div>
-        <mat-select
-          #userNavigationPanel
-          class="my-account-select"
+        <mat-menu
+          class="main-header__menu"
           panelClass="mat-select-unset-height"
-          (valueChange)="navigateToUserOption($event, userNavigationPanel)"
-        >
-          <mat-option
-            *ngFor="let option of userPanelOption"
-            [value]="option"
-            [routerLink]="option.url"
-          >
+          #userMenu="matMenu"
+          xPosition="before">
+          <p class="main-header__menu-user">{{this.user?.username | titlecase}}</p>
+          <button mat-menu-item *ngFor="let option of userPanelOption"
+                  [value]="option"
+                  [routerLink]="option.url"
+                  (click)="onSelectPage(option)">
+            <mat-icon svgIcon="{{option.icon}}" class="main-header__menu-icon"></mat-icon>
             {{ option.title }}
-          </mat-option>
-        </mat-select>
-      </ng-template>
+          </button>
+          <button mat-menu-item
+                  [routerLink]=""
+                  (click)="onLogout()">
+            <mat-icon svgIcon="logout-icon" class="main-header__menu-icon"></mat-icon>
+            Logout
+          </button>
+        </mat-menu>
+      </ng-container>
+
+      <ng-container *ngIf="this.userCurrentRole === userRoles.Moderator">
+        <button
+          mat-raised-button
+          class="main-header__add-ads"
+          (click)="goToModerateAdvertisement()"
+        >
+          <span>Check Advertisement</span>
+        </button>
+        <div
+          class="main-header__account-btn"
+          [matMenuTriggerFor]="userMenu">
+          <img
+            class="main-header__account-img"
+            alt=""
+            [src]="userRoleConfig[this.userCurrentRole].src"/>
+        </div>
+        <mat-menu
+          class="main-header__menu"
+          panelClass="mat-select-unset-height"
+          #userMenu="matMenu"
+          xPosition="before">
+          <p class="main-header__menu-user">{{this.user?.username | titlecase}}</p>
+          <button mat-menu-item *ngFor="let option of userPanelOption"
+                  [value]="option"
+                  [routerLink]="option.url"
+                  (click)="onSelectPage(option)">
+            <mat-icon svgIcon="{{option.icon}}" class="main-header__menu-icon"></mat-icon>
+            {{ option.title }}
+          </button>
+          <button mat-menu-item
+                  [routerLink]=""
+                  (click)="onLogout()">
+            <mat-icon svgIcon="logout-icon" class="main-header__menu-icon"></mat-icon>
+            Logout
+          </button>
+        </mat-menu>
+      </ng-container>
     </div>
   </div>
 </header>

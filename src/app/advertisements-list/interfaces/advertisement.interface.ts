@@ -10,6 +10,7 @@ export interface IAdvertisementInterface {
   category: string;
   subCategory: string | null;
   isModerated: boolean;
+  isActive: boolean;
   price: string;
   currency: string;
   img: string;

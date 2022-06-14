@@ -1,0 +1,67 @@
+@import "../../styles/general-styles";
+
+:host {
+  .advertisement-wrap {
+    padding: $offset-xlarge;
+    display: flex;
+    column-gap: $offset-xlarge;
+
+    &__img {
+      width: 28rem;
+      height: 16rem;
+
+      img {
+        display: block;
+        width: inherit;
+        height: inherit;
+        object-fit: cover;
+      }
+    }
+
+    &__desc {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      flex-grow: 1;
+    }
+
+    &__actions {
+      display: flex;
+      flex-direction: column;
+      width: 33rem;
+    }
+
+    &__btns {
+      display: none;
+      margin-top: auto;
+    }
+
+    &__quantity, 
+    &__location {
+      display: flex;
+      align-items: center;
+      .advertisement-quantity-icon,
+      .advertisement-pointer-icon {
+        width: 1.7rem;
+        height: 1.7rem;
+        margin: 0 $offset-small 0 0;
+        color: $color-copy;
+      }
+      p {
+        margin: 0;
+        font-size: $font-size-normal;
+        line-height: 2rem;
+        color: $primary-color;
+      }
+    }
+    &__quantity {
+      margin: auto 0 $offset-normal;
+    }
+  }
+}
+
+.advertisement-wrap {
+  &:hover &__btns {
+    display: block;
+  }
+}
