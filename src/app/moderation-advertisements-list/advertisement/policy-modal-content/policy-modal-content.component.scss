@@ -1,4 +1,4 @@
-@import "../../../styles/general-styles.scss";
+@import "../../../styles/general-styles";
 
 :host {
   .mat-dialog-actions {
@@ -6,17 +6,11 @@
     padding: 0;
   }
 
-  .buttons-position-in-modal {
-    button {
-
-    }
-  }
-
   .bottom-wrapper {
     display: flex;
     justify-content: space-between;
     form {
-      padding-top: 8px;
+      padding-top: 0.75rem;
       width: 65%;
       mat-form-field {
         width: 100%;

@@ -3,13 +3,13 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, mergeMap, of, switchMap, withLatestFrom } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Store } from '@ngrx/store';
+import { AgroexToastService, ToastType } from 'ngx-agroex-toast';
 
 import { ModerateAdvertisementsListPageActions } from './advertisements-list-page.actions';
 import { IAdvertisementRequestInterface } from '../../advertisements-list/interfaces/advertisement-request.interface';
-import { ModerationAdvertisementsListService } from '../../moderation-advertisments-list/moderation-advertisements-list.service';
+import { ModerationAdvertisementsListService } from '../../moderation-advertisements-list/moderation-advertisements-list.service';
 import { selectUserToken } from '../registration-page/registration-page.selectors';
-import { EMPTY_ACTION } from 'src/app/shared/constants/empty-action';
-import { AgroexToastService, ToastType } from 'ngx-agroex-toast';
+import { EMPTY_ACTION } from '../../shared/constants/empty-action';
 
 @Injectable()
 export class ModerationAdvertisementsListPageEffects {
@@ -47,30 +47,38 @@ export class ModerationAdvertisementsListPageEffects {
   public decisionNonModerateAdvertisements$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(
-        ModerateAdvertisementsListPageActions.getDecisionNonModerateAdvertisements
+        ModerateAdvertisementsListPageActions.getDecisionNonModerateAdvertisementsRequest
       ),
       withLatestFrom(this.store.select(selectUserToken)),
       switchMap(([{ decision }, selectUserToken]) =>
         this.moderateAdvertisementsListService
           .decisionNonModerateAdvertisements(decision, selectUserToken)
           .pipe(
-            mergeMap(() => {
+            map(() => {
               this.toastService.addToast({
                 toastType: ToastType.Success,
                 title: `Advertisement was moderated successfully!`,
                 width: '50vw',
               });
 
-              return EMPTY_ACTION;
+              return ModerateAdvertisementsListPageActions.getDecisionNonModerateAdvertisementsSuccess(
+                { decision }
+              );
             }),
-            catchError(() => {
+            catchError((error: HttpErrorResponse) => {
               this.toastService.addToast({
                 toastType: ToastType.Error,
                 title: `Something went wrong! Please retry!`,
                 width: '50vw',
               });
 
-              return EMPTY_ACTION;
+              return of(
+                ModerateAdvertisementsListPageActions.getDecisionNonModerateAdvertisementsError(
+                  {
+                    error: error,
+                  }
+                )
+              );
             })
           )
       )

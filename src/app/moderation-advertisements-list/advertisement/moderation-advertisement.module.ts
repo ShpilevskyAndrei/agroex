@@ -6,8 +6,8 @@ import { FormsModule } from '@angular/forms';
 
 import { ModerationAdvertisementComponent } from './moderation-advertisement.component';
 import { ModerationAdvertisementButtonsModule } from './advertisement-buttons/moderation-advertisement-buttons.module';
-import { AdvertisementPriceModule } from 'src/app/advertisements-list/advertisement/advertisement-price/advertisement-price.module';
-import { AdvertisementTitleModule } from 'src/app/advertisements-list/advertisement/advertisement-title/advertisement-title.module';
+import { AdvertisementPriceModule } from '../../advertisements-list/advertisement/advertisement-price/advertisement-price.module';
+import { AdvertisementTitleModule } from '../../advertisements-list/advertisement/advertisement-title/advertisement-title.module';
 
 @NgModule({
   declarations: [ModerationAdvertisementComponent],

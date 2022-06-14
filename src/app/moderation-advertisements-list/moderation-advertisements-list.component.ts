@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 
 import { LoadingStatus } from '../shared/interfaces/loading-status';
 import { IUser } from '../shared/interfaces/user.interface';
@@ -9,6 +15,7 @@ import { IAdvertisementModerationRequest } from './interfaces/advertisement.inte
   selector: 'app-moderation-advertisements-list',
   templateUrl: './moderation-advertisements-list.component.html',
   styleUrls: ['./moderation-advertisements-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModerationAdvertisementsListComponent {
   @Input() public user: IUser | null;

@@ -7,26 +7,33 @@ import { IUser } from '../../shared/interfaces/user.interface';
 import { CreateAdvertisementPageActions } from '../../state/create-advertisement-page/create-advertisement-page.actions';
 import { selectCreateAdvertisementLoadingStatus } from '../../state/create-advertisement-page/create-advertisement-page.selectors';
 import { RegistrationPageActions } from '../../state/registration-page/registration-page.actions';
-import { selectUserData } from '../../state/registration-page/registration-page.selectors';
+import {
+  selectUserData,
+  selectUserRole,
+} from '../../state/registration-page/registration-page.selectors';
+import { UserRole } from '../../shared/components/header/enums/user-role';
 
 @Component({
   selector: 'app-create-advertisement-page-container',
   template: ` <app-create-advertisement-page
     [user]="user$ | async"
-    (logout)="onLogout()"
+    [userRole]="userRole$ | async"
     [createAdvertisementLoadingStatus]="
       createAdvertisementLoadingStatus$ | async
     "
+    (logout)="onLogout()"
     (formAdvertisement)="onSubmitAdvertisementFormData($event)"
     (dropLoadingStatus)="onDropLoadingStatus()"
   ></app-create-advertisement-page>`,
 })
 export class CreateAdvertisementPageContainerComponent {
   public user$: Observable<IUser | null>;
+  public userRole$: Observable<UserRole | null>;
   public createAdvertisementLoadingStatus$: Observable<LoadingStatus>;
 
   constructor(private store: Store) {
     this.user$ = this.store.select(selectUserData);
+    this.userRole$ = this.store.select(selectUserRole);
     this.createAdvertisementLoadingStatus$ = this.store.select(
       selectCreateAdvertisementLoadingStatus
     );

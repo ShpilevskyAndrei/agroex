@@ -1,4 +1,4 @@
-<app-header [user]="user" (logout)="onLogout()"></app-header>
+<app-header [userRole]="userRole" [user]="user" (logout)="onLogout()"></app-header>
 <div class="container">
   <form [formGroup]="advertisementForm" (ngSubmit)="submitForm()" class="form">
     <div class="form__advertisementTitle">New advertisement</div>

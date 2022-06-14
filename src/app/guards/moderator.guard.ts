@@ -4,19 +4,16 @@ import { map, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import { selectUserRole } from '../state/registration-page/registration-page.selectors';
+import { UserRole } from '../shared/components/header/enums/user-role';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ModeratorGuard implements CanLoad {
-  private role$: Observable<number | undefined>;
+  private role$: Observable<UserRole>;
 
   constructor(private store: Store, private router: Router) {
     this.role$ = this.store.select(selectUserRole);
-  }
-
-  public isModerator(): Observable<number | undefined> {
-    return this.role$.pipe(map((currentRole) => currentRole));
   }
 
   public canLoad():
@@ -24,13 +21,12 @@ export class ModeratorGuard implements CanLoad {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return this.isModerator().pipe(
-      map((item: number | undefined): boolean => {
-        if (item !== 3) {
-          this.router.navigate(['error']);
+    return this.role$.pipe(
+      map((role: UserRole): boolean => {
+        if (role !== UserRole.Moderator) {
+          this.router.navigate(['']);
           return false;
         }
-
         return true;
       })
     );

@@ -1,4 +1,4 @@
-@import "../../styles/general-styles.scss";
+@import "../../styles/general-styles";
 
 :host {
   .advertisement-wrap {
@@ -36,15 +36,16 @@
       margin-top: auto;
     }
 
-    &__quantity, &__location {
+    &__quantity, 
+    &__location {
       display: flex;
       align-items: center;
       .advertisement-quantity-icon,
       .advertisement-pointer-icon {
-        width: 1.667rem;
-        height: 1.667rem;
+        width: 1.7rem;
+        height: 1.7rem;
         margin: 0 $offset-small 0 0;
-        color: #798787;
+        color: $color-copy;
       }
       p {
         margin: 0;

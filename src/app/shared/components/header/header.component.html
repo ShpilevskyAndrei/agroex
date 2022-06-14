@@ -5,14 +5,14 @@
       <p class="logo-name">AGROEX</p>
     </div>
     <div class="account-container-header">
-      <ng-container *ngIf="userRole === userRoles.Guest">
+      <ng-container *ngIf="this.userCurrentRole === userRoles.Guest">
         <div class="account-container-header" (click)="onLogin()">
           <p class="menu-items">Log in</p>
           <mat-icon class="img-in-header icon-for-guest">login</mat-icon>
         </div>
       </ng-container>
 
-      <ng-container *ngIf="userRole === userRoles.User">
+      <ng-container *ngIf="this.userCurrentRole === userRoles.User">
         <button
           mat-raised-button
           class="add-advertisement-button"
@@ -26,13 +26,13 @@
           (click)="userNavigationPanel.open()"
         >
           <img
-            *ngIf="userRole === userRoles.User"
+            *ngIf="this.userCurrentRole === userRoles.User"
             class="img-in-header account-img"
             alt=""
-            [src]="userRoleConfig[userRole].src"
+            [src]="userRoleConfig[this.userCurrentRole].src"
           />
           <mat-icon
-            *ngIf="userRole === userRoles.User"
+            *ngIf="this.userCurrentRole === userRoles.User"
             class="img-in-header my-account-vector"
           >
             expand_more
@@ -54,7 +54,7 @@
         </mat-select>
       </ng-container>
 
-      <ng-container *ngIf="userRole === userRoles.Moderator">
+      <ng-container *ngIf="this.userCurrentRole === userRoles.Moderator">
         <button
           mat-raised-button
           class="add-advertisement-button"
@@ -67,13 +67,11 @@
           (click)="userNavigationPanel.open()"
         >
           <img
-            *ngIf="userRole === userRoles.Moderator"
             class="img-in-header account-img"
             alt=""
-            [src]="userRoleConfig[userRole].src"
+            [src]="userRoleConfig[this.userCurrentRole].src"
           />
           <mat-icon
-            *ngIf="userRole === userRoles.Moderator"
             class="img-in-header my-account-vector"
           >
             expand_more

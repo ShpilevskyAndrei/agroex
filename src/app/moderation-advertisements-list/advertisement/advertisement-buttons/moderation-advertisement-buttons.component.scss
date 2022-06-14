@@ -1,10 +1,10 @@
-@import "../../../styles/general-styles.scss";
-@import "../../styles/moderation-advertisement-const.scss";
+@import "../../../styles/general-styles";
+@import "../../styles/moderation-advertisement-const";
 
 :host {
   .advertisement-btns {
-    display: flex;
     @include column-gap-small;
+    display: flex;
 
     button {
       display: flex;
@@ -12,7 +12,7 @@
       justify-content: center;
       width: 50%;
       span {
-        line-height: 2.667rem;
+        line-height: 2.7rem;
       }
     }
   }

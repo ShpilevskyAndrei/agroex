@@ -22,20 +22,21 @@ import { IUserOptionsType } from './interfaces/user-options-type.interface';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnChanges {
-  @Input() public userRole: UserRole = UserRole.Guest;
   @Input() public user: IUser | null;
+  @Input() public userRole: UserRole | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
 
   public userRoleConfig = LOGGED_ROLE_CONFIG;
   public userRoles = UserRole;
   public userPanelOption = USER_PANEL_OPTION;
+  public userCurrentRole: UserRole | null = UserRole.Guest;
 
   constructor(private router: Router) {}
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.user && this.user) {
-      this.userRole = this.checkUserRole(this.user);
+      this.userCurrentRole = this.userRole;
     }
   }
 
@@ -64,29 +65,11 @@ export class HeaderComponent implements OnChanges {
   }
 
   public goToModerateAdvertisement(): void {
-    this.router.navigate(['moderation-advertisments']);
+    this.router.navigate(['moderation-advertisements']);
   }
 
   private onLogout(): void {
-    this.userRole = UserRole.Guest;
+    this.userCurrentRole = UserRole.Guest;
     this.logout.emit();
-  }
-
-  private checkUserRole(user: IUser): UserRole {
-    if (user?.userRoles!.length === 1 && user?.userRoles![0].role_id === 1) {
-      return UserRole.User;
-    } else if (
-      user?.userRoles!.length !== 1 &&
-      user?.userRoles![1].role_id === 2
-    ) {
-      return UserRole.Admin;
-    } else if (
-      user?.userRoles!.length !== 1 &&
-      user?.userRoles![1].role_id === 3
-    ) {
-      return UserRole.Moderator;
-    } else {
-      return UserRole.Guest;
-    }
   }
 }

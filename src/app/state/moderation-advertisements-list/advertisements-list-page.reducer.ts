@@ -4,7 +4,7 @@ import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IAdvertisementRequestInterface } from '../../advertisements-list/interfaces/advertisement-request.interface';
 import { DEFAULT_LOADING_STATUS } from '../../shared/constants/lodaing-default-status';
 import { ModerateAdvertisementsListPageActions } from './advertisements-list-page.actions';
-import { IAdvertisementInterface } from 'src/app/advertisements-list/interfaces/advertisement.interface';
+import { IAdvertisementInterface } from '../../advertisements-list/interfaces/advertisement.interface';
 
 export const MODERATION_ADVERTISEMENTS_LIST_PAGE =
   'moderateAdvertisementsListPage';
@@ -12,11 +12,13 @@ export const MODERATION_ADVERTISEMENTS_LIST_PAGE =
 export interface ModerateAdvertisementsListPageState {
   moderateAdvertisementsLoadingStatus: LoadingStatus;
   nonModerateAdvertisements: IAdvertisementRequestInterface;
+  sendModerateAdvertisementsLoadingStatus: LoadingStatus;
 }
 
 const initialState: ModerateAdvertisementsListPageState = {
   moderateAdvertisementsLoadingStatus: DEFAULT_LOADING_STATUS,
-  nonModerateAdvertisements: { advertisementCount: null, advertisements: [] },
+  sendModerateAdvertisementsLoadingStatus: DEFAULT_LOADING_STATUS,
+  nonModerateAdvertisements: { advertisementCount: 0, advertisements: [] },
 };
 
 export const MODERATION_ADVERTISEMENTS_LIST_PAGE_REDUCER = createReducer(
@@ -55,14 +57,14 @@ export const MODERATION_ADVERTISEMENTS_LIST_PAGE_REDUCER = createReducer(
     })
   ),
   on(
-    ModerateAdvertisementsListPageActions.getDecisionNonModerateAdvertisements,
+    ModerateAdvertisementsListPageActions.getDecisionNonModerateAdvertisementsSuccess,
     (state, { decision }): ModerateAdvertisementsListPageState => {
       const advNotModerated =
         state.nonModerateAdvertisements.advertisements.filter(
           (adv: IAdvertisementInterface) =>
             adv.slug !== decision.advertisements.slug
         );
-      let advNotModeratedCount =
+      const advNotModeratedCount =
         (state.nonModerateAdvertisements?.advertisementCount || 1) - 1;
       return {
         ...state,
@@ -70,8 +72,29 @@ export const MODERATION_ADVERTISEMENTS_LIST_PAGE_REDUCER = createReducer(
           advertisements: advNotModerated,
           advertisementCount: advNotModeratedCount,
         },
-        moderateAdvertisementsLoadingStatus: DEFAULT_LOADING_STATUS,
       };
     }
+  ),
+  on(
+    ModerateAdvertisementsListPageActions.getDecisionNonModerateAdvertisementsRequest,
+    (state): ModerateAdvertisementsListPageState => ({
+      ...state,
+      sendModerateAdvertisementsLoadingStatus: {
+        loading: false,
+        loaded: true,
+        error: null,
+      },
+    })
+  ),
+  on(
+    ModerateAdvertisementsListPageActions.getDecisionNonModerateAdvertisementsError,
+    (state, { error }): ModerateAdvertisementsListPageState => ({
+      ...state,
+      sendModerateAdvertisementsLoadingStatus: {
+        loading: false,
+        loaded: false,
+        error,
+      },
+    })
   )
 );

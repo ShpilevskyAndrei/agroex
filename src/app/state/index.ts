@@ -41,8 +41,8 @@ import { AdvertisementsListPageEffects } from './advertisements-list-page/advert
 import {
   MODERATION_ADVERTISEMENTS_LIST_PAGE_REDUCER,
   ModerateAdvertisementsListPageState,
-} from './moderation-advertisments-list/advertisements-list-page.reducer';
-import { ModerationAdvertisementsListPageEffects } from './moderation-advertisments-list/advertisements-list-page.effects';
+} from './moderation-advertisements-list/advertisements-list-page.reducer';
+import { ModerationAdvertisementsListPageEffects } from './moderation-advertisements-list/advertisements-list-page.effects';
 
 export interface State {
   mainDashboard: MainDashboardState;

@@ -24,6 +24,7 @@ import {
   IUnit,
 } from './interfaces/create-advertisement.interface';
 import { CreateAdvertisementService } from './services/create-advertisement.service';
+import { UserRole } from '../../shared/components/header/enums/user-role';
 
 @Component({
   selector: 'app-create-advertisement-page',
@@ -33,6 +34,7 @@ import { CreateAdvertisementService } from './services/create-advertisement.serv
 export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
   @Input() public user: IUser | null;
   @Input() public createAdvertisementLoadingStatus: LoadingStatus | null;
+  @Input() public userRole: UserRole | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
   @Output() public dropLoadingStatus: EventEmitter<void> =

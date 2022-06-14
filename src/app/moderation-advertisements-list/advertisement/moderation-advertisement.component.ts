@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { filter, tap } from 'rxjs';
 
@@ -12,6 +18,7 @@ import { PolicyModalContentComponent } from './policy-modal-content/policy-modal
   selector: 'app-moderation-advertisement',
   templateUrl: './moderation-advertisement.component.html',
   styleUrls: ['./moderation-advertisement.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModerationAdvertisementComponent {
   @Input() public advertisement: IAdvertisementInterface;

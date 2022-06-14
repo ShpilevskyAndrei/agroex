@@ -4,6 +4,7 @@ import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IUser } from '../../shared/interfaces/user.interface';
 import { Category } from './categories/interfaces/category.model';
 import { IAdvertisementRequestInterface } from '../../advertisements-list/interfaces/advertisement-request.interface';
+import { UserRole } from '../../shared/components/header/enums/user-role';
 
 @Component({
   selector: 'app-main-dashboard',
@@ -14,6 +15,7 @@ export class MainDashboardComponent {
   @Input() public categories: Category[] | null;
   @Input() public categoriesLoadingStatus: LoadingStatus | null;
   @Input() public user: IUser | null;
+  @Input() public userRole: UserRole | null;
   @Input() public advertisementsRequest: IAdvertisementRequestInterface | null;
   @Input() public advertisementsLoadingStatus: LoadingStatus | null;
 

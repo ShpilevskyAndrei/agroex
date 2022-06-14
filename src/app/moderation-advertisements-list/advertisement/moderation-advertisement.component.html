@@ -1,6 +1,6 @@
 <div class="advertisement-wrap">
   <div class="advertisement-wrap__img">
-    <img src="{{ advertisement.img }}" alt="apple" />
+    <img [src]="advertisement.img" alt="apple" />
   </div>
   <div class="advertisement-wrap__desc">
     <app-advertisement-title
@@ -27,8 +27,8 @@
       [advertisement]="advertisement"
     ></app-advertisement-price>
     <app-moderation-advertisement-buttons
-      [advertisement]="advertisement"
       class="advertisement-wrap__btns"
+      [advertisement]="advertisement"
       (reject)="openPolicyModal()"
       (approve)="onApproveClick()"
     ></app-moderation-advertisement-buttons>

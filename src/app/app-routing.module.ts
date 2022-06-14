@@ -39,11 +39,11 @@ const routes: Routes = [
       ).then((m) => m.CreateAdvertisementPageModule),
   },
   {
-    path: 'moderation-advertisments',
+    path: 'moderation-advertisements',
     loadChildren: () =>
       import(
-        './pages/moderation-advertisments/moderation-advertisments.module'
-      ).then((m) => m.ModerationAdvertismentsPageModule),
+        './pages/moderation-advertisements/moderation-advertisements.module'
+      ).then((m) => m.ModerationadvertisementsPageModule),
     canLoad: [ModeratorGuard],
   },
   {
