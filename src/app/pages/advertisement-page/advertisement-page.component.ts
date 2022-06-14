@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { IAdRequestInterface } from '../../advertisements-list/interfaces/ad-request.interface';
@@ -8,13 +15,14 @@ import { IShownMapConfig } from './interfaces/shown-map-config.interface';
 import { IShownMap } from './interfaces/shown-map.interface';
 import { CurrenciesEnum } from '../../advertisements-list/advertisement/bet-modal/enums/currencies.enum';
 import { UserPanelOptionId } from '../../shared/components/header/enums/user-panel-option-id';
+import { BetValidators } from '../../advertisements-list/advertisement/bet-modal/intefaces/bet-validator';
 
 @Component({
   selector: 'app-advertisement-page',
   templateUrl: './advertisement-page.component.html',
   styleUrls: ['./advertisement-page.component.scss'],
 })
-export class AdvertisementPageComponent {
+export class AdvertisementPageComponent implements OnChanges {
   @Input() public user: IUser | null;
   @Input() public advertisement: IAdRequestInterface | null;
   @Input() public slug: string | null;
@@ -30,18 +38,7 @@ export class AdvertisementPageComponent {
 
   public betForm: FormGroup = new FormGroup({
     bet: new FormControl('', {
-      validators: [
-        Validators.required,
-        Validators.maxLength(9),
-        Validators.min(this.minBetValue()), //!!!!!!!!!!!!!
-        Validators.max(this.maxBetValue()), //!!!!!!!!!!!!!
-        // BetValidators.checkBetValue(
-        //   this.advertisement.advertisement.userBets.length
-        //     ? this.advertisement.advertisement.userBets[0].betValue
-        //     : '0',
-        //   this.advertisement.advertisement.price
-        // ),
-      ],
+      validators: [Validators.required, Validators.maxLength(9)],
       updateOn: 'change',
     }),
   });
@@ -80,20 +77,19 @@ export class AdvertisementPageComponent {
       return ' ';
     }
   }
-  //WHY???????????
-  public maxBetValue(): number {
-    if (this.advertisement?.advertisement.price) {
-      return parseInt(this.advertisement.advertisement.price) - 1;
-    } else {
-      return 100;
-    }
-  }
-  //WHY???????????
-  public minBetValue(): number {
-    if (this.advertisement?.advertisement) {
-      return +this.advertisement.advertisement.userBets[0].betValue + 1;
-    } else {
-      return 1;
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (this.advertisement && changes.advertisement) {
+      this.betForm
+        .get('bet')
+        ?.setValidators(
+          BetValidators.checkBetValue(
+            this.advertisement.advertisement.userBets.length
+              ? this.advertisement.advertisement.userBets[0].betValue
+              : '0',
+            this.advertisement.advertisement.price
+          )
+        );
     }
   }
 
