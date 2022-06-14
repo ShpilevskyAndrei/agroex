@@ -21,18 +21,53 @@
             [advertisement]="advertisement.advertisement"
           ></app-advertisement-title>
 
-          <!--          <app-advertisement-price-->
-          <!--            class="advertisement-wrap__price price-container"-->
-          <!--            [advertisement]="advertisement.advertisement"-->
-          <!--            (betTimerDown)="onBetTimerDown($event)"-->
-          <!--          ></app-advertisement-price>-->
-
-          <app-advertisement-buttons
-            class="advertisement-wrap__btns buttons-container"
+          <app-advertisement-price
+            class="price-container"
             [advertisement]="advertisement.advertisement"
-            [isDisabled]="true"
+          ></app-advertisement-price>
+
+          <div class="bet-form-container">
+            <form [formGroup]="betForm" class="bet-field-container">
+              <mat-form-field class="bet-field">
+                <div class="bet-input-container">
+                  <span matPrefix>{{ actualCurrency }}</span>
+                  <input
+                    matInput
+                    type="number"
+                    class="bet-input"
+                    autocomplete="off"
+                    placeholder="Enter your bet here"
+                    formControlName="bet"
+                    #betValue
+                    (input)="onKeyUp(betValue.value)"
+                    [ngModel]="betForm"
+                  />
+                </div>
+              </mat-form-field>
+            </form>
+
+            <p class="bet-hint">
+              Bet from <span matPrefix>{{ actualCurrency }}</span>
+              {{
+                advertisement.advertisement.userBets.length
+                  ? +advertisement.advertisement.userBets[0].betValue + 1
+                  : "1"
+              }}
+              to <span matPrefix>{{ actualCurrency }}</span>
+              {{ +advertisement.advertisement.price - 1 }}
+            </p>
+          </div>
+
+          <app-advertisement-buttons-ad-page
+            class="buttons-container"
+            [betForm]="betForm"
+            [advertisement]="advertisement.advertisement"
+            [actualCurrency]="actualCurrency"
+            [newBet]="newBet"
+            [isDisabled]="isDisabled"
+            (setBet)="onSetBet($event)"
           >
-          </app-advertisement-buttons>
+          </app-advertisement-buttons-ad-page>
 
           <div class="ad-card-discription discription-container">
             <div class="ad-card-discription_string">
@@ -75,9 +110,14 @@
         <mat-icon class="show-map-icon">{{ isShownMap.isShownIcon }}</mat-icon>
         <p class="show-map-text">{{ isShownMap.isShownText }}</p>
       </div>
-      <div [hidden]="isShownMap.isShown" class="map-container map-slide-in">
-        <img class="map-img" src="../../../assets/mapUzTest.jpg" alt="map" />
-      </div>
+      <mgl-map
+        class="map-container map-slide-in"
+        *ngIf="!isShownMap.isShown"
+        [style]="'mapbox://styles/mapbox/light-v10'"
+        [zoom]="[6]"
+        [center]="[69.23858, 41.186305]"
+      >
+      </mgl-map>
     </div>
   </div>
 </ng-container>

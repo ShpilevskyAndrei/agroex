@@ -1,4 +1,4 @@
-<div class="advertisement-wrap">
+<div class="advertisement-wrap" (click)="openAdvertisement()">
   <div class="advertisement-wrap__img">
     <img src="{{advertisement.img}}" alt="apple">
   </div>
@@ -17,6 +17,7 @@
     <app-advertisement-price class="advertisement-wrap__price"
                              [advertisement]="advertisement"></app-advertisement-price>
     <app-advertisement-buttons class="advertisement-wrap__btns"
+                               (click)="stopPropagation($event)"
                                [advertisement]="advertisement"
                                (setBet)="onSetBet($event)"
     >

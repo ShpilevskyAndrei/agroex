@@ -1,20 +1,24 @@
-@import '@angular/material/theming';
-@import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import "@angular/material/theming";
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
 
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
 
-@import './theme-styles';
+@import "./theme-styles";
 @import "../app/styles/reusable_components/reusable_components.scss";
 @import "../app/styles/general-styles.scss";
+
+@import "~mapbox-gl/dist/mapbox-gl.css";
 
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'IBM Plex Sans', serif;
+  font-family: "IBM Plex Sans", serif;
   line-height: normal;
 }
 
-*, *:after, *:before {
+*,
+*:after,
+*:before {
   box-sizing: border-box;
 }
 
@@ -54,7 +58,9 @@ body {
   .mat-form-field-appearance-outline .mat-form-field-outline {
     top: 0;
   }
-  .mat-form-field-invalid.mat-form-field-appearance-outline .mat-form-field-wrapper .mat-form-field-subscript-wrapper {
+  .mat-form-field-invalid.mat-form-field-appearance-outline,
+    .mat-form-field-wrapper,
+    .mat-form-field-subscript-wrapper {
     display: none;
   }
   .mat-form-field-prefix {
@@ -68,4 +74,6 @@ body {
   }
 }
 
-
+.mapboxgl-ctrl {
+  display: none;
+}

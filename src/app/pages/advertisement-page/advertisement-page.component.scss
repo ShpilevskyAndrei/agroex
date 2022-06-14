@@ -1,3 +1,4 @@
+@import "~mapbox-gl/dist/mapbox-gl.css";
 @import "../../styles/general-styles";
 
 :host {
@@ -35,9 +36,45 @@
   }
 
   .buttons-container,
-  .price-container {
-    margin: $offset-normal 0;
+  .price-container,
+  .bet-form-container {
+    margin: $offset-small 0;
   }
+
+  .bet-form-container {
+    width: 100%;
+  }
+
+  .bet-field-container {
+    width: 100%;
+    padding-right: 8px;
+  }
+
+  .bet-field {
+    width: 50%;
+  }
+
+  .bet-input-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .bet-input {
+    font-size: $font-size-normal;
+    line-height: 1.667rem;
+    color: $primary-color;
+    width: 100%;
+    padding-left: 5px;
+  }
+
+  .bet-hint {
+    font-size: $font-size-xsmall;
+    line-height: 1.333rem;
+    color: $color-ask;
+    margin: 0.333rem 0 0;
+  }
+
   .ad-card-map {
     width: 100%;
   }
@@ -110,7 +147,9 @@
   }
 
   .map-container {
+    display: flex;
     width: 100%;
+    height: 450px; //REM!!!
   }
 
   .map-img {
@@ -118,7 +157,7 @@
   }
 
   .map-slide-in {
-    animation: slideIn 3s ease-out;
+    animation: slideIn 1s ease-out;
   }
 
   @keyframes slideIn {

@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
+import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
 
 import { AppContainerComponent } from './app-container.component';
 import { AppComponent } from './app.component';
@@ -33,6 +34,10 @@ import { BreadcrumbsModule } from './shared/components/breadcrumbs/breadcrumbs.m
     StateModule,
     HeaderModule,
     BreadcrumbsModule,
+    NgxMapboxGLModule.withConfig({
+      accessToken:
+        'pk.eyJ1Ijoic2hwaWxldnNraXkiLCJhIjoiY2w0Y2szODgzMGVqODNibXU2ZTVjZTZheCJ9.NlXs-3IG3nyd4Whs-Jr3-Q',
+    }),
   ],
   providers: [
     AuthGuard,
