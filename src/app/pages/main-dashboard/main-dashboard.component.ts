@@ -4,7 +4,7 @@ import { UserPanelOptionId } from '../../shared/components/header/enums/user-pan
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IUser } from '../../shared/interfaces/user.interface';
 import { Category } from './categories/interfaces/category.model';
-import { IAdvertisementRequestInterface } from '../../advertisements-list/interfaces/advertisement-request.interface';
+import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
 import { UserRole } from '../../shared/components/header/enums/user-role';
 
 @Component({

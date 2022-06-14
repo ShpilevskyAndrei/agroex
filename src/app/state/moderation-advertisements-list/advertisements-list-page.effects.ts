@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import { AgroexToastService, ToastType } from 'ngx-agroex-toast';
 
 import { ModerateAdvertisementsListPageActions } from './advertisements-list-page.actions';
-import { IAdvertisementRequestInterface } from '../../advertisements-list/interfaces/advertisement-request.interface';
+import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
 import { ModerationAdvertisementsListService } from '../../moderation-advertisements-list/moderation-advertisements-list.service';
 import { selectUserToken } from '../registration-page/registration-page.selectors';
 

@@ -1,1 +1,8 @@
-<p>my-advertisements works!</p>
+<app-advertisements-list
+  [advertisementsRequest]="advertisementsRequest"
+  [advertisementsLoadingStatus]="advertisementsLoadingStatus"
+>
+  <ng-template #actionButtons>
+    <app-my-advertisements-buttons></app-my-advertisements-buttons>
+  </ng-template>
+</app-advertisements-list>

@@ -1,4 +1,4 @@
-import { IAdvertisementBetInterface } from '../../advertisements-list/interfaces/advertisement-bet.interface';
+import { IAdvertisementBetInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-bet.interface';
 import { IUser } from '../../shared/interfaces/user.interface';
 
 export interface IAdvertisementInterface {

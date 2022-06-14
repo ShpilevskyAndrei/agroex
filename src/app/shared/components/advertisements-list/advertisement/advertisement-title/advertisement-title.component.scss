@@ -1,0 +1,27 @@
+@import "../../../../../styles/general-styles";
+
+:host {
+  .advertisement-title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    .title {
+      font-size: $font-size-medium;
+      line-height: 2.333rem;
+      font-weight: 500;
+      color: $primary-color;
+    }
+    .desc {
+      font-size: $font-size-medium;
+    }
+    .create {
+      font-size: $font-size-xsmall;
+      font-weight: 300;
+    }
+
+    .desc, .create {
+      color: $color-copy;
+      margin: $offset-small 0 0 0;
+    }
+  }
+}

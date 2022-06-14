@@ -3,7 +3,6 @@
 
 :host {
   .advertisement-btns {
-    @include column-gap-small;
     display: flex;
 
     button {
