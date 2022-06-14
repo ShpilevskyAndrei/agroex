@@ -17,6 +17,6 @@ import { TimeFormatPipe } from '../../../shared/pipes/time-format.pipe';
     TimeFormatPipe,
   ],
   imports: [CommonModule, MatIconModule],
-  exports: [AdvertisementPriceComponent],
+  exports: [AdvertisementPriceComponent, AvailableDateFormatPipe],
 })
 export class AdvertisementPriceModule {}

@@ -1,5 +1,5 @@
+import { IAdvertisementBetInterface } from '../../advertisements-list/interfaces/advertisement-bet.interface';
 import { IUser } from '../../shared/interfaces/user.interface';
-import { IAdvertisementBetInterface } from './advertisement-bet.interface';
 
 export interface IAdvertisementInterface {
   id: number;
@@ -19,5 +19,10 @@ export interface IAdvertisementInterface {
   createAt: string;
   updatedAt: string;
   author: IUser;
+  moderationComment?: string | null;
   userBets: IAdvertisementBetInterface[];
+}
+
+export interface IAdvertisementModerationRequest {
+  advertisements: IAdvertisementInterface;
 }

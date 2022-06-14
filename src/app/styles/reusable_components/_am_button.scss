@@ -39,3 +39,27 @@
         border: 1px solid $color-button-disable;
     }
 }
+
+.mat-button.btn_red,
+.mat-raised-button.btn_red,
+[mat-button].btn_red,
+[mat-raised-button].btn_red
+  {
+    background: $color-white;
+    border-color: $color-error;
+    color: $color-error;
+    .mat-ripple {
+      border: 1px solid $color-error;
+  }
+}
+
+.mat-button.btn_green,
+.mat-raised-button.btn_green,
+[mat-button].btn_green,
+[mat-raised-button].btn_green {
+  background: $color-success;
+  border-color: $color-success;
+  .mat-ripple {
+    border: 1px solid $color-success;
+  }
+}

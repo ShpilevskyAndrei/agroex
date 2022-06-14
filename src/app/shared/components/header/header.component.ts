@@ -6,6 +6,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
+import { MatSelect } from '@angular/material/select';
 import { Router } from '@angular/router';
 
 import { IUser } from '../../interfaces/user.interface';
@@ -21,8 +22,8 @@ import { IUserOptionsType } from './interfaces/user-options-type.interface';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnChanges {
-  @Input() public userRole: UserRole = UserRole.Guest;
   @Input() public user: IUser | null;
+  @Input() public userRole: UserRole | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
   @Output() public selectTab: EventEmitter<UserPanelOptionId> =
@@ -31,17 +32,30 @@ export class HeaderComponent implements OnChanges {
   public userRoleConfig = LOGGED_ROLE_CONFIG;
   public userRoles = UserRole;
   public userPanelOption = USER_PANEL_OPTION;
+  public userCurrentRole: UserRole | null = UserRole.Guest;
 
   constructor(private router: Router) {}
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.user && this.user) {
-      this.userRole = UserRole.User;
+      this.userCurrentRole = this.userRole;
     }
   }
 
   public onLogin(): void {
     this.router.navigate(['registration']);
+  }
+
+  public navigateToUserOption(
+    selectedOption: IUserOptionsType,
+    userNavigationPanel: MatSelect
+  ): void {
+    if (selectedOption.id === UserPanelOptionId.MyAccount) {
+      userNavigationPanel.value = null;
+      this.onLogout();
+
+      return;
+    }
   }
 
   public goToMainPage(): void {
@@ -52,8 +66,12 @@ export class HeaderComponent implements OnChanges {
     this.router.navigate(['create-advertisement']);
   }
 
+  public goToModerateAdvertisement(): void {
+    this.router.navigate(['moderation-advertisements']);
+  }
+
   public onLogout(): void {
-    this.userRole = UserRole.Guest;
+    this.userCurrentRole = UserRole.Guest;
     this.logout.emit();
   }
 

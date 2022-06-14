@@ -10,9 +10,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 
 import { RegistrationPageContainerComponent } from './registration-page-container.component';
-import { PolicyModalContentComponent } from './policy-modal-content/policy-modal-content.component';
 import { RegistrationPageRoutingModule } from './registration-page-routing.module';
 import { RegistrationPageComponent } from './registration-page.component';
+import { PolicyModalContentComponent } from './policy-modal-content/policy-modal-content.component';
 
 @NgModule({
   declarations: [
