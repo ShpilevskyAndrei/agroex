@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, mergeMap, of, switchMap, withLatestFrom } from 'rxjs';
+import { catchError, map, of, switchMap, withLatestFrom } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { AgroexToastService, ToastType } from 'ngx-agroex-toast';
@@ -9,7 +9,6 @@ import { ModerateAdvertisementsListPageActions } from './advertisements-list-pag
 import { IAdvertisementRequestInterface } from '../../advertisements-list/interfaces/advertisement-request.interface';
 import { ModerationAdvertisementsListService } from '../../moderation-advertisements-list/moderation-advertisements-list.service';
 import { selectUserToken } from '../registration-page/registration-page.selectors';
-import { EMPTY_ACTION } from '../../shared/constants/empty-action';
 
 @Injectable()
 export class ModerationAdvertisementsListPageEffects {
