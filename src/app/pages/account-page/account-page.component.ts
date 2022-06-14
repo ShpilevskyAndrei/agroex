@@ -10,6 +10,7 @@ import { UserPanelOptionId } from '../../shared/components/header/enums/user-pan
 import { IUser } from '../../shared/interfaces/user.interface';
 import { USER_PANEL_OPTION } from '../../shared/components/header/constants/user-panel-option';
 import { IUserOptionsType } from '../../shared/components/header/interfaces/user-options-type.interface';
+import { UserRole } from '../../shared/components/header/enums/user-role';
 
 @Component({
   selector: 'app-account-page',
@@ -19,6 +20,7 @@ import { IUserOptionsType } from '../../shared/components/header/interfaces/user
 })
 export class AccountPageComponent {
   @Input() public user: IUser | null;
+  @Input() public userRole: UserRole | null;
   @Input() public selectedTab: string | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();

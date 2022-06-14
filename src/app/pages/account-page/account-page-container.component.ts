@@ -5,14 +5,16 @@ import { Observable } from 'rxjs';
 import { UserPanelOptionId } from '../../shared/components/header/enums/user-panel-option-id';
 import { AppRootActions } from '../../state/app-root/app-root.actions';
 import { RegistrationPageActions } from '../../state/registration-page/registration-page.actions';
-import { selectUserData } from '../../state/registration-page/registration-page.selectors';
+import {selectUserData, selectUserRole} from '../../state/registration-page/registration-page.selectors';
 import { IUser } from '../../shared/interfaces/user.interface';
 import { selectAppRootOptionId } from '../../state/app-root/app-root.selectors';
+import { UserRole } from '../../shared/components/header/enums/user-role';
 
 @Component({
   selector: 'app-account-page-container',
   template: ` <app-account-page
     [user]="user$ | async"
+    [userRole]="userRole$ | async"
     [selectedTab]="selectedTab$ | async"
     (logout)="onLogout()"
     (selectTab)="onSelectTab($event)"
@@ -21,10 +23,12 @@ import { selectAppRootOptionId } from '../../state/app-root/app-root.selectors';
 })
 export class AccountPageContainerComponent {
   public user$: Observable<IUser | null>;
+  public userRole$: Observable<UserRole | null>;
   public selectedTab$: Observable<string | null>;
 
   constructor(private store: Store) {
     this.user$ = this.store.select(selectUserData);
+    this.userRole$ = this.store.select(selectUserRole);
     this.selectedTab$ = this.store.select(selectAppRootOptionId);
   }
 
