@@ -1,4 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { IUserRole } from 'src/app/shared/interfaces/user.interface';
 
 import { UserRole } from '../../shared/components/header/enums/user-role';
 
@@ -26,15 +27,20 @@ export const selectUserToken = createSelector(
 export const selectUserRole = createSelector(selectGetFeatureState, (state) => {
   if (!state.user) {
     return UserRole.Guest;
-  } else {
-    let userRole = UserRole.User;
-    state.user?.userRoles?.forEach((roles) => {
-      if (roles.role_id === UserRole.Moderator) {
-        userRole = UserRole.Moderator;
-      } else if (roles.role_id === UserRole.Admin) {
-        userRole = UserRole.Admin;
-      }
-    });
-    return userRole;
   }
+  if (
+    state.user?.userRoles?.find(
+      (roles: IUserRole) => roles.role_id === UserRole.Admin
+    )
+  ) {
+    return UserRole.Admin;
+  }
+  if (
+    state.user?.userRoles?.find(
+      (roles: IUserRole) => roles.role_id === UserRole.Moderator
+    )
+  ) {
+    return UserRole.Moderator;
+  }
+  return UserRole.User;
 });

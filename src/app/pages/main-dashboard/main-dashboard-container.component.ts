@@ -27,7 +27,7 @@ import {
   AdvertisementsListBetActions,
   AdvertisementsListPageActions,
 } from '../../state/advertisements-list-page/advertisements-list-page.actions';
-import { UserRole } from 'src/app/shared/components/header/enums/user-role';
+import { UserRole } from '../../shared/components/header/enums/user-role';
 
 @Component({
   selector: 'app-main-dashboard-container',
