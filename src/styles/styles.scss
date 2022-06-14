@@ -68,4 +68,40 @@ body {
   }
 }
 
+.main-header__menu.mat-menu-panel {
+  max-width: 25rem;
+  width: 100vw;
+  margin-top: .7rem;
+  box-shadow: 0 .2rem .7rem rgba(0, 0, 0, 0.08), 0 .3rem 2rem rgba(0, 0, 0, 0.12);
+  border-radius: .2rem;
+  padding-bottom: 0;
+
+  .main-header__menu-user,
+  .mat-menu-item {
+    padding: 0 $offset-medium;
+  }
+
+  .mat-menu-item {
+    font-size: 18px;
+    color: #131314;
+    &:last-child {
+      border-top: .1rem solid $color-button-disable;
+    }
+  }
+
+  .mat-menu-item .mat-icon {
+    margin-right: 1rem;
+  }
+
+  .main-header__menu-user {
+    margin: 0;
+    font-weight: 500;
+    font-size: $font-size-normal;
+    line-height: 3rem;
+    color: $primary-color;
+    padding-bottom: .7rem;
+    border-bottom: .1rem solid $color-button-disable;
+  }
+}
+
 

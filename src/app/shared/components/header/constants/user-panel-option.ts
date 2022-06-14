@@ -26,10 +26,4 @@ export const USER_PANEL_OPTION: IUserOptionsType[] = [
     url: '/account',
     icon: 'account-icon',
   },
-  {
-    id: UserPanelOptionId.LogOut,
-    title: 'Logout',
-    url: '',
-    icon: 'logout-icon',
-  },
 ];

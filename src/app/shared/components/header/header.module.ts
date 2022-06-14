@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 
 import { HeaderComponent } from './header.component';
 import { RouterModule } from '@angular/router';
+import { MatMenuModule } from "@angular/material/menu";
 
 @NgModule({
   declarations: [HeaderComponent],
@@ -16,6 +17,7 @@ import { RouterModule } from '@angular/router';
     MatIconModule,
     MatButtonModule,
     RouterModule,
+    MatMenuModule,
   ],
 })
 export class HeaderModule {}
