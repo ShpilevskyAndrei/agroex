@@ -1,0 +1,5 @@
+@import "../../../../../styles/general-styles";
+
+:host {
+  @include advertisements-buttons;
+}

@@ -9,8 +9,8 @@ import {
   AdvertisementsListBetActions,
   AdvertisementsListPageActions,
 } from './advertisements-list-page.actions';
-import { IAdvertisementRequestInterface } from '../../advertisements-list/interfaces/advertisement-request.interface';
-import { AdvertisementsListService } from '../../advertisements-list/advertisements-list.service';
+import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
+import { AdvertisementsListService } from '../../shared/components/advertisements-list/advertisements-list.service';
 import { selectUserToken } from '../registration-page/registration-page.selectors';
 
 @Injectable()

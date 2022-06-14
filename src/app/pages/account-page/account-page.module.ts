@@ -8,6 +8,8 @@ import { AccountPageRoutingModule } from './account-page-routing.module';
 import { SidebarModule } from './sidebar/sidebar.module';
 import { MyAdvertisementsModule } from './my-advertisements/my-advertisements.module';
 import { MyOrdersModule } from './my-orders/my-orders.module';
+import { MyAccountModule } from './my-account/my-account.module';
+import { MyBettingModule } from './my-betting/my-betting.module';
 
 @NgModule({
   declarations: [AccountPageComponent, AccountPageContainerComponent],
@@ -18,6 +20,8 @@ import { MyOrdersModule } from './my-orders/my-orders.module';
     SidebarModule,
     MyAdvertisementsModule,
     MyOrdersModule,
+    MyAccountModule,
+    MyBettingModule,
   ],
   exports: [AccountPageContainerComponent],
 })

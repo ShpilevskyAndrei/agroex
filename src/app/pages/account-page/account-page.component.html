@@ -18,7 +18,22 @@
           (logout)="onLogout()"
           (selectTab)="onSelectTab($event)">
         </app-sidebar>
-        <div class="account__info"></div>
+        <div class="account__info" [ngSwitch]="this.selectedTab">
+          <app-my-advertisements
+            *ngSwitchCase="'myAdvertisements'"
+            [advertisementsRequest]="advertisementsRequest"
+            [advertisementsLoadingStatus]="advertisementsLoadingStatus">
+          </app-my-advertisements>
+          <app-my-betting
+            *ngSwitchCase="'betting'">
+          </app-my-betting>
+          <app-my-orders
+            *ngSwitchCase="'myOrders'">
+          </app-my-orders>
+          <app-my-account
+            *ngSwitchCase="'myAccount'">
+          </app-my-account>
+        </div>
       </div>
     </div>
   </div>

@@ -17,10 +17,15 @@
       }
     }
 
+    &__content {
+      display: flex;
+    }
+
     &__sidebar {
       display: flex;
       flex-direction: column;
       width: 22.3rem;
+      min-width: 22.3rem;
       min-height: 50vh;
       padding-bottom: 2rem;
       box-shadow: inset -.1rem 0 0 $color-button-disable;

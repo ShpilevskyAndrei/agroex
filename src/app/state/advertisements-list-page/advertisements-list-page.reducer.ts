@@ -1,13 +1,13 @@
 import { createReducer, on } from '@ngrx/store';
 
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
-import { IAdvertisementRequestInterface } from '../../advertisements-list/interfaces/advertisement-request.interface';
+import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
 import { DEFAULT_LOADING_STATUS } from '../../shared/constants/lodaing-default-status';
 import {
   AdvertisementsListBetActions,
   AdvertisementsListPageActions,
 } from './advertisements-list-page.actions';
-import { IAdvertisementInterface } from '../../advertisements-list/interfaces/advertisement.interface';
+import { IAdvertisementInterface } from '../../shared/components/advertisements-list/interfaces/advertisement.interface';
 
 export const ADVERTISEMENTS_LIST_PAGE = 'advertisementsListPage';
 

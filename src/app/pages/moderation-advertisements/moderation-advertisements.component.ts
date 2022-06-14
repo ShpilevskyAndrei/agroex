@@ -8,7 +8,7 @@ import {
 
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IUser } from '../../shared/interfaces/user.interface';
-import { IAdvertisementRequestInterface } from '../../advertisements-list/interfaces/advertisement-request.interface';
+import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
 import { IAdvertisementModerationRequest } from '../../moderation-advertisements-list/interfaces/advertisement.interface';
 import { UserRole } from '../../shared/components/header/enums/user-role';
 
