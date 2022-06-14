@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
@@ -17,6 +17,7 @@ import { selectAppRootOptionId } from '../../state/app-root/app-root.selectors';
     (logout)="onLogout()"
     (selectTab)="onSelectTab($event)"
   ></app-account-page>`,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccountPageContainerComponent {
   public user$: Observable<IUser | null>;
