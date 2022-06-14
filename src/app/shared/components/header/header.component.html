@@ -20,6 +20,14 @@
           <mat-icon class="add-advertisement-button-container">add</mat-icon>
           <span>Advertisement</span>
         </button>
+
+
+
+
+
+
+
+
         <div
           class="account-container-header"
           (click)="userNavigationPanel.open()"
@@ -37,20 +45,30 @@
             expand_more
           </mat-icon>
         </div>
+
+
+
         <mat-select
           #userNavigationPanel
           class="my-account-select"
           panelClass="mat-select-unset-height"
           (valueChange)="navigateToUserOption($event, userNavigationPanel)"
         >
+          {{this.user?.username}}
           <mat-option
             *ngFor="let option of userPanelOption"
             [value]="option"
             [routerLink]="option.url"
           >
+            <mat-icon svgIcon="{{option.icon}}" class="category__icon"></mat-icon>
+
             {{ option.title }}
           </mat-option>
         </mat-select>
+
+
+
+
       </ng-template>
     </div>
   </div>
