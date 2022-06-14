@@ -1,9 +1,9 @@
 export enum UserPanelOptionId {
-  MyAdvertisements,
-  MyAccount,
-  EditPersonalDetails,
-  MyOrders,
-  Settings,
-  ChangePassword,
-  LogOut,
+  MyAdvertisements = 'myAdvertisements',
+  MyAccount = 'myAccount',
+  EditPersonalDetails = 'editPersonalDetails',
+  MyOrders = 'myOrders',
+  Settings = 'settings',
+  ChangePassword = 'changePassword',
+  LogOut = 'logOut',
 }

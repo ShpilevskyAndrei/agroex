@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
+import { UserPanelOptionId } from '../../shared/components/header/enums/user-panel-option-id';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IUser } from '../../shared/interfaces/user.interface';
 import { Category } from './categories/interfaces/category.model';
@@ -20,6 +21,8 @@ export class MainDashboardComponent {
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
   @Output() public setBet: EventEmitter<Record<string, string | number>> =
     new EventEmitter<Record<string, string | number>>();
+  @Output() public selectTab: EventEmitter<UserPanelOptionId> =
+    new EventEmitter<UserPanelOptionId>();
 
   public onLogout(): void {
     this.logout.emit();
@@ -27,5 +30,9 @@ export class MainDashboardComponent {
 
   public onSetBet(newBetOptions: Record<string, string | number>): void {
     this.setBet.emit(newBetOptions);
+  }
+
+  public onSelectTab(selectedOptionId: UserPanelOptionId): void {
+    this.selectTab.emit(selectedOptionId);
   }
 }
