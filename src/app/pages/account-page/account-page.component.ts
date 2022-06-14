@@ -10,6 +10,7 @@ import { IUser } from '../../shared/interfaces/user.interface';
 })
 export class AccountPageComponent {
   @Input() public user: IUser | null;
+  @Input() public selectedTab: string | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
   @Output() public selectTab: EventEmitter<UserPanelOptionId> =

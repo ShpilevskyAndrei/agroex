@@ -3,5 +3,19 @@
   (logout)="onLogout()"
   (selectTab)="onSelectTab($event)"
 ></app-header>
-<p>account-page works!</p>
+
+
+<div class="wrap">
+  <div class="sidebar">
+    <app-sidebar [selectedTab]="this.selectedTab"></app-sidebar>
+  </div>
+
+  <div class="content" [ngSwitch]="this.selectedTab">
+    <app-my-advertisements *ngSwitchCase=""></app-my-advertisements>
+    <app-my-orders *ngSwitchCase=""></app-my-orders>
+  </div>
+</div>
+
+
+
 <a routerLink="/">Main page</a>
