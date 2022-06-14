@@ -44,10 +44,6 @@ export class HeaderComponent implements OnChanges {
     this.router.navigate(['registration']);
   }
 
-  public navigateToUserOption(selectedOption: IUserOptionsType): void {
-    this.onSelectTab(selectedOption.id);
-  }
-
   public goToMainPage(): void {
     this.router.navigate(['']);
   }
@@ -61,7 +57,7 @@ export class HeaderComponent implements OnChanges {
     this.logout.emit();
   }
 
-  private onSelectTab(selectedOptionId: UserPanelOptionId): void {
-    this.selectTab.emit(selectedOptionId);
+  public onSelectPage(selectedOptionId: IUserOptionsType): void {
+    this.selectTab.emit(selectedOptionId.id);
   }
 }

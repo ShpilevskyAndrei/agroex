@@ -38,13 +38,13 @@
           <button mat-menu-item *ngFor="let option of userPanelOption"
                   [value]="option"
                   [routerLink]="option.url"
-                  (click)="navigateToUserOption(option)">
+                  (click)="onSelectPage(option)">
             <mat-icon svgIcon="{{option.icon}}" class="main-header__menu-icon"></mat-icon>
             {{ option.title }}
           </button>
           <button mat-menu-item
                   [routerLink]=""
-                  (click)="this.onLogout()">
+                  (click)="onLogout()">
             <mat-icon svgIcon="logout-icon" class="main-header__menu-icon"></mat-icon>
             Logout
           </button>
