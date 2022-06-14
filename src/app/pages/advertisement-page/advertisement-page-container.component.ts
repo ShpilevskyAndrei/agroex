@@ -15,6 +15,8 @@ import {
 } from '../../state/advertisement-page/advertisement-page.selectors';
 import { selectUserData } from '../../state/registration-page/registration-page.selectors';
 import { RegistrationPageActions } from '../../state/registration-page/registration-page.actions';
+import { UserPanelOptionId } from '../../shared/components/header/enums/user-panel-option-id';
+import { AppRootActions } from '../../state/app-root/app-root.actions';
 
 @Component({
   selector: 'app-advertisement-page-container',
@@ -23,6 +25,7 @@ import { RegistrationPageActions } from '../../state/registration-page/registrat
     [advertisement]="advertisement$ | async"
     [advertisementLoadingStatus]="advertisementLoadingStatus$ | async"
     (logout)="onLogout()"
+    (selectTab)="onSelectTab($event)"
   ></app-advertisement-page>`,
 })
 export class AdvertisementPageContainerComponent implements OnInit, OnDestroy {
@@ -45,6 +48,10 @@ export class AdvertisementPageContainerComponent implements OnInit, OnDestroy {
 
   public onLogout(): void {
     this.store.dispatch(RegistrationPageActions.getUserLogout());
+  }
+
+  public onSelectTab(selectedOptionId: UserPanelOptionId): void {
+    this.store.dispatch(AppRootActions.getUserSelectTab({ selectedOptionId }));
   }
 
   public ngOnInit(): void {

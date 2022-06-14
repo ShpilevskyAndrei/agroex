@@ -13,17 +13,21 @@
       width: 50%;
     }
 
-    .label, .value, .per-item {
+    .label,
+    .value,
+    .per-item {
       display: block;
     }
-    .label, .per-item {
+    .label,
+    .per-item {
       color: $color-copy;
     }
     .label {
       font-size: 0.833rem;
     }
 
-    .value, .no-bets {
+    .value,
+    .no-bets {
       line-height: 2.667rem;
       margin: $offset-small 0 0 0;
     }
@@ -34,18 +38,19 @@
 
     .no-bets {
       font-size: $font-size-normal;
-      color: #BCC3C3;
+      color: #bcc3c3;
     }
 
     &__bet .value {
-      color: #F87E25;
+      color: #f87e25;
     }
 
     &__total .value {
       color: $primary-color;
     }
 
-    .advertisement-timer, .advertisement-created {
+    .advertisement-timer,
+    .advertisement-created {
       display: flex;
       align-items: center;
       padding: 0 0.667rem;
@@ -62,13 +67,18 @@
     }
 
     .advertisement-timer {
-      background-color: #F87E25;
+      background-color: #f87e25;
       color: $color-white;
     }
 
     .advertisement-created {
-      background-color: #EEF7FF;
-      color: #2978B8;
+      background-color: #eef7ff;
+      color: #2978b8;
     }
+  }
+
+  .unit-price {
+    color: $color-copy;
+    font-size: $font-size-xsmall;
   }
 }

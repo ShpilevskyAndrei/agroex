@@ -1,4 +1,8 @@
-<app-header [user]="user" (logout)="onLogout()"></app-header>
+<app-header
+  [user]="user"
+  (logout)="onLogout()"
+  (selectTab)="onSelectTab($event)"
+></app-header>
 <app-breadcrumbs
   *ngIf="advertisement"
   [advertisement]="advertisement.advertisement"

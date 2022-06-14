@@ -7,6 +7,7 @@ import { IUser } from '../../shared/interfaces/user.interface';
 import { IShownMapConfig } from './interfaces/shown-map-config.interface';
 import { IShownMap } from './interfaces/shown-map.interface';
 import { CurrenciesEnum } from '../../advertisements-list/advertisement/bet-modal/enums/currencies.enum';
+import { UserPanelOptionId } from '../../shared/components/header/enums/user-panel-option-id';
 
 @Component({
   selector: 'app-advertisement-page',
@@ -22,19 +23,18 @@ export class AdvertisementPageComponent {
     new EventEmitter<Record<string, string | number>>();
   @Input() public betTimerDown: EventEmitter<string> =
     new EventEmitter<string>();
-  @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
 
-  // public minBetValue =
-  //   parseInt(this.advertisement.advertisement.userBets[0].betValue) + 1;
-  // public maxBetValue = parseInt(this.advertisement.advertisement.price) - 1;
+  @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
+  @Output() public selectTab: EventEmitter<UserPanelOptionId> =
+    new EventEmitter<UserPanelOptionId>();
 
   public betForm: FormGroup = new FormGroup({
     bet: new FormControl('', {
       validators: [
         Validators.required,
         Validators.maxLength(9),
-        Validators.min(223), //!!!!!!!!!!!!!
-        Validators.max(229), //!!!!!!!!!!!!!
+        Validators.min(this.minBetValue()), //!!!!!!!!!!!!!
+        Validators.max(this.maxBetValue()), //!!!!!!!!!!!!!
         // BetValidators.checkBetValue(
         //   this.advertisement.advertisement.userBets.length
         //     ? this.advertisement.advertisement.userBets[0].betValue
@@ -80,13 +80,25 @@ export class AdvertisementPageComponent {
       return ' ';
     }
   }
+  //WHY???????????
+  public maxBetValue(): number {
+    if (this.advertisement?.advertisement.price) {
+      return parseInt(this.advertisement.advertisement.price) - 1;
+    } else {
+      return 100;
+    }
+  }
+  //WHY???????????
+  public minBetValue(): number {
+    if (this.advertisement?.advertisement) {
+      return +this.advertisement.advertisement.userBets[0].betValue + 1;
+    } else {
+      return 1;
+    }
+  }
 
   public onSetBet(newBetOptions: Record<string, string | number>): void {
     this.setBet.emit(newBetOptions);
-  }
-
-  public onBetTimerDown(slug: string): void {
-    this.betTimerDown.emit(slug);
   }
 
   public toggleShow(): void {
@@ -105,5 +117,9 @@ export class AdvertisementPageComponent {
 
   public onKeyUp(value: string): void {
     this.newBet = value;
+  }
+
+  public onSelectTab(selectedOptionId: UserPanelOptionId): void {
+    this.selectTab.emit(selectedOptionId);
   }
 }
