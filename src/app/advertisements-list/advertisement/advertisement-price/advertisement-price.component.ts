@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 
 import { IAdvertisementInterface } from '../../interfaces/advertisement.interface';
 import { WeightEnum } from './enums/weight.enum';
+import { CurrenciesEnum } from '../bet-modal/enums/currencies.enum';
 
 @Component({
   selector: 'app-advertisement-price',
@@ -10,6 +11,21 @@ import { WeightEnum } from './enums/weight.enum';
 })
 export class AdvertisementPriceComponent {
   @Input() public advertisement: IAdvertisementInterface;
+
+  public get actualCurrency(): string | undefined {
+    if (this.advertisement.currency) {
+      switch (this.advertisement.currency) {
+        case CurrenciesEnum.USD:
+          return `$`;
+        case CurrenciesEnum.EUR:
+          return `€`;
+        default:
+          return this.advertisement.currency;
+      }
+    } else {
+      return ' ';
+    }
+  }
 
   public get tonToKgUnit(): string {
     if (this.advertisement.unit === WeightEnum.ton) {
@@ -21,7 +37,7 @@ export class AdvertisementPriceComponent {
 
   public get CalcTonToKg(): number {
     if (this.advertisement.unit === WeightEnum.ton) {
-      return +this.advertisement.quantity / 1000;
+      return +this.advertisement.quantity * 1000;
     } else {
       return +this.advertisement.quantity;
     }
@@ -35,7 +51,17 @@ export class AdvertisementPriceComponent {
     );
   }
 
+  public get unitCostPrice(): number {
+    return (
+      Math.floor((+this.advertisement.price / this.CalcTonToKg) * 100) / 100
+    );
+  }
+
   public get unitCostTextBet(): string {
-    return `${this.advertisement.currency} ${this.unitCostBet}/${this.tonToKgUnit}`;
+    return `${this.actualCurrency} ${this.unitCostBet}/${this.tonToKgUnit}`;
+  }
+
+  public get unitCostTextPrice(): string {
+    return `${this.actualCurrency} ${this.unitCostPrice}/${this.tonToKgUnit}`;
   }
 }

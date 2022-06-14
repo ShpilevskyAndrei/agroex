@@ -6,7 +6,7 @@
         advertisement.userBets[0].betValue
           | currency: advertisement.currency:"symbol-narrow":"0.2":"fr"
       }}</span>
-      <span class="unit-price">{{unitCostTextBet}}</span>
+      <span class="unit-price">{{ unitCostTextBet }}</span>
     </ng-container>
     <ng-template #noBetBlock>
       <span class="no-bets">No bets</span>
@@ -14,10 +14,14 @@
   </div>
   <div class="advertisement-price__total">
     <span class="label">Total price</span>
-    <span class="value">{{advertisement.price | currency: advertisement.currency: 'symbol-narrow': '0.2': 'fr'}}</span>
+    <span class="value">{{
+      advertisement.price
+        | currency: advertisement.currency:"symbol-narrow":"0.2":"fr"
+    }}</span>
+    <span class="unit-price">{{ unitCostTextPrice }}</span>
     <div class="advertisement-created">
       <mat-icon class="advertisement-created__icon">access_time</mat-icon>
-      <span>{{advertisement.createAt | availableDateFormat: 'days': 3}}</span>
+      <span>{{ advertisement.createAt | availableDateFormat: "days":3 }}</span>
     </div>
   </div>
 </div>

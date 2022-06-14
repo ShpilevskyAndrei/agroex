@@ -16,7 +16,7 @@ import { ErrorPageModule } from './pages/error-page/error-page.module';
 import { IconSerializeService } from './shared/services/icon-serialize.service';
 import { StateModule } from './state/state.module';
 import { APPEARANCE } from './shared/constants/appearance-outline';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './guards/auth.guard';
 import { HeaderModule } from './shared/components/header/header.module';
 import { BreadcrumbsModule } from './shared/components/breadcrumbs/breadcrumbs.module';
 

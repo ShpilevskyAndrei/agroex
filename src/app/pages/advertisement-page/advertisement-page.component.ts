@@ -27,10 +27,6 @@ export class AdvertisementPageComponent implements OnChanges {
   @Input() public advertisement: IAdRequestInterface | null;
   @Input() public slug: string | null;
   @Input() public advertisementLoadingStatus: LoadingStatus | null;
-  @Input() public setBet: EventEmitter<Record<string, string | number>> =
-    new EventEmitter<Record<string, string | number>>();
-  @Input() public betTimerDown: EventEmitter<string> =
-    new EventEmitter<string>();
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
   @Output() public selectTab: EventEmitter<UserPanelOptionId> =
@@ -91,10 +87,6 @@ export class AdvertisementPageComponent implements OnChanges {
           )
         );
     }
-  }
-
-  public onSetBet(newBetOptions: Record<string, string | number>): void {
-    this.setBet.emit(newBetOptions);
   }
 
   public toggleShow(): void {

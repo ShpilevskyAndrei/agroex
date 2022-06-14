@@ -36,7 +36,8 @@
       margin-top: auto;
     }
 
-    &__quantity, &__location {
+    &__quantity,
+    &__location {
       display: flex;
       align-items: center;
       .advertisement-quantity-icon,
