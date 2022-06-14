@@ -7,11 +7,14 @@
                            (setBet)="onSetBet($event)"
                            (betTimerDown)="onBetTimerDown($event)">
           <ng-container
+            buttons
             *ngIf="actionButtonsTemplateRef"
             [ngTemplateOutlet]="actionButtonsTemplateRef"
             [ngTemplateOutletContext]="{$implicit:advertisement}"
           >
           </ng-container>
+
+          <p price>lorem</p>
         </app-advertisement>
       </div>
     </div>

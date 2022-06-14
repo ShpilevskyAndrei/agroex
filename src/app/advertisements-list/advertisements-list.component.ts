@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   Component,
   ContentChild,
   EventEmitter,
@@ -17,7 +16,7 @@ import { AdvertisementButtonsComponent } from './advertisement/advertisement-but
   templateUrl: './advertisements-list.component.html',
   styleUrls: ['./advertisements-list.component.scss'],
 })
-export class AdvertisementsListComponent implements AfterViewInit {
+export class AdvertisementsListComponent {
   @Input() public advertisementsRequest: IAdvertisementRequestInterface | null;
   @Input() public advertisementsLoadingStatus: LoadingStatus | null;
   @Output() public setBet: EventEmitter<Record<string, string | number>> =
@@ -34,11 +33,5 @@ export class AdvertisementsListComponent implements AfterViewInit {
 
   public onBetTimerDown(slug: string): void {
     this.betTimerDown.emit(slug);
-  }
-
-  public ngAfterViewInit(): void {
-    this.actionButtonsTemplateRef.createEmbeddedView(
-      this.actionButtonsTemplateRef
-    );
   }
 }

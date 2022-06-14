@@ -14,6 +14,7 @@
     </div>
   </div>
   <div class="advertisement-wrap__actions">
+    <ng-content select="[price]"></ng-content>
     <app-advertisement-price class="advertisement-wrap__price"
                              [advertisement]="advertisement"
                              (betTimerDown)="onBetTimerDown($event)"></app-advertisement-price>
@@ -21,7 +22,7 @@
 
 
     <app-advertisement-buttons class="advertisement-wrap__btns">
-      <ng-content></ng-content>
+      <ng-content select="[buttons]"></ng-content>
     </app-advertisement-buttons>
   </div>
 </div>
