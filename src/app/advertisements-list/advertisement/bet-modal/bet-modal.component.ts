@@ -34,7 +34,7 @@ export class BetModalComponent {
     @Inject(MAT_DIALOG_DATA) public data: BetModalDataInterface
   ) {}
 
-  public onNoClick(): void {
-    this.dialogRef.close();
+  public onCloseBetModal(): void {
+    this.dialogRef.close(this.betForm.get('bet')?.value);
   }
 }

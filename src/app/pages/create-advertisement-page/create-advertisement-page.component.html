@@ -1,4 +1,8 @@
-<app-header [user]="user" (logout)="onLogout()"></app-header>
+<app-header
+  [user]="user"
+  (logout)="onLogout()"
+  (selectTab)="onSelectTab($event)"
+></app-header>
 <div class="container">
   <form [formGroup]="advertisementForm" (ngSubmit)="submitForm()" class="form">
     <div class="form__advertisementTitle">New advertisement</div>
@@ -35,8 +39,11 @@
           <div class="form__title">Location</div>
           <div class="form__input-wrap">
             <mat-form-field class="form__input several">
-              <mat-select formControlName="country" required
-                          disableOptionCentering="true">
+              <mat-select
+                formControlName="country"
+                required
+                disableOptionCentering="true"
+              >
                 <mat-option
                   *ngFor="let country of countries"
                   [value]="country.value"
@@ -47,7 +54,10 @@
             </mat-form-field>
             <mat-form-field class="form__input several">
               <mat-label>Select a region</mat-label>
-              <mat-select formControlName="location" disableOptionCentering="true">
+              <mat-select
+                formControlName="location"
+                disableOptionCentering="true"
+              >
                 <mat-option
                   *ngFor="let location of locations"
                   [value]="location.value"
@@ -68,7 +78,10 @@
           <div class="form__title">Category</div>
           <mat-form-field class="form__input several">
             <mat-label>Select a category</mat-label>
-            <mat-select formControlName="category" disableOptionCentering="true">
+            <mat-select
+              formControlName="category"
+              disableOptionCentering="true"
+            >
               <mat-option
                 *ngFor="let category of categories"
                 [value]="category.value"
@@ -204,8 +217,11 @@
     <!--    button-->
     <div class="form__btns">
       <div class="form__btns-wrap">
-        <button mat-button [disabled]="advertisementForm.invalid || !files.length"
-                type="submit">
+        <button
+          mat-button
+          [disabled]="advertisementForm.invalid || !files.length"
+          type="submit"
+        >
           Place an advertisement
         </button>
       </div>

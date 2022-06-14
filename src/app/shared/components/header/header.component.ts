@@ -26,6 +26,8 @@ export class HeaderComponent implements OnChanges {
   @Input() public user: IUser | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
+  @Output() public selectTab: EventEmitter<UserPanelOptionId> =
+    new EventEmitter<UserPanelOptionId>();
 
   public userRoleConfig = LOGGED_ROLE_CONFIG;
   public userRoles = UserRole;
@@ -53,7 +55,8 @@ export class HeaderComponent implements OnChanges {
 
       return;
     }
-    console.log(selectedOption.url);
+
+    this.onSelectTab(selectedOption.id);
   }
 
   public goToMainPage(): void {
@@ -67,5 +70,9 @@ export class HeaderComponent implements OnChanges {
   private onLogout(): void {
     this.userRole = UserRole.Guest;
     this.logout.emit();
+  }
+
+  private onSelectTab(selectedOptionId: UserPanelOptionId): void {
+    this.selectTab.emit(selectedOptionId);
   }
 }

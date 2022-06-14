@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { AgroexToastService, ToastType } from 'ngx-agroex-toast';
 import { NgxDropzoneChangeEvent } from 'ngx-dropzone';
 
+import { UserPanelOptionId } from '../../shared/components/header/enums/user-panel-option-id';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IUser } from '../../shared/interfaces/user.interface';
 import { MAX_FILE_SIZE } from './constant/max-file-sizes';
@@ -39,6 +40,8 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
     new EventEmitter<void>();
   @Output()
   public formAdvertisement: EventEmitter<FormData> = new EventEmitter<FormData>();
+  @Output() public selectTab: EventEmitter<UserPanelOptionId> =
+    new EventEmitter<UserPanelOptionId>();
 
   public maxFileSize = MAX_FILE_SIZE;
 
@@ -166,5 +169,9 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
     if (this.files.length) {
       event.preventDefault();
     }
+  }
+
+  public onSelectTab(selectedOptionId: UserPanelOptionId): void {
+    this.selectTab.emit(selectedOptionId);
   }
 }

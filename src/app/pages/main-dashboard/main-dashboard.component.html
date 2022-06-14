@@ -1,5 +1,9 @@
 <ng-container *ngIf="categoriesLoadingStatus?.loaded; else notLoaded">
-  <app-header [user]="user" (logout)="onLogout()"></app-header>
+  <app-header
+    [user]="user"
+    (logout)="onLogout()"
+    (selectTab)="onSelectTab($event)"
+  ></app-header>
 
   <app-categories
     [categories]="categories"
@@ -11,7 +15,6 @@
     [advertisementsRequest]="advertisementsRequest"
     [advertisementsLoadingStatus]="advertisementsLoadingStatus"
     (setBet)="onSetBet($event)"
-    (betTimerDown)="onBetTimerDown($event)"
   ></app-advertisements-list>
 </ng-container>
 

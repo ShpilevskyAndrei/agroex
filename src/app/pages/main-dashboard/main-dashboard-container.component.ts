@@ -3,7 +3,9 @@ import { Store } from '@ngrx/store';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
 
+import { UserPanelOptionId } from '../../shared/components/header/enums/user-panel-option-id';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
+import { AppRootActions } from '../../state/app-root/app-root.actions';
 import { MainDashboardActions } from '../../state/main-dashboard/main-dashboard.actions';
 import {
   selectCategoriesData,
@@ -33,7 +35,7 @@ import {
     [advertisementsLoadingStatus]="advertisementsLoadingStatus$ | async"
     (logout)="onLogout()"
     (setBet)="onSetBet($event)"
-    (betTimerDown)="onBetTimerDown($event)"
+    (selectTab)="onSelectTab($event)"
   ></app-main-dashboard>`,
 })
 export class MainDashboardContainerComponent implements OnInit {
@@ -79,5 +81,9 @@ export class MainDashboardContainerComponent implements OnInit {
     this.store.dispatch(
       AdvertisementsListBetActions.getAdvertisementsBetExpired({ slug })
     );
+  }
+
+  public onSelectTab(selectedOptionId: UserPanelOptionId): void {
+    this.store.dispatch(AppRootActions.getUserSelectTab({ selectedOptionId }));
   }
 }
