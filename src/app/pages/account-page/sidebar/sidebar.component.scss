@@ -1,0 +1,36 @@
+@import "../../../styles/general-styles";
+
+:host {
+  .account {
+    &__sidebar {
+      &-item {
+        display: flex;
+        align-items: center;
+        padding: 1.5rem $offset-medium;
+        cursor: pointer;
+        &:not(.active):hover {
+          background-color: #EEF8F8;
+        }
+        &.active {
+          background-color: #EEF8F8;
+          box-shadow: inset -.2rem 0 0 $color-tradewind;
+        }
+        &:last-child{
+          margin-top: auto;
+        }
+      }
+      &-icon {
+        width: 2rem;
+        height: 2rem;
+        color: $color-tradewind;
+      }
+      &-text {
+        font-size: 1.5rem;
+        line-height: 2.3rem;
+        font-weight: 500;
+        color: $primary-color;
+        margin-left: 1rem;
+      }
+    }
+  }
+}

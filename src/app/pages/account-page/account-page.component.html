@@ -3,5 +3,22 @@
   (logout)="onLogout()"
   (selectTab)="onSelectTab($event)"
 ></app-header>
-<p>account-page works!</p>
-<a routerLink="/">Main page</a>
+<div class="account">
+  <div class="container">
+    <div class="account__wrap">
+      <div class="account__user">
+        <p>{{user?.username | titlecase}}</p>
+      </div>
+      <div class="account__content">
+        <app-sidebar
+          class="account__sidebar"
+          [userPanelOption]="this.userPanelOption"
+          [selectedTab]="this.selectedTab"
+          (logout)="onLogout()"
+          (selectTab)="onSelectTab($event)">
+        </app-sidebar>
+        <div class="account__info"></div>
+      </div>
+    </div>
+  </div>
+</div>

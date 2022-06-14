@@ -5,19 +5,19 @@ export const USER_PANEL_OPTION: IUserOptionsType[] = [
   {
     id: UserPanelOptionId.MyAdvertisements,
     title: 'My Advertisements',
-    url: '/advertisements',
+    url: '/account',
     icon: 'my-ads-icon',
   },
   {
     id: UserPanelOptionId.Betting,
     title: 'Betting',
-    url: '/betting',
+    url: '/account',
     icon: 'auction-icon',
   },
   {
     id: UserPanelOptionId.MyOrders,
     title: 'My orders',
-    url: '/orders',
+    url: '/account',
     icon: 'truck-icon',
   },
   {

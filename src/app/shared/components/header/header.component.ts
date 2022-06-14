@@ -73,6 +73,7 @@ export class HeaderComponent implements OnChanges {
   public onLogout(): void {
     this.userCurrentRole = UserRole.Guest;
     this.logout.emit();
+    this.router.navigate(['']);
   }
 
   public onSelectPage(selectedOptionId: IUserOptionsType): void {
