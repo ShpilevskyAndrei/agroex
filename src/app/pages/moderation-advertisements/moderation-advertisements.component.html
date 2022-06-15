@@ -1,8 +1,22 @@
 <app-header [userRole]="userRole" [user]="user" (logout)="onLogout()"></app-header>
 
-<app-moderation-advertisements-list
+<!--<app-moderation-advertisements-list
   [user]="user"
   [advertisementsRequest]="advertisementsRequest"
   [advertisementsLoadingStatus]="advertisementsLoadingStatus"
   (moderationDecision)="onModerationDecision($event)"
-></app-moderation-advertisements-list>
+></app-moderation-advertisements-list>-->
+
+
+<app-advertisements-list
+  [user]="user"
+  [advertisementsRequest]="advertisementsRequest"
+  [advertisementsLoadingStatus]="advertisementsLoadingStatus"
+  (moderationDecision)="onModerationDecision($event)">
+  <ng-template #actionButtons let-advertisement>
+    <app-moderation-advertisement-buttons
+      [advertisement]="advertisement"
+      (reject)="openPolicyModal()"
+      (approve)="onApproveClick()"></app-moderation-advertisement-buttons>
+  </ng-template>
+</app-advertisements-list>

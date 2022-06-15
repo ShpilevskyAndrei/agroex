@@ -7,7 +7,7 @@ import { AgroexToastService, ToastType } from 'ngx-agroex-toast';
 
 import { ModerateAdvertisementsListPageActions } from './advertisements-list-page.actions';
 import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
-import { ModerationAdvertisementsListService } from '../../moderation-advertisements-list/moderation-advertisements-list.service';
+import { ModerationAdvertisementsListService } from '../../pages/moderation-advertisements/moderation-advertisements-list.service';
 import { selectUserToken } from '../registration-page/registration-page.selectors';
 
 @Injectable()

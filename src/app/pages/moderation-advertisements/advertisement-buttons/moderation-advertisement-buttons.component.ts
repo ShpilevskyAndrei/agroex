@@ -6,7 +6,7 @@ import {
   Output,
 } from '@angular/core';
 
-import { IAdvertisementInterface } from '../../interfaces/advertisement.interface';
+import { IAdvertisementInterface } from '../../../moderation-advertisements-list/interfaces/advertisement.interface';
 
 @Component({
   selector: 'app-moderation-advertisement-buttons',

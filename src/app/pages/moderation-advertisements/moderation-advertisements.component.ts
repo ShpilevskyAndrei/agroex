@@ -9,8 +9,14 @@ import {
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IUser } from '../../shared/interfaces/user.interface';
 import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
-import { IAdvertisementModerationRequest } from '../../moderation-advertisements-list/interfaces/advertisement.interface';
+import {
+  IAdvertisementInterface,
+  IAdvertisementModerationRequest,
+} from '../../moderation-advertisements-list/interfaces/advertisement.interface';
 import { UserRole } from '../../shared/components/header/enums/user-role';
+import { PolicyModalContentComponent } from '../../moderation-advertisements-list/advertisement/policy-modal-content/policy-modal-content.component';
+import { filter, tap } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-moderation-advertisements',
@@ -23,10 +29,41 @@ export class ModerationadvertisementsComponent {
   @Input() public userRole: UserRole | null;
   @Input() public advertisementsRequest: IAdvertisementRequestInterface | null;
   @Input() public advertisementsLoadingStatus: LoadingStatus | null;
+  @Input() public advertisement: IAdvertisementInterface;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
   @Output()
   public moderationDecision: EventEmitter<IAdvertisementModerationRequest> = new EventEmitter<IAdvertisementModerationRequest>();
+
+  constructor(public dialog: MatDialog) {}
+
+  public openPolicyModal(): void {
+    this.dialog
+      .open(PolicyModalContentComponent, {
+        autoFocus: false,
+        width: '70vw',
+      })
+      .afterClosed()
+      .pipe(
+        filter(Boolean),
+        tap((message: string): void => {
+          this.moderationDecision.emit({
+            advertisements: {
+              ...this.advertisement,
+              isModerated: false,
+              moderationComment: message,
+            },
+          });
+        })
+      )
+      .subscribe();
+  }
+
+  public onApproveClick(): void {
+    this.moderationDecision.emit({
+      advertisements: { ...this.advertisement, isModerated: true },
+    });
+  }
 
   public onModerationDecision(
     moderationDecision: IAdvertisementModerationRequest
