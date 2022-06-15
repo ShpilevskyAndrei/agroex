@@ -69,6 +69,8 @@ export class AdvertisementPageContainerComponent implements OnInit, OnDestroy {
         newBetOptions,
       })
     );
+    this.spinner.show();
+    setTimeout(() => this.ngOnInit(), 500);
   }
 
   public ngOnInit(): void {

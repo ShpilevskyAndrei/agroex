@@ -7,8 +7,10 @@
   >
     <mat-icon svgIcon="bet-icon" class="advertisement-btns__icon"></mat-icon>
     <span
-      >Bet <span *ngIf="newBet" matPrefix>{{ actualCurrency }}</span>
-      {{ newBet }}</span
+      >Bet
+      <span *ngIf="betForm.valid">
+        <span matPrefix>{{ actualCurrency }}</span> {{ newBet }}</span
+      ></span
     >
   </button>
   <button mat-button>

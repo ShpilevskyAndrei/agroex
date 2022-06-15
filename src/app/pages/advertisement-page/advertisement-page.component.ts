@@ -94,7 +94,11 @@ export class AdvertisementPageComponent implements OnChanges {
             this.advertisement.advertisement.price
           )
         );
+      this.newBet = '';
     }
+    this.betForm.get('bet')?.valueChanges.subscribe((value: string) => {
+      this.newBet = value;
+    });
   }
 
   public toggleShow(): void {
@@ -109,10 +113,6 @@ export class AdvertisementPageComponent implements OnChanges {
 
   public onLogout(): void {
     this.logout.emit();
-  }
-
-  public onKeyUp(value: string): void {
-    this.newBet = value;
   }
 
   public onSelectTab(selectedOptionId: UserPanelOptionId): void {

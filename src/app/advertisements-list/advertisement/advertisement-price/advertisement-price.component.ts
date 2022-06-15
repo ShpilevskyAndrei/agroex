@@ -37,7 +37,7 @@ export class AdvertisementPriceComponent {
 
   public get CalcTonToKg(): number {
     if (this.advertisement.unit === WeightEnum.ton) {
-      return +this.advertisement.quantity * 1000;
+      return +this.advertisement.quantity * 1e3;
     } else {
       return +this.advertisement.quantity;
     }
@@ -45,7 +45,7 @@ export class AdvertisementPriceComponent {
 
   public get unitCostBet(): number {
     return (
-      Math.floor(
+      Math.round(
         (+this.advertisement.userBets[0].betValue / this.CalcTonToKg) * 100
       ) / 100
     );
@@ -53,7 +53,7 @@ export class AdvertisementPriceComponent {
 
   public get unitCostPrice(): number {
     return (
-      Math.floor((+this.advertisement.price / this.CalcTonToKg) * 100) / 100
+      Math.round((+this.advertisement.price / this.CalcTonToKg) * 100) / 100
     );
   }
 
