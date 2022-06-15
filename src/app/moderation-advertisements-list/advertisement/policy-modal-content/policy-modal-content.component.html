@@ -25,16 +25,15 @@
   </form>
 
   <mat-dialog-actions class="buttons-position-in-modal">
-    <button
-      mat-raised-button
-      class="btn_ghost"
-      [mat-dialog-close]=""
-    >
+    <button mat-raised-button class="btn_ghost" [mat-dialog-close]="">
       Cancel
     </button>
-    <button mat-raised-button [mat-dialog-close]="getModeratorsComment()">
+    <button
+      mat-raised-button
+      [mat-dialog-close]="getModeratorsComment()"
+      [disabled]="!getModeratorsComment()"
+    >
       Send message
     </button>
   </mat-dialog-actions>
 </div>
-
