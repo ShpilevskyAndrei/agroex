@@ -37,7 +37,7 @@ export class ModerationadvertisementsComponent {
 
   constructor(public dialog: MatDialog) {}
 
-  public openPolicyModal(): void {
+  public openPolicyModal(advertisement: IAdvertisementInterface): void {
     this.dialog
       .open(PolicyModalContentComponent, {
         autoFocus: false,
@@ -49,7 +49,7 @@ export class ModerationadvertisementsComponent {
         tap((message: string): void => {
           this.moderationDecision.emit({
             advertisements: {
-              ...this.advertisement,
+              ...advertisement,
               isModerated: false,
               moderationComment: message,
             },
@@ -59,9 +59,9 @@ export class ModerationadvertisementsComponent {
       .subscribe();
   }
 
-  public onApproveClick(): void {
+  public onApproveClick(advertisement: IAdvertisementInterface): void {
     this.moderationDecision.emit({
-      advertisements: { ...this.advertisement, isModerated: true },
+      advertisements: { ...advertisement, isModerated: true },
     });
   }
 

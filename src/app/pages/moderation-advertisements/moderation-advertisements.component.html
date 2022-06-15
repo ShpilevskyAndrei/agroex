@@ -16,7 +16,7 @@
   <ng-template #actionButtons let-advertisement>
     <app-moderation-advertisement-buttons
       [advertisement]="advertisement"
-      (reject)="openPolicyModal()"
-      (approve)="onApproveClick()"></app-moderation-advertisement-buttons>
+      (reject)="openPolicyModal($event)"
+      (approve)="onApproveClick($event)"></app-moderation-advertisement-buttons>
   </ng-template>
 </app-advertisements-list>

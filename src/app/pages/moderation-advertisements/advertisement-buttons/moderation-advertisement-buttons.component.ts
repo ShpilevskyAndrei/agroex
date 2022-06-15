@@ -17,14 +17,14 @@ import { IAdvertisementInterface } from '../interfaces/advertisement.interface';
 export class ModerationAdvertisementButtonsComponent {
   @Input() public advertisement: IAdvertisementInterface;
 
-  @Output() public reject: EventEmitter<void> = new EventEmitter<void>();
-  @Output() public approve: EventEmitter<void> = new EventEmitter<void>();
+  @Output() public reject: EventEmitter<IAdvertisementInterface> = new EventEmitter<IAdvertisementInterface>();
+  @Output() public approve: EventEmitter<IAdvertisementInterface> = new EventEmitter<IAdvertisementInterface>();
 
   public onRejectClick(): void {
-    this.reject.emit();
+    this.reject.emit(this.advertisement);
   }
 
   public onApproveClick(): void {
-    this.approve.emit();
+    this.approve.emit(this.advertisement);
   }
 }
