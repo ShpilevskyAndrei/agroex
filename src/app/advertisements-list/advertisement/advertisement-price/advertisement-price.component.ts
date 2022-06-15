@@ -18,7 +18,7 @@ export class AdvertisementPriceComponent {
   public betColor: BetColorOptionEnum;
 
   public get getBetColor(): string {
-    return this.user?.id === this.advertisement.author.id
+    return this.user?.id === this.advertisement.userBets[0].user_id
       ? (this.betColor = BetColorOptionEnum.blueBetStyle)
       : (this.betColor = BetColorOptionEnum.orangeBetStyle);
   }
