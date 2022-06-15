@@ -29,6 +29,10 @@ export class AdvertisementComponent {
     this.setBet.emit(newBetOptions);
   }
 
+  public stopPropagation(event: MouseEvent): void {
+    event.stopPropagation();
+  }
+
   public openAdvertisement(): void {
     this.router.navigate(['/advertisement', this.advertisement.slug]);
   }

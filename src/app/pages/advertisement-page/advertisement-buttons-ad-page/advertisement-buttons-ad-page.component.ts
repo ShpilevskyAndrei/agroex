@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { IAdvertisementInterface } from '../../../shared/components/advertisements-list/interfaces/advertisement.interface';
@@ -7,6 +13,7 @@ import { IAdvertisementInterface } from '../../../shared/components/advertisemen
   selector: 'app-advertisement-buttons-ad-page',
   templateUrl: './advertisement-buttons-ad-page.component.html',
   styleUrls: ['./advertisement-buttons-ad-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdvertisementButtonsAdPageComponent {
   @Input() public advertisement: IAdvertisementInterface;

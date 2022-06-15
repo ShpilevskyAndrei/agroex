@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
@@ -10,7 +11,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IUser } from '../../shared/interfaces/user.interface';
-import { IShownMapConfig } from './interfaces/shown-map-config.interface';
+import { IS_SHOWN_MAP_CONFIG } from '../../shared/constants/is-shown-map-config';
 import { IShownMap } from './interfaces/shown-map.interface';
 import { UserPanelOptionId } from '../../shared/components/header/enums/user-panel-option-id';
 import { UserRole } from '../../shared/components/header/enums/user-role';
@@ -22,6 +23,7 @@ import { BetValidators } from '../../shared/components/advertisements-list/adver
   selector: 'app-advertisement-page',
   templateUrl: './advertisement-page.component.html',
   styleUrls: ['./advertisement-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdvertisementPageComponent implements OnChanges {
   @Input() public user: IUser | null;
@@ -43,13 +45,7 @@ export class AdvertisementPageComponent implements OnChanges {
     }),
   });
 
-  public isShownMapConfig: IShownMapConfig = {
-    isShown: true,
-    showMapText: 'Show map',
-    hideMapText: 'Hide map',
-    iconUp: 'keyboard_arrow_up',
-    iconDown: 'keyboard_arrow_down',
-  };
+  public isShownMapConfig = IS_SHOWN_MAP_CONFIG;
 
   public isShownMap: IShownMap = {
     isShown: this.isShownMapConfig.isShown,

@@ -44,21 +44,20 @@
                     autocomplete="off"
                     placeholder="Enter your bet here"
                     formControlName="bet"
-
                   />
                 </div>
               </mat-form-field>
             </form>
 
             <p class="bet-hint">
-              Bet from <span matPrefix>{{ actualCurrency }}</span>
-              {{
+              Bet from {{ actualCurrency
+              }}{{
                 advertisement.advertisement.userBets.length
                   ? +advertisement.advertisement.userBets[0].betValue + 1
                   : "1"
               }}
-              to <span matPrefix>{{ actualCurrency }}</span>
-              {{ +advertisement.advertisement.price - 1 }}
+              to {{ actualCurrency
+              }}{{ +advertisement.advertisement.price - 1 }}
             </p>
           </div>
 

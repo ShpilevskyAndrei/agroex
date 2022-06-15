@@ -6,18 +6,13 @@
     (click)="onClickButton()"
   >
     <mat-icon svgIcon="bet-icon" class="advertisement-btns__icon"></mat-icon>
-    <span
-      >Bet
-      <span *ngIf="betForm.valid">
-        <span matPrefix>{{ actualCurrency }}</span> {{ newBet }}</span
-      ></span
-    >
+    <span>Bet </span>
+    <span *ngIf="betForm.valid">{{ actualCurrency }}{{ newBet }}</span>
   </button>
   <button mat-button>
     <mat-icon svgIcon="caret-icon" class="advertisement-btns__icon"></mat-icon>
     <span
-      >Buy for <span matPrefix>{{ actualCurrency }}</span>
-      {{ advertisement.price }}</span
+      >Buy for {{ actualCurrency }}{{ advertisement.price }}</span
     >
   </button>
 </div>

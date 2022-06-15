@@ -19,6 +19,7 @@ import { APPEARANCE } from './shared/constants/appearance-outline';
 import { AuthGuard } from './guards/auth.guard';
 import { HeaderModule } from './shared/components/header/header.module';
 import { BreadcrumbsModule } from './shared/components/breadcrumbs/breadcrumbs.module';
+import { environment } from '../environments/environment.prod';
 
 @NgModule({
   declarations: [AppComponent, AppContainerComponent],
@@ -35,8 +36,7 @@ import { BreadcrumbsModule } from './shared/components/breadcrumbs/breadcrumbs.m
     HeaderModule,
     BreadcrumbsModule,
     NgxMapboxGLModule.withConfig({
-      accessToken:
-        'pk.eyJ1Ijoic2hwaWxldnNraXkiLCJhIjoiY2w0Y2szODgzMGVqODNibXU2ZTVjZTZheCJ9.NlXs-3IG3nyd4Whs-Jr3-Q',
+      accessToken: environment.accessTokenMap,
     }),
   ],
   providers: [
