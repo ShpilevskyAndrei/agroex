@@ -22,7 +22,12 @@
           <app-my-advertisements
             *ngSwitchCase="'myAdvertisements'"
             [advertisementsRequest]="advertisementsRequest"
-            [advertisementsLoadingStatus]="advertisementsLoadingStatus">
+            [advertisementsLoadingStatus]="advertisementsLoadingStatus"
+          >
+            <!--
+            bind to upper tag
+            (dispatcher)="onDispatcher($event)"
+            -->
           </app-my-advertisements>
           <app-my-betting
             *ngSwitchCase="'betting'">
