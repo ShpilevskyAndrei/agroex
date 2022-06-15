@@ -24,12 +24,15 @@ export class AccountPageComponent {
   @Input() public user: IUser | null;
   @Input() public userRole: UserRole | null;
   @Input() public selectedTab: string | null;
-  @Input() public advertisementsRequest: IAdvertisementRequestInterface | null;
-  @Input() public advertisementsLoadingStatus: LoadingStatus | null;
+  @Input()
+  public myAdvertisementsRequest: IAdvertisementRequestInterface | null;
+  @Input() public myAdvertisementsLoadingStatus: LoadingStatus | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
   @Output() public selectTab: EventEmitter<UserPanelOptionId> =
     new EventEmitter<UserPanelOptionId>();
+  @Output() public dispatcher: EventEmitter<Function> =
+    new EventEmitter<Function>();
 
   public userPanelOption: IUserOptionsType[] = USER_PANEL_OPTION;
   public userPanelOptionId = UserPanelOptionId;
@@ -40,5 +43,9 @@ export class AccountPageComponent {
 
   public onSelectTab(selectedOptionId: UserPanelOptionId): void {
     this.selectTab.emit(selectedOptionId);
+  }
+
+  public onDispatcher(dispatcher: Function): void {
+    this.dispatcher.emit(dispatcher);
   }
 }
