@@ -6,13 +6,24 @@
     [categoriesLoadingStatus]="categoriesLoadingStatus"
   >
   </app-categories>
-
-  <app-advertisements-list
-    [user]="user"
-    [advertisementsRequest]="advertisementsRequest"
-    [advertisementsLoadingStatus]="advertisementsLoadingStatus"
-    (setBet)="onSetBet($event)"
-  ></app-advertisements-list>
+  <div class="advertisement-list">
+    <div class="container">
+      <app-advertisements-list
+        [user]="user"
+        [advertisementsRequest]="advertisementsRequest"
+        [advertisementsLoadingStatus]="advertisementsLoadingStatus"
+        (setBet)="onSetBet($event)"
+      >
+        <ng-template #actionButtons let-advertisement>
+          <app-advertisements-list-buttons
+            class="advertisement-wrap__btns"
+            [advertisement]="advertisement"
+            (setBet)="onSetBet($event)">
+          </app-advertisements-list-buttons>
+        </ng-template>
+      </app-advertisements-list>
+    </div>
+  </div>
 </ng-container>
 
 <ng-template #notLoaded>

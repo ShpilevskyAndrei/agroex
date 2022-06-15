@@ -12,6 +12,12 @@ import {
 import { IUser } from '../../shared/interfaces/user.interface';
 import { selectAppRootOptionId } from '../../state/app-root/app-root.selectors';
 import { UserRole } from '../../shared/components/header/enums/user-role';
+import {
+  selectAdvertisementsData,
+  selectAdvertisementsLoadingStatus,
+} from '../../state/advertisements-list-page/advertisements-list-page.selectors';
+import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
+import { LoadingStatus } from '../../shared/interfaces/loading-status';
 
 @Component({
   selector: 'app-account-page-container',
@@ -19,6 +25,8 @@ import { UserRole } from '../../shared/components/header/enums/user-role';
     [user]="user$ | async"
     [userRole]="userRole$ | async"
     [selectedTab]="selectedTab$ | async"
+    [advertisementsRequest]="advertisementsRequest$ | async"
+    [advertisementsLoadingStatus]="advertisementsLoadingStatus$ | async"
     (logout)="onLogout()"
     (selectTab)="onSelectTab($event)"
   ></app-account-page>`,
@@ -28,11 +36,17 @@ export class AccountPageContainerComponent {
   public user$: Observable<IUser | null>;
   public userRole$: Observable<UserRole | null>;
   public selectedTab$: Observable<string | null>;
+  public advertisementsRequest$: Observable<IAdvertisementRequestInterface | null>;
+  public advertisementsLoadingStatus$: Observable<LoadingStatus | null>;
 
   constructor(private store: Store) {
     this.user$ = this.store.select(selectUserData);
     this.userRole$ = this.store.select(selectUserRole);
     this.selectedTab$ = this.store.select(selectAppRootOptionId);
+    this.advertisementsRequest$ = this.store.select(selectAdvertisementsData);
+    this.advertisementsLoadingStatus$ = this.store.select(
+      selectAdvertisementsLoadingStatus
+    );
   }
 
   public onLogout(): void {

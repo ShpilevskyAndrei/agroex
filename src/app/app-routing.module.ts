@@ -43,7 +43,7 @@ const routes: Routes = [
     loadChildren: () =>
       import(
         './pages/moderation-advertisements/moderation-advertisements.module'
-      ).then((m) => m.ModerationadvertisementsPageModule),
+      ).then((m) => m.ModerationAdvertisementsPageModule),
     canLoad: [ModeratorGuard],
   },
   {
