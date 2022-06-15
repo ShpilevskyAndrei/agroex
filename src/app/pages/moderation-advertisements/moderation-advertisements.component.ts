@@ -37,7 +37,9 @@ export class ModerationAdvertisementsComponent {
 
   constructor(public dialog: MatDialog) {}
 
-  public openPolicyModal(advertisement: IAdvertisementInterface): void {
+  public openModerationMessageModal(
+    advertisement: IAdvertisementInterface
+  ): void {
     this.dialog
       .open(ModerationMessageModalComponent, {
         autoFocus: false,
