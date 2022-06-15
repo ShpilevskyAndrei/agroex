@@ -1,6 +1,6 @@
 <div
   class="advertisement-wrap"
-  [ngClass]="isNavigationToAdvertisementPage ? 'with-pointer' : ''"
+  [ngClass]="{ 'with-pointer': isNavigationToAdvertisementPage }"
   (click)="openAdvertisement()"
 >
   <div class="advertisement-wrap__img">
