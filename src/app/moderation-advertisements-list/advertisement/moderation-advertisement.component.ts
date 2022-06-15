@@ -11,8 +11,8 @@ import { filter, tap } from 'rxjs';
 import {
   IAdvertisementInterface,
   IAdvertisementModerationRequest,
-} from '../interfaces/advertisement.interface';
-import { PolicyModalContentComponent } from './policy-modal-content/policy-modal-content.component';
+} from '../../pages/moderation-advertisements/interfaces/advertisement.interface';
+import { PolicyModalContentComponent } from '../../pages/moderation-advertisements/policy-modal-content/policy-modal-content.component';
 
 @Component({
   selector: 'app-moderation-advertisement',

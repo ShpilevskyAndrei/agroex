@@ -11,7 +11,7 @@ import {
 } from '../../state/registration-page/registration-page.selectors';
 import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
 import { ModerateAdvertisementsListPageActions } from '../../state/moderation-advertisements-list/advertisements-list-page.actions';
-import { IAdvertisementModerationRequest } from '../../moderation-advertisements-list/interfaces/advertisement.interface';
+import { IAdvertisementModerationRequest } from './interfaces/advertisement.interface';
 import {
   selectModerateAdvertisementsData,
   selectModerateAdvertisementsLoadingStatus,
