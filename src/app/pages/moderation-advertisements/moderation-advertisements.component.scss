@@ -1,0 +1,8 @@
+@import "../../styles/general-styles";
+
+:host {
+  .moderation-container {
+    margin-top: 5rem;
+  }
+}
+@include advertisement-wrap-buttons;

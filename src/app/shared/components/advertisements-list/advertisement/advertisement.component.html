@@ -1,0 +1,21 @@
+<div class="advertisement-wrap">
+  <div class="advertisement-wrap__img">
+    <img src="{{advertisement.img}}" alt="apple">
+  </div>
+  <div class="advertisement-wrap__desc">
+    <app-advertisement-title [advertisement]="advertisement"></app-advertisement-title>
+    <div class="advertisement-wrap__quantity">
+      <mat-icon svgIcon="quantity-icon" class="advertisement-quantity-icon"></mat-icon>
+      <p>{{advertisement.quantity}} {{advertisement.unit}}</p>
+    </div>
+    <div class="advertisement-wrap__location">
+      <mat-icon svgIcon="map-pointer-icon" class="advertisement-pointer-icon"></mat-icon>
+      <p>{{advertisement.location}}, {{advertisement.country}}</p>
+    </div>
+  </div>
+  <div class="advertisement-wrap__actions">
+    <app-advertisement-price class="advertisement-wrap__price"
+                             [advertisement]="advertisement"></app-advertisement-price>
+    <ng-content select="[buttons]"></ng-content>
+  </div>
+</div>

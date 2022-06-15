@@ -1,0 +1,39 @@
+<h2 mat-dialog-title>Moderator's message to User</h2>
+
+<div class="bottom-wrapper">
+  <form [formGroup]="messageModeratorForm">
+    <mat-form-field class="form_login__field">
+      <mat-label>This message will send to user</mat-label>
+      <textarea
+        #autosize="cdkTextareaAutosize"
+        matInput
+        cdkTextareaAutosize
+        cdkAutosizeMinRows="1"
+        cdkAutosizeMaxRows="5"
+        formControlName="moderatorComments"
+      >
+      </textarea>
+      <mat-error
+        *ngIf="
+          this.get('moderatorComments').touched &&
+          this.get('moderatorComments').hasError('required')
+        "
+      >
+        Enter message to user
+      </mat-error>
+    </mat-form-field>
+  </form>
+
+  <mat-dialog-actions class="buttons-position-in-modal">
+    <button mat-raised-button class="btn_ghost" [mat-dialog-close]="">
+      Cancel
+    </button>
+    <button
+      mat-raised-button
+      [mat-dialog-close]="getModeratorsComment()"
+      [disabled]="!getModeratorsComment()"
+    >
+      Send message
+    </button>
+  </mat-dialog-actions>
+</div>
