@@ -54,13 +54,17 @@ body {
   .mat-form-field-appearance-outline .mat-form-field-outline {
     top: 0;
   }
+  .mat-form-field-prefix {
+    margin-right: $offset-small;
+  }
+}
+
+.bet-modal,
+.bet-form-container {
   .mat-form-field-invalid.mat-form-field-appearance-outline
     .mat-form-field-wrapper
     .mat-form-field-subscript-wrapper {
     display: none;
-  }
-  .mat-form-field-prefix {
-    margin-right: $offset-small;
   }
 }
 
@@ -114,8 +118,10 @@ body {
 }
 
 .advertisement-wrap {
-  cursor: pointer;
   &:hover &__btns {
     display: block;
+  }
+  &.with-pointer:hover {
+    cursor: pointer;
   }
 }

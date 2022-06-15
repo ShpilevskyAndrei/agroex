@@ -9,6 +9,7 @@
   <div class="advertisement-list">
     <div class="container">
       <app-advertisements-list
+        [isNavigationToAdvertisementPage]="isNavigationToAdvertisementPage"
         [user]="user"
         [advertisementsRequest]="advertisementsRequest"
         [advertisementsLoadingStatus]="advertisementsLoadingStatus"

@@ -18,7 +18,10 @@ import { UserRole } from '../../shared/components/header/enums/user-role';
 import { IAdRequestInterface } from '../../shared/components/advertisements-list/interfaces/ad-request.interface';
 import { CurrenciesEnum } from '../../shared/components/advertisements-list/advertisement/bet-modal/enums/currencies.enum';
 import { BetValidators } from '../../shared/components/advertisements-list/advertisement/bet-modal/intefaces/bet-validator';
+import { tap } from 'rxjs';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-advertisement-page',
   templateUrl: './advertisement-page.component.html',
@@ -92,9 +95,15 @@ export class AdvertisementPageComponent implements OnChanges {
         );
       this.newBet = '';
     }
-    this.betForm.get('bet')?.valueChanges.subscribe((value: string) => {
-      this.newBet = value;
-    });
+    this.betForm
+      .get('bet')
+      ?.valueChanges.pipe(
+        tap((value: string) => {
+          this.newBet = value;
+        }),
+        untilDestroyed(this)
+      )
+      .subscribe();
   }
 
   public toggleShow(): void {

@@ -19,6 +19,7 @@ import { IUser } from '../../../interfaces/user.interface';
 export class AdvertisementComponent {
   @Input() public advertisement: IAdvertisementInterface;
   @Input() public user: IUser | null;
+  @Input() public isNavigationToAdvertisementPage: boolean | undefined;
 
   @Output() public setBet: EventEmitter<Record<string, string | number>> =
     new EventEmitter<Record<string, string | number>>();
@@ -29,11 +30,9 @@ export class AdvertisementComponent {
     this.setBet.emit(newBetOptions);
   }
 
-  public stopPropagation(event: MouseEvent): void {
-    event.stopPropagation();
-  }
-
   public openAdvertisement(): void {
-    this.router.navigate(['/advertisement', this.advertisement.slug]);
+    if (this.isNavigationToAdvertisementPage) {
+      this.router.navigate(['/advertisement', this.advertisement.slug]);
+    }
   }
 }

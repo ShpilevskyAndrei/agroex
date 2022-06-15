@@ -1,4 +1,8 @@
-<div class="advertisement-wrap" (click)="openAdvertisement()">
+<div
+  class="advertisement-wrap"
+  [ngClass]="isNavigationToAdvertisementPage ? 'with-pointer' : ''"
+  (click)="openAdvertisement()"
+>
   <div class="advertisement-wrap__img">
     <img src="{{ advertisement.img }}" alt="apple" />
   </div>
@@ -22,9 +26,11 @@
     </div>
   </div>
   <div class="advertisement-wrap__actions">
-    <app-advertisement-price class="advertisement-wrap__price"
-                             [user]="user"
-                             [advertisement]="advertisement"></app-advertisement-price>
+    <app-advertisement-price
+      class="advertisement-wrap__price"
+      [user]="user"
+      [advertisement]="advertisement"
+    ></app-advertisement-price>
     <ng-content select="[buttons]"></ng-content>
   </div>
 </div>

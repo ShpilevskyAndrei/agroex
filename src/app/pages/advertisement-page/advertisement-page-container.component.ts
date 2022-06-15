@@ -1,5 +1,5 @@
 import { ActivatedRoute, Params } from '@angular/router';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { map, tap } from 'rxjs/operators';
 import { filter, Observable, Subscription } from 'rxjs';
@@ -22,7 +22,9 @@ import { AppRootActions } from '../../state/app-root/app-root.actions';
 import { UserRole } from '../../shared/components/header/enums/user-role';
 import { AdvertisementsListBetActions } from '../../state/advertisements-list-page/advertisements-list-page.actions';
 import { IAdRequestInterface } from '../../shared/components/advertisements-list/interfaces/ad-request.interface';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-advertisement-page-container',
   template: ` <app-advertisement-page
@@ -35,7 +37,7 @@ import { IAdRequestInterface } from '../../shared/components/advertisements-list
     (setBet)="onSetBet($event)"
   ></app-advertisement-page>`,
 })
-export class AdvertisementPageContainerComponent implements OnInit, OnDestroy {
+export class AdvertisementPageContainerComponent implements OnInit {
   public slug$: Subscription;
   public advertisement$: Observable<IAdRequestInterface | null>;
   public user$: Observable<IUser | null>;
@@ -83,12 +85,9 @@ export class AdvertisementPageContainerComponent implements OnInit, OnDestroy {
             AdvertisementPageActions.getAdvertisementRequest({ slug })
           );
           this.spinner.show();
-        })
+        }),
+        untilDestroyed(this)
       )
       .subscribe();
-  }
-
-  public ngOnDestroy(): void {
-    this.slug$.unsubscribe();
   }
 }
