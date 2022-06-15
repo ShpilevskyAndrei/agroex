@@ -6,10 +6,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 
-import { PolicyModalContentComponent } from './policy-modal-content.component';
+import { ModerationMessageModalComponent } from './moderation-message-modal.component';
 
 @NgModule({
-  declarations: [PolicyModalContentComponent],
+  declarations: [ModerationMessageModalComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -18,6 +18,6 @@ import { PolicyModalContentComponent } from './policy-modal-content.component';
     MatInputModule,
     MatButtonModule,
   ],
-  exports: [PolicyModalContentComponent],
+  exports: [ModerationMessageModalComponent],
 })
-export class PolicyModalContentComponentModule {}
+export class ModerationMessageModalComponentModule {}

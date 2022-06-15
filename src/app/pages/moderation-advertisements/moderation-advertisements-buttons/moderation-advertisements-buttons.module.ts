@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
-import { ModerationAdvertisementButtonsComponent } from './moderation-advertisement-buttons.component';
+import { ModerationAdvertisementsButtonsComponent } from './moderation-advertisements-buttons.component';
 
 @NgModule({
-  declarations: [ModerationAdvertisementButtonsComponent],
+  declarations: [ModerationAdvertisementsButtonsComponent],
   imports: [CommonModule, MatButtonModule, MatIconModule],
-  exports: [ModerationAdvertisementButtonsComponent],
+  exports: [ModerationAdvertisementsButtonsComponent],
 })
-export class ModerationAdvertisementButtonsModule {}
+export class ModerationAdvertisementsButtonsModule {}

@@ -8,7 +8,7 @@ import { IAdvertisementModerationRequest } from './interfaces/advertisement.inte
 @Injectable({
   providedIn: 'root',
 })
-export class ModerationAdvertisementsListService extends BaseService {
+export class ModerationAdvertisementsService extends BaseService {
   public getNonModerateAdvertisements(
     token: string | undefined
   ): Observable<IAdvertisementRequestInterface> {

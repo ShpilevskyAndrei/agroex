@@ -7,14 +7,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { HeaderModule } from '../../shared/components/header/header.module';
 import { ModerationadvertisementsContainerComponent } from './moderation-advertisements-container.component';
 import { ModerationadvertisementsPageRoutingModule } from './moderation-advertisements-routing.module';
-import { ModerationadvertisementsComponent } from './moderation-advertisements.component';
+import { ModerationAdvertisementsComponent } from './moderation-advertisements.component';
 import { AdvertisementsListModule } from '../../shared/components/advertisements-list/advertisements-list.module';
-import { ModerationAdvertisementButtonsModule } from './advertisement-buttons/moderation-advertisement-buttons.module';
-import { PolicyModalContentComponentModule } from './policy-modal-content/policy-modal-content.module';
+import { ModerationMessageModalComponentModule } from './moderation-message-modal/moderation-message-modal.module';
+import { ModerationAdvertisementsButtonsModule } from './moderation-advertisements-buttons/moderation-advertisements-buttons.module';
 
 @NgModule({
   declarations: [
-    ModerationadvertisementsComponent,
+    ModerationAdvertisementsComponent,
     ModerationadvertisementsContainerComponent,
   ],
   imports: [
@@ -25,8 +25,8 @@ import { PolicyModalContentComponentModule } from './policy-modal-content/policy
     MatFormFieldModule,
     MatButtonModule,
     AdvertisementsListModule,
-    ModerationAdvertisementButtonsModule,
-    PolicyModalContentComponentModule,
+    ModerationAdvertisementsButtonsModule,
+    ModerationMessageModalComponentModule,
   ],
   exports: [ModerationadvertisementsContainerComponent],
 })
