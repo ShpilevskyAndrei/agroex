@@ -5,7 +5,9 @@ import { Observable } from 'rxjs';
 import { IAdvertisementRequestInterface } from '../../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
 import { BaseService } from '../../../shared/services/base.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class AccountPageService extends BaseService {
   constructor(protected override httpClient: HttpClient) {
     super(httpClient);
