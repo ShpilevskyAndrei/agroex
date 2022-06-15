@@ -9,12 +9,12 @@ import {
 import { IAdvertisementInterface } from '../interfaces/advertisement.interface';
 
 @Component({
-  selector: 'app-moderation-advertisement-buttons',
-  templateUrl: './moderation-advertisement-buttons.component.html',
-  styleUrls: ['./moderation-advertisement-buttons.component.scss'],
+  selector: 'app-moderation-advertisements-buttons',
+  templateUrl: './moderation-advertisements-buttons.component.html',
+  styleUrls: ['./moderation-advertisements-buttons.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ModerationAdvertisementButtonsComponent {
+export class ModerationAdvertisementsButtonsComponent {
   @Input() public advertisement: IAdvertisementInterface;
 
   @Output() public reject: EventEmitter<IAdvertisementInterface> = new EventEmitter<IAdvertisementInterface>();

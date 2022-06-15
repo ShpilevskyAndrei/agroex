@@ -5,6 +5,8 @@ import {
   Input,
   Output,
 } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { filter, tap } from 'rxjs';
 
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IUser } from '../../shared/interfaces/user.interface';
@@ -14,9 +16,7 @@ import {
   IAdvertisementModerationRequest,
 } from './interfaces/advertisement.interface';
 import { UserRole } from '../../shared/components/header/enums/user-role';
-import { PolicyModalContentComponent } from './policy-modal-content/policy-modal-content.component';
-import { filter, tap } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
+import { ModerationMessageModalComponent } from './moderation-message-modal/moderation-message-modal.component';
 
 @Component({
   selector: 'app-moderation-advertisements',
@@ -24,7 +24,7 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./moderation-advertisements.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ModerationadvertisementsComponent {
+export class ModerationAdvertisementsComponent {
   @Input() public user: IUser | null;
   @Input() public userRole: UserRole | null;
   @Input() public advertisementsRequest: IAdvertisementRequestInterface | null;
@@ -39,7 +39,7 @@ export class ModerationadvertisementsComponent {
 
   public openPolicyModal(advertisement: IAdvertisementInterface): void {
     this.dialog
-      .open(PolicyModalContentComponent, {
+      .open(ModerationMessageModalComponent, {
         autoFocus: false,
         width: '70vw',
       })

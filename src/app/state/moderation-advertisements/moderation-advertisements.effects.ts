@@ -5,17 +5,17 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { AgroexToastService, ToastType } from 'ngx-agroex-toast';
 
-import { ModerateAdvertisementsListPageActions } from './advertisements-list-page.actions';
+import { ModerationAdvertisementsActions } from './moderation-advertisements.actions';
 import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
-import { ModerationAdvertisementsListService } from '../../pages/moderation-advertisements/moderation-advertisements-list.service';
+import { ModerationAdvertisementsService } from '../../pages/moderation-advertisements/moderation-advertisements.service';
 import { selectUserToken } from '../registration-page/registration-page.selectors';
 
 @Injectable()
-export class ModerationAdvertisementsListPageEffects {
+export class ModerationAdvertisementsEffects {
   public nonModerateAdvertisements$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(
-        ModerateAdvertisementsListPageActions.getNonModerateAdvertisementsRequest
+        ModerationAdvertisementsActions.getNonModerationAdvertisementsRequest
       ),
       withLatestFrom(this.store.select(selectUserToken)),
       switchMap(([_, selectUserToken]) =>
@@ -23,15 +23,15 @@ export class ModerationAdvertisementsListPageEffects {
           .getNonModerateAdvertisements(selectUserToken)
           .pipe(
             map((nonModerateAdvertisements: IAdvertisementRequestInterface) =>
-              ModerateAdvertisementsListPageActions.getANonModerateAdvertisementsSuccess(
+              ModerationAdvertisementsActions.getNonModerationAdvertisementsSuccess(
                 {
-                  nonModerateAdvertisements,
+                  nonModerationAdvertisements: nonModerateAdvertisements,
                 }
               )
             ),
             catchError((error: HttpErrorResponse) =>
               of(
-                ModerateAdvertisementsListPageActions.getNonModerateAdvertisementsError(
+                ModerationAdvertisementsActions.getNonModerationAdvertisementsError(
                   {
                     error: error,
                   }
@@ -46,7 +46,7 @@ export class ModerationAdvertisementsListPageEffects {
   public decisionNonModerateAdvertisements$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(
-        ModerateAdvertisementsListPageActions.getDecisionNonModerateAdvertisementsRequest
+        ModerationAdvertisementsActions.getDecisionNonModerationAdvertisementsRequest
       ),
       withLatestFrom(this.store.select(selectUserToken)),
       switchMap(([{ decision }, selectUserToken]) =>
@@ -60,7 +60,7 @@ export class ModerationAdvertisementsListPageEffects {
                 width: '50vw',
               });
 
-              return ModerateAdvertisementsListPageActions.getDecisionNonModerateAdvertisementsSuccess(
+              return ModerationAdvertisementsActions.getDecisionNonModerationAdvertisementsSuccess(
                 { decision }
               );
             }),
@@ -72,7 +72,7 @@ export class ModerationAdvertisementsListPageEffects {
               });
 
               return of(
-                ModerateAdvertisementsListPageActions.getDecisionNonModerateAdvertisementsError(
+                ModerationAdvertisementsActions.getDecisionNonModerationAdvertisementsError(
                   {
                     error: error,
                   }
@@ -86,7 +86,7 @@ export class ModerationAdvertisementsListPageEffects {
 
   constructor(
     private actions$: Actions,
-    private moderateAdvertisementsListService: ModerationAdvertisementsListService,
+    private moderateAdvertisementsListService: ModerationAdvertisementsService,
     private toastService: AgroexToastService,
     private store: Store
   ) {}

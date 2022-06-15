@@ -10,13 +10,13 @@ import {
   selectUserRole,
 } from '../../state/registration-page/registration-page.selectors';
 import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
-import { ModerateAdvertisementsListPageActions } from '../../state/moderation-advertisements-list/advertisements-list-page.actions';
 import { IAdvertisementModerationRequest } from './interfaces/advertisement.interface';
-import {
-  selectModerateAdvertisementsData,
-  selectModerateAdvertisementsLoadingStatus,
-} from '../../state/moderation-advertisements-list/advertisements-list-page.selectors';
 import { UserRole } from '../../shared/components/header/enums/user-role';
+import {
+  selectModerationAdvertisementsData,
+  selectModerationAdvertisementsLoadingStatus,
+} from '../../state/moderation-advertisements/moderation-advertisements.selectors';
+import { ModerationAdvertisementsActions } from '../../state/moderation-advertisements/moderation-advertisements.actions';
 
 @Component({
   selector: 'app-moderation-advertisements-page-container',
@@ -41,10 +41,10 @@ export class ModerationadvertisementsContainerComponent implements OnInit {
     this.user$ = this.store.select(selectUserData);
     this.userRole$ = this.store.select(selectUserRole);
     this.advertisementsRequest$ = this.store.select(
-      selectModerateAdvertisementsData
+      selectModerationAdvertisementsData
     );
     this.advertisementsLoadingStatus$ = this.store.select(
-      selectModerateAdvertisementsLoadingStatus
+      selectModerationAdvertisementsLoadingStatus
     );
   }
 
@@ -54,7 +54,7 @@ export class ModerationadvertisementsContainerComponent implements OnInit {
 
   public ngOnInit(): void {
     this.store.dispatch(
-      ModerateAdvertisementsListPageActions.getNonModerateAdvertisementsRequest()
+      ModerationAdvertisementsActions.getNonModerationAdvertisementsRequest()
     );
   }
 
@@ -63,7 +63,7 @@ export class ModerationadvertisementsContainerComponent implements OnInit {
   ): void {
     console.log(moderationDecision);
     this.store.dispatch(
-      ModerateAdvertisementsListPageActions.getDecisionNonModerateAdvertisementsRequest(
+      ModerationAdvertisementsActions.getDecisionNonModerationAdvertisementsRequest(
         {
           decision: moderationDecision,
         }
