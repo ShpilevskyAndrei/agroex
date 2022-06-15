@@ -6,7 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { HeaderModule } from '../../shared/components/header/header.module';
 import { ModerationadvertisementsContainerComponent } from './moderation-advertisements-container.component';
-import { ModerationadvertisementsPageRoutingModule } from './moderation-advertisements-routing.module';
+import { ModerationAdvertisementsRoutingModule } from './moderation-advertisements-routing.module';
 import { ModerationAdvertisementsComponent } from './moderation-advertisements.component';
 import { AdvertisementsListModule } from '../../shared/components/advertisements-list/advertisements-list.module';
 import { ModerationMessageModalComponentModule } from './moderation-message-modal/moderation-message-modal.module';
@@ -20,7 +20,7 @@ import { ModerationAdvertisementsButtonsModule } from './moderation-advertisemen
   imports: [
     CommonModule,
     HeaderModule,
-    ModerationadvertisementsPageRoutingModule,
+    ModerationAdvertisementsRoutingModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatButtonModule,

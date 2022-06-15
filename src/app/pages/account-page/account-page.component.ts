@@ -13,7 +13,6 @@ import { IUserOptionsType } from '../../shared/components/header/interfaces/user
 import { UserRole } from '../../shared/components/header/enums/user-role';
 import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
-import { AdvertisementsListPageActions } from '../../state/advertisements-list-page/advertisements-list-page.actions';
 
 @Component({
   selector: 'app-account-page',
