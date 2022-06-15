@@ -1,3 +1,11 @@
 @import "../../../styles/general-styles";
 
 @include advertisement-wrap-buttons;
+
+:host {
+  .my-advertisements {
+    width: 100%;
+  }
+}
+
+
