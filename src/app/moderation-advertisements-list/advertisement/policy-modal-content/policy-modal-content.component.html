@@ -32,7 +32,7 @@
     >
       Cancel
     </button>
-    <button mat-raised-button [mat-dialog-close]="getModeratorsComment()">
+    <button mat-raised-button [mat-dialog-close]="getModeratorsComment()" [disabled]="!getModeratorsComment()">
       Send message
     </button>
   </mat-dialog-actions>
