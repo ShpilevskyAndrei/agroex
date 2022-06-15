@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { IAdRequestInterface } from '../../advertisements-list/interfaces/ad-request.interface';
 import { BaseService } from '../../shared/services/base.service';
+import { IAdRequestInterface } from '../../shared/components/advertisements-list/interfaces/ad-request.interface';
 
 @Injectable({ providedIn: 'root' })
 export class AdvertisementService extends BaseService {

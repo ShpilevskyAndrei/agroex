@@ -8,15 +8,15 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { IAdRequestInterface } from '../../advertisements-list/interfaces/ad-request.interface';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IUser } from '../../shared/interfaces/user.interface';
 import { IShownMapConfig } from './interfaces/shown-map-config.interface';
 import { IShownMap } from './interfaces/shown-map.interface';
-import { CurrenciesEnum } from '../../advertisements-list/advertisement/bet-modal/enums/currencies.enum';
 import { UserPanelOptionId } from '../../shared/components/header/enums/user-panel-option-id';
-import { BetValidators } from '../../advertisements-list/advertisement/bet-modal/intefaces/bet-validator';
 import { UserRole } from '../../shared/components/header/enums/user-role';
+import { IAdRequestInterface } from '../../shared/components/advertisements-list/interfaces/ad-request.interface';
+import { CurrenciesEnum } from '../../shared/components/advertisements-list/advertisement/bet-modal/enums/currencies.enum';
+import { BetValidators } from '../../shared/components/advertisements-list/advertisement/bet-modal/intefaces/bet-validator';
 
 @Component({
   selector: 'app-advertisement-page',

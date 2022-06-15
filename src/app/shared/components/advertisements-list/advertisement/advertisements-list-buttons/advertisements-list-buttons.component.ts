@@ -19,6 +19,7 @@ import { BetModalComponent } from '../bet-modal/bet-modal.component';
 })
 export class AdvertisementsListButtonsComponent {
   @Input() public advertisement: IAdvertisementInterface;
+
   @Output() public setBet: EventEmitter<Record<string, string>> =
     new EventEmitter<Record<string, string>>();
 
@@ -49,5 +50,9 @@ export class AdvertisementsListButtonsComponent {
         })
       )
       .subscribe();
+  }
+
+  public stopPropagation(event: MouseEvent): void {
+    event.stopPropagation();
   }
 }

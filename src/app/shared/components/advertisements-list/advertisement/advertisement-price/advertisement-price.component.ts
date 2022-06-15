@@ -3,8 +3,8 @@ import { Component, Input } from '@angular/core';
 import { IAdvertisementInterface } from '../../interfaces/advertisement.interface';
 import { WeightEnum } from './enums/weight.enum';
 import { CurrenciesEnum } from '../bet-modal/enums/currencies.enum';
-import { IUser } from '../../../shared/interfaces/user.interface';
 import { BetColorOptionEnum } from './enums/bet-color-option';
+import { IUser } from '../../../../interfaces/user.interface';
 
 @Component({
   selector: 'app-advertisement-price',

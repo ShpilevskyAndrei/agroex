@@ -43,7 +43,7 @@ import {
   AdvertisementPageState,
 } from './advertisement-page/advertisement-page.reducer';
 import { AdvertisementPageEffects } from './advertisement-page/advertisement-page.effects';
-import { ModerationAdvertisementsListPageEffects } from './moderation-advertisements-list/advertisements-list-page.effects';
+import {
   ModerationAdvertisementsState,
   MODERATION_ADVERTISEMENTS_REDUCER,
 } from './moderation-advertisements/moderation-advertisements.reducer';

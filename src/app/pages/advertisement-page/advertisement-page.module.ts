@@ -10,13 +10,13 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AdvertisementPageComponent } from './advertisement-page.component';
 import { AdvertisementPageContainerComponent } from './advertisement-page-container.component';
 import { AdvertisementPageRoutingModule } from './advertisement-page-routing.module';
-import { AdvertisementButtonsModule } from '../../advertisements-list/advertisement/advertisement-buttons/advertisement-buttons.module';
-import { AdvertisementPriceModule } from '../../advertisements-list/advertisement/advertisement-price/advertisement-price.module';
-import { AdvertisementTitleModule } from '../../advertisements-list/advertisement/advertisement-title/advertisement-title.module';
-import { AdvertisementModule } from '../../advertisements-list/advertisement/advertisement.module';
 import { BreadcrumbsModule } from '../../shared/components/breadcrumbs/breadcrumbs.module';
 import { HeaderModule } from '../../shared/components/header/header.module';
-import { AdvertisementButtonsAdPageModule } from '../../advertisements-list/advertisement/advertisement-buttons-ad-page/advertisement-buttons-ad-page.module';
+import { AdvertisementButtonsAdPageModule } from './advertisement-buttons-ad-page/advertisement-buttons-ad-page.module';
+import { AdvertisementButtonsModule } from '../../shared/components/advertisements-list/advertisement/advertisement-buttons/advertisement-buttons.module';
+import { AdvertisementPriceModule } from '../../shared/components/advertisements-list/advertisement/advertisement-price/advertisement-price.module';
+import { AdvertisementModule } from '../../shared/components/advertisements-list/advertisement/advertisement.module';
+import { AdvertisementTitleModule } from '../../shared/components/advertisements-list/advertisement/advertisement-title/advertisement-title.module';
 
 @NgModule({
   declarations: [

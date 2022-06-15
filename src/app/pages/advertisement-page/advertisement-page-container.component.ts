@@ -5,7 +5,6 @@ import { map, tap } from 'rxjs/operators';
 import { filter, Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 
-import { IAdRequestInterface } from '../../advertisements-list/interfaces/ad-request.interface';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { AdvertisementPageActions } from '../../state/advertisement-page/advertisement-page.actions';
 import { IUser } from '../../shared/interfaces/user.interface';
@@ -22,6 +21,7 @@ import { UserPanelOptionId } from '../../shared/components/header/enums/user-pan
 import { AppRootActions } from '../../state/app-root/app-root.actions';
 import { UserRole } from '../../shared/components/header/enums/user-role';
 import { AdvertisementsListBetActions } from '../../state/advertisements-list-page/advertisements-list-page.actions';
+import { IAdRequestInterface } from '../../shared/components/advertisements-list/interfaces/ad-request.interface';
 
 @Component({
   selector: 'app-advertisement-page-container',

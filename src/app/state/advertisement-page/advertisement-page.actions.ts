@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { HttpErrorResponse } from '@angular/common/http';
 
-import { IAdRequestInterface } from '../../advertisements-list/interfaces/ad-request.interface';
+import { IAdRequestInterface } from '../../shared/components/advertisements-list/interfaces/ad-request.interface';
 
 export const AdvertisementPageActions = {
   getAdvertisementRequest: createAction(

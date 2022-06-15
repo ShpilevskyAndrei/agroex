@@ -2,8 +2,8 @@ import { createReducer, on } from '@ngrx/store';
 
 import { AdvertisementPageActions } from './advertisement-page.actions';
 import { DEFAULT_LOADING_STATUS } from '../../shared/constants/lodaing-default-status';
-import { IAdRequestInterface } from '../../advertisements-list/interfaces/ad-request.interface';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
+import { IAdRequestInterface } from '../../shared/components/advertisements-list/interfaces/ad-request.interface';
 
 export const ADVERTISEMENT_PAGE = 'advertisementPage';
 

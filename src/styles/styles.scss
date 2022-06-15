@@ -54,7 +54,9 @@ body {
   .mat-form-field-appearance-outline .mat-form-field-outline {
     top: 0;
   }
-  .mat-form-field-invalid.mat-form-field-appearance-outline .mat-form-field-wrapper .mat-form-field-subscript-wrapper {
+  .mat-form-field-invalid.mat-form-field-appearance-outline
+    .mat-form-field-wrapper
+    .mat-form-field-subscript-wrapper {
     display: none;
   }
   .mat-form-field-prefix {
@@ -74,9 +76,10 @@ body {
 .main-header__menu.mat-menu-panel {
   max-width: 25rem;
   width: 100vw;
-  margin-top: .7rem;
-  box-shadow: 0 .2rem .7rem rgba(0, 0, 0, 0.08), 0 .3rem 2rem rgba(0, 0, 0, 0.12);
-  border-radius: .2rem;
+  margin-top: 0.7rem;
+  box-shadow: 0 0.2rem 0.7rem rgba(0, 0, 0, 0.08),
+    0 0.3rem 2rem rgba(0, 0, 0, 0.12);
+  border-radius: 0.2rem;
   padding-bottom: 0;
 
   .main-header__menu-user,
@@ -90,7 +93,7 @@ body {
     font-size: 18px;
     color: #131314;
     &:last-child {
-      border-top: .1rem solid $color-button-disable;
+      border-top: 0.1rem solid $color-button-disable;
     }
   }
 
@@ -104,15 +107,14 @@ body {
     font-size: $font-size-normal;
     line-height: 3rem;
     color: $primary-color;
-    padding-bottom: .7rem;
-    border-bottom: .1rem solid $color-button-disable;
+    padding-bottom: 0.7rem;
+    border-bottom: 0.1rem solid $color-button-disable;
   }
 }
 
 .advertisement-wrap {
+  cursor: pointer;
   &:hover &__btns {
     display: block;
   }
 }
-
-

@@ -1,10 +1,8 @@
 @import "../../../styles/general-styles";
-@import "../../styles/advertisement-const";
 
 :host {
   .advertisement-btns {
     display: flex;
-    @include column-gap-small;
 
     button {
       display: flex;
@@ -20,5 +18,9 @@
       @include advertisement-icon-size;
       margin: 0 0.833rem 0 0;
     }
+  }
+
+  .bet-button {
+    margin-right: 8px;
   }
 }

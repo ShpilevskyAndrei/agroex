@@ -8,7 +8,7 @@ import {
 import { Router } from '@angular/router';
 
 import { IAdvertisementInterface } from '../interfaces/advertisement.interface';
-import { IUser } from '../../shared/interfaces/user.interface';
+import { IUser } from '../../../interfaces/user.interface';
 
 @Component({
   selector: 'app-advertisement',
@@ -27,10 +27,6 @@ export class AdvertisementComponent {
 
   public onSetBet(newBetOptions: Record<string, string | number>): void {
     this.setBet.emit(newBetOptions);
-  }
-
-  public stopPropagation(event: MouseEvent): void {
-    event.stopPropagation();
   }
 
   public openAdvertisement(): void {
