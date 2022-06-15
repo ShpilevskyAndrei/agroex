@@ -5,7 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 
 import { ModerationAdvertisementComponent } from './moderation-advertisement.component';
-import { ModerationAdvertisementButtonsModule } from './advertisement-buttons/moderation-advertisement-buttons.module';
+import { ModerationAdvertisementButtonsModule } from '../../pages/moderation-advertisements/advertisement-buttons/moderation-advertisement-buttons.module';
 import { AdvertisementPriceModule } from '../../shared/components/advertisements-list/advertisement/advertisement-price/advertisement-price.module';
 import { AdvertisementTitleModule } from '../../shared/components/advertisements-list/advertisement/advertisement-title/advertisement-title.module';
 

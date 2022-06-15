@@ -9,6 +9,8 @@ import { ModerationadvertisementsContainerComponent } from './moderation-adverti
 import { ModerationadvertisementsPageRoutingModule } from './moderation-advertisements-routing.module';
 import { ModerationadvertisementsComponent } from './moderation-advertisements.component';
 import { ModerationAdvertisementsListModule } from '../../moderation-advertisements-list/moderation-advertisements-list.module';
+import { AdvertisementsListModule } from '../../shared/components/advertisements-list/advertisements-list.module';
+import { ModerationAdvertisementButtonsModule } from './advertisement-buttons/moderation-advertisement-buttons.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { ModerationAdvertisementsListModule } from '../../moderation-advertiseme
     MatFormFieldModule,
     MatButtonModule,
     ModerationAdvertisementsListModule,
+    AdvertisementsListModule,
+    ModerationAdvertisementButtonsModule,
   ],
   exports: [ModerationadvertisementsContainerComponent],
 })
