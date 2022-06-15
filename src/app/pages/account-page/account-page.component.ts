@@ -13,6 +13,7 @@ import { IUserOptionsType } from '../../shared/components/header/interfaces/user
 import { UserRole } from '../../shared/components/header/enums/user-role';
 import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
+import { AdvertisementsListPageActions } from '../../state/advertisements-list-page/advertisements-list-page.actions';
 
 @Component({
   selector: 'app-account-page',
@@ -31,6 +32,9 @@ export class AccountPageComponent {
   @Output() public selectTab: EventEmitter<UserPanelOptionId> =
     new EventEmitter<UserPanelOptionId>();
 
+  /*@Output() public dispatcher: EventEmitter<Function> =
+    new EventEmitter<Function>();*/
+
   public userPanelOption: IUserOptionsType[] = USER_PANEL_OPTION;
 
   public onLogout(): void {
@@ -40,4 +44,8 @@ export class AccountPageComponent {
   public onSelectTab(selectedOptionId: UserPanelOptionId): void {
     this.selectTab.emit(selectedOptionId);
   }
+
+  /*public onDispatcher(dispatcher: Function) {
+    this.dispatcher.emit(dispatcher);
+  }*/
 }
