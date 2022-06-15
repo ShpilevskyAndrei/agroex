@@ -2,6 +2,7 @@
 @import "../font-sizes.scss";
 @import "../offsets.scss";
 @import "../sizes.scss";
+@import "../responsive.scss";
 
 .mat-form-field {
     .mat-form-field-flex {
@@ -25,6 +26,9 @@
 
         .mat-form-field-label {
             margin-top: -0.18rem;
+            @media only screen and (max-width: $laptop-min-width) {
+              margin-top: -0.6rem;
+            }
         }
 
         &.mat-form-field-can-float.mat-form-field-should-float {
