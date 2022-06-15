@@ -8,9 +8,9 @@ import { HeaderModule } from '../../shared/components/header/header.module';
 import { ModerationadvertisementsContainerComponent } from './moderation-advertisements-container.component';
 import { ModerationadvertisementsPageRoutingModule } from './moderation-advertisements-routing.module';
 import { ModerationadvertisementsComponent } from './moderation-advertisements.component';
-import { ModerationAdvertisementsListModule } from '../../moderation-advertisements-list/moderation-advertisements-list.module';
 import { AdvertisementsListModule } from '../../shared/components/advertisements-list/advertisements-list.module';
 import { ModerationAdvertisementButtonsModule } from './advertisement-buttons/moderation-advertisement-buttons.module';
+import { PolicyModalContentComponentModule } from './policy-modal-content/policy-modal-content.module';
 
 @NgModule({
   declarations: [
@@ -24,10 +24,10 @@ import { ModerationAdvertisementButtonsModule } from './advertisement-buttons/mo
     ReactiveFormsModule,
     MatFormFieldModule,
     MatButtonModule,
-    ModerationAdvertisementsListModule,
     AdvertisementsListModule,
     ModerationAdvertisementButtonsModule,
+    PolicyModalContentComponentModule,
   ],
   exports: [ModerationadvertisementsContainerComponent],
 })
-export class ModerationadvertisementsPageModule {}
+export class ModerationAdvertisementsPageModule {}
