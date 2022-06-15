@@ -3,6 +3,8 @@ import { Component, Input } from '@angular/core';
 import { IAdvertisementInterface } from '../../interfaces/advertisement.interface';
 import { WeightEnum } from './enums/weight.enum';
 import { CurrenciesEnum } from '../bet-modal/enums/currencies.enum';
+import { IUser } from '../../../shared/interfaces/user.interface';
+import { BetColorOptionEnum } from './enums/bet-color-option';
 
 @Component({
   selector: 'app-advertisement-price',
@@ -11,6 +13,15 @@ import { CurrenciesEnum } from '../bet-modal/enums/currencies.enum';
 })
 export class AdvertisementPriceComponent {
   @Input() public advertisement: IAdvertisementInterface;
+  @Input() public user: IUser | null;
+
+  public betColor: BetColorOptionEnum;
+
+  public get getBetColor(): string {
+    return this.user?.id === this.advertisement.author.id
+      ? (this.betColor = BetColorOptionEnum.blueBetStyle)
+      : (this.betColor = BetColorOptionEnum.orangeBetStyle);
+  }
 
   public get actualCurrency(): string | undefined {
     if (this.advertisement.currency) {
@@ -28,19 +39,15 @@ export class AdvertisementPriceComponent {
   }
 
   public get tonToKgUnit(): string {
-    if (this.advertisement.unit === WeightEnum.ton) {
-      return WeightEnum.kg;
-    } else {
-      return this.advertisement.unit;
-    }
+    return this.advertisement.unit === WeightEnum.ton
+      ? WeightEnum.kg
+      : this.advertisement.unit;
   }
 
   public get CalcTonToKg(): number {
-    if (this.advertisement.unit === WeightEnum.ton) {
-      return +this.advertisement.quantity * 1e3;
-    } else {
-      return +this.advertisement.quantity;
-    }
+    return this.advertisement.unit === WeightEnum.ton
+      ? +this.advertisement.quantity * 1e3
+      : +this.advertisement.quantity;
   }
 
   public get unitCostBet(): number {

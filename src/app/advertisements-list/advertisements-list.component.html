@@ -3,6 +3,7 @@
     <div class="advertisement-list__wrap">
       <div class="advertisement-block" *ngFor="let advertisement of advertisementsRequest?.advertisements">
         <app-advertisement [advertisement]="advertisement"
+                           [user]="user"
                            (setBet)="onSetBet($event)"></app-advertisement>
       </div>
     </div>

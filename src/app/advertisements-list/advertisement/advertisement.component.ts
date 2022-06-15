@@ -8,6 +8,7 @@ import {
 import { Router } from '@angular/router';
 
 import { IAdvertisementInterface } from '../interfaces/advertisement.interface';
+import { IUser } from '../../shared/interfaces/user.interface';
 
 @Component({
   selector: 'app-advertisement',
@@ -17,6 +18,8 @@ import { IAdvertisementInterface } from '../interfaces/advertisement.interface';
 })
 export class AdvertisementComponent {
   @Input() public advertisement: IAdvertisementInterface;
+  @Input() public user: IUser | null;
+
   @Output() public setBet: EventEmitter<Record<string, string | number>> =
     new EventEmitter<Record<string, string | number>>();
 
