@@ -21,6 +21,7 @@ import { RegistrationPageActions } from '../../state/registration-page/registrat
 import { UserPanelOptionId } from '../../shared/components/header/enums/user-panel-option-id';
 import { AppRootActions } from '../../state/app-root/app-root.actions';
 import { UserRole } from '../../shared/components/header/enums/user-role';
+import { AdvertisementsListBetActions } from '../../state/advertisements-list-page/advertisements-list-page.actions';
 
 @Component({
   selector: 'app-advertisement-page-container',
@@ -31,6 +32,7 @@ import { UserRole } from '../../shared/components/header/enums/user-role';
     [advertisementLoadingStatus]="advertisementLoadingStatus$ | async"
     (logout)="onLogout()"
     (selectTab)="onSelectTab($event)"
+    (setBet)="onSetBet($event)"
   ></app-advertisement-page>`,
 })
 export class AdvertisementPageContainerComponent implements OnInit, OnDestroy {
@@ -59,6 +61,14 @@ export class AdvertisementPageContainerComponent implements OnInit, OnDestroy {
 
   public onSelectTab(selectedOptionId: UserPanelOptionId): void {
     this.store.dispatch(AppRootActions.getUserSelectTab({ selectedOptionId }));
+  }
+
+  public onSetBet(newBetOptions: Record<string, string | number>): void {
+    this.store.dispatch(
+      AdvertisementsListBetActions.getAdvertisementsBetRequest({
+        newBetOptions,
+      })
+    );
   }
 
   public ngOnInit(): void {

@@ -33,6 +33,8 @@ export class AdvertisementPageComponent implements OnChanges {
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
   @Output() public selectTab: EventEmitter<UserPanelOptionId> =
     new EventEmitter<UserPanelOptionId>();
+  @Output() public setBet: EventEmitter<Record<string, string | number>> =
+    new EventEmitter<Record<string, string | number>>();
 
   public betForm: FormGroup = new FormGroup({
     bet: new FormControl('', {
@@ -74,6 +76,10 @@ export class AdvertisementPageComponent implements OnChanges {
     } else {
       return ' ';
     }
+  }
+
+  public onSetBet(newBetOptions: Record<string, string | number>): void {
+    this.setBet.emit(newBetOptions);
   }
 
   public ngOnChanges(changes: SimpleChanges): void {

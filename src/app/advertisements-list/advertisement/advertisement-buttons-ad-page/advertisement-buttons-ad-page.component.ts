@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { IAdvertisementInterface } from '../../interfaces/advertisement.interface';
@@ -15,7 +15,10 @@ export class AdvertisementButtonsAdPageComponent {
   @Input() public isDisabled = false;
   @Input() public betForm: FormGroup;
 
-  public test(): void {
-    console.log(this.newBet);
+  @Output() public setBet: EventEmitter<Record<string, string>> =
+    new EventEmitter<Record<string, string>>();
+
+  public onClickButton(): void {
+    this.setBet.emit({ newBet: this.newBet, slug: this.advertisement.slug });
   }
 }
