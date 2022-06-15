@@ -27,7 +27,7 @@
         .mat-form-field-label {
             margin-top: -0.18rem;
             @media only screen and (max-width: $laptop-min-width) {
-              margin-top: -0.6rem;
+              margin-top: -0.7rem;
             }
         }
 
@@ -67,7 +67,18 @@
             border-radius: 0 3px 3px 0;
         }
         .mat-form-field-suffix {
-            top: 0.33rem;
+            top: 0.5rem;
+            
+            @media only screen and (min-width: $ipad-min-device-width) and (max-width: $laptop-min-width) {
+                top: 0.55rem;
+            }
+            
+            @media only screen and (min-width: $laptop-min-width) and (max-width: $large-laptop-min-width) {
+                top: 0.45rem;
+            }
+            @media only screen and (min-width: $large-laptop-min-width) and (max-width: $wqhd-screen-min-width) {
+                top: 0.30rem;
+            }
         }
     }
 }
