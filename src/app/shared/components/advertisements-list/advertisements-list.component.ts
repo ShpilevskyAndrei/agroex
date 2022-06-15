@@ -11,7 +11,7 @@ import { LoadingStatus } from '../../interfaces/loading-status';
 import { IAdvertisementRequestInterface } from './interfaces/advertisement-request.interface';
 import { AdvertisementButtonsComponent } from './advertisement/advertisement-buttons/advertisement-buttons.component';
 import { IUser } from '../../interfaces/user.interface';
-import { IAdvertisementModerationRequest } from '../../../moderation-advertisements-list/interfaces/advertisement.interface';
+import { IAdvertisementModerationRequest } from '../../../pages/moderation-advertisements/interfaces/advertisement.interface';
 
 @Component({
   selector: 'app-advertisements-list',

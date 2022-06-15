@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { BaseService } from '../../shared/services/base.service';
-import { IAdvertisementRequestInterface } from '../../moderation-advertisements-list/interfaces/advertisement-request.interface';
-import { IAdvertisementModerationRequest } from '../../moderation-advertisements-list/interfaces/advertisement.interface';
+import { IAdvertisementRequestInterface } from './interfaces/advertisement-request.interface';
+import { IAdvertisementModerationRequest } from './interfaces/advertisement.interface';
 
 @Injectable({
   providedIn: 'root',

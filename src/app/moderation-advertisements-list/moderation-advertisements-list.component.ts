@@ -8,8 +8,8 @@ import {
 
 import { LoadingStatus } from '../shared/interfaces/loading-status';
 import { IUser } from '../shared/interfaces/user.interface';
-import { IAdvertisementRequestInterface } from './interfaces/advertisement-request.interface';
-import { IAdvertisementModerationRequest } from './interfaces/advertisement.interface';
+import { IAdvertisementRequestInterface } from '../pages/moderation-advertisements/interfaces/advertisement-request.interface';
+import { IAdvertisementModerationRequest } from '../pages/moderation-advertisements/interfaces/advertisement.interface';
 
 @Component({
   selector: 'app-moderation-advertisements-list',

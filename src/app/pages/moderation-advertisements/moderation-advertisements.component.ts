@@ -12,9 +12,9 @@ import { IAdvertisementRequestInterface } from '../../shared/components/advertis
 import {
   IAdvertisementInterface,
   IAdvertisementModerationRequest,
-} from '../../moderation-advertisements-list/interfaces/advertisement.interface';
+} from './interfaces/advertisement.interface';
 import { UserRole } from '../../shared/components/header/enums/user-role';
-import { PolicyModalContentComponent } from '../../moderation-advertisements-list/advertisement/policy-modal-content/policy-modal-content.component';
+import { PolicyModalContentComponent } from './policy-modal-content/policy-modal-content.component';
 import { filter, tap } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 
