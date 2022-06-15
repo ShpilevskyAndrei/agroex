@@ -31,11 +31,6 @@
       width: 33rem;
     }
 
-    &__btns {
-      display: none;
-      margin-top: auto;
-    }
-
     &__quantity, &__location {
       display: flex;
       align-items: center;
@@ -56,11 +51,5 @@
     &__quantity {
       margin: auto 0 $offset-normal;
     }
-  }
-}
-
-.advertisement-wrap {
-  &:hover &__btns {
-    display: block;
   }
 }

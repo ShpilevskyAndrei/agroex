@@ -49,10 +49,6 @@ export class AccountPageContainerComponent {
     );
   }
 
-  /*public onDispatcher(dispatcher: Function) {
-    this.store.dispatch(dispatcher());
-  }*/
-
   public onLogout(): void {
     this.store.dispatch(RegistrationPageActions.getUserLogout());
   }

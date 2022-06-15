@@ -16,8 +16,6 @@
   <div class="advertisement-wrap__actions">
     <app-advertisement-price class="advertisement-wrap__price"
                              [advertisement]="advertisement"></app-advertisement-price>
-    <app-advertisement-buttons class="advertisement-wrap__btns">
-      <ng-content select="[buttons]"></ng-content>
-    </app-advertisement-buttons>
+    <ng-content select="[buttons]"></ng-content>
   </div>
 </div>

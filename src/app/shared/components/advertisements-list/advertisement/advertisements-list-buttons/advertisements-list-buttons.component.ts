@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { filter, tap } from 'rxjs';
 
@@ -9,6 +15,7 @@ import { BetModalComponent } from '../bet-modal/bet-modal.component';
   selector: 'app-advertisements-list-buttons',
   templateUrl: './advertisements-list-buttons.component.html',
   styleUrls: ['./advertisements-list-buttons.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdvertisementsListButtonsComponent {
   @Input() public advertisement: IAdvertisementInterface;

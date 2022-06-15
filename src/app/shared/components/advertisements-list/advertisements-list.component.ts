@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   ContentChild,
   EventEmitter,
@@ -17,6 +18,7 @@ import { IAdvertisementModerationRequest } from '../../../pages/moderation-adver
   selector: 'app-advertisements-list',
   templateUrl: './advertisements-list.component.html',
   styleUrls: ['./advertisements-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdvertisementsListComponent {
   @Input() public user: IUser | null;

@@ -17,10 +17,8 @@ export class ModerationMessageModalComponent {
   }
 
   public getModeratorsComment(): string {
-    if (this.messageModeratorForm.valid) {
-      return this.get('moderatorComments').value;
-    } else {
-      return '';
-    }
+    return this.messageModeratorForm.valid
+      ? this.get('moderatorComments').value
+      : '';
   }
 }

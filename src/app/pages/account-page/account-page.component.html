@@ -20,23 +20,19 @@
         </app-sidebar>
         <div class="account__info" [ngSwitch]="this.selectedTab">
           <app-my-advertisements
-            *ngSwitchCase="'myAdvertisements'"
+            *ngSwitchCase="userPanelOptionId.MyAdvertisements"
             [advertisementsRequest]="advertisementsRequest"
             [advertisementsLoadingStatus]="advertisementsLoadingStatus"
           >
-            <!--
-            bind to upper tag
-            (dispatcher)="onDispatcher($event)"
-            -->
           </app-my-advertisements>
           <app-my-betting
-            *ngSwitchCase="'betting'">
+            *ngSwitchCase="userPanelOptionId.Betting">
           </app-my-betting>
           <app-my-orders
-            *ngSwitchCase="'myOrders'">
+            *ngSwitchCase="userPanelOptionId.MyOrders">
           </app-my-orders>
           <app-my-account
-            *ngSwitchCase="'myAccount'">
+            *ngSwitchCase="userPanelOptionId.MyAccount">
           </app-my-account>
         </div>
       </div>

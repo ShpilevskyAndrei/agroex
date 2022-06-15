@@ -32,10 +32,8 @@ export class AccountPageComponent {
   @Output() public selectTab: EventEmitter<UserPanelOptionId> =
     new EventEmitter<UserPanelOptionId>();
 
-  /*@Output() public dispatcher: EventEmitter<Function> =
-    new EventEmitter<Function>();*/
-
   public userPanelOption: IUserOptionsType[] = USER_PANEL_OPTION;
+  public userPanelOptionId = UserPanelOptionId;
 
   public onLogout(): void {
     this.logout.emit();
@@ -44,8 +42,4 @@ export class AccountPageComponent {
   public onSelectTab(selectedOptionId: UserPanelOptionId): void {
     this.selectTab.emit(selectedOptionId);
   }
-
-  /*public onDispatcher(dispatcher: Function) {
-    this.dispatcher.emit(dispatcher);
-  }*/
 }

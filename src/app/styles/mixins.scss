@@ -13,6 +13,13 @@
   font-size: 1.4rem;
 }
 
+@mixin advertisement-wrap-buttons {
+  .advertisement-wrap__btns {
+    display: none;
+    margin-top: auto;
+  }
+}
+
 @mixin advertisements-buttons {
   .advertisement-btns {
     display: flex;
