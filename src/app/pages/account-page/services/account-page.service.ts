@@ -38,6 +38,3 @@ export class AccountPageService extends BaseService {
     return this.get<IMyOrdersInterface[]>('orders', { token });
   }
 }
-
-
-
