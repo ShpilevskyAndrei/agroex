@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 
 import { UserPanelOptionId } from '../../shared/components/header/enums/user-panel-option-id';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
@@ -11,6 +17,7 @@ import { UserRole } from '../../shared/components/header/enums/user-role';
   selector: 'app-main-dashboard',
   templateUrl: './main-dashboard.component.html',
   styleUrls: ['./main-dashboard.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainDashboardComponent {
   @Input() public categories: Category[] | null;
