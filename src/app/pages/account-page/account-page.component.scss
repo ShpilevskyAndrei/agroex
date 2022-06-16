@@ -41,5 +41,9 @@
       padding-bottom: 2rem;
       box-shadow: inset -0.1rem 0 0 $color-button-disable;
     }
+
+    &__info {
+      width: 100%;
+    }
   }
 }
