@@ -1,6 +1,7 @@
 @import "../../../styles/general-styles";
 
 :host {
+  
   .mat-dialog-actions {
     margin-bottom: 0;
     padding: 0;
@@ -14,6 +15,26 @@
       width: 65%;
       mat-form-field {
         width: 100%;
+      }
+    }
+    @media only screen and (max-width: $ipad-pro-max-device-width) {
+      flex-direction: column;
+      form,
+      .mat-dialog-actions {
+        width: 100%;
+      }
+    }
+  }
+
+  .buttons-position-in-modal {
+    display: flex;
+    @media only screen and (max-width: $medium-s-screen-min-width) {
+      flex-direction: column;
+      align-items: center;
+      button {
+        width: 100%;
+        margin-top: $offset-normal;
+        margin-left: 0;
       }
     }
   }
