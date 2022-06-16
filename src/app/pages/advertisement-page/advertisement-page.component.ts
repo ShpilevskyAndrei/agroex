@@ -21,6 +21,7 @@ import { UserRole } from '../../shared/components/header/enums/user-role';
 import { IAdRequestInterface } from '../../shared/components/advertisements-list/interfaces/ad-request.interface';
 import { CurrenciesEnum } from '../../shared/components/advertisements-list/advertisement/bet-modal/enums/currencies.enum';
 import { BetValidators } from '../../shared/components/advertisements-list/advertisement/bet-modal/intefaces/bet-validator';
+import { TASHKENT_COORDINATES } from '../../shared/constants/tashkent-coordinates';
 
 @UntilDestroy()
 @Component({
@@ -99,9 +100,9 @@ export class AdvertisementPageComponent implements OnChanges {
   public getLocationCenter(): LngLatLike {
     return [
       this.getLocation().features?.[0]?.geometry
-        ?.coordinates?.[0]?.[0]?.[0]?.[0],
+        ?.coordinates?.[0]?.[0]?.[0]?.[0] || TASHKENT_COORDINATES[0],
       this.getLocation().features?.[0]?.geometry
-        ?.coordinates?.[0]?.[0]?.[0]?.[1],
+        ?.coordinates?.[0]?.[0]?.[0]?.[1] || TASHKENT_COORDINATES[1],
     ];
   }
 
