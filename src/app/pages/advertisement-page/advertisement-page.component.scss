@@ -46,6 +46,8 @@
     justify-content: space-between;
     @media only screen and (max-width: $medium-large-screen-min-width) {
       width: 100%;
+      margin-top: $offset-normal;
+      margin-left: 0;
     }
   }
 
