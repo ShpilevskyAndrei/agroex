@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { UserPanelOptionId } from '../../shared/components/header/enums/user-panel-option-id';
+import { AccountPageActions } from '../../state/account-page/account-page.actions';
 import {
   selectMyAdvertisementsData,
   selectMyAdvertisementsLoadingStatus,
@@ -30,6 +31,7 @@ import { LoadingStatus } from '../../shared/interfaces/loading-status';
     (logout)="onLogout()"
     (selectTab)="onSelectTab($event)"
     (dispatcher)="onDispatcher($event)"
+    (confirmDeal)="onConfirmDeal($event)"
   ></app-account-page>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -62,5 +64,9 @@ export class AccountPageContainerComponent {
 
   public onDispatcher(dispatcher: Function): void {
     this.store.dispatch(dispatcher());
+  }
+
+  public onConfirmDeal(slug: string): void {
+    this.store.dispatch(AccountPageActions.getConfirmDealRequest({ slug }));
   }
 }

@@ -3,7 +3,7 @@
 
 @mixin advertisement-gap-for-price-buttons {
   width: 50%;
-  padding: 0 .4rem;
+  padding: 0 0.4rem;
 }
 
 @mixin advertisement-margin-for-price-buttons {
@@ -71,6 +71,21 @@
     @media only screen and (max-width: $medium-screen-min-width) {
       display: flex;
       flex-direction: column;
+    }
+  }
+}
+@mixin empty-advertisement-block {
+  .empty-advertisement {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+
+    p {
+      margin: 0;
+      font-size: 2.5rem;
+      font-weight: 500;
+      color: $color-copy;
     }
   }
 }
