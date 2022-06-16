@@ -31,7 +31,8 @@
       width: 33rem;
     }
 
-    &__quantity, &__location {
+    &__quantity,
+    &__location {
       display: flex;
       align-items: center;
       .advertisement-quantity-icon,

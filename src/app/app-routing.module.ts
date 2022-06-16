@@ -47,6 +47,13 @@ const routes: Routes = [
     canLoad: [ModeratorGuard],
   },
   {
+    path: 'advertisement/:slug',
+    loadChildren: () =>
+      import('./pages/advertisement-page/advertisement-page.module').then(
+        (m) => m.AdvertisementPageModule
+      ),
+  },
+  {
     path: '',
     loadChildren: () =>
       import('./pages/main-dashboard/main-dashboard.module').then(

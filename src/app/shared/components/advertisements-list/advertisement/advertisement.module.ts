@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
@@ -23,6 +24,7 @@ import { BetModalComponent } from './bet-modal/bet-modal.component';
     MatIconModule,
     MatFormFieldModule,
     FormsModule,
+    RouterModule,
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,

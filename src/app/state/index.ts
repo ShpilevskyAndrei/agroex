@@ -39,6 +39,11 @@ import {
 } from './advertisements-list-page/advertisements-list-page.reducer';
 import { AdvertisementsListPageEffects } from './advertisements-list-page/advertisements-list-page.effects';
 import {
+  ADVERTISEMENT_PAGE_REDUCER,
+  AdvertisementPageState,
+} from './advertisement-page/advertisement-page.reducer';
+import { AdvertisementPageEffects } from './advertisement-page/advertisement-page.effects';
+import {
   ModerationAdvertisementsState,
   MODERATION_ADVERTISEMENTS_REDUCER,
 } from './moderation-advertisements/moderation-advertisements.reducer';
@@ -52,6 +57,7 @@ export interface State {
   registrationPage: RegistrationPageState;
   createAdvertisementPage: CreateAdvertisementPageState;
   advertisementsListPage: AdvertisementsListPageState;
+  advertisementPage: AdvertisementPageState;
   moderationAdvertisements: ModerationAdvertisementsState;
 }
 
@@ -63,6 +69,7 @@ export const ROOT_REDUCER: ActionReducerMap<State> = {
   registrationPage: REGISTRATION_PAGE_REDUCER,
   createAdvertisementPage: CREATE_ADVERTISEMENT_PAGE_REDUCER,
   advertisementsListPage: ADVERTISEMENTS_LIST_PAGE_REDUCER,
+  advertisementPage: ADVERTISEMENT_PAGE_REDUCER,
   moderationAdvertisements: MODERATION_ADVERTISEMENTS_REDUCER,
 };
 
@@ -74,6 +81,7 @@ export const ROOT_EFFECT = [
   RegistrationPageEffects,
   CreateAdvertisementPageEffects,
   AdvertisementsListPageEffects,
+  AdvertisementPageEffects,
   ModerationAdvertisementsEffects,
 ];
 

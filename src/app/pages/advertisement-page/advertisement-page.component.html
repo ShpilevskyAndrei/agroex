@@ -1,0 +1,149 @@
+<app-header
+  [user]="user"
+  [userRole]="userRole"
+  (logout)="onLogout()"
+  (selectTab)="onSelectTab($event)"
+></app-header>
+<app-breadcrumbs
+  *ngIf="advertisement"
+  [advertisement]="advertisement.advertisement"
+></app-breadcrumbs>
+
+<ng-container *ngIf="advertisementLoadingStatus?.loaded; else notLoaded">
+  <div class="container" *ngIf="advertisement">
+    <div class="ad-card-container">
+      <div class="ad-card-container-without-map">
+        <div class="ad-card-image-container">
+          <img
+            class="ad-card-image"
+            src="{{ advertisement.advertisement.img }}"
+            alt="{{ advertisement.advertisement.title }} image"
+          />
+        </div>
+        <div class="ad-card-info">
+          <app-advertisement-title
+            class="title-container"
+            [advertisement]="advertisement.advertisement"
+          ></app-advertisement-title>
+
+          <app-advertisement-price
+            class="price-container"
+            [advertisement]="advertisement.advertisement"
+            [user]="user"
+          ></app-advertisement-price>
+
+          <div
+            *ngIf="+advertisement.advertisement.price > 1 && user"
+            class="bet-form-container"
+          >
+            <form class="bet-field-container" [formGroup]="betForm">
+              <mat-form-field class="bet-field">
+                <div class="bet-input-container">
+                  <span matPrefix>{{ actualCurrency }}</span>
+                  <input
+                    matInput
+                    type="number"
+                    class="bet-input"
+                    autocomplete="off"
+                    placeholder="Enter your bet here"
+                    formControlName="bet"
+                  />
+                </div>
+              </mat-form-field>
+            </form>
+
+            <p
+              *ngIf="+advertisement.advertisement.price > 1 && user"
+              class="bet-hint"
+            >
+              Bet from {{ actualCurrency
+              }}{{
+                advertisement.advertisement.userBets.length
+                  ? +advertisement.advertisement.userBets[0].betValue + 1
+                  : "1"
+              }}
+              to {{ actualCurrency
+              }}{{ +advertisement.advertisement.price - 1 }}
+            </p>
+          </div>
+
+          <app-advertisement-buttons-ad-page
+            *ngIf="user"
+            class="buttons-container"
+            [betForm]="betForm"
+            [advertisement]="advertisement.advertisement"
+            [actualCurrency]="actualCurrency"
+            [newBet]="newBet"
+            [isDisabled]="isDisabled"
+            (setBet)="onSetBet($event)"
+          >
+          </app-advertisement-buttons-ad-page>
+
+          <div class="ad-card-discription discription-container">
+            <div class="ad-card-discription_string">
+              <p class="ad-params">Variety</p>
+              <p class="ad-params-options">-</p>
+            </div>
+            <hr />
+            <div class="ad-card-discription_string">
+              <p class="ad-params">Quantity</p>
+              <p class="ad-params-options">
+                {{ advertisement.advertisement.quantity }}
+                {{ advertisement.advertisement.unit }}
+              </p>
+            </div>
+            <hr />
+            <div class="ad-card-discription_string">
+              <p class="ad-params">Size</p>
+              <p class="ad-params-options">-</p>
+            </div>
+            <hr />
+            <div class="ad-card-discription_string">
+              <p class="ad-params">Packaging</p>
+              <p class="ad-params-options">-</p>
+            </div>
+            <hr />
+            <div class="ad-card-discription_string">
+              <p class="ad-params">Location</p>
+              <div class="location-container">
+                <mat-icon>map</mat-icon>
+                <p class="ad-params-options">
+                  {{ advertisement.advertisement.country }},
+                  {{ advertisement.advertisement.location }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hide-map-container" (click)="toggleShow()">
+        <mat-icon class="show-map-icon">{{ isShownMap.isShownIcon }}</mat-icon>
+        <p class="show-map-text">{{ isShownMap.isShownText }}</p>
+      </div>
+      <mgl-map
+        class="map-container map-slide-in"
+        *ngIf="!isShownMap.isShown"
+        [style]="'mapbox://styles/mapbox/light-v10'"
+        [zoom]="[6]"
+        [center]="[69.23858, 41.186305]"
+      >
+      </mgl-map>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #notLoaded>
+  <ngx-spinner
+    *ngIf="advertisementLoadingStatus?.loading; else advertisementError"
+    bdColor="rgba(0, 0, 0, 0.8)"
+    size="medium"
+    color="#fff"
+    type="ball-clip-rotate"
+    [fullScreen]="true"
+  >
+    <p style="color: white">Loading...</p>
+  </ngx-spinner>
+  <ng-template #advertisementError>
+    <p>{{ advertisementLoadingStatus?.error?.statusText }}</p>
+  </ng-template>
+</ng-template>

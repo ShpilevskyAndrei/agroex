@@ -1,20 +1,24 @@
-@import '@angular/material/theming';
-@import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import "@angular/material/theming";
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
 
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
 
-@import './theme-styles';
+@import "./theme-styles";
 @import "../app/styles/reusable_components/reusable_components.scss";
 @import "../app/styles/general-styles.scss";
+
+@import "~mapbox-gl/dist/mapbox-gl.css";
 
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'IBM Plex Sans', serif;
+  font-family: "IBM Plex Sans", serif;
   line-height: normal;
 }
 
-*, *:after, *:before {
+*,
+*:after,
+*:before {
   box-sizing: border-box;
 }
 
@@ -50,11 +54,17 @@ body {
   .mat-form-field-appearance-outline .mat-form-field-outline {
     top: 0;
   }
-  .mat-form-field-invalid.mat-form-field-appearance-outline .mat-form-field-wrapper .mat-form-field-subscript-wrapper {
-    display: none;
-  }
   .mat-form-field-prefix {
     margin-right: $offset-small;
+  }
+}
+
+.bet-modal,
+.bet-form-container {
+  .mat-form-field-invalid.mat-form-field-appearance-outline
+    .mat-form-field-wrapper
+    .mat-form-field-subscript-wrapper {
+    display: none;
   }
 }
 
@@ -64,12 +74,17 @@ body {
   }
 }
 
+.mapboxgl-ctrl {
+  display: none;
+}
+
 .main-header__menu.mat-menu-panel {
   max-width: 25rem;
   width: 100vw;
-  margin-top: .7rem;
-  box-shadow: 0 .2rem .7rem rgba(0, 0, 0, 0.08), 0 .3rem 2rem rgba(0, 0, 0, 0.12);
-  border-radius: .2rem;
+  margin-top: 0.7rem;
+  box-shadow: 0 0.2rem 0.7rem rgba(0, 0, 0, 0.08),
+    0 0.3rem 2rem rgba(0, 0, 0, 0.12);
+  border-radius: 0.2rem;
   padding-bottom: 0;
 
   .main-header__menu-user,
@@ -83,7 +98,7 @@ body {
     font-size: 18px;
     color: #131314;
     &:last-child {
-      border-top: .1rem solid $color-button-disable;
+      border-top: 0.1rem solid $color-button-disable;
     }
   }
 
@@ -97,8 +112,8 @@ body {
     font-size: $font-size-normal;
     line-height: 3rem;
     color: $primary-color;
-    padding-bottom: .7rem;
-    border-bottom: .1rem solid $color-button-disable;
+    padding-bottom: 0.7rem;
+    border-bottom: 0.1rem solid $color-button-disable;
   }
 }
 
@@ -106,6 +121,7 @@ body {
   &:hover &__btns {
     display: block;
   }
+  &.with-pointer:hover {
+    cursor: pointer;
+  }
 }
-
-

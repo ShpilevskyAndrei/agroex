@@ -1,0 +1,42 @@
+@import "../../../styles/general-styles";
+
+:host {
+  .breadcrumbs-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .breadcrumbs {
+    width: 100%;
+    height: $breadcrumbs-height;
+    min-height: $breadcrumbs-height;
+    background: $color-white;
+    box-shadow: inset 0px -1px 0px $color-button-disable;
+    display: flex;
+    align-items: center;
+    padding: 0 calc(#{$offset-large} * 2);
+  }
+
+  .crumb-active {
+    margin: 0;
+    color: $breadcrumbs-active-color;
+    size: $font-size-normal;
+    cursor: pointer;
+  }
+
+  .crumb-disabled {
+    margin: 0;
+    color: $primary-color;
+    size: $font-size-normal;
+  }
+
+  .keyboard_arrow_right {
+    color: $color-copy;
+    margin: 0 $offset-small;
+    font-size: $font-size-small;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+}
