@@ -9,11 +9,12 @@
   <div class="advertisement-list">
     <div class="container">
       <app-advertisements-list
+        [user]="user"
         [advertisementsRequest]="advertisementsRequest"
         [advertisementsLoadingStatus]="advertisementsLoadingStatus"
         (setBet)="onSetBet($event)"
       >
-        <ng-template *ngIf="user" #actionButtons let-advertisement>
+        <ng-template #actionButtons let-advertisement>
           <app-advertisements-list-buttons
             class="advertisement-wrap__btns"
             [advertisement]="advertisement"
