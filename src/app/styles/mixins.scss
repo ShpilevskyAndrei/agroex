@@ -1,3 +1,6 @@
+@import "offsets";
+@import "responsive";
+
 @mixin advertisement-gap-for-price-buttons {
   width: 50%;
   padding: 0 .4rem;
@@ -10,13 +13,17 @@
 @mixin advertisement-icon-size {
   width: 1.333rem;
   height: 1.333rem;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
 }
 
 @mixin advertisement-wrap-buttons {
   .advertisement-wrap__btns {
     display: none;
     margin-top: auto;
+    @media only screen and (max-width: $medium-x-screen-min-width) {
+      display: block;
+      margin-top: $offset-medium;
+    }
   }
 }
 
@@ -45,12 +52,25 @@
       @include advertisement-icon-size;
       margin: 0 0.833rem 0 0;
       @media only screen and (max-width: $laptop-min-width) {
-        margin: -0.8rem 0.833rem 0 0;
+        margin: -0.5rem 0.833rem 0 0;
       }
     }
   }
 
   .advertisement-btn {
     @include advertisement-gap-for-price-buttons;
+  }
+}
+
+.buttons-container {
+  .advertisement-btns {
+    .advertisement-btn {
+      margin-top: $offset-medium;
+      width: 100% !important;
+    }
+    @media only screen and (max-width: $medium-screen-min-width) {
+      display: flex;
+      flex-direction: column;
+    }
   }
 }

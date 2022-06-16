@@ -39,16 +39,8 @@
       }
     }
 
-    &__btns {
-      display: none;
-      margin-top: auto;
-      @media only screen and (max-width: $medium-x-screen-min-width) {
-        display: block;
-        margin-top: $offset-xlarge;
-      }
-    }
-
-    &__quantity, &__location {
+    &__quantity, 
+    &__location {
       display: flex;
       align-items: center;
       .advertisement-quantity-icon,
