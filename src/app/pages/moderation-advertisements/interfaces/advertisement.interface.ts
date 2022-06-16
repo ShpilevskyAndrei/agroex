@@ -23,6 +23,12 @@ export interface IAdvertisementInterface {
   userBets: IAdvertisementBetInterface[];
 }
 
+export interface IAdvertisementModerationInterface {
+  slug: string;
+  moderationStatus: 'approved' | 'rejected';
+  moderationComment: string | null;
+}
+
 export interface IAdvertisementModerationRequest {
-  advertisements: IAdvertisementInterface;
+  advertisements: IAdvertisementModerationInterface;
 }
