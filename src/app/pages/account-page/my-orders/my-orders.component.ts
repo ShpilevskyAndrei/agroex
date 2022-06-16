@@ -6,9 +6,10 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { IAdvertisementRequestInterface } from '../../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
+
 import { LoadingStatus } from '../../../shared/interfaces/loading-status';
 import { AccountPageActions } from '../../../state/account-page/account-page.actions';
+import { IMyOrdersInterface } from './interfaces/my-orders-request.interface';
 
 @Component({
   selector: 'app-my-orders',
@@ -18,7 +19,7 @@ import { AccountPageActions } from '../../../state/account-page/account-page.act
 })
 export class MyOrdersComponent implements OnInit {
   @Input()
-  public myOrdersRequest: IAdvertisementRequestInterface | null;
+  public myOrdersRequest: IMyOrdersInterface[] | null;
   @Input() public myOrdersLoadingStatus: LoadingStatus | null;
 
   @Output() public dispatcher: EventEmitter<Function> =
