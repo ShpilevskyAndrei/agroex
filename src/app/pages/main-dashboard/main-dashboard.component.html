@@ -9,6 +9,7 @@
   <div class="advertisement-list">
     <div class="container">
       <app-advertisements-list
+        [user]="user"
         [advertisementsRequest]="advertisementsRequest"
         [advertisementsLoadingStatus]="advertisementsLoadingStatus"
         (setBet)="onSetBet($event)"
