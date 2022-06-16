@@ -99,4 +99,30 @@ export const ACCOUNT_PAGE_REDUCER = createReducer(
       accountPageLoadingStatus: { loading: false, loaded: false, error },
     })
   )
+  on(
+    AccountPageActions.getMyOrdersRequest,
+    (state): AccountPageState => ({
+      ...state,
+      accountPageLoadingStatus: DEFAULT_LOADING_STATUS,
+    })
+  ),
+  on(
+    AccountPageActions.getMyOrdersSuccess,
+    (state, { myOrders }): AccountPageState => ({
+      ...state,
+      myOrders,
+      accountPageLoadingStatus: {
+        loading: false,
+        loaded: true,
+        error: null,
+      },
+    })
+  ),
+  on(
+    AccountPageActions.getMyOrdersError,
+    (state, { error }): AccountPageState => ({
+      ...state,
+      accountPageLoadingStatus: { loading: false, loaded: false, error },
+    })
+  )
 );

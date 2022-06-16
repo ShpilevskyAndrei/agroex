@@ -33,8 +33,11 @@ export class AccountPageService extends BaseService {
       token
     );
   }
-
+  
   public getOrders(token?: string): Observable<IMyOrdersInterface[]> {
     return this.get<IMyOrdersInterface[]>('orders', { token });
   }
 }
+
+
+
