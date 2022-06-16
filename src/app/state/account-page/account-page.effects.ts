@@ -15,7 +15,10 @@ import { IMyOrdersInterface } from '../../pages/account-page/my-orders/interface
 export class AccountPageEffects {
   public myAdvertisements$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(AccountPageActions.getMyAdvertisementsRequest),
+      ofType(
+        AccountPageActions.getMyAdvertisementsRequest,
+        AccountPageActions.getConfirmDealSuccess
+      ),
       withLatestFrom(this.store.select(selectUserToken)),
       switchMap(([_, selectUserToken]) =>
         this.accountPageService.getMyAdvertisements(selectUserToken).pipe(
@@ -46,7 +49,7 @@ export class AccountPageEffects {
             this.toastService.addToast({
               toastType: ToastType.Success,
               title: `Advertisement was confirmed!`,
-              width: '50vw',
+              width: '60vw',
             });
 
             return AccountPageActions.getConfirmDealSuccess();
@@ -55,7 +58,7 @@ export class AccountPageEffects {
             this.toastService.addToast({
               toastType: ToastType.Error,
               title: `Something went wrong! Please retry!`,
-              width: '50vw',
+              width: '60vw',
             });
 
             return of(
