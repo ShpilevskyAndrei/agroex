@@ -19,44 +19,24 @@
           (selectTab)="onSelectTab($event)"
         >
         </app-sidebar>
-        <ng-container *ngIf="combineLoadingStatus?.loaded; else notLoaded">
-          <div class="account__info" [ngSwitch]="this.selectedTab">
-            <app-my-advertisements
-              *ngSwitchCase="userPanelOptionId.MyAdvertisements"
-              [myAdvertisementsRequest]="myAdvertisementsRequest"
-              [myAdvertisementsLoadingStatus]="myAdvertisementsLoadingStatus"
-              [user]="user"
-              (dispatcher)="onDispatcher($event)"
-              (confirmDeal)="onConfirmDeal($event)"
-            >
-            </app-my-advertisements>
-            <app-my-betting *ngSwitchCase="userPanelOptionId.Betting">
-            </app-my-betting>
-            <app-my-orders *ngSwitchCase="userPanelOptionId.MyOrders">
-            </app-my-orders>
-            <app-my-account *ngSwitchCase="userPanelOptionId.MyAccount">
-            </app-my-account>
-          </div>
-        </ng-container>
+        <div class="account__info" [ngSwitch]="this.selectedTab">
+          <app-my-advertisements
+            *ngSwitchCase="userPanelOptionId.MyAdvertisements"
+            [myAdvertisementsRequest]="myAdvertisementsRequest"
+            [myAdvertisementsLoadingStatus]="myAdvertisementsLoadingStatus"
+            [user]="user"
+            (dispatcher)="onDispatcher($event)"
+            (confirmDeal)="onConfirmDeal($event)"
+          >
+          </app-my-advertisements>
+          <app-my-betting *ngSwitchCase="userPanelOptionId.Betting">
+          </app-my-betting>
+          <app-my-orders *ngSwitchCase="userPanelOptionId.MyOrders">
+          </app-my-orders>
+          <app-my-account *ngSwitchCase="userPanelOptionId.MyAccount">
+          </app-my-account>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
-<ng-template #notLoaded>
-  <ngx-spinner
-    class="account__page-spinner"
-    *ngIf="combineLoadingStatus?.loading; else myAdvertisementsError"
-    bdColor="rgba(0, 0, 0, 0.6)"
-    size="medium"
-    color="#fff"
-    type="ball-clip-rotate"
-    [fullScreen]="false"
-  >
-    <p style="color: white">Loading...</p>
-  </ngx-spinner>
-
-  <ng-template #myAdvertisementsError>
-    <p>{{ combineLoadingStatus?.error?.statusText }}</p>
-  </ng-template>
-</ng-template>
