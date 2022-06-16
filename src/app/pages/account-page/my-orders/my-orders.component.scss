@@ -16,8 +16,10 @@
   }
   .order {
     &__svg {
-      width: 20px;
-      height: 20px;
+      width: 1.6rem;
+      min-width: 1.6rem;
+      height: 1.6rem;
+      min-height: 1.6rem;
       color: #798787;
       font-size: 1.7rem;
       margin-right: $offset-small;
@@ -42,6 +44,8 @@
       }
     }
     &__desc {
+      display: flex;
+      flex-direction: column;
       flex: 1;
       margin-left: $offset-xlarge;
     }
@@ -69,9 +73,12 @@
     }
 
     &__payment,
-    &__quantity,
     &__locations{
       margin-top: $offset-normal;
+    }
+
+    &__quantity {
+      margin-top: auto;
     }
 
     &__title {
@@ -112,12 +119,21 @@
         font-weight: 500;
       }
     }
+
     &__payment {
       display: flex;
       align-items: center;
       column-gap: $offset-small;
       .order__svg {
         margin: 0;
+      }
+    }
+
+    &__locations {
+      align-items: center;
+      .location-from,
+      .location-to {
+        display: flex;
       }
     }
   }
