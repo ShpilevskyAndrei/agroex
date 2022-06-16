@@ -2,8 +2,8 @@
 @import "../../styles/general-styles";
 
 :host {
-  input[type=number]::-webkit-inner-spin-button,
-  input[type=number]::-webkit-outer-spin-button {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
   }
 
@@ -47,7 +47,7 @@
   }
 
   .price-container {
-    margin: 0 .4rem;
+    margin: $offset-small 0.4rem;
   }
 
   .bet-form-container {

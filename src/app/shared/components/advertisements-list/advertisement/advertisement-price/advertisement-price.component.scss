@@ -4,6 +4,7 @@
 :host {
   .advertisement-price {
     display: flex;
+    justify-content: flex-end;
     @include advertisement-margin-for-price-buttons;
 
     &-item {

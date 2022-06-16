@@ -81,6 +81,10 @@ export class AdvertisementsListPageEffects {
               return of(
                 AdvertisementsListBetActions.getAdvertisementsBetError({
                   error: error,
+                }),
+                AdvertisementPageActions.getAdvertisementRequest({
+                  slug: `${newBetOptions.slug}`,
+                  disableReloading: true,
                 })
               );
             })

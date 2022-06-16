@@ -32,7 +32,10 @@
             [user]="user"
           ></app-advertisement-price>
 
-          <div class="bet-form-container">
+          <div
+            *ngIf="+advertisement.advertisement.price > 1 && user"
+            class="bet-form-container"
+          >
             <form class="bet-field-container" [formGroup]="betForm">
               <mat-form-field class="bet-field">
                 <div class="bet-input-container">
@@ -49,7 +52,10 @@
               </mat-form-field>
             </form>
 
-            <p class="bet-hint">
+            <p
+              *ngIf="+advertisement.advertisement.price > 1 && user"
+              class="bet-hint"
+            >
               Bet from {{ actualCurrency
               }}{{
                 advertisement.advertisement.userBets.length
@@ -62,6 +68,7 @@
           </div>
 
           <app-advertisement-buttons-ad-page
+            *ngIf="user"
             class="buttons-container"
             [betForm]="betForm"
             [advertisement]="advertisement.advertisement"
