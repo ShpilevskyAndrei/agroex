@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 
 import { MyOrdersComponent } from './my-orders.component';
-import { MatIconModule } from "@angular/material/icon";
 
 @NgModule({
   declarations: [MyOrdersComponent],

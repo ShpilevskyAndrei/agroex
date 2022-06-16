@@ -5,6 +5,7 @@
   $light-green: #ECF9F4;
 
   .orders-list {
+    flex: 1;
     padding: 0 2rem;
     font-size: $font-size-normal;
     line-height: 2rem;
@@ -33,7 +34,7 @@
     &__img {
       width: 28rem;
       min-width: 28rem;
-      height: 14rem;
+      height: 16rem;
       img {
         width: inherit;
         height: inherit;
@@ -41,7 +42,8 @@
       }
     }
     &__desc {
-      width: 100%;
+      flex: 1;
+      margin-left: $offset-xlarge;
     }
 
     &__title,
@@ -119,6 +121,8 @@
       }
     }
   }
+
+  @include empty-advertisement-block;
 }
 
 .order {

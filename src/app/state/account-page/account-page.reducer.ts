@@ -8,6 +8,7 @@ import { AccountPageActions } from './account-page.actions';
 export interface AccountPageState {
   accountPageLoadingStatus: LoadingStatus;
   myAdvertisements: IAdvertisementRequestInterface;
+  myOrders: IAdvertisementRequestInterface;
 }
 
 export const ACCOUNT_PAGE = 'accountPage';
@@ -15,6 +16,7 @@ export const ACCOUNT_PAGE = 'accountPage';
 const initialState: AccountPageState = {
   accountPageLoadingStatus: DEFAULT_LOADING_STATUS,
   myAdvertisements: { advertisementCount: null, advertisements: [] },
+  myOrders: { advertisementCount: null, advertisements: [] },
 };
 
 export const ACCOUNT_PAGE_REDUCER = createReducer(
@@ -65,6 +67,32 @@ export const ACCOUNT_PAGE_REDUCER = createReducer(
   ),
   on(
     AccountPageActions.getConfirmDealError,
+    (state, { error }): AccountPageState => ({
+      ...state,
+      accountPageLoadingStatus: { loading: false, loaded: false, error },
+    })
+  )
+  on(
+    AccountPageActions.getMyOrdersRequest,
+    (state): AccountPageState => ({
+      ...state,
+      accountPageLoadingStatus: DEFAULT_LOADING_STATUS,
+    })
+  ),
+  on(
+    AccountPageActions.getMyOrdersSuccess,
+    (state, { myOrders }): AccountPageState => ({
+      ...state,
+      myOrders,
+      accountPageLoadingStatus: {
+        loading: false,
+        loaded: true,
+        error: null,
+      },
+    })
+  ),
+  on(
+    AccountPageActions.getMyOrdersError,
     (state, { error }): AccountPageState => ({
       ...state,
       accountPageLoadingStatus: { loading: false, loaded: false, error },
