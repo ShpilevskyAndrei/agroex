@@ -24,7 +24,9 @@
             *ngSwitchCase="userPanelOptionId.MyAdvertisements"
             [myAdvertisementsRequest]="myAdvertisementsRequest"
             [myAdvertisementsLoadingStatus]="myAdvertisementsLoadingStatus"
+            [user]="user"
             (dispatcher)="onDispatcher($event)"
+            (confirmDeal)="onConfirmDeal($event)"
           >
           </app-my-advertisements>
           <app-my-betting *ngSwitchCase="userPanelOptionId.Betting">

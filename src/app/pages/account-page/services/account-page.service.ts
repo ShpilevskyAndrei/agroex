@@ -21,4 +21,15 @@ export class AccountPageService extends BaseService {
       { token }
     );
   }
+
+  public setConfirmDeal(
+    slug: string,
+    token?: string
+  ): Observable<IAdvertisementRequestInterface> {
+    return this.post<IAdvertisementRequestInterface>(
+      `orders/confirm/${slug}`,
+      {},
+      token
+    );
+  }
 }

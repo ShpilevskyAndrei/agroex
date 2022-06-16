@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { AccountPageContainerComponent } from './account-page-container.component';
 import { AccountPageComponent } from './account-page.component';
@@ -22,6 +23,7 @@ import { MyBettingModule } from './my-betting/my-betting.module';
     MyOrdersModule,
     MyAccountModule,
     MyBettingModule,
+    NgxSpinnerModule,
   ],
   exports: [AccountPageContainerComponent],
 })
