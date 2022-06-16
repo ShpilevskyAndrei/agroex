@@ -15,7 +15,10 @@ import { IMyOrdersInterface } from '../../pages/account-page/my-orders/interface
 export class AccountPageEffects {
   public myAdvertisements$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(AccountPageActions.getMyAdvertisementsRequest),
+      ofType(
+        AccountPageActions.getMyAdvertisementsRequest,
+        AccountPageActions.getConfirmDealSuccess
+      ),
       withLatestFrom(this.store.select(selectUserToken)),
       switchMap(([_, selectUserToken]) =>
         this.accountPageService.getMyAdvertisements(selectUserToken).pipe(
