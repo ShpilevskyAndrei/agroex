@@ -13,7 +13,7 @@
         [advertisementsLoadingStatus]="advertisementsLoadingStatus"
         (setBet)="onSetBet($event)"
       >
-        <ng-template #actionButtons let-advertisement>
+        <ng-template *ngIf="user" #actionButtons let-advertisement>
           <app-advertisements-list-buttons
             class="advertisement-wrap__btns"
             [advertisement]="advertisement"
