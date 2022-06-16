@@ -76,7 +76,7 @@ export class AdvertisementPageContainerComponent implements OnInit {
   public ngOnInit(): void {
     this.slug$ = this.route.params
       .pipe(
-        filter((params: Params) => !!params.slug),
+        filter((params: Params) => !!params?.slug),
         map((params: Params) => params.slug),
         tap((slug: string) => {
           this.store.dispatch(
