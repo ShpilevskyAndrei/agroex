@@ -23,11 +23,12 @@
 }
 
 html {
-  font-size: 12px;
+  font-size: 10px;
 }
 
 body {
   height: 100%;
+  min-width: $small-screen-min-width;
   margin: 0;
   background-color: $main-background-color;
 }
@@ -95,7 +96,7 @@ body {
   .mat-menu-item {
     display: flex;
     align-items: center;
-    font-size: 18px;
+    font-size: 1.6rem;
     color: #131314;
     &:last-child {
       border-top: 0.1rem solid $color-button-disable;
@@ -117,6 +118,60 @@ body {
   }
 }
 
+@media only screen and (max-width: $laptop-min-width) {
+  html {
+    font-size: 8px;
+  }
+}
+
+@media only screen and (min-device-width: $ipad-min-device-width) and (max-device-width: $ipad-max-device-width) and (orientation: portrait) {
+  html {
+    font-size: 8px;
+  }
+}
+
+@media only screen and (min-width: $laptop-min-width) and (max-width: $large-laptop-min-width) {
+  html {
+    font-size: 10px;
+  }
+}
+
+@media only screen and (min-width: $large-laptop-min-width) and (max-width: $large-screen-min-width) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (min-width: $large-screen-min-width) and (max-width: $wqhd-screen-min-width) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (min-width: $wqhd-screen-min-width) and (max-width: $wqhd-to-ultra-hd-screen-min-width) {
+  html {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (min-width: $wqhd-to-ultra-hd-screen-min-width) and (max-width: $ultra-hd-screen-min-width) {
+  html {
+    font-size: 24px;
+  }
+}
+
+@media only screen and (min-width: $ultra-hd-screen-min-width) and (max-width: $screen-5k-min-width) {
+  html {
+    font-size: 30px;
+  }
+}
+
+@media only screen and (min-width: $screen-5k-min-width) {
+  html {
+    font-size: 36px;
+  }
+}
+
 .advertisement-wrap {
   &:hover &__btns {
     display: block;
@@ -124,4 +179,8 @@ body {
   &.with-pointer:hover {
     cursor: pointer;
   }
+}
+
+.mat-dialog-container {
+  min-width: 28rem;
 }

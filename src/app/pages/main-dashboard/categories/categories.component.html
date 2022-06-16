@@ -14,15 +14,16 @@
             [category]="category"
           ></app-category>
         </ng-template>
-        <mat-list role="list">
+        <!-- <mat-list role="list">
           <mat-list-item
             role="listitem"
             *ngFor="let subCategory of getCategoryList(category)"
           >
             {{ subCategory.title }}
           </mat-list-item>
-        </mat-list>
+        </mat-list> -->
       </mat-tab>
     </mat-tab-group>
   </div>
+  <ng-content></ng-content>
 </div>

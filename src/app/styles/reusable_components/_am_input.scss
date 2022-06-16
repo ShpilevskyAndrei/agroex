@@ -2,6 +2,7 @@
 @import "../font-sizes.scss";
 @import "../offsets.scss";
 @import "../sizes.scss";
+@import "../responsive.scss";
 
 .mat-form-field {
     .mat-form-field-flex {
@@ -21,16 +22,31 @@
         .mat-form-field-infix {
             padding: 1.15rem 0 0.85rem 0;
             border-top: 0;
+            @media only screen and (max-width: $laptop-min-width) {
+                padding: 1.3rem 0 0.85rem 0;
+            }
+            @media only screen and (min-width: $laptop-min-width) and (max-width: $large-laptop-min-width) {
+                padding: 1.25rem 0 0.85rem 0;
+            }
         }
 
         .mat-form-field-label {
             margin-top: -0.18rem;
+            @media only screen and (max-width: $laptop-min-width) {
+              margin-top: -0.7rem;
+            }
         }
 
         &.mat-form-field-can-float.mat-form-field-should-float {
             .mat-form-field-label-wrapper {
                 .mat-form-field-label {
                     transform: translateY(-1.3rem) scale(0.75);
+                    @media only screen and (max-width: $laptop-min-width) {
+                        transform: translateY(-1.6rem) scale(0.75);
+                      }
+                    @media only screen and (min-width: $laptop-min-width) and (max-width: $large-laptop-min-width) {
+                        transform: translateY(-1.5rem) scale(0.75);
+                    }
                 }
             }
         }
@@ -63,7 +79,18 @@
             border-radius: 0 3px 3px 0;
         }
         .mat-form-field-suffix {
-            top: 0.33rem;
+            top: 0.5rem;
+            
+            @media only screen and (min-width: $ipad-min-device-width) and (max-width: $laptop-min-width) {
+                top: 0.55rem;
+            }
+            
+            @media only screen and (min-width: $laptop-min-width) and (max-width: $large-laptop-min-width) {
+                top: 0.55rem;
+            }
+            @media only screen and (min-width: $large-laptop-min-width) and (max-width: $wqhd-screen-min-width) {
+                top: 0.30rem;
+            }
         }
     }
 }

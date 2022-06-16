@@ -17,6 +17,9 @@
   .ad-card-container-without-map {
     display: flex;
     width: 100%;
+    @media only screen and (max-width: $medium-large-screen-min-width) {
+      flex-direction: column;
+    }
   }
 
   .ad-card-image-container {
@@ -24,6 +27,9 @@
     margin-right: $offset-normal;
     display: flex;
     align-items: center;
+    @media only screen and (max-width: $medium-large-screen-min-width) {
+      width: 100%;
+    }
   }
 
   .ad-card-image {
@@ -38,12 +44,22 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    @media only screen and (max-width: $medium-large-screen-min-width) {
+      width: 100%;
+      margin-top: $offset-normal;
+      margin-left: 0;
+    }
   }
 
   .buttons-container,
   .price-container,
   .bet-form-container {
     margin: $offset-small 0;
+    @media only screen and (max-width: $medium-screen-min-width) {
+      mat-form-field {
+        width: 100%;
+      }
+    }
   }
 
   .price-container {

@@ -2,6 +2,7 @@
 @import "../font-sizes.scss";
 @import "../offsets.scss";
 @import "../sizes.scss";
+@import "../responsive.scss";
 
 .mat-form-field-type-mat-select {
   &.mat-form-field-appearance-outline {
@@ -96,11 +97,16 @@
 
 .cdk-overlay-pane {
   .mat-select-panel {
-    max-height: 21.333rem;
     margin-top: 2.5rem;
     transform: translateX(5px) !important;
     min-width: calc(100% + 22px) !important;
     max-height: 21.333rem;
+    @media only screen and (max-width: $laptop-min-width) {
+      margin-top: 3rem;
+    }
+    @media only screen and (max-width: $ipad-min-device-width) {
+      margin-top: 3.3rem;
+    }
   }
 
   .mat-option {

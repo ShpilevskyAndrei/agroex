@@ -5,6 +5,11 @@
     &__wrap {
       background-color: $color-white;
     }
+    .mat-list-item {
+      margin-top: $offset-small;
+      margin-bottom: $offset-small;
+      font-size: $font-size-medium;
+    }
   }
   .category {
     display: flex;

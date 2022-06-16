@@ -43,7 +43,7 @@ export class ModerationAdvertisementsComponent {
     this.dialog
       .open(ModerationMessageModalComponent, {
         autoFocus: false,
-        width: '70vw',
+        width: '60vw',
       })
       .afterClosed()
       .pipe(

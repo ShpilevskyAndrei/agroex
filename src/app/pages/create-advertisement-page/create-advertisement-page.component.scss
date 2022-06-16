@@ -22,6 +22,16 @@
       .mat-form-field + .mat-form-field {
         margin: 0;
       }
+
+      @media only screen and (max-width: $medium-screen-min-width) {
+        flex-direction: column;
+      }
+
+      &-small {
+        @media only screen and (max-width: $medium-screen-min-width) {
+          flex-direction: row;
+        }
+      }
     }
 
     &__dropzone {
@@ -68,6 +78,12 @@
 
     &__field {
       width: 50%;
+      @media only screen and (max-width: $laptop-min-width) {
+        width: 70%;
+      }
+      @media only screen and (max-width: $ipad-min-device-width) {
+        width: 100%;
+      }
     }
 
     &__title {
@@ -82,10 +98,28 @@
 
       &.several {
         width: 50%;
+        @media only screen and (max-width: $medium-screen-min-width) {
+          width: 100%;
+          &.region {
+            margin-top: $offset-large !important;
+          }
+        }
+      }
+
+      &.doubleselect {
+        @media only screen and (max-width: $medium-screen-min-width) {
+          width: 75%;
+        }
+        @media only screen and (max-width: $small-medium-screen-min-width) {
+          width: 70%;
+        }
       }
 
       &.select-small {
         width: 17.6%;
+        @media only screen and (max-width: $medium-screen-min-width) {
+          width: 25%;
+        }
       }
     }
 
@@ -113,7 +147,25 @@
 
         button {
           width: 50%;
+          @media only screen and (min-width: $medium-screen-min-width) and (max-width: $ipad-max-device-width){
+            width: 70%;
+          }
+          @media only screen and (min-width: $small-screen-min-width) and (max-width: $medium-screen-min-width){
+            width: 80%;
+          }
+          @media only screen and (max-width: $small-screen-min-width){
+            width: 100%;
+          }
         }
+      }
+      @media only screen and (min-width: $medium-screen-min-width) and (max-width: $ipad-max-device-width){
+        width: 70%;
+      }
+      @media only screen and (min-width: $small-screen-min-width) and (max-width: $medium-screen-min-width){
+        width: 90%;
+      }
+      @media only screen and (max-width: $small-screen-min-width){
+        width: 100%;
       }
     }
 
