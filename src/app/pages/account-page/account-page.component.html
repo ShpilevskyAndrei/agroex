@@ -8,7 +8,7 @@
   <div class="container">
     <div class="account__wrap">
       <div class="account__user">
-        <p>{{user?.username | titlecase}}</p>
+        <p>{{ user?.username | titlecase }}</p>
       </div>
       <div class="account__content">
         <app-sidebar
@@ -16,23 +16,22 @@
           [userPanelOption]="this.userPanelOption"
           [selectedTab]="this.selectedTab"
           (logout)="onLogout()"
-          (selectTab)="onSelectTab($event)">
+          (selectTab)="onSelectTab($event)"
+        >
         </app-sidebar>
         <div class="account__info" [ngSwitch]="this.selectedTab">
           <app-my-advertisements
             *ngSwitchCase="userPanelOptionId.MyAdvertisements"
-            [advertisementsRequest]="advertisementsRequest"
-            [advertisementsLoadingStatus]="advertisementsLoadingStatus"
+            [myAdvertisementsRequest]="myAdvertisementsRequest"
+            [myAdvertisementsLoadingStatus]="myAdvertisementsLoadingStatus"
+            (dispatcher)="onDispatcher($event)"
           >
           </app-my-advertisements>
-          <app-my-betting
-            *ngSwitchCase="userPanelOptionId.Betting">
+          <app-my-betting *ngSwitchCase="userPanelOptionId.Betting">
           </app-my-betting>
-          <app-my-orders
-            *ngSwitchCase="userPanelOptionId.MyOrders">
+          <app-my-orders *ngSwitchCase="userPanelOptionId.MyOrders">
           </app-my-orders>
-          <app-my-account
-            *ngSwitchCase="userPanelOptionId.MyAccount">
+          <app-my-account *ngSwitchCase="userPanelOptionId.MyAccount">
           </app-my-account>
         </div>
       </div>

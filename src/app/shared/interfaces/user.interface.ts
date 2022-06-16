@@ -12,10 +12,10 @@ export interface AuthorizationCombineInfo {
 export interface IUserRole {
   role_id: number;
   role: {
-    description: string,
-    id: number,
-    value: string
-  }
+    description: string;
+    id: number;
+    value: string;
+  };
   user_id?: number;
   id: number;
   created_at?: Date;
