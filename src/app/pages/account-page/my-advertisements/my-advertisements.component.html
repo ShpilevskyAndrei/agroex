@@ -6,9 +6,11 @@
     [advertisementsLoadingStatus]="myAdvertisementsLoadingStatus"
     [user]="user"
   >
-    <ng-template #actionButtons>
+    <ng-template #actionButtons let-advertisement>
       <app-my-advertisements-buttons
+        *ngIf="advertisement.isActive && advertisement.userBets.length"
         class="advertisement-wrap__btns"
+        (confirmDeal)="onConfirmDeal(advertisement.slug)"
       ></app-my-advertisements-buttons>
     </ng-template>
   </app-advertisements-list>
@@ -19,3 +21,4 @@
     <p>You don't have advertisements</p>
   </div>
 </ng-template>
+<!--&& advertisement.isActive || advertisement.isModerated"-->
