@@ -8,3 +8,11 @@ export const selectAppRootOptionId = createSelector(
   selectGetFeatureState,
   (state) => state.selectedOptionId
 );
+export const selectMapStatus = createSelector(
+  selectGetFeatureState,
+  (state) => state.mapLoadingStatus
+);
+export const selectMapData = createSelector(
+  selectGetFeatureState,
+  (state) => state.map
+);

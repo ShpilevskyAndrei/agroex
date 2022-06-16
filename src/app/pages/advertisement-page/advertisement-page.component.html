@@ -124,9 +124,21 @@
         class="map-container map-slide-in"
         *ngIf="!isShownMap.isShown"
         [style]="'mapbox://styles/mapbox/light-v10'"
-        [zoom]="[6]"
-        [center]="[69.23858, 41.186305]"
+        [zoom]="[5]"
+        [center]="getLocationCenter()"
       >
+        <mgl-geojson-source id="regions" [data]="getLocation()">
+        </mgl-geojson-source>
+        <mgl-layer
+          id="region-borders"
+          type="line"
+          source="regions"
+          [paint]="{
+            'line-color': '#51ACAE',
+            'line-width': 1
+          }"
+        >
+        </mgl-layer>
       </mgl-map>
     </div>
   </div>

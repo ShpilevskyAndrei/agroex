@@ -9,6 +9,8 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { tap } from 'rxjs';
+import { LngLatLike } from 'mapbox-gl';
 
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IUser } from '../../shared/interfaces/user.interface';
@@ -19,7 +21,7 @@ import { UserRole } from '../../shared/components/header/enums/user-role';
 import { IAdRequestInterface } from '../../shared/components/advertisements-list/interfaces/ad-request.interface';
 import { CurrenciesEnum } from '../../shared/components/advertisements-list/advertisement/bet-modal/enums/currencies.enum';
 import { BetValidators } from '../../shared/components/advertisements-list/advertisement/bet-modal/intefaces/bet-validator';
-import { tap } from 'rxjs';
+import { TASHKENT_COORDINATES } from '../../shared/constants/tashkent-coordinates';
 
 @UntilDestroy()
 @Component({
@@ -34,6 +36,7 @@ export class AdvertisementPageComponent implements OnChanges {
   @Input() public slug: string | null;
   @Input() public advertisementLoadingStatus: LoadingStatus | null;
   @Input() public userRole: UserRole | null;
+  @Input() public map: GeoJSON.FeatureCollection<GeoJSON.MultiPolygon> | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
   @Output() public selectTab: EventEmitter<UserPanelOptionId> =
@@ -75,6 +78,32 @@ export class AdvertisementPageComponent implements OnChanges {
     } else {
       return ' ';
     }
+  }
+
+  public getFullLocationName(): string | undefined {
+    return `${this.advertisement?.advertisement.location}, ${this.advertisement?.advertisement.country}`;
+  }
+
+  public getLocation(): GeoJSON.FeatureCollection<GeoJSON.MultiPolygon> {
+    if (this.map) {
+      return {
+        ...this.map,
+        features: this.map?.features?.filter(
+          (feature) =>
+            feature?.properties?.COUNTRY === this.getFullLocationName()
+        ),
+      };
+    }
+    return { type: 'FeatureCollection', features: [] };
+  }
+
+  public getLocationCenter(): LngLatLike {
+    return [
+      this.getLocation().features?.[0]?.geometry
+        ?.coordinates?.[0]?.[0]?.[0]?.[0] || TASHKENT_COORDINATES[0],
+      this.getLocation().features?.[0]?.geometry
+        ?.coordinates?.[0]?.[0]?.[0]?.[1] || TASHKENT_COORDINATES[1],
+    ];
   }
 
   public onSetBet(newBetOptions: Record<string, string | number>): void {
