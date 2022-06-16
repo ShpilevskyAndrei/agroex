@@ -4,6 +4,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { map, tap } from 'rxjs/operators';
 import { filter, Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { AdvertisementPageActions } from '../../state/advertisement-page/advertisement-page.actions';
@@ -22,7 +23,6 @@ import { AppRootActions } from '../../state/app-root/app-root.actions';
 import { UserRole } from '../../shared/components/header/enums/user-role';
 import { AdvertisementsListBetActions } from '../../state/advertisements-list-page/advertisements-list-page.actions';
 import { IAdRequestInterface } from '../../shared/components/advertisements-list/interfaces/ad-request.interface';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 @UntilDestroy()
 @Component({
@@ -71,8 +71,6 @@ export class AdvertisementPageContainerComponent implements OnInit {
         newBetOptions,
       })
     );
-    this.spinner.show();
-    setTimeout(() => this.ngOnInit(), 500);
   }
 
   public ngOnInit(): void {

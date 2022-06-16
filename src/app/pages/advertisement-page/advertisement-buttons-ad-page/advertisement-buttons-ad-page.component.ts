@@ -27,5 +27,7 @@ export class AdvertisementButtonsAdPageComponent {
 
   public onClickButton(): void {
     this.setBet.emit({ newBet: this.newBet, slug: this.advertisement.slug });
+    this.betForm.get('bet')?.setValue('');
+    this.betForm.markAsUntouched();
   }
 }

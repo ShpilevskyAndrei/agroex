@@ -6,7 +6,7 @@ import { IAdRequestInterface } from '../../shared/components/advertisements-list
 export const AdvertisementPageActions = {
   getAdvertisementRequest: createAction(
     '[ADVERTISEMENT_PAGE] advertisement requested',
-    props<{ slug: string }>()
+    props<{ slug: string; disableReloading?: boolean }>()
   ),
 
   getAdvertisementSuccess: createAction(

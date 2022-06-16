@@ -21,9 +21,11 @@ export const ADVERTISEMENT_PAGE_REDUCER = createReducer(
   initialState,
   on(
     AdvertisementPageActions.getAdvertisementRequest,
-    (state): AdvertisementPageState => ({
+    (state, disableReloading): AdvertisementPageState => ({
       ...state,
-      advertisementLoadingStatus: DEFAULT_LOADING_STATUS,
+      advertisementLoadingStatus: disableReloading
+        ? state.advertisementLoadingStatus
+        : DEFAULT_LOADING_STATUS,
     })
   ),
   on(
