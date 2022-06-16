@@ -14,11 +14,18 @@
       span {
         line-height: 2.667rem;
       }
+      @media only screen and (max-width: $medium-x-screen-min-width) {
+        padding-top: $offset-medium;
+        padding-bottom: $offset-medium;
+      }
     }
 
     &__icon {
       @include advertisement-icon-size;
       margin: 0 0.833rem 0 0;
+      @media only screen and (max-width: $laptop-min-width) {
+        margin: -0.8rem 0.833rem 0 0;
+      }
     }
   }
 }
