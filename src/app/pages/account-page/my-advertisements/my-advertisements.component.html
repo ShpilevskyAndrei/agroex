@@ -1,6 +1,9 @@
 <ng-container
-  *ngIf="myAdvertisementsRequest?.advertisements?.length; else emptyMyAdvertisements">
-
+  *ngIf="
+    myAdvertisementsRequest?.advertisements?.length;
+    else emptyMyAdvertisements
+  "
+>
   <app-advertisements-list
     [advertisementsRequest]="myAdvertisementsRequest"
     [advertisementsLoadingStatus]="myAdvertisementsLoadingStatus"
