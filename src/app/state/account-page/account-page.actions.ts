@@ -28,4 +28,16 @@ export const AccountPageActions = {
     '[ACCOUNT_PAGE] confirm deal error',
     props<{ error: HttpErrorResponse }>()
   ),
+
+  getMyOrdersRequest: createAction('[ACCOUNT_PAGE] my orders requested'),
+
+  getMyOrdersSuccess: createAction(
+    '[ACCOUNT_PAGE] my orders success',
+    props<{ myOrders: IAdvertisementRequestInterface }>()
+  ),
+
+  getMyOrdersError: createAction(
+    '[ACCOUNT_PAGE] my orders error',
+    props<{ error: HttpErrorResponse }>()
+  ),
 };
