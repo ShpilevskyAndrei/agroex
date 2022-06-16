@@ -48,8 +48,6 @@ import {
   MODERATION_ADVERTISEMENTS_REDUCER,
 } from './moderation-advertisements/moderation-advertisements.reducer';
 import { ModerationAdvertisementsEffects } from './moderation-advertisements/moderation-advertisements.effects';
-import { MAP_REDUCER, MapState } from './map/map.reducer';
-import { MapEffects } from './map/map.effects';
 
 export interface State {
   mainDashboard: MainDashboardState;
@@ -61,7 +59,6 @@ export interface State {
   advertisementsListPage: AdvertisementsListPageState;
   advertisementPage: AdvertisementPageState;
   moderationAdvertisements: ModerationAdvertisementsState;
-  map: MapState;
 }
 
 export const ROOT_REDUCER: ActionReducerMap<State> = {
@@ -74,7 +71,6 @@ export const ROOT_REDUCER: ActionReducerMap<State> = {
   advertisementsListPage: ADVERTISEMENTS_LIST_PAGE_REDUCER,
   advertisementPage: ADVERTISEMENT_PAGE_REDUCER,
   moderationAdvertisements: MODERATION_ADVERTISEMENTS_REDUCER,
-  map: MAP_REDUCER,
 };
 
 export const ROOT_EFFECT = [
@@ -87,7 +83,6 @@ export const ROOT_EFFECT = [
   AdvertisementsListPageEffects,
   AdvertisementPageEffects,
   ModerationAdvertisementsEffects,
-  MapEffects,
 ];
 
 export const hydrationMetaReducer = (

@@ -9,6 +9,8 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { tap } from 'rxjs';
+import { LngLatLike } from 'mapbox-gl';
 
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IUser } from '../../shared/interfaces/user.interface';
@@ -19,7 +21,6 @@ import { UserRole } from '../../shared/components/header/enums/user-role';
 import { IAdRequestInterface } from '../../shared/components/advertisements-list/interfaces/ad-request.interface';
 import { CurrenciesEnum } from '../../shared/components/advertisements-list/advertisement/bet-modal/enums/currencies.enum';
 import { BetValidators } from '../../shared/components/advertisements-list/advertisement/bet-modal/intefaces/bet-validator';
-import { tap } from 'rxjs';
 
 @UntilDestroy()
 @Component({
@@ -41,8 +42,6 @@ export class AdvertisementPageComponent implements OnChanges {
     new EventEmitter<UserPanelOptionId>();
   @Output() public setBet: EventEmitter<Record<string, string | number>> =
     new EventEmitter<Record<string, string | number>>();
-
-  public hoverFilter = ['==', 'name', ''];
 
   public betForm: FormGroup = new FormGroup({
     bet: new FormControl('', {
@@ -97,17 +96,13 @@ export class AdvertisementPageComponent implements OnChanges {
     return { type: 'FeatureCollection', features: [] };
   }
 
-  public getLocationCenter(): number[] {
-    return this.getLocation().features?.[0]?.geometry
-      ?.coordinates?.[0]?.[0]?.[0];
-  }
-
-  public activateHoverOn(evt: any): void {
-    this.hoverFilter = ['==', 'name', evt.features[0].properties.name];
-  }
-
-  public disableHover(): void {
-    this.hoverFilter = ['==', 'name', ''];
+  public getLocationCenter(): LngLatLike {
+    return [
+      this.getLocation().features?.[0]?.geometry
+        ?.coordinates?.[0]?.[0]?.[0]?.[0],
+      this.getLocation().features?.[0]?.geometry
+        ?.coordinates?.[0]?.[0]?.[0]?.[1],
+    ];
   }
 
   public onSetBet(newBetOptions: Record<string, string | number>): void {

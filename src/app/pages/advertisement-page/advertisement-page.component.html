@@ -125,41 +125,18 @@
         *ngIf="!isShownMap.isShown"
         [style]="'mapbox://styles/mapbox/light-v10'"
         [zoom]="[5]"
-        [center]="[getLocationCenter()['0'], getLocationCenter()['1']]"
+        [center]="getLocationCenter()"
       >
         <mgl-geojson-source id="regions" [data]="getLocation()">
         </mgl-geojson-source>
-        <mgl-layer
-          id="region-fills"
-          type="fill"
-          source="regions"
-          [paint]="{
-            'fill-color': '#627BC1',
-            'fill-opacity': 0.5
-          }"
-          (layerMouseMove)="activateHoverOn($event)"
-          (layerMouseLeave)="disableHover()"
-        >
-        </mgl-layer>
         <mgl-layer
           id="region-borders"
           type="line"
           source="regions"
           [paint]="{
-            'line-color': '#627BC1',
-            'line-width': 2
+            'line-color': '#51ACAE',
+            'line-width': 1
           }"
-        >
-        </mgl-layer>
-        <mgl-layer
-          id="region-fills-hover"
-          type="fill"
-          source="regions"
-          [paint]="{
-            'fill-color': '#627BC1',
-            'fill-opacity': 1
-          }"
-          [filter]="hoverFilter"
         >
         </mgl-layer>
       </mgl-map>

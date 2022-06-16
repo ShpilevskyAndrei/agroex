@@ -23,7 +23,7 @@ import { AppRootActions } from '../../state/app-root/app-root.actions';
 import { UserRole } from '../../shared/components/header/enums/user-role';
 import { AdvertisementsListBetActions } from '../../state/advertisements-list-page/advertisements-list-page.actions';
 import { IAdRequestInterface } from '../../shared/components/advertisements-list/interfaces/ad-request.interface';
-import { selectMapData } from '../../state/map/map.selectors';
+import { selectMapData } from '../../state/app-root/app-root.selectors';
 
 @UntilDestroy()
 @Component({

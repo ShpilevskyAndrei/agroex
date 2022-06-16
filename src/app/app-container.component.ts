@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MapActions } from './state/map/map.actions';
 import { Store } from '@ngrx/store';
+
+import { AppRootActions } from './state/app-root/app-root.actions';
 
 @Component({
   selector: 'app-root-container',
@@ -10,6 +11,6 @@ export class AppContainerComponent implements OnInit {
   constructor(private store: Store) {}
 
   public ngOnInit(): void {
-    this.store.dispatch(MapActions.getMapRequest());
+    this.store.dispatch(AppRootActions.getMapRequest());
   }
 }
