@@ -58,7 +58,7 @@ export class AdvertisementsListPageEffects {
               this.toastService.addToast({
                 toastType: ToastType.Success,
                 title: 'Bet accepted',
-                width: '25vw',
+                width: '60vw',
                 buttonText: 'Ok',
               });
 
@@ -75,7 +75,7 @@ export class AdvertisementsListPageEffects {
                 title: 'Bet not accepted',
                 message: error.error.message,
                 toastType: ToastType.Error,
-                width: '25vw',
+                width: '60vw',
               });
 
               return of(

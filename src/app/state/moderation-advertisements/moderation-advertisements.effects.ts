@@ -57,7 +57,7 @@ export class ModerationAdvertisementsEffects {
               this.toastService.addToast({
                 toastType: ToastType.Success,
                 title: `Advertisement was moderated successfully!`,
-                width: '50vw',
+                width: '60vw',
               });
 
               return ModerationAdvertisementsActions.getDecisionNonModerationAdvertisementsSuccess(
@@ -68,7 +68,7 @@ export class ModerationAdvertisementsEffects {
               this.toastService.addToast({
                 toastType: ToastType.Error,
                 title: `Something went wrong! Please retry!`,
-                width: '50vw',
+                width: '60vw',
               });
 
               return of(

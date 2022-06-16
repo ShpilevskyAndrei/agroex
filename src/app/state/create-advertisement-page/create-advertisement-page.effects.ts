@@ -23,7 +23,7 @@ export class CreateAdvertisementPageEffects {
               this.toastService.addToast({
                 toastType: ToastType.Success,
                 title: `Advertisement was added!`,
-                width: '50vw',
+                width: '60vw',
               });
 
               return CreateAdvertisementPageActions.createAdvertisementSuccess();
@@ -32,7 +32,7 @@ export class CreateAdvertisementPageEffects {
               this.toastService.addToast({
                 toastType: ToastType.Error,
                 title: `Something went wrong! Please retry!`,
-                width: '50vw',
+                width: '60vw',
               });
 
               return of(

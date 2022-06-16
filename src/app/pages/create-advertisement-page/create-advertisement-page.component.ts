@@ -113,7 +113,7 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
       this.toastService.addToast({
         toastType: ToastType.Error,
         title: 'You can add only one image!',
-        width: '50vw',
+        width: '60vw',
       });
       return;
     }
@@ -143,7 +143,7 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
         this.toastService.addToast({
           toastType: ToastType.Error,
           title: `Import failed due ${el.reason} !`,
-          width: '50vw',
+          width: '60vw',
         });
       });
     }
