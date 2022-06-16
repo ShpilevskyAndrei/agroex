@@ -16,4 +16,16 @@ export const AccountPageActions = {
     '[ACCOUNT_PAGE] my advertisements error',
     props<{ error: HttpErrorResponse }>()
   ),
+
+  getConfirmDealRequest: createAction(
+    '[ACCOUNT_PAGE] confirm deal requested',
+    props<{ slug: string }>()
+  ),
+
+  getConfirmDealSuccess: createAction('[ACCOUNT_PAGE] confirm deal success'),
+
+  getConfirmDealError: createAction(
+    '[ACCOUNT_PAGE] confirm deal error',
+    props<{ error: HttpErrorResponse }>()
+  ),
 };
