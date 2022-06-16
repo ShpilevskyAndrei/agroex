@@ -12,3 +12,12 @@ export const selectMyAdvertisementsData = createSelector(
   selectGetFeatureState,
   (state) => state.myAdvertisements
 );
+
+export const selectMyOrdersLoadingStatus = createSelector(
+  selectGetFeatureState,
+  (state) => state.accountPageLoadingStatus
+);
+export const selectMyOrdersData = createSelector(
+  selectGetFeatureState,
+  (state) => state.myOrders
+);
