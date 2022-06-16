@@ -48,5 +48,13 @@ export class IconSerializeService {
       'truck-icon',
       sanitizer.bypassSecurityTrustResourceUrl('assets/truck-icon.svg')
     );
+    this.matIconRegistry.addSvgIcon(
+      'card-icon',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/card-icon.svg')
+    );
+    this.matIconRegistry.addSvgIcon(
+      'currency-icon',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/currency-icon.svg')
+    );
   }
 }
