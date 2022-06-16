@@ -24,6 +24,7 @@
             *ngSwitchCase="userPanelOptionId.MyAdvertisements"
             [myAdvertisementsRequest]="myAdvertisementsRequest"
             [myAdvertisementsLoadingStatus]="myAdvertisementsLoadingStatus"
+            [user]="user"
             (dispatcher)="onDispatcher($event)"
           >
           </app-my-advertisements>
