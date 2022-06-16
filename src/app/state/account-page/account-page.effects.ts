@@ -68,6 +68,29 @@ export class AccountPageEffects {
     );
   });
 
+  public myOrders$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AccountPageActions.getMyOrdersRequest),
+      withLatestFrom(this.store.select(selectUserToken)),
+      switchMap(([_, selectUserToken]) =>
+        this.accountPageService.getOrders(selectUserToken).pipe(
+          map((myOrders: IAdvertisementRequestInterface) =>
+            AccountPageActions.getMyOrdersSuccess({
+              myOrders,
+            })
+          ),
+          catchError((error: HttpErrorResponse) =>
+            of(
+              AccountPageActions.getMyOrdersError({
+                error: error,
+              })
+            )
+          )
+        )
+      )
+    );
+  });
+
   constructor(
     private actions$: Actions,
     private store: Store,
