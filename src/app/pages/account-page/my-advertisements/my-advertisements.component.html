@@ -1,10 +1,26 @@
-<app-advertisements-list
-  [advertisementsRequest]="myAdvertisementsRequest"
-  [advertisementsLoadingStatus]="myAdvertisementsLoadingStatus"
+<ng-container
+  *ngIf="
+    myAdvertisementsRequest?.advertisements?.length;
+    else emptyMyAdvertisements
+  "
 >
-  <ng-template #actionButtons>
-    <app-my-advertisements-buttons
-      class="advertisement-wrap__btns"
-    ></app-my-advertisements-buttons>
-  </ng-template>
-</app-advertisements-list>
+  <app-advertisements-list
+    [advertisementsRequest]="myAdvertisementsRequest"
+    [advertisementsLoadingStatus]="myAdvertisementsLoadingStatus"
+    [user]="user"
+  >
+    <ng-template #actionButtons let-advertisement>
+      <app-my-advertisements-buttons
+        *ngIf="advertisement.isActive && advertisement.userBets.length"
+        class="advertisement-wrap__btns"
+        (confirmDeal)="onConfirmDeal(advertisement.slug)"
+      ></app-my-advertisements-buttons>
+    </ng-template>
+  </app-advertisements-list>
+</ng-container>
+
+<ng-template #emptyMyAdvertisements>
+  <div class="empty-advertisement">
+    <p>You don't have advertisements</p>
+  </div>
+</ng-template>

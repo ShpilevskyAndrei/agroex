@@ -9,6 +9,7 @@ import {
 
 import { IAdvertisementRequestInterface } from '../../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
 import { LoadingStatus } from '../../../shared/interfaces/loading-status';
+import { IUser } from '../../../shared/interfaces/user.interface';
 import { AccountPageActions } from '../../../state/account-page/account-page.actions';
 
 @Component({
@@ -21,11 +22,18 @@ export class MyAdvertisementsComponent implements OnInit {
   @Input()
   public myAdvertisementsRequest: IAdvertisementRequestInterface | null;
   @Input() public myAdvertisementsLoadingStatus: LoadingStatus | null;
+  @Input() public user: IUser | null;
 
   @Output() public dispatcher: EventEmitter<Function> =
     new EventEmitter<Function>();
+  @Output() public confirmDeal: EventEmitter<string> =
+    new EventEmitter<string>();
 
   public ngOnInit(): void {
     this.dispatcher.emit(AccountPageActions.getMyAdvertisementsRequest);
+  }
+
+  public onConfirmDeal(slug: string): void {
+    this.confirmDeal.emit(slug);
   }
 }

@@ -33,6 +33,8 @@ export class AccountPageComponent {
     new EventEmitter<UserPanelOptionId>();
   @Output() public dispatcher: EventEmitter<Function> =
     new EventEmitter<Function>();
+  @Output() public confirmDeal: EventEmitter<string> =
+    new EventEmitter<string>();
 
   public userPanelOption: IUserOptionsType[] = USER_PANEL_OPTION;
   public userPanelOptionId = UserPanelOptionId;
@@ -47,5 +49,9 @@ export class AccountPageComponent {
 
   public onDispatcher(dispatcher: Function): void {
     this.dispatcher.emit(dispatcher);
+  }
+
+  public onConfirmDeal(slug: string): void {
+    this.confirmDeal.emit(slug);
   }
 }

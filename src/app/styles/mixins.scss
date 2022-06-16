@@ -1,6 +1,8 @@
+@import "colors";
+
 @mixin advertisement-gap-for-price-buttons {
   width: 50%;
-  padding: 0 .4rem;
+  padding: 0 0.4rem;
 }
 
 @mixin advertisement-margin-for-price-buttons {
@@ -45,5 +47,21 @@
 
   .advertisement-btn {
     @include advertisement-gap-for-price-buttons;
+  }
+}
+
+@mixin empty-advertisement-block {
+  .empty-advertisement {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+
+    p {
+      margin: 0;
+      font-size: 2.5rem;
+      font-weight: 500;
+      color: $color-copy;
+    }
   }
 }

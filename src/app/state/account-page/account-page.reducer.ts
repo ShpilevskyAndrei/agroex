@@ -44,5 +44,30 @@ export const ACCOUNT_PAGE_REDUCER = createReducer(
       ...state,
       accountPageLoadingStatus: { loading: false, loaded: false, error },
     })
+  ),
+  on(
+    AccountPageActions.getConfirmDealRequest,
+    (state): AccountPageState => ({
+      ...state,
+      accountPageLoadingStatus: DEFAULT_LOADING_STATUS,
+    })
+  ),
+  on(
+    AccountPageActions.getConfirmDealSuccess,
+    (state): AccountPageState => ({
+      ...state,
+      accountPageLoadingStatus: {
+        loading: false,
+        loaded: true,
+        error: null,
+      },
+    })
+  ),
+  on(
+    AccountPageActions.getConfirmDealError,
+    (state, { error }): AccountPageState => ({
+      ...state,
+      accountPageLoadingStatus: { loading: false, loaded: false, error },
+    })
   )
 );
