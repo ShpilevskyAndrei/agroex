@@ -22,8 +22,9 @@ export class AccountPageService extends BaseService {
       { token }
     );
   }
-  public getOrders(token?: string): Observable<IAdvertisementRequestInterface> {
-    return this.get<IAdvertisementRequestInterface>('advertisements/myAdvertisements/all', { token });
+
+  public getOrders(token?: string): Observable<IMyOrdersInterface[]> {
+    return this.get<IMyOrdersInterface[]>('orders', { token });
   }
 
   public setConfirmDeal(
