@@ -72,7 +72,7 @@ export const ACCOUNT_PAGE_REDUCER = createReducer(
       ...state,
       accountPageLoadingStatus: { loading: false, loaded: false, error },
     })
-  )
+  ),
   on(
     AccountPageActions.getMyOrdersRequest,
     (state): AccountPageState => ({
