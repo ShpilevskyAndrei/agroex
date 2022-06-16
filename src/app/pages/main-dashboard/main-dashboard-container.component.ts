@@ -18,7 +18,7 @@ import {
 } from '../../state/registration-page/registration-page.selectors';
 import { IUser } from '../../shared/interfaces/user.interface';
 import { Category } from './categories/interfaces/category.model';
-import { IAdvertisementRequestInterface } from '../../advertisements-list/interfaces/advertisement-request.interface';
+import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
 import {
   selectAdvertisementsData,
   selectAdvertisementsLoadingStatus,

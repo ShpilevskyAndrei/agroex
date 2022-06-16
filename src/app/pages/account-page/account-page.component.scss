@@ -6,10 +6,16 @@
       background-color: $color-white;
     }
 
+    &__info {
+      flex: 1;
+    }
+
     &__user {
       padding: $offset-large 3.3rem;
-      box-shadow: inset 0 -.1rem 0 $color-button-disable;
+      box-shadow: inset 0 -0.1rem 0 $color-button-disable;
+
       p {
+        margin: 0;
         font-size: 2rem;
         line-height: 2.7rem;
         font-weight: 500;
@@ -17,13 +23,18 @@
       }
     }
 
+    &__content {
+      display: flex;
+    }
+
     &__sidebar {
       display: flex;
       flex-direction: column;
       width: 22.3rem;
+      min-width: 22.3rem;
       min-height: 50vh;
       padding-bottom: 2rem;
-      box-shadow: inset -.1rem 0 0 $color-button-disable;
+      box-shadow: inset -0.1rem 0 0 $color-button-disable;
     }
   }
 }

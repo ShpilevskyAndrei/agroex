@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, of, switchMap, withLatestFrom } from 'rxjs';
+import { Actions, createEffect, ofType, concatLatestFrom } from '@ngrx/effects';
+import { catchError, concatMap, map, of, switchMap } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { AgroexToastService, ToastType } from 'ngx-agroex-toast';
@@ -9,9 +9,10 @@ import {
   AdvertisementsListBetActions,
   AdvertisementsListPageActions,
 } from './advertisements-list-page.actions';
-import { IAdvertisementRequestInterface } from '../../advertisements-list/interfaces/advertisement-request.interface';
-import { AdvertisementsListService } from '../../advertisements-list/advertisements-list.service';
+import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
+import { AdvertisementsListService } from '../../shared/components/advertisements-list/advertisements-list.service';
 import { selectUserToken } from '../registration-page/registration-page.selectors';
+import { AdvertisementPageActions } from '../advertisement-page/advertisement-page.actions';
 
 @Injectable()
 export class AdvertisementsListPageEffects {
@@ -44,7 +45,7 @@ export class AdvertisementsListPageEffects {
   public advertisementsBet$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AdvertisementsListBetActions.getAdvertisementsBetRequest),
-      withLatestFrom(this.store.select(selectUserToken)),
+      concatLatestFrom(() => this.store.select(selectUserToken)),
       switchMap(([{ newBetOptions }, selectUserToken]) =>
         this.advertisementsListService
           .addAdvertisementBet(
@@ -53,7 +54,7 @@ export class AdvertisementsListPageEffects {
             selectUserToken
           )
           .pipe(
-            map(() => {
+            concatMap(() => {
               this.toastService.addToast({
                 toastType: ToastType.Success,
                 title: 'Bet accepted',
@@ -61,7 +62,13 @@ export class AdvertisementsListPageEffects {
                 buttonText: 'Ok',
               });
 
-              return AdvertisementsListBetActions.getAdvertisementsBetSuccess();
+              return [
+                AdvertisementsListBetActions.getAdvertisementsBetSuccess(),
+                AdvertisementPageActions.getAdvertisementRequest({
+                  slug: `${newBetOptions.slug}`,
+                  disableReloading: true,
+                }),
+              ];
             }),
             catchError((error: HttpErrorResponse) => {
               this.toastService.addToast({
@@ -74,6 +81,10 @@ export class AdvertisementsListPageEffects {
               return of(
                 AdvertisementsListBetActions.getAdvertisementsBetError({
                   error: error,
+                }),
+                AdvertisementPageActions.getAdvertisementRequest({
+                  slug: `${newBetOptions.slug}`,
+                  disableReloading: true,
                 })
               );
             })

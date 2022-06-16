@@ -39,10 +39,15 @@ import {
 } from './advertisements-list-page/advertisements-list-page.reducer';
 import { AdvertisementsListPageEffects } from './advertisements-list-page/advertisements-list-page.effects';
 import {
-  MODERATION_ADVERTISEMENTS_LIST_PAGE_REDUCER,
-  ModerateAdvertisementsListPageState,
-} from './moderation-advertisements-list/advertisements-list-page.reducer';
-import { ModerationAdvertisementsListPageEffects } from './moderation-advertisements-list/advertisements-list-page.effects';
+  ADVERTISEMENT_PAGE_REDUCER,
+  AdvertisementPageState,
+} from './advertisement-page/advertisement-page.reducer';
+import { AdvertisementPageEffects } from './advertisement-page/advertisement-page.effects';
+import {
+  ModerationAdvertisementsState,
+  MODERATION_ADVERTISEMENTS_REDUCER,
+} from './moderation-advertisements/moderation-advertisements.reducer';
+import { ModerationAdvertisementsEffects } from './moderation-advertisements/moderation-advertisements.effects';
 
 export interface State {
   mainDashboard: MainDashboardState;
@@ -52,7 +57,8 @@ export interface State {
   registrationPage: RegistrationPageState;
   createAdvertisementPage: CreateAdvertisementPageState;
   advertisementsListPage: AdvertisementsListPageState;
-  moderateAdvertisementsListPage: ModerateAdvertisementsListPageState;
+  advertisementPage: AdvertisementPageState;
+  moderationAdvertisements: ModerationAdvertisementsState;
 }
 
 export const ROOT_REDUCER: ActionReducerMap<State> = {
@@ -63,7 +69,8 @@ export const ROOT_REDUCER: ActionReducerMap<State> = {
   registrationPage: REGISTRATION_PAGE_REDUCER,
   createAdvertisementPage: CREATE_ADVERTISEMENT_PAGE_REDUCER,
   advertisementsListPage: ADVERTISEMENTS_LIST_PAGE_REDUCER,
-  moderateAdvertisementsListPage: MODERATION_ADVERTISEMENTS_LIST_PAGE_REDUCER,
+  advertisementPage: ADVERTISEMENT_PAGE_REDUCER,
+  moderationAdvertisements: MODERATION_ADVERTISEMENTS_REDUCER,
 };
 
 export const ROOT_EFFECT = [
@@ -74,7 +81,8 @@ export const ROOT_EFFECT = [
   RegistrationPageEffects,
   CreateAdvertisementPageEffects,
   AdvertisementsListPageEffects,
-  ModerationAdvertisementsListPageEffects,
+  AdvertisementPageEffects,
+  ModerationAdvertisementsEffects,
 ];
 
 export const hydrationMetaReducer = (
