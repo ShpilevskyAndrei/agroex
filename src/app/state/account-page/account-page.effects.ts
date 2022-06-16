@@ -46,7 +46,7 @@ export class AccountPageEffects {
             this.toastService.addToast({
               toastType: ToastType.Success,
               title: `Advertisement was confirmed!`,
-              width: '50vw',
+              width: '60vw',
             });
 
             return AccountPageActions.getConfirmDealSuccess();
@@ -55,7 +55,7 @@ export class AccountPageEffects {
             this.toastService.addToast({
               toastType: ToastType.Error,
               title: `Something went wrong! Please retry!`,
-              width: '50vw',
+              width: '60vw',
             });
 
             return of(
