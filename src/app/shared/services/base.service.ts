@@ -48,6 +48,14 @@ export class BaseService {
     );
   }
 
+  public patch<T>(url: string, data: object, token?: string): Observable<T> {
+    return this.httpClient.patch<T>(
+      this.apiUrl + url,
+      data,
+      this.setHeaders(token)
+    );
+  }
+
   public delete<T>(url: string, token?: string): Observable<T> {
     return this.httpClient.delete<T>(this.apiUrl + url, this.setHeaders(token));
   }

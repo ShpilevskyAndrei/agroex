@@ -24,7 +24,7 @@ export class ModerationAdvertisementsService extends BaseService {
     advertisement: IAdvertisementModerationRequest,
     token: string | undefined
   ): Observable<IAdvertisementRequestInterface> {
-    return this.put<IAdvertisementRequestInterface>(
+    return this.patch<IAdvertisementRequestInterface>(
       'advertisements/moderation/set',
       advertisement,
       token

@@ -61,7 +61,6 @@ export class ModerationadvertisementsContainerComponent implements OnInit {
   public onModerationDecision(
     moderationDecision: IAdvertisementModerationRequest
   ): void {
-    console.log(moderationDecision);
     this.store.dispatch(
       ModerationAdvertisementsActions.getDecisionNonModerationAdvertisementsRequest(
         {

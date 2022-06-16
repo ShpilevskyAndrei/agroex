@@ -51,8 +51,8 @@ export class ModerationAdvertisementsComponent {
         tap((message: string): void => {
           this.moderationDecision.emit({
             advertisements: {
-              ...advertisement,
-              isModerated: false,
+              slug: advertisement.slug,
+              moderationStatus: 'rejected',
               moderationComment: message,
             },
           });
@@ -63,7 +63,11 @@ export class ModerationAdvertisementsComponent {
 
   public onApproveClick(advertisement: IAdvertisementInterface): void {
     this.moderationDecision.emit({
-      advertisements: { ...advertisement, isModerated: true },
+      advertisements: {
+        slug: advertisement.slug,
+        moderationStatus: 'approved',
+        moderationComment: null,
+      },
     });
   }
 
