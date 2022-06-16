@@ -8,12 +8,12 @@ export const MAP = 'map';
 
 export interface MapState {
   mapLoadingStatus: LoadingStatus;
-  map: {};
+  map: GeoJSON.FeatureCollection<GeoJSON.MultiPolygon> | null;
 }
 
 const initialState: MapState = {
   mapLoadingStatus: DEFAULT_LOADING_STATUS,
-  map: {},
+  map: null,
 };
 
 export const MAP_REDUCER = createReducer(
@@ -27,8 +27,9 @@ export const MAP_REDUCER = createReducer(
   ),
   on(
     MapActions.getMapSuccess,
-    (state): MapState => ({
+    (state, { map }): MapState => ({
       ...state,
+      map,
       mapLoadingStatus: {
         loading: false,
         loaded: true,

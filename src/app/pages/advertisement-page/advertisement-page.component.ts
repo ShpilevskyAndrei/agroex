@@ -34,12 +34,15 @@ export class AdvertisementPageComponent implements OnChanges {
   @Input() public slug: string | null;
   @Input() public advertisementLoadingStatus: LoadingStatus | null;
   @Input() public userRole: UserRole | null;
+  @Input() public map: GeoJSON.FeatureCollection<GeoJSON.MultiPolygon> | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
   @Output() public selectTab: EventEmitter<UserPanelOptionId> =
     new EventEmitter<UserPanelOptionId>();
   @Output() public setBet: EventEmitter<Record<string, string | number>> =
     new EventEmitter<Record<string, string | number>>();
+
+  public hoverFilter = ['==', 'name', ''];
 
   public betForm: FormGroup = new FormGroup({
     bet: new FormControl('', {
@@ -75,6 +78,36 @@ export class AdvertisementPageComponent implements OnChanges {
     } else {
       return ' ';
     }
+  }
+
+  public getFullLocationName(): string | undefined {
+    return `${this.advertisement?.advertisement.location}, ${this.advertisement?.advertisement.country}`;
+  }
+
+  public getLocation(): GeoJSON.FeatureCollection<GeoJSON.MultiPolygon> {
+    if (this.map) {
+      return {
+        ...this.map,
+        features: this.map?.features?.filter(
+          (feature) =>
+            feature?.properties?.COUNTRY === this.getFullLocationName()
+        ),
+      };
+    }
+    return { type: 'FeatureCollection', features: [] };
+  }
+
+  public getLocationCenter(): number[] {
+    return this.getLocation().features?.[0]?.geometry
+      ?.coordinates?.[0]?.[0]?.[0];
+  }
+
+  public activateHoverOn(evt: any): void {
+    this.hoverFilter = ['==', 'name', evt.features[0].properties.name];
+  }
+
+  public disableHover(): void {
+    this.hoverFilter = ['==', 'name', ''];
   }
 
   public onSetBet(newBetOptions: Record<string, string | number>): void {

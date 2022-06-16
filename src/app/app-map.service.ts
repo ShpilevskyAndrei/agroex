@@ -5,11 +5,11 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({ providedIn: 'root' })
 export class AppMapService {
   constructor(private http: HttpClient) {
-    this.getMap().subscribe((data) => {
-      console.log(data);
-    });
+    this.getMap().subscribe();
   }
-  public getMap(): Observable<Object> {
-    return this.http.get('../../../assets/map.geojson');
+  public getMap(): Observable<GeoJSON.FeatureCollection<GeoJSON.MultiPolygon>> {
+    return this.http.get<GeoJSON.FeatureCollection<GeoJSON.MultiPolygon>>(
+      'assets/map.geojson'
+    );
   }
 }
