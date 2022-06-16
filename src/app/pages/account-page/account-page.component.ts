@@ -13,6 +13,7 @@ import { IUserOptionsType } from '../../shared/components/header/interfaces/user
 import { UserRole } from '../../shared/components/header/enums/user-role';
 import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
+import { IMyOrdersInterface } from './my-orders/interfaces/my-orders-request.interface';
 
 @Component({
   selector: 'app-account-page',
@@ -27,6 +28,9 @@ export class AccountPageComponent {
   @Input()
   public myAdvertisementsRequest: IAdvertisementRequestInterface | null;
   @Input() public myAdvertisementsLoadingStatus: LoadingStatus | null;
+  @Input()
+  public myOrdersRequest: IMyOrdersInterface[] | null;
+  @Input() public myOrdersLoadingStatus: LoadingStatus | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
   @Output() public selectTab: EventEmitter<UserPanelOptionId> =

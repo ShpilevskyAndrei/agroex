@@ -1,6 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { createAction, props } from '@ngrx/store';
+
 import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
+import { IMyOrdersInterface } from '../../pages/account-page/my-orders/interfaces/my-orders-request.interface';
 
 export const AccountPageActions = {
   getMyAdvertisementsRequest: createAction(
@@ -21,7 +23,7 @@ export const AccountPageActions = {
 
   getMyOrdersSuccess: createAction(
     '[ACCOUNT_PAGE] my orders success',
-    props<{ myOrders: IAdvertisementRequestInterface }>()
+    props<{ myOrders: IMyOrdersInterface[] }>()
   ),
 
   getMyOrdersError: createAction(

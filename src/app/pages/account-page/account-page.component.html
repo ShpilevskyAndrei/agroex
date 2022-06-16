@@ -31,8 +31,8 @@
           </app-my-betting>
           <app-my-orders
             *ngSwitchCase="userPanelOptionId.MyOrders"
-            [myOrdersRequest]="myAdvertisementsRequest"
-            [myOrdersLoadingStatus]="myAdvertisementsLoadingStatus"
+            [myOrdersRequest]="myOrdersRequest"
+            [myOrdersLoadingStatus]="myOrdersLoadingStatus"
             (dispatcher)="onDispatcher($event)">
           </app-my-orders>
           <app-my-account *ngSwitchCase="userPanelOptionId.MyAccount">
