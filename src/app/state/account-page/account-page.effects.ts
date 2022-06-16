@@ -9,6 +9,7 @@ import { AccountPageService } from '../../pages/account-page/services/account-pa
 import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
 import { selectUserToken } from '../registration-page/registration-page.selectors';
 import { AccountPageActions } from './account-page.actions';
+import { IMyOrdersInterface } from '../../pages/account-page/my-orders/interfaces/my-orders-request.interface';
 
 @Injectable()
 export class AccountPageEffects {
@@ -63,6 +64,29 @@ export class AccountPageEffects {
               })
             );
           })
+        )
+      )
+    );
+  });
+
+  public myOrders$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AccountPageActions.getMyOrdersRequest),
+      withLatestFrom(this.store.select(selectUserToken)),
+      switchMap(([_, selectUserToken]) =>
+        this.accountPageService.getOrders(selectUserToken).pipe(
+          map((myOrders: IMyOrdersInterface[]) =>
+            AccountPageActions.getMyOrdersSuccess({
+              myOrders,
+            })
+          ),
+          catchError((error: HttpErrorResponse) =>
+            of(
+              AccountPageActions.getMyOrdersError({
+                error: error,
+              })
+            )
+          )
         )
       )
     );

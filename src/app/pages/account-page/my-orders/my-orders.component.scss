@@ -1,0 +1,148 @@
+@import "../../../styles/general-styles";
+
+:host {
+  $green: #12AB74;
+  $light-green: #ECF9F4;
+
+  .orders-list {
+    flex: 1;
+    padding: 0 2rem;
+    font-size: $font-size-normal;
+    line-height: 2rem;
+    color: $primary-color;
+    p {
+      margin: 0;
+    }
+  }
+  .order {
+    &__svg {
+      width: 1.6rem;
+      min-width: 1.6rem;
+      height: 1.6rem;
+      min-height: 1.6rem;
+      color: #798787;
+      font-size: 1.7rem;
+      margin-right: $offset-small;
+      &-to-location {
+        color: $color-tradewind;
+        margin: 0 $offset-small;
+      }
+    }
+    &__item {
+      display: flex;
+      width: 100%;
+      padding: 2rem 0;
+    }
+    &__img {
+      width: 28rem;
+      min-width: 28rem;
+      height: 16rem;
+      img {
+        width: inherit;
+        height: inherit;
+        object-fit: cover;
+      }
+    }
+    &__desc {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      margin-left: $offset-xlarge;
+    }
+
+    &__title,
+    &__price,
+    &__payment,
+    &__quantity,
+    &__locations {
+      display: flex;
+    }
+
+    &__title,
+    &__price {
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    &__payment {
+      justify-content: flex-end;
+    }
+
+    &__price {
+      margin-top: $offset-medium;
+    }
+
+    &__payment,
+    &__locations{
+      margin-top: $offset-normal;
+    }
+
+    &__quantity {
+      margin-top: auto;
+    }
+
+    &__title {
+      display: flex;
+      justify-content: space-between;
+      .title {
+        font-size: 1.5rem;
+        line-height: 2.333rem;
+        font-weight: 500;
+        color: #131314;
+      }
+      .status {
+        min-width: 102px;
+        font-size: $font-size-normal;
+        line-height: 2.3rem;
+        color: $green;
+        padding: 0 1.3rem;
+        background: $light-green;
+        border: .1rem solid $green;
+        border-radius: 1.7rem;
+        text-align: center;
+      }
+    }
+
+    &__price {
+      .label {
+        display: flex;
+        align-items: center;
+        span {
+          font-size: $font-size-normal;
+          line-height: 2rem;
+          color: $primary-color;
+        }
+      }
+      .value{
+        font-size: 1.7rem;
+        line-height: 2.3rem;
+        font-weight: 500;
+      }
+    }
+
+    &__payment {
+      display: flex;
+      align-items: center;
+      column-gap: $offset-small;
+      .order__svg {
+        margin: 0;
+      }
+    }
+
+    &__locations {
+      align-items: center;
+      .location-from,
+      .location-to {
+        display: flex;
+      }
+    }
+  }
+
+  @include empty-advertisement-block;
+}
+
+.order {
+  &__item + &__item {
+    box-shadow: inset 0 0.083rem 0 $color-button-disable;
+  }
+}

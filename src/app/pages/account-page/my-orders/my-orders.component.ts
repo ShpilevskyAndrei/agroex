@@ -1,4 +1,15 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
+
+import { LoadingStatus } from '../../../shared/interfaces/loading-status';
+import { AccountPageActions } from '../../../state/account-page/account-page.actions';
+import { IMyOrdersInterface } from './interfaces/my-orders-request.interface';
 
 @Component({
   selector: 'app-my-orders',
@@ -6,4 +17,15 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./my-orders.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MyOrdersComponent {}
+export class MyOrdersComponent implements OnInit {
+  @Input()
+  public myOrdersRequest: IMyOrdersInterface[] | null;
+  @Input() public myOrdersLoadingStatus: LoadingStatus | null;
+
+  @Output() public dispatcher: EventEmitter<Function> =
+    new EventEmitter<Function>();
+
+  public ngOnInit(): void {
+    this.dispatcher.emit(AccountPageActions.getMyOrdersRequest);
+  }
+}

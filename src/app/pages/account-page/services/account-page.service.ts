@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { IAdvertisementRequestInterface } from '../../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
 import { BaseService } from '../../../shared/services/base.service';
+import { IMyOrdersInterface } from '../my-orders/interfaces/my-orders-request.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,10 @@ export class AccountPageService extends BaseService {
       'advertisements/myAdvertisements/all',
       { token }
     );
+  }
+
+  public getOrders(token?: string): Observable<IMyOrdersInterface[]> {
+    return this.get<IMyOrdersInterface[]>('orders', { token });
   }
 
   public setConfirmDeal(

@@ -7,6 +7,8 @@ import { AccountPageActions } from '../../state/account-page/account-page.action
 import {
   selectMyAdvertisementsData,
   selectMyAdvertisementsLoadingStatus,
+  selectMyOrdersData,
+  selectMyOrdersLoadingStatus,
 } from '../../state/account-page/account-page.selectors';
 import { AppRootActions } from '../../state/app-root/app-root.actions';
 import { RegistrationPageActions } from '../../state/registration-page/registration-page.actions';
@@ -19,6 +21,7 @@ import { selectAppRootOptionId } from '../../state/app-root/app-root.selectors';
 import { UserRole } from '../../shared/components/header/enums/user-role';
 import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
+import { IMyOrdersInterface } from './my-orders/interfaces/my-orders-request.interface';
 
 @Component({
   selector: 'app-account-page-container',
@@ -28,6 +31,8 @@ import { LoadingStatus } from '../../shared/interfaces/loading-status';
     [selectedTab]="selectedTab$ | async"
     [myAdvertisementsRequest]="myAdvertisementsRequest$ | async"
     [myAdvertisementsLoadingStatus]="myAdvertisementsLoadingStatus$ | async"
+    [myOrdersRequest]="myOrdersRequest$ | async"
+    [myOrdersLoadingStatus]="myOrdersLoadingStatus$ | async"
     (logout)="onLogout()"
     (selectTab)="onSelectTab($event)"
     (dispatcher)="onDispatcher($event)"
@@ -41,6 +46,8 @@ export class AccountPageContainerComponent {
   public selectedTab$: Observable<string | null>;
   public myAdvertisementsRequest$: Observable<IAdvertisementRequestInterface | null>;
   public myAdvertisementsLoadingStatus$: Observable<LoadingStatus | null>;
+  public myOrdersRequest$: Observable<IMyOrdersInterface[] | null>;
+  public myOrdersLoadingStatus$: Observable<LoadingStatus | null>;
 
   constructor(private store: Store) {
     this.user$ = this.store.select(selectUserData);
@@ -51,6 +58,10 @@ export class AccountPageContainerComponent {
     );
     this.myAdvertisementsLoadingStatus$ = this.store.select(
       selectMyAdvertisementsLoadingStatus
+    );
+    this.myOrdersRequest$ = this.store.select(selectMyOrdersData);
+    this.myOrdersLoadingStatus$ = this.store.select(
+      selectMyOrdersLoadingStatus
     );
   }
 

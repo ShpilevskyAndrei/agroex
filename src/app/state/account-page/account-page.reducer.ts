@@ -4,10 +4,12 @@ import { IAdvertisementRequestInterface } from '../../shared/components/advertis
 import { DEFAULT_LOADING_STATUS } from '../../shared/constants/lodaing-default-status';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { AccountPageActions } from './account-page.actions';
+import { IMyOrdersInterface } from '../../pages/account-page/my-orders/interfaces/my-orders-request.interface';
 
 export interface AccountPageState {
   accountPageLoadingStatus: LoadingStatus;
   myAdvertisements: IAdvertisementRequestInterface;
+  myOrders: IMyOrdersInterface[];
 }
 
 export const ACCOUNT_PAGE = 'accountPage';
@@ -15,6 +17,7 @@ export const ACCOUNT_PAGE = 'accountPage';
 const initialState: AccountPageState = {
   accountPageLoadingStatus: DEFAULT_LOADING_STATUS,
   myAdvertisements: { advertisementCount: null, advertisements: [] },
+  myOrders: [],
 };
 
 export const ACCOUNT_PAGE_REDUCER = createReducer(
@@ -65,6 +68,32 @@ export const ACCOUNT_PAGE_REDUCER = createReducer(
   ),
   on(
     AccountPageActions.getConfirmDealError,
+    (state, { error }): AccountPageState => ({
+      ...state,
+      accountPageLoadingStatus: { loading: false, loaded: false, error },
+    })
+  ),
+  on(
+    AccountPageActions.getMyOrdersRequest,
+    (state): AccountPageState => ({
+      ...state,
+      accountPageLoadingStatus: DEFAULT_LOADING_STATUS,
+    })
+  ),
+  on(
+    AccountPageActions.getMyOrdersSuccess,
+    (state, { myOrders }): AccountPageState => ({
+      ...state,
+      myOrders,
+      accountPageLoadingStatus: {
+        loading: false,
+        loaded: true,
+        error: null,
+      },
+    })
+  ),
+  on(
+    AccountPageActions.getMyOrdersError,
     (state, { error }): AccountPageState => ({
       ...state,
       accountPageLoadingStatus: { loading: false, loaded: false, error },
