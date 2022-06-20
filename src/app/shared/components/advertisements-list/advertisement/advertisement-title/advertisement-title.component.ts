@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { IAdvertisementInterface } from '../../interfaces/advertisement.interface';
 import { IUser } from '../../../../interfaces/user.interface';
@@ -7,6 +7,7 @@ import { IUser } from '../../../../interfaces/user.interface';
   selector: 'app-advertisement-title',
   templateUrl: './advertisement-title.component.html',
   styleUrls: ['./advertisement-title.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdvertisementTitleComponent {
   @Input() public advertisement: IAdvertisementInterface;
