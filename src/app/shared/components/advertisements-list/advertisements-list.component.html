@@ -4,6 +4,7 @@
     *ngFor="let advertisement of advertisementsRequest?.advertisements"
   >
     <app-advertisement
+      [isAddFlag]="isAddFlag"
       [user]="user"
       [isNavigationToAdvertisementPage]="isNavigationToAdvertisementPage"
       [advertisement]="advertisement"
@@ -11,7 +12,7 @@
     >
       <ng-container
         buttons
-        *ngIf="actionButtonsTemplateRef && user && (user.id !== advertisement.author.id)"
+        *ngIf="actionButtonsTemplateRef && user"
         [ngTemplateOutlet]="actionButtonsTemplateRef"
         [ngTemplateOutletContext]="{ $implicit: advertisement }"
       >

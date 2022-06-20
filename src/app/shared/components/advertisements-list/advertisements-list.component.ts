@@ -25,6 +25,7 @@ export class AdvertisementsListComponent {
   @Input() public advertisementsRequest: IAdvertisementRequestInterface | null;
   @Input() public advertisementsLoadingStatus: LoadingStatus | null;
   @Input() public isNavigationToAdvertisementPage: boolean | undefined;
+  @Input() public isAddFlag = true;
 
   @Output() public setBet: EventEmitter<Record<string, string | number>> =
     new EventEmitter<Record<string, string | number>>();

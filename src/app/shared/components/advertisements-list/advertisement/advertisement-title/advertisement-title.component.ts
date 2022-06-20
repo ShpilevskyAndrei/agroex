@@ -11,4 +11,5 @@ import { IUser } from '../../../../interfaces/user.interface';
 export class AdvertisementTitleComponent {
   @Input() public advertisement: IAdvertisementInterface;
   @Input() public user: IUser | null;
+  @Input() public isAddFlag = true;
 }

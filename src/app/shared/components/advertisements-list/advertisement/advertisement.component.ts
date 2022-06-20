@@ -20,6 +20,7 @@ export class AdvertisementComponent {
   @Input() public advertisement: IAdvertisementInterface;
   @Input() public user: IUser | null;
   @Input() public isNavigationToAdvertisementPage: boolean | undefined = false;
+  @Input() public isAddFlag = true;
 
   @Output() public setBet: EventEmitter<Record<string, string | number>> =
     new EventEmitter<Record<string, string | number>>();

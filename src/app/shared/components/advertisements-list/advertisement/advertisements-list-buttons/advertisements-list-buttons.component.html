@@ -1,4 +1,8 @@
-<div class="advertisement-wrap__btns" (click)="stopPropagation($event)">
+<div
+  class="advertisement-wrap__btns"
+  (click)="stopPropagation($event)"
+  *ngIf="user?.id !== advertisement?.author?.id"
+>
   <div class="advertisement-btns">
     <div class="advertisement-btn">
       <button mat-button class="btn_ghost" (click)="openBetModal()">
