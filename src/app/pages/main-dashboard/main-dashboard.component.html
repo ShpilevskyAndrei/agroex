@@ -1,5 +1,6 @@
 <ng-container *ngIf="categoriesLoadingStatus?.loaded; else notLoaded">
-  <app-header [userRole]="userRole" [user]="user" (logout)="onLogout()" (selectTab)="onSelectTab($event)"></app-header>
+  <app-header [userRole]="userRole" [user]="user" (logout)="onLogout()"
+              (selectTab)="onSelectTab($event)"></app-header>
 
   <app-categories
     [categories]="categories"
@@ -59,7 +60,7 @@
     type="ball-clip-rotate"
     [fullScreen]="true"
   >
-    <p style="color: white">Loading...</p>
+    <div style="color: white">Loading...</div>
   </ngx-spinner>
   <ng-template #categoriesError>
     <p>{{ categoriesLoadingStatus?.error?.statusText }}</p>
