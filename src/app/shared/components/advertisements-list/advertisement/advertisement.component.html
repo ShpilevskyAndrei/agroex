@@ -36,8 +36,8 @@
     <ng-content select="[buttons]"></ng-content>
 
     <ng-container *ngIf="advertisement.moderationStatus === 'rejected'">
-      <div class="advertisement-moderators_message">
-        <div class="advertisement-moderators_message-icon">
+      <div class="advertisement-moderators_message advertisement-moderators_message-rejected">
+        <div class="advertisement-moderators_message-icon advertisement-moderators_message-icon-rejected">
 
         </div>
         <div class="advertisement-moderators_message-bottom-wrap">
@@ -45,6 +45,20 @@
             {{ advertisement.moderationComment }}
           </div>
           <div class="advertisement-moderators_message-right">From Moderator</div>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="advertisement.moderationStatus === 'unmoderated'">
+      <div class="advertisement-moderators_message">
+        <div class="advertisement-moderators_message-icon">
+
+        </div>
+        <div class="advertisement-moderators_message-bottom-wrap">
+          <div class="advertisement-moderators_message-content">
+            This advertisement now unactive and will moderate soon, please, check later...
+          </div>
+          <div class="advertisement-moderators_message-right">From AGROEX support</div>
         </div>
       </div>
     </ng-container>
