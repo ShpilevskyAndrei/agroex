@@ -23,7 +23,6 @@ export class MyOrdersComponent implements OnInit {
   public myOrdersRequest: IMyOrdersInterface[] | null;
   @Input() public myOrdersLoadingStatus: LoadingStatus | null;
   @Input() public user: IUser | null;
-  @Input() public showOwnerFlag = true;
 
   @Output() public dispatcher: EventEmitter<Function> =
     new EventEmitter<Function>();
