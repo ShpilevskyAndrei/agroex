@@ -28,6 +28,7 @@ import { IMyOrdersInterface } from './my-orders/interfaces/my-orders-request.int
   template: ` <app-account-page
     [user]="user$ | async"
     [userRole]="userRole$ | async"
+    [showOwnerFlag]="showOwnerFlag"
     [selectedTab]="selectedTab$ | async"
     [myAdvertisementsRequest]="myAdvertisementsRequest$ | async"
     [myAdvertisementsLoadingStatus]="myAdvertisementsLoadingStatus$ | async"
@@ -43,6 +44,7 @@ import { IMyOrdersInterface } from './my-orders/interfaces/my-orders-request.int
 export class AccountPageContainerComponent {
   public user$: Observable<IUser | null>;
   public userRole$: Observable<UserRole | null>;
+  public showOwnerFlag = true;
   public selectedTab$: Observable<string | null>;
   public myAdvertisementsRequest$: Observable<IAdvertisementRequestInterface | null>;
   public myAdvertisementsLoadingStatus$: Observable<LoadingStatus | null>;

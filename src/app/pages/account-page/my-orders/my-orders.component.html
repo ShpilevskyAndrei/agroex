@@ -1,21 +1,35 @@
 <ng-container *ngIf="myOrdersRequest?.length; else emptyOrders">
   <div class="orders-list">
-
     <div class="order__item" *ngFor="let advertisement of myOrdersRequest">
       <div class="order__img">
-        <img [src]="advertisement.img" alt="image">
+        <img [src]="advertisement.img" alt="image" />
       </div>
       <div class="order__desc">
         <div class="order__title">
-          <p class="title">{{advertisement.title}}</p>
-          <p class="status">{{advertisement.orderInfo.dealStatus | titlecase}}</p>
+          <div>
+            <span class="title">{{ advertisement.title }}</span>
+            <span
+              class="ad-user-flag"
+              *ngIf="advertisement.author.id === user?.id && showOwnerFlag"
+            >
+              (your advertisement)</span
+            >
+          </div>
+          <p class="status">
+            {{ advertisement.orderInfo.dealStatus | titlecase }}
+          </p>
         </div>
         <div class="order__price">
           <p class="label">
             <mat-icon svgIcon="currency-icon" class="order__svg"></mat-icon>
             <span>Total price</span>
           </p>
-          <p class="value">{{advertisement.orderInfo.totalPrice | currency: advertisement.currency:"symbol-narrow":"0.2":"fr"}}</p>
+          <p class="value">
+            {{
+              advertisement.orderInfo.totalPrice
+                | currency: advertisement.currency:"symbol-narrow":"0.2":"fr"
+            }}
+          </p>
         </div>
         <div class="order__payment">
           <mat-icon svgIcon="card-icon" class="order__svg"></mat-icon>
@@ -30,9 +44,13 @@
         <div class="order__locations">
           <p class="location-from">
             <mat-icon svgIcon="map-pointer-icon" class="order__svg"></mat-icon>
-            <span>{{ advertisement.location }}, {{ advertisement.country }}</span>
+            <span
+              >{{ advertisement.location }}, {{ advertisement.country }}</span
+            >
           </p>
-          <mat-icon class="order__svg order__svg-to-location">arrow_forward</mat-icon>
+          <mat-icon class="order__svg order__svg-to-location"
+            >arrow_forward</mat-icon
+          >
           <p class="location-to">
             <mat-icon svgIcon="map-pointer-icon" class="order__svg"></mat-icon>
             Tashkent City, 27 Foziltepa kochasi
@@ -40,7 +58,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </ng-container>
 

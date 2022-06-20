@@ -1,8 +1,8 @@
 @import "../../../styles/general-styles";
 
 :host {
-  $green: #12AB74;
-  $light-green: #ECF9F4;
+  $green: #12ab74;
+  $light-green: #ecf9f4;
 
   .orders-list {
     flex: 1;
@@ -73,7 +73,7 @@
     }
 
     &__payment,
-    &__locations{
+    &__locations {
       margin-top: $offset-normal;
     }
 
@@ -97,7 +97,7 @@
         color: $green;
         padding: 0 1.3rem;
         background: $light-green;
-        border: .1rem solid $green;
+        border: 0.1rem solid $green;
         border-radius: 1.7rem;
         text-align: center;
       }
@@ -113,7 +113,7 @@
           color: $primary-color;
         }
       }
-      .value{
+      .value {
         font-size: 1.7rem;
         line-height: 2.3rem;
         font-weight: 500;
@@ -139,6 +139,11 @@
   }
 
   @include empty-advertisement-block;
+
+  .ad-user-flag {
+    font-size: $font-size-xsmall;
+    color: $color-copy;
+  }
 }
 
 .order {

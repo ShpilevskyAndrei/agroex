@@ -24,6 +24,7 @@ import { IMyOrdersInterface } from './my-orders/interfaces/my-orders-request.int
 export class AccountPageComponent {
   @Input() public user: IUser | null;
   @Input() public userRole: UserRole | null;
+  @Input() public showOwnerFlag = true;
   @Input() public selectedTab: string | null;
   @Input()
   public myAdvertisementsRequest: IAdvertisementRequestInterface | null;

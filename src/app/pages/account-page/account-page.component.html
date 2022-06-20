@@ -33,6 +33,8 @@
           </app-my-betting>
           <app-my-orders
             *ngSwitchCase="userPanelOptionId.MyOrders"
+            [user]="user"
+            [showOwnerFlag]="showOwnerFlag"
             [myOrdersRequest]="myOrdersRequest"
             [myOrdersLoadingStatus]="myOrdersLoadingStatus"
             (dispatcher)="onDispatcher($event)">
