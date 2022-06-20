@@ -31,3 +31,11 @@
     </div>
   </div>
 </div>
+<div *ngIf="advertisement.userBets[0]">
+  <p
+    class="bet-hint"
+    *ngIf="+advertisement.userBets[0].betValue + 1 >= +advertisement.price"
+  >
+    The maximum bet for this product has already been made.
+  </p>
+</div>
