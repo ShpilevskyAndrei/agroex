@@ -10,6 +10,7 @@ import { filter, tap } from 'rxjs';
 
 import { IAdvertisementInterface } from '../../interfaces/advertisement.interface';
 import { BetModalComponent } from '../bet-modal/bet-modal.component';
+import { IUser } from '../../../../interfaces/user.interface';
 
 @Component({
   selector: 'app-advertisements-list-buttons',
@@ -19,6 +20,7 @@ import { BetModalComponent } from '../bet-modal/bet-modal.component';
 })
 export class AdvertisementsListButtonsComponent {
   @Input() public advertisement: IAdvertisementInterface;
+  @Input() public user: IUser | null;
 
   @Output() public setBet: EventEmitter<Record<string, string>> =
     new EventEmitter<Record<string, string>>();

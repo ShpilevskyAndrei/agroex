@@ -1,4 +1,12 @@
 <div class="advertisement-title">
-  <span class="title">{{advertisement.title}}</span>
-  <span class="create">{{advertisement.createAt | creatDateFormat}}</span>
+  <div>
+    <span class="title">{{ advertisement.title }}</span>
+    <span
+      class="ad-user-flag"
+      *ngIf="advertisement.author.id === user?.id && showOwnerFlag"
+    >
+      (your advertisement)</span
+    >
+  </div>
+  <span class="create">{{ advertisement.createAt | creatDateFormat }}</span>
 </div>

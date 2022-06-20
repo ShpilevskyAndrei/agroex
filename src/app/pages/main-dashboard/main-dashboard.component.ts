@@ -33,6 +33,8 @@ export class MainDashboardComponent {
   @Output() public selectTab: EventEmitter<UserPanelOptionId> =
     new EventEmitter<UserPanelOptionId>();
 
+  public showOwnerFlag = true;
+
   public isNavigationToAdvertisementPage = true;
 
   public onLogout(): void {

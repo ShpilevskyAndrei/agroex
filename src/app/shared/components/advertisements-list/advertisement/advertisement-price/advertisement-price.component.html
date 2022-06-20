@@ -1,6 +1,6 @@
 <div class="advertisement-price">
   <div class="advertisement-price-item">
-    <div *ngIf="+advertisement.price > 1" class="advertisement-price__bet">
+    <div class="advertisement-price__bet">
       <span class="label">Bet</span>
       <ng-container *ngIf="advertisement.userBets.length; else noBetBlock">
         <span class="value" [style]="getBetColor">{{
@@ -37,4 +37,12 @@
       </div>
     </div>
   </div>
+</div>
+<div *ngIf="advertisement.userBets[0]">
+  <p
+    class="bet-hint"
+    *ngIf="+advertisement.userBets[0].betValue + 1 >= +advertisement.price"
+  >
+    The maximum bet for this product has already been made.
+  </p>
 </div>
