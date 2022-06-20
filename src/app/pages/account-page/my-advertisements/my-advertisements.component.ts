@@ -23,7 +23,6 @@ export class MyAdvertisementsComponent implements OnInit {
   public myAdvertisementsRequest: IAdvertisementRequestInterface | null;
   @Input() public myAdvertisementsLoadingStatus: LoadingStatus | null;
   @Input() public user: IUser | null;
-  @Input() public isAddFlag = false;
 
   @Output() public dispatcher: EventEmitter<Function> =
     new EventEmitter<Function>();

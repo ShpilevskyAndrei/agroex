@@ -1,7 +1,7 @@
 <div
   class="advertisement-wrap__btns"
-  (click)="stopPropagation($event)"
   *ngIf="user?.id !== advertisement?.author?.id"
+  (click)="stopPropagation($event)"
 >
   <div class="advertisement-btns">
     <div class="advertisement-btn">

@@ -32,7 +32,8 @@ export class MainDashboardComponent {
     new EventEmitter<Record<string, string | number>>();
   @Output() public selectTab: EventEmitter<UserPanelOptionId> =
     new EventEmitter<UserPanelOptionId>();
-  @Output() public isAddFlag = true;
+
+  public showOwnerFlag = true;
 
   public isNavigationToAdvertisementPage = true;
 
