@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { IAdvertisementInterface } from '../../interfaces/advertisement.interface';
+import { IUser } from '../../../../interfaces/user.interface';
 
 @Component({
   selector: 'app-advertisement-title',
@@ -9,4 +10,5 @@ import { IAdvertisementInterface } from '../../interfaces/advertisement.interfac
 })
 export class AdvertisementTitleComponent {
   @Input() public advertisement: IAdvertisementInterface;
+  @Input() public user: IUser | null;
 }

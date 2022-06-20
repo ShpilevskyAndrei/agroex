@@ -23,6 +23,7 @@
         <div class="ad-card-info">
           <app-advertisement-title
             class="title-container"
+            [user]="user"
             [advertisement]="advertisement.advertisement"
           ></app-advertisement-title>
 
@@ -33,7 +34,7 @@
           ></app-advertisement-price>
 
           <div
-            *ngIf="+advertisement.advertisement.price > 1 && user"
+            *ngIf="user && (user.id !== advertisement.advertisement.author.id)"
             class="bet-form-container"
           >
             <form class="bet-field-container" [formGroup]="betForm">
@@ -53,7 +54,7 @@
             </form>
 
             <p
-              *ngIf="+advertisement.advertisement.price > 1 && user"
+              *ngIf="user && (user.id !== advertisement.advertisement.author.id)"
               class="bet-hint"
             >
               Bet from {{ actualCurrency
@@ -68,7 +69,7 @@
           </div>
 
           <app-advertisement-buttons-ad-page
-            *ngIf="user"
+            *ngIf="user && (user.id !== advertisement.advertisement.author.id)"
             class="buttons-container"
             [betForm]="betForm"
             [advertisement]="advertisement.advertisement"

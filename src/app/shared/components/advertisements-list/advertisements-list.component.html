@@ -11,7 +11,7 @@
     >
       <ng-container
         buttons
-        *ngIf="actionButtonsTemplateRef && user"
+        *ngIf="actionButtonsTemplateRef && user && (user.id !== advertisement.author.id)"
         [ngTemplateOutlet]="actionButtonsTemplateRef"
         [ngTemplateOutletContext]="{ $implicit: advertisement }"
       >
