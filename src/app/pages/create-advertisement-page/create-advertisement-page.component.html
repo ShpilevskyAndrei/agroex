@@ -142,7 +142,7 @@
               >Price is required
               </mat-error>
               <mat-error *ngIf="this.get('price').hasError('pattern')"
-              >Please use valid price. It should be less 1 billion
+              >Please use valid price. The number must be an integer and less than 1 billion.
               </mat-error>
             </mat-form-field>
             <mat-form-field class="form__input select-small">
