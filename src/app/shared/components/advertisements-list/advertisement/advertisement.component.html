@@ -3,10 +3,16 @@
   [ngClass]="{ 'with-pointer': isNavigationToAdvertisementPage }"
   (click)="openAdvertisement()"
 >
-  <div class="advertisement-wrap__img">
+  <div
+    class="advertisement-wrap__img"
+    [ngClass]="{ 'not-moderated': nonModeratedAdvertisementOnlyForUser() }"
+  >
     <img src="{{ advertisement.img }}" alt="apple" />
   </div>
-  <div class="advertisement-wrap__desc">
+  <div
+    class="advertisement-wrap__desc"
+    [ngClass]="{ 'not-moderated': nonModeratedAdvertisementOnlyForUser() }"
+  >
     <app-advertisement-title
       [showOwnerFlag]="showOwnerFlag"
       [user]="user"
@@ -32,36 +38,41 @@
       class="advertisement-wrap__price"
       [user]="user"
       [advertisement]="advertisement"
+      [ngClass]="{ 'not-moderated': nonModeratedAdvertisementOnlyForUser() }"
     ></app-advertisement-price>
     <ng-content select="[buttons]"></ng-content>
 
     <ng-container *ngIf="advertisement.moderationStatus === 'rejected'">
-      <div class="advertisement-moderators_message advertisement-moderators_message-rejected">
-        <div class="advertisement-moderators_message-icon advertisement-moderators_message-icon-rejected">
-
-        </div>
+      <div
+        class="advertisement-moderators_message advertisement-moderators_message-rejected"
+      >
+        <div
+          class="advertisement-moderators_message-icon advertisement-moderators_message-icon-rejected"
+        ></div>
         <div class="advertisement-moderators_message-bottom-wrap">
           <div class="advertisement-moderators_message-content">
             {{ advertisement.moderationComment }}
           </div>
-          <div class="advertisement-moderators_message-right">From Moderator</div>
+          <div class="advertisement-moderators_message-right">
+            From Moderator
+          </div>
         </div>
       </div>
     </ng-container>
 
-    <ng-container *ngIf="advertisement.moderationStatus === 'unmoderated'">
+    <ng-container *ngIf="nonModeratedAdvertisementOnlyForUser()">
       <div class="advertisement-moderators_message">
-        <div class="advertisement-moderators_message-icon">
-
-        </div>
+        <div class="advertisement-moderators_message-icon"></div>
         <div class="advertisement-moderators_message-bottom-wrap">
           <div class="advertisement-moderators_message-content">
-            This advertisement now unactive and will moderate soon, please, check later...
+            This advertisement now unactive and will moderate soon, please,
+            check later...
           </div>
-          <div class="advertisement-moderators_message-right">From AGROEX support</div>
+          <div class="advertisement-moderators_message-right">
+            From AGROEX support
+          </div>
         </div>
       </div>
     </ng-container>
-
   </div>
 </div>

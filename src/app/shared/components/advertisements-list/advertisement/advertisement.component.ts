@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 
 import { IAdvertisementInterface } from '../interfaces/advertisement.interface';
 import { IUser } from '../../../interfaces/user.interface';
+import { UserRole } from '../../header/enums/user-role';
 
 @Component({
   selector: 'app-advertisement',
@@ -19,6 +20,7 @@ import { IUser } from '../../../interfaces/user.interface';
 export class AdvertisementComponent {
   @Input() public advertisement: IAdvertisementInterface;
   @Input() public user: IUser | null;
+  @Input() public userRole: UserRole | null;
   @Input() public isNavigationToAdvertisementPage: boolean | undefined = false;
   @Input() public showOwnerFlag: boolean;
 
@@ -34,6 +36,17 @@ export class AdvertisementComponent {
   public openAdvertisement(): void {
     if (this.isNavigationToAdvertisementPage) {
       this.router.navigate(['/advertisement', this.advertisement.slug]);
+    }
+  }
+
+  public nonModeratedAdvertisementOnlyForUser(): boolean {
+    if (
+      this.advertisement.moderationStatus === 'unmoderated' &&
+      this.userRole === UserRole.User
+    ) {
+      return true;
+    } else {
+      return false;
     }
   }
 }

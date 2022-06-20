@@ -11,6 +11,7 @@ import { IAdvertisementRequestInterface } from '../../../shared/components/adver
 import { LoadingStatus } from '../../../shared/interfaces/loading-status';
 import { IUser } from '../../../shared/interfaces/user.interface';
 import { AccountPageActions } from '../../../state/account-page/account-page.actions';
+import { UserRole } from '../../../shared/components/header/enums/user-role';
 
 @Component({
   selector: 'app-my-advertisements',
@@ -23,6 +24,7 @@ export class MyAdvertisementsComponent implements OnInit {
   public myAdvertisementsRequest: IAdvertisementRequestInterface | null;
   @Input() public myAdvertisementsLoadingStatus: LoadingStatus | null;
   @Input() public user: IUser | null;
+  @Input() public userRole: UserRole | null;
 
   @Output() public dispatcher: EventEmitter<Function> =
     new EventEmitter<Function>();
