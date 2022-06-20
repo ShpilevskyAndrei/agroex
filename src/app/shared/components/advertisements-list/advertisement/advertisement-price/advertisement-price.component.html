@@ -1,13 +1,15 @@
 <div class="advertisement-price">
   <div class="advertisement-price-item">
-    <div *ngIf="+advertisement.price > 1" class="advertisement-price__bet">
+    <div class="advertisement-price__bet">
       <span class="label">Bet</span>
       <ng-container *ngIf="advertisement.userBets.length; else noBetBlock">
         <span class="value" [style]="getBetColor">{{
           advertisement.userBets[0].betValue
             | currency: advertisement.currency:"symbol-narrow":"0.2":"fr"
         }}</span>
-        <span class="unit-price">{{ unitCostTextBet }}</span>
+        <ng-container *ngIf="unitCostBet > 0.01; else minUnitCost">
+          <span class="unit-price">{{ unitCostTextBet }}</span>
+        </ng-container>
       </ng-container>
       <ng-template #noBetBlock>
         <span class="no-bets">No bets</span>
@@ -21,7 +23,12 @@
         advertisement.price
           | currency: advertisement.currency:"symbol-narrow":"0.2":"fr"
       }}</span>
-      <span class="unit-price">{{ unitCostTextPrice }}</span>
+      <ng-container *ngIf="unitCostPrice > 0.01; else minUnitCost">
+        <span class="unit-price">{{ unitCostTextPrice }}</span>
+      </ng-container>
+      <ng-template #minUnitCost>
+        <span class="unit-price">{{ minUnitCostText }}</span>
+      </ng-template>
       <div class="advertisement-created">
         <mat-icon class="advertisement-created__icon">access_time</mat-icon>
         <span>{{
@@ -30,4 +37,12 @@
       </div>
     </div>
   </div>
+</div>
+<div *ngIf="advertisement.userBets[0]">
+  <p
+    class="bet-hint"
+    *ngIf="+advertisement.userBets[0].betValue + 1 >= +advertisement.price"
+  >
+    The maximum bet for this product has already been made.
+  </p>
 </div>

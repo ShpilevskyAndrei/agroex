@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+
+import { IUser } from '../../../../interfaces/user.interface';
 
 @Component({
   selector: 'app-advertisement-buttons',
@@ -6,4 +8,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./advertisement-buttons.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AdvertisementButtonsComponent {}
+export class AdvertisementButtonsComponent {
+  @Input() public user: IUser | null;
+}

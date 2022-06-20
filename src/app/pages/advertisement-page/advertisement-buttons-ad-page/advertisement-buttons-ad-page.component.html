@@ -2,7 +2,6 @@
   <div class="advertisement-btn">
     <button
       mat-button
-      *ngIf="+advertisement.price > 1"
       class="btn_ghost bet-button"
       [disabled]="isDisabled || betForm.invalid"
       (click)="onClickButton()"

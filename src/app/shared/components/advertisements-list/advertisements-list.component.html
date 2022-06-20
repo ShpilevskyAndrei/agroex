@@ -4,6 +4,7 @@
     *ngFor="let advertisement of advertisementsRequest?.advertisements"
   >
     <app-advertisement
+      [showOwnerFlag]="showOwnerFlag"
       [user]="user"
       [isNavigationToAdvertisementPage]="isNavigationToAdvertisementPage"
       [advertisement]="advertisement"

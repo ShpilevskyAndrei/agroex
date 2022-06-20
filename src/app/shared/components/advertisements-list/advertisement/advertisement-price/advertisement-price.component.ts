@@ -64,4 +64,8 @@ export class AdvertisementPriceComponent {
   public get unitCostTextPrice(): string {
     return `${this.actualCurrency} ${this.unitCostPrice}/${this.tonToKgUnit}`;
   }
+
+  public get minUnitCostText(): string {
+    return `${this.actualCurrency} 0.01/${this.tonToKgUnit}`;
+  }
 }
