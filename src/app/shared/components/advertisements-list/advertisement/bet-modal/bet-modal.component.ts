@@ -12,6 +12,7 @@ import { Subscription, tap } from 'rxjs';
 import { BetValidators } from './intefaces/bet-validator';
 import { BetModalDataInterface } from './intefaces/bet-modal-data.interface';
 import { CurrenciesEnum } from './enums/currencies.enum';
+import { REGEXP_FOR_IS_INTEGER_NUMBER } from '../../../../../pages/create-advertisement-page/constant/regexp';
 
 @UntilDestroy()
 @Component({
@@ -26,6 +27,7 @@ export class BetModalComponent implements OnInit {
       validators: [
         Validators.required,
         Validators.maxLength(9),
+        Validators.pattern(REGEXP_FOR_IS_INTEGER_NUMBER),
         BetValidators.checkBetValue(
           this.data.actualBet.length ? this.data.actualBet[0].betValue : '0',
           this.data.price

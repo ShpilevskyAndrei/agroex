@@ -22,6 +22,7 @@ import { IAdRequestInterface } from '../../shared/components/advertisements-list
 import { CurrenciesEnum } from '../../shared/components/advertisements-list/advertisement/bet-modal/enums/currencies.enum';
 import { BetValidators } from '../../shared/components/advertisements-list/advertisement/bet-modal/intefaces/bet-validator';
 import { TASHKENT_COORDINATES } from '../../shared/constants/tashkent-coordinates';
+import { REGEXP_FOR_IS_INTEGER_NUMBER } from '../create-advertisement-page/constant/regexp';
 
 @UntilDestroy()
 @Component({
@@ -46,7 +47,7 @@ export class AdvertisementPageComponent implements OnChanges {
 
   public betForm: FormGroup = new FormGroup({
     bet: new FormControl('', {
-      validators: [Validators.required, Validators.maxLength(9)],
+      validators: [Validators.required],
       updateOn: 'change',
     }),
   });
@@ -114,14 +115,15 @@ export class AdvertisementPageComponent implements OnChanges {
     if (this.advertisement && changes.advertisement) {
       this.betForm
         .get('bet')
-        ?.setValidators(
+        ?.setValidators([
+          Validators.pattern(REGEXP_FOR_IS_INTEGER_NUMBER),
           BetValidators.checkBetValue(
             this.advertisement.advertisement.userBets.length
               ? this.advertisement.advertisement.userBets[0].betValue
               : '0',
             this.advertisement.advertisement.price
-          )
-        );
+          ),
+        ]);
       this.newBet = '';
     }
     this.betForm
