@@ -35,10 +35,15 @@
 
     <ng-container *ngIf="advertisement.moderationStatus === 'rejected'">
       <div class="advertisement-moderators_message">
-        <p class="advertisement-moderators_message-content">
-          {{ advertisement.moderationComment }}
-        </p>
-        <div class="advertisement-moderators_message-right">From Moderator</div>
+        <div class="advertisement-moderators_message-icon">
+
+        </div>
+        <div class="advertisement-moderators_message-bottom-wrap">
+          <div class="advertisement-moderators_message-content">
+            {{ advertisement.moderationComment }}
+          </div>
+          <div class="advertisement-moderators_message-right">From Moderator</div>
+        </div>
       </div>
     </ng-container>
 
