@@ -1,6 +1,10 @@
 <ng-container *ngIf="categoriesLoadingStatus?.loaded; else notLoaded">
-  <app-header [userRole]="userRole" [user]="user" (logout)="onLogout()"
-              (selectTab)="onSelectTab($event)"></app-header>
+  <app-header
+    [userRole]="userRole"
+    [user]="user"
+    (logout)="onLogout()"
+    (selectTab)="onSelectTab($event)"
+  ></app-header>
 
   <app-categories
     [categories]="categories"
@@ -21,7 +25,8 @@
               class="advertisement-wrap__btns"
               [user]="user"
               [advertisement]="advertisement"
-              (setBet)="onSetBet($event)">
+              (setBet)="onSetBet($event)"
+            >
             </app-advertisements-list-buttons>
           </ng-template>
         </app-advertisements-list>
@@ -48,7 +53,6 @@
       </app-advertisements-list>
     </div>
   </div> -->
-
 </ng-container>
 
 <ng-template #notLoaded>
