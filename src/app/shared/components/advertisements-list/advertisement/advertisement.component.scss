@@ -117,11 +117,6 @@
         }
 
         &-icon {
-          // margin-right: 1.2rem;
-          // width: 1.7rem;
-          // height: 1.7rem;
-          // background-repeat: no-repeat;
-          // background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' %3F%3E%3Csvg height='24' viewBox='0 0 48 48' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h48v48h-48z' fill='none'/%3E%3Cpath d='M22 34h4v-12h-4v12zm2-30c-11.05 0-20 8.95-20 20s8.95 20 20 20 20-8.95 20-20-8.95-20-20-20zm0 36c-8.82 0-16-7.18-16-16s7.18-16 16-16 16 7.18 16 16-7.18 16-16 16zm-2-22h4v-4h-4v4z'/%3E%3C/svg%3E");          
           &-rejected {
             color: $color-error;          
           }
