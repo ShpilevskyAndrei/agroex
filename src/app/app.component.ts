@@ -21,14 +21,13 @@ export class AppComponent {
     private iconSerialize: IconSerializeService,
     private afMessaging: AngularFireMessaging
   ) {
-    this.afMessaging.requestToken.subscribe(
-      (token) => {
-        console.log('Permission granted! Save to the server!', token);
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
+    this.afMessaging.requestToken
+      .pipe(
+        catchError((error) => {
+          return throwError(error);
+        })
+      )
+      .subscribe();
 
     this.afMessaging.messages
       .pipe(
