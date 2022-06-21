@@ -21,6 +21,22 @@
           <mat-icon class="main-header__add-icon">add</mat-icon>
           <span>Advertisement</span>
         </button>
+        <div class="main-header__notifications">
+          <div
+            class="main-header__notifications-bell"
+            [matMenuTriggerFor]="notifications">
+            <mat-icon
+              class="main-header__notifications-icon"
+              [ngClass]="{ 'with-dot': true }">notifications_none</mat-icon>
+          </div>
+          <mat-menu
+            class="main-header__menu"
+            #notifications="matMenu"
+            xPosition="before">
+            <button mat-menu-item>Item 1</button>
+            <button mat-menu-item>Item 2</button>
+          </mat-menu>
+        </div>
         <div
           class="main-header__account-btn"
           [matMenuTriggerFor]="userMenu">
