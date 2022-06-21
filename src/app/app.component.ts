@@ -7,13 +7,6 @@ import MessagePayload = firebase.messaging.MessagePayload;
 
 import { TITLE } from './shared/constants/app-consts';
 import { IconSerializeService } from './shared/services/icon-serialize.service';
-import { AngularFireMessaging } from '@angular/fire/compat/messaging';
-import { getMessaging, getToken } from '@angular/fire/messaging';
-import { environment } from '../environments/environment';
-import { mergeMapTo } from 'rxjs';
-import { tap } from "rxjs/operators";
-import firebase from "firebase/compat";
-import MessagePayload = firebase.messaging.MessagePayload;
 
 @Component({
   selector: 'app-root',
