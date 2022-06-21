@@ -9,6 +9,9 @@
     &__img {
       width: 28rem;
       height: 16rem;
+      @media only screen and (max-width: $medium-large-screen-min-width) {
+        width: 20rem;
+      }
       @media only screen and (max-width: $medium-x-screen-min-width) {
         width: 100%;
         height: 44rem;
@@ -52,6 +55,10 @@
       display: flex;
       flex-direction: column;
       width: 33rem;
+      @media only screen and (max-width: $medium-large-screen-min-width) {
+        width: 100%;
+        width: 24rem;
+      }
       @media only screen and (max-width: $medium-x-screen-min-width) {
         width: 100%;
         margin-top: $offset-xlarge;

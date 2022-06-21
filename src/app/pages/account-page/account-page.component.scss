@@ -14,6 +14,10 @@
       }
     }
 
+    .account__info-mobile_only {
+      display: none;
+    }
+
     &__user {
       padding: $offset-large 3.3rem;
       box-shadow: inset 0 -0.1rem 0 $color-button-disable;

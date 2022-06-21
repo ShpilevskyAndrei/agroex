@@ -20,6 +20,7 @@
         >
         </app-sidebar>
         <div class="account__info" [ngSwitch]="this.selectedTab">
+          <div class="account__info-mobile_only">{{ this.selectedTab }}</div>
           <app-my-advertisements
             *ngSwitchCase="userPanelOptionId.MyAdvertisements"
             [myAdvertisementsRequest]="myAdvertisementsRequest"
