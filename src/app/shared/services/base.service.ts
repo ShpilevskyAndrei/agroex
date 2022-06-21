@@ -36,10 +36,10 @@ export class BaseService {
           headers: this.setHeaders(arg.token).headers,
         })
         .pipe(
-          catchError((err: any, caught: Observable<any>): Observable<any> => {
+          catchError((err: any): Observable<any> => {
             if (err.status === 401) {
-              this.store?.dispatch(RegistrationPageActions.getUserLogout());
               this.router?.navigate(['registration']);
+              this.store?.dispatch(RegistrationPageActions.getUserLogout());
               return err;
             }
             return err;
