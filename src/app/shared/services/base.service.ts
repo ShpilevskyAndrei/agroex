@@ -6,11 +6,10 @@ import {
 } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { RegistrationPageActions } from '../../state/registration-page/registration-page.actions';
 
+import { RegistrationPageActions } from '../../state/registration-page/registration-page.actions';
 import { IHttpGetRequestArguments } from '../interfaces/http-get-request-arguments.interface';
 import { environment } from '../../../environments/environment';
 
@@ -41,7 +40,6 @@ export class BaseService {
         })
         .pipe(
           catchError((errorResponse: HttpErrorResponse) => {
-            console.log(errorResponse);
             if (errorResponse.status === 401) {
               this.store.dispatch(RegistrationPageActions.getUserLogout());
               this.router.navigate(['registration']);
@@ -55,7 +53,6 @@ export class BaseService {
       .get<T>(this.apiUrl + url, this.setHeaders(arg?.token))
       .pipe(
         catchError((errorResponse: HttpErrorResponse) => {
-          console.log(errorResponse);
           if (errorResponse.status === 401) {
             this.store.dispatch(RegistrationPageActions.getUserLogout());
             this.router.navigate(['registration']);
@@ -70,7 +67,6 @@ export class BaseService {
       .post<T>(this.apiUrl + url, data, this.setHeaders(token))
       .pipe(
         catchError((errorResponse: HttpErrorResponse) => {
-          console.log(errorResponse);
           if (errorResponse.status === 401) {
             this.store.dispatch(RegistrationPageActions.getUserLogout());
             this.router.navigate(['registration']);
@@ -85,7 +81,6 @@ export class BaseService {
       .put<T>(this.apiUrl + url, data, this.setHeaders(token))
       .pipe(
         catchError((errorResponse: HttpErrorResponse) => {
-          console.log(errorResponse);
           if (errorResponse.status === 401) {
             this.store.dispatch(RegistrationPageActions.getUserLogout());
             this.router.navigate(['registration']);
@@ -100,7 +95,6 @@ export class BaseService {
       .patch<T>(this.apiUrl + url, data, this.setHeaders(token))
       .pipe(
         catchError((errorResponse: HttpErrorResponse) => {
-          console.log(errorResponse);
           if (errorResponse.status === 401) {
             this.store.dispatch(RegistrationPageActions.getUserLogout());
             this.router.navigate(['registration']);
@@ -115,7 +109,6 @@ export class BaseService {
       .delete<T>(this.apiUrl + url, this.setHeaders(token))
       .pipe(
         catchError((errorResponse: HttpErrorResponse) => {
-          console.log(errorResponse);
           if (errorResponse.status === 401) {
             this.store.dispatch(RegistrationPageActions.getUserLogout());
             this.router.navigate(['registration']);
