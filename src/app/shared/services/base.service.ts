@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+
 import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { RegistrationPageActions } from '../../state/registration-page/registration-page.actions';
 
 import { IHttpGetRequestArguments } from '../interfaces/http-get-request-arguments.interface';
 import { environment } from '../../../environments/environment';
@@ -17,14 +22,29 @@ export class BaseService {
 
   private apiUrl = environment.apiUrl;
 
-  constructor(protected httpClient: HttpClient) {}
+  constructor(
+    protected httpClient: HttpClient,
+    private router?: Router,
+    private store?: Store
+  ) {}
 
   public get<T>(url: string, arg?: IHttpGetRequestArguments): Observable<T> {
     if (arg?.params && Object.keys(arg?.params)) {
-      return this.httpClient.get<T>(this.apiUrl + url, {
-        params: arg.params,
-        headers: this.setHeaders(arg.token).headers,
-      });
+      return this.httpClient
+        .get<T>(this.apiUrl + url, {
+          params: arg.params,
+          headers: this.setHeaders(arg.token).headers,
+        })
+        .pipe(
+          catchError((err: any, caught: Observable<any>): Observable<any> => {
+            if (err.status === 401) {
+              this.store?.dispatch(RegistrationPageActions.getUserLogout());
+              this.router?.navigate(['registration']);
+              return err;
+            }
+            return err;
+          })
+        );
     }
     return this.httpClient.get<T>(
       this.apiUrl + url,
