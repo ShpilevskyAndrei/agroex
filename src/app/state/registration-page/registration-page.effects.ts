@@ -16,14 +16,34 @@ export class RegistrationPageEffects {
       ofType(RegistrationPageActions.getUserRequest),
       switchMap(({ user, url }) =>
         this.userService.create(user, url).pipe(
-          map((userApiResponse: UserApiResponse) =>
-            RegistrationPageActions.getUserSuccess({
+          map((userApiResponse: UserApiResponse) => {
+            this.toastService.addToast({
+              title: `User ${userApiResponse.user.username} ${url} will success`,
+              toastType: ToastType.Success,
+              width: '60vw',
+              buttonText: 'Ok',
+            });
+
+            return RegistrationPageActions.getUserSuccess({
               user: userApiResponse.user,
-            })
-          ),
-          catchError((error: HttpErrorResponse) =>
-            of(RegistrationPageActions.getUserError({ error: error }))
-          )
+            });
+          }),
+          catchError((error: HttpErrorResponse) => {
+            this.toastService.addToast({
+              title: `The user can not ${
+                url === 'register' ? 'created' : 'log in'
+              }`,
+              message: `${
+                url === 'register'
+                  ? error.error.message
+                  : 'Incorrect data entered'
+              }`,
+              toastType: ToastType.Error,
+              width: '408px',
+            });
+
+            return of(RegistrationPageActions.getUserError({ error: error }));
+          })
         )
       )
     );
