@@ -43,7 +43,7 @@ export const AdvertisementsListBetActions = {
 export const AdvertisementsListBuyActions = {
   getAdvertisementsBuyRequest: createAction(
     '[ADVERTISEMENTS_LIST_BUY] buy requested',
-    props<{ slug: string | number }>()
+    props<{ buyOptions: Record<string, string> }>()
   ),
 
   getAdvertisementsBuySuccess: createAction(

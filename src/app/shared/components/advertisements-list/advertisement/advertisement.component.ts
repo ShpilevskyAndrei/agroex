@@ -24,18 +24,11 @@ export class AdvertisementComponent {
 
   @Output() public setBet: EventEmitter<Record<string, string | number>> =
     new EventEmitter<Record<string, string | number>>();
-  @Output() public setBuy: EventEmitter<string | number> = new EventEmitter<
-    string | number
-  >();
 
   constructor(private router: Router) {}
 
   public onSetBet(newBetOptions: Record<string, string | number>): void {
     this.setBet.emit(newBetOptions);
-  }
-
-  public onSetBuy(slug: string | number): void {
-    this.setBuy.emit(slug);
   }
 
   public openAdvertisement(): void {

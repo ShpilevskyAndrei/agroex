@@ -98,9 +98,9 @@ export class AdvertisementsListPageEffects {
     return this.actions$.pipe(
       ofType(AdvertisementsListBuyActions.getAdvertisementsBuyRequest),
       concatLatestFrom(() => this.store.select(selectUserToken)),
-      switchMap(([{ slug }, selectUserToken]) =>
+      switchMap(([{ buyOptions }, selectUserToken]) =>
         this.advertisementsListService
-          .addAdvertisementBuy(slug, selectUserToken)
+          .addAdvertisementBuy(buyOptions.slug, {}, selectUserToken)
           .pipe(
             concatMap(() => {
               this.toastService.addToast({
@@ -111,9 +111,9 @@ export class AdvertisementsListPageEffects {
               });
 
               return [
-                AdvertisementsListBetActions.getAdvertisementsBetSuccess(),
+                AdvertisementsListBuyActions.getAdvertisementsBuySuccess(),
                 AdvertisementPageActions.getAdvertisementRequest({
-                  slug: `${slug}`,
+                  slug: `${buyOptions.slug}`,
                   disableReloading: true,
                 }),
               ];
@@ -131,7 +131,7 @@ export class AdvertisementsListPageEffects {
                   error: error,
                 }),
                 AdvertisementPageActions.getAdvertisementRequest({
-                  slug: `${slug}`,
+                  slug: `${buyOptions.slug}`,
                   disableReloading: true,
                 })
               );
