@@ -12,7 +12,7 @@ import { Subscription, tap } from 'rxjs';
 import { BetValidators } from './intefaces/bet-validator';
 import { BetModalDataInterface } from './intefaces/bet-modal-data.interface';
 import { CurrenciesEnum } from './enums/currencies.enum';
-import { REGEXP_FOR_IS_INTEGER_NUMBER } from '../../../../../pages/create-advertisement-page/constant/regexp';
+import { REGEXP_FOR_IS_INTEGER_NUMBER } from '../../../../constants/regexp';
 
 @UntilDestroy()
 @Component({

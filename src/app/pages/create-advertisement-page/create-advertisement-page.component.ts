@@ -16,10 +16,8 @@ import { UserPanelOptionId } from '../../shared/components/header/enums/user-pan
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IUser } from '../../shared/interfaces/user.interface';
 import { MAX_FILE_SIZE } from './constant/max-file-sizes';
-import {
-  REGEXP_FOR_IS_INTEGER_NUMBER,
-  REGEXP_FOR_IS_NUMBER,
-} from './constant/regexp';
+import { REGEXP_FOR_IS_NUMBER } from './constant/regexp';
+import { REGEXP_FOR_IS_INTEGER_NUMBER } from '../../shared/constants/regexp';
 import {
   ICategory,
   ICountry,

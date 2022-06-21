@@ -22,7 +22,7 @@ import { IAdRequestInterface } from '../../shared/components/advertisements-list
 import { CurrenciesEnum } from '../../shared/components/advertisements-list/advertisement/bet-modal/enums/currencies.enum';
 import { BetValidators } from '../../shared/components/advertisements-list/advertisement/bet-modal/intefaces/bet-validator';
 import { TASHKENT_COORDINATES } from '../../shared/constants/tashkent-coordinates';
-import { REGEXP_FOR_IS_INTEGER_NUMBER } from '../create-advertisement-page/constant/regexp';
+import { REGEXP_FOR_IS_INTEGER_NUMBER } from '../../shared/constants/regexp';
 
 @UntilDestroy()
 @Component({
