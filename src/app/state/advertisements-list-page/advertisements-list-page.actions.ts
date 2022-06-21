@@ -42,16 +42,16 @@ export const AdvertisementsListBetActions = {
 
 export const AdvertisementsListBuyActions = {
   getAdvertisementsBuyRequest: createAction(
-    '[ADVERTISEMENTS_LIST_BET] buy requested',
+    '[ADVERTISEMENTS_LIST_BUY] buy requested',
     props<{ slug: string | number }>()
   ),
 
   getAdvertisementsBuySuccess: createAction(
-    '[ADVERTISEMENTS_LIST_BET] buy success'
+    '[ADVERTISEMENTS_LIST_BUY] buy success'
   ),
 
   getAdvertisementsBuyError: createAction(
-    '[ADVERTISEMENTS_LIST_BET] buy error',
+    '[ADVERTISEMENTS_LIST_BUY] buy error',
     props<{ error: HttpErrorResponse }>()
   ),
 };
