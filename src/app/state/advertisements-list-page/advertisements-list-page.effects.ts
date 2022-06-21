@@ -7,6 +7,7 @@ import { AgroexToastService, ToastType } from 'ngx-agroex-toast';
 
 import {
   AdvertisementsListBetActions,
+  AdvertisementsListBuyActions,
   AdvertisementsListPageActions,
 } from './advertisements-list-page.actions';
 import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
@@ -84,6 +85,53 @@ export class AdvertisementsListPageEffects {
                 }),
                 AdvertisementPageActions.getAdvertisementRequest({
                   slug: `${newBetOptions.slug}`,
+                  disableReloading: true,
+                })
+              );
+            })
+          )
+      )
+    );
+  });
+
+  public advertisementsBuy$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AdvertisementsListBuyActions.getAdvertisementsBuyRequest),
+      concatLatestFrom(() => this.store.select(selectUserToken)),
+      switchMap(([{ slug }, selectUserToken]) =>
+        this.advertisementsListService
+          .addAdvertisementBuy(slug, selectUserToken)
+          .pipe(
+            concatMap(() => {
+              this.toastService.addToast({
+                toastType: ToastType.Success,
+                title: 'Purchase accepted',
+                width: '60vw',
+                buttonText: 'Ok',
+              });
+
+              return [
+                AdvertisementsListBetActions.getAdvertisementsBetSuccess(),
+                AdvertisementPageActions.getAdvertisementRequest({
+                  slug: `${slug}`,
+                  disableReloading: true,
+                }),
+              ];
+            }),
+            catchError((error: HttpErrorResponse) => {
+              this.toastService.addToast({
+                title: 'Purchase not accepted',
+                message: error.error.message,
+                toastType: ToastType.Error,
+                width: '60vw',
+              });
+
+              return of(
+                AdvertisementsListBuyActions.getAdvertisementsBuyError({
+                  error: error,
+                }),
+                AdvertisementPageActions.getAdvertisementRequest({
+                  slug: `${slug}`,
                   disableReloading: true,
                 })
               );

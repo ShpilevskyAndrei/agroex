@@ -25,6 +25,7 @@ import {
 } from '../../state/advertisements-list-page/advertisements-list-page.selectors';
 import {
   AdvertisementsListBetActions,
+  AdvertisementsListBuyActions,
   AdvertisementsListPageActions,
 } from '../../state/advertisements-list-page/advertisements-list-page.actions';
 import { UserRole } from '../../shared/components/header/enums/user-role';
@@ -40,6 +41,7 @@ import { UserRole } from '../../shared/components/header/enums/user-role';
     [advertisementsLoadingStatus]="advertisementsLoadingStatus$ | async"
     (logout)="onLogout()"
     (setBet)="onSetBet($event)"
+    (setBuy)="onSetBuy($event)"
     (selectTab)="onSelectTab($event)"
   ></app-main-dashboard>`,
 })
@@ -74,6 +76,12 @@ export class MainDashboardContainerComponent implements OnInit {
 
   public onLogout(): void {
     this.store.dispatch(RegistrationPageActions.getUserLogout());
+  }
+
+  public onSetBuy(slug: string | number): void {
+    this.store.dispatch(
+      AdvertisementsListBuyActions.getAdvertisementsBuyRequest({ slug })
+    );
   }
 
   public onSetBet(newBetOptions: Record<string, string | number>): void {

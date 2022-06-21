@@ -39,3 +39,19 @@ export const AdvertisementsListBetActions = {
     props<{ slug: string }>()
   ),
 };
+
+export const AdvertisementsListBuyActions = {
+  getAdvertisementsBuyRequest: createAction(
+    '[ADVERTISEMENTS_LIST_BET] bet requested',
+    props<{ slug: string | number }>()
+  ),
+
+  getAdvertisementsBuySuccess: createAction(
+    '[ADVERTISEMENTS_LIST_BET] bet success'
+  ),
+
+  getAdvertisementsBuyError: createAction(
+    '[ADVERTISEMENTS_LIST_BET] bet error',
+    props<{ error: HttpErrorResponse }>()
+  ),
+};

@@ -5,6 +5,7 @@ import { IAdvertisementRequestInterface } from '../../shared/components/advertis
 import { DEFAULT_LOADING_STATUS } from '../../shared/constants/lodaing-default-status';
 import {
   AdvertisementsListBetActions,
+  AdvertisementsListBuyActions,
   AdvertisementsListPageActions,
 } from './advertisements-list-page.actions';
 import { IAdvertisementInterface } from '../../shared/components/advertisements-list/interfaces/advertisement.interface';
@@ -14,12 +15,14 @@ export const ADVERTISEMENTS_LIST_PAGE = 'advertisementsListPage';
 export interface AdvertisementsListPageState {
   advertisementsLoadingStatus: LoadingStatus;
   advertisementsBetLoadingStatus: LoadingStatus;
+  advertisementsBuyLoadingStatus: LoadingStatus;
   advertisements: IAdvertisementRequestInterface;
 }
 
 const initialState: AdvertisementsListPageState = {
   advertisementsLoadingStatus: DEFAULT_LOADING_STATUS,
   advertisementsBetLoadingStatus: DEFAULT_LOADING_STATUS,
+  advertisementsBuyLoadingStatus: DEFAULT_LOADING_STATUS,
   advertisements: { advertisementCount: null, advertisements: [] },
 };
 
@@ -106,5 +109,36 @@ export const ADVERTISEMENTS_LIST_PAGE_REDUCER = createReducer(
         advertisementsBetLoadingStatus: DEFAULT_LOADING_STATUS,
       };
     }
+  ),
+  on(
+    AdvertisementsListBuyActions.getAdvertisementsBuyRequest,
+    (state): AdvertisementsListPageState => ({
+      ...state,
+      advertisementsLoadingStatus: DEFAULT_LOADING_STATUS,
+      advertisementsBuyLoadingStatus: DEFAULT_LOADING_STATUS,
+    })
+  ),
+  on(
+    AdvertisementsListBuyActions.getAdvertisementsBuySuccess,
+    (state): AdvertisementsListPageState => ({
+      ...state,
+      advertisementsBuyLoadingStatus: {
+        loading: false,
+        loaded: true,
+        error: null,
+      },
+    })
+  ),
+  on(
+    AdvertisementsListBuyActions.getAdvertisementsBuyError,
+    (state, { error }): AdvertisementsListPageState => ({
+      ...state,
+      advertisementsLoadingStatus: {
+        loading: false,
+        loaded: true,
+        error: null,
+      },
+      advertisementsBetLoadingStatus: { loading: false, loaded: false, error },
+    })
   )
 );

@@ -29,6 +29,9 @@ export class AdvertisementsListComponent {
 
   @Output() public setBet: EventEmitter<Record<string, string | number>> =
     new EventEmitter<Record<string, string | number>>();
+  @Output() public setBuy: EventEmitter<string | number> = new EventEmitter<
+    string | number
+  >();
   @Output()
   public moderationDecision: EventEmitter<IAdvertisementModerationRequest> = new EventEmitter<IAdvertisementModerationRequest>();
 
@@ -37,5 +40,9 @@ export class AdvertisementsListComponent {
 
   public onSetBet(newBetOptions: Record<string, string | number>): void {
     this.setBet.emit(newBetOptions);
+  }
+
+  public onSetBuy(slug: string | number): void {
+    this.setBuy.emit(slug);
   }
 }
