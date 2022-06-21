@@ -25,9 +25,11 @@ import {
 } from '../../state/advertisements-list-page/advertisements-list-page.selectors';
 import {
   AdvertisementsListBetActions,
+  AdvertisementsListBuyActions,
   AdvertisementsListPageActions,
 } from '../../state/advertisements-list-page/advertisements-list-page.actions';
 import { UserRole } from '../../shared/components/header/enums/user-role';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-dashboard-container',
@@ -40,6 +42,7 @@ import { UserRole } from '../../shared/components/header/enums/user-role';
     [advertisementsLoadingStatus]="advertisementsLoadingStatus$ | async"
     (logout)="onLogout()"
     (setBet)="onSetBet($event)"
+    (setBuy)="onSetBuy($event)"
     (selectTab)="onSelectTab($event)"
   ></app-main-dashboard>`,
 })
@@ -51,7 +54,11 @@ export class MainDashboardContainerComponent implements OnInit {
   public advertisementsRequest$: Observable<IAdvertisementRequestInterface | null>;
   public advertisementsLoadingStatus$: Observable<LoadingStatus | null>;
 
-  constructor(private store: Store, private spinner: NgxSpinnerService) {
+  constructor(
+    private store: Store,
+    private spinner: NgxSpinnerService,
+    private router: Router
+  ) {
     this.categories$ = this.store.select(selectCategoriesData);
     this.user$ = this.store.select(selectUserData);
     this.userRole$ = this.store.select(selectUserRole);
@@ -82,6 +89,13 @@ export class MainDashboardContainerComponent implements OnInit {
         newBetOptions,
       })
     );
+  }
+
+  public onSetBuy(buyOptions: Record<string, string>): void {
+    this.store.dispatch(
+      AdvertisementsListBuyActions.getAdvertisementsBuyRequest({ buyOptions })
+    );
+    this.router.navigate(['account']);
   }
 
   public onBetTimerDown(slug: string): void {

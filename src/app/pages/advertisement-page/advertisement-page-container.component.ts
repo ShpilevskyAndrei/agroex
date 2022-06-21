@@ -82,6 +82,13 @@ export class AdvertisementPageContainerComponent implements OnInit {
     );
   }
 
+  public onSetBuy(buyOptions: Record<string, string>): void {
+    this.store.dispatch(
+      AdvertisementsListBuyActions.getAdvertisementsBuyRequest({ buyOptions })
+    );
+    this.router.navigate(['account']);
+  }
+
   public ngOnInit(): void {
     this.slug$ = this.route.params
       .pipe(
@@ -96,12 +103,5 @@ export class AdvertisementPageContainerComponent implements OnInit {
         untilDestroyed(this)
       )
       .subscribe();
-  }
-
-  public onSetBuy(buyOptions: Record<string, string>): void {
-    this.store.dispatch(
-      AdvertisementsListBuyActions.getAdvertisementsBuyRequest({ buyOptions })
-    );
-    this.router.navigate(['account']);
   }
 }

@@ -24,6 +24,8 @@ export class AdvertisementsListButtonsComponent {
 
   @Output() public setBet: EventEmitter<Record<string, string>> =
     new EventEmitter<Record<string, string>>();
+  @Output() public setBuy: EventEmitter<Record<string, string>> =
+    new EventEmitter<Record<string, string>>();
 
   private bet: string;
 
@@ -52,6 +54,10 @@ export class AdvertisementsListButtonsComponent {
         })
       )
       .subscribe();
+  }
+
+  public onSetBuy(): void {
+    this.setBuy.emit({ slug: this.advertisement.slug });
   }
 
   public stopPropagation(event: MouseEvent): void {

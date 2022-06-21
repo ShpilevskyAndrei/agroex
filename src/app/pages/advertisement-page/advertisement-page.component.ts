@@ -112,6 +112,10 @@ export class AdvertisementPageComponent implements OnChanges {
     this.setBet.emit(newBetOptions);
   }
 
+  public onSetBuy(buyOptions: Record<string, string>): void {
+    this.setBuy.emit(buyOptions);
+  }
+
   public ngOnChanges(changes: SimpleChanges): void {
     if (this.advertisement && changes.advertisement) {
       this.betForm
@@ -153,9 +157,5 @@ export class AdvertisementPageComponent implements OnChanges {
 
   public onSelectTab(selectedOptionId: UserPanelOptionId): void {
     this.selectTab.emit(selectedOptionId);
-  }
-
-  public onSetBuy(buyOptions: Record<string, string>): void {
-    this.setBuy.emit(buyOptions);
   }
 }
