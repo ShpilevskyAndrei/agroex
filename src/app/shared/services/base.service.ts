@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
@@ -24,8 +28,8 @@ export class BaseService {
 
   constructor(
     protected httpClient: HttpClient,
-    private router?: Router,
-    private store?: Store
+    protected router: Router,
+    protected store: Store
   ) {}
 
   public get<T>(url: string, arg?: IHttpGetRequestArguments): Observable<T> {
@@ -36,48 +40,89 @@ export class BaseService {
           headers: this.setHeaders(arg.token).headers,
         })
         .pipe(
-          catchError((err: any): Observable<any> => {
-            if (err.status === 401) {
-              this.router?.navigate(['registration']);
-              this.store?.dispatch(RegistrationPageActions.getUserLogout());
-              return err;
+          catchError((errorResponse: HttpErrorResponse) => {
+            console.log(errorResponse);
+            if (errorResponse.status === 401) {
+              this.store.dispatch(RegistrationPageActions.getUserLogout());
+              this.router.navigate(['registration']);
             }
-            return err;
+            throw errorResponse;
           })
         );
     }
-    return this.httpClient.get<T>(
-      this.apiUrl + url,
-      this.setHeaders(arg?.token)
-    );
+
+    return this.httpClient
+      .get<T>(this.apiUrl + url, this.setHeaders(arg?.token))
+      .pipe(
+        catchError((errorResponse: HttpErrorResponse) => {
+          console.log(errorResponse);
+          if (errorResponse.status === 401) {
+            this.store.dispatch(RegistrationPageActions.getUserLogout());
+            this.router.navigate(['registration']);
+          }
+          throw errorResponse;
+        })
+      );
   }
 
   public post<T>(url: string, data: object, token?: string): Observable<T> {
-    return this.httpClient.post<T>(
-      this.apiUrl + url,
-      data,
-      this.setHeaders(token)
-    );
+    return this.httpClient
+      .post<T>(this.apiUrl + url, data, this.setHeaders(token))
+      .pipe(
+        catchError((errorResponse: HttpErrorResponse) => {
+          console.log(errorResponse);
+          if (errorResponse.status === 401) {
+            this.store.dispatch(RegistrationPageActions.getUserLogout());
+            this.router.navigate(['registration']);
+          }
+          throw errorResponse;
+        })
+      );
   }
 
   public put<T>(url: string, data: object, token?: string): Observable<T> {
-    return this.httpClient.put<T>(
-      this.apiUrl + url,
-      data,
-      this.setHeaders(token)
-    );
+    return this.httpClient
+      .put<T>(this.apiUrl + url, data, this.setHeaders(token))
+      .pipe(
+        catchError((errorResponse: HttpErrorResponse) => {
+          console.log(errorResponse);
+          if (errorResponse.status === 401) {
+            this.store.dispatch(RegistrationPageActions.getUserLogout());
+            this.router.navigate(['registration']);
+          }
+          throw errorResponse;
+        })
+      );
   }
 
   public patch<T>(url: string, data: object, token?: string): Observable<T> {
-    return this.httpClient.patch<T>(
-      this.apiUrl + url,
-      data,
-      this.setHeaders(token)
-    );
+    return this.httpClient
+      .patch<T>(this.apiUrl + url, data, this.setHeaders(token))
+      .pipe(
+        catchError((errorResponse: HttpErrorResponse) => {
+          console.log(errorResponse);
+          if (errorResponse.status === 401) {
+            this.store.dispatch(RegistrationPageActions.getUserLogout());
+            this.router.navigate(['registration']);
+          }
+          throw errorResponse;
+        })
+      );
   }
 
   public delete<T>(url: string, token?: string): Observable<T> {
-    return this.httpClient.delete<T>(this.apiUrl + url, this.setHeaders(token));
+    return this.httpClient
+      .delete<T>(this.apiUrl + url, this.setHeaders(token))
+      .pipe(
+        catchError((errorResponse: HttpErrorResponse) => {
+          console.log(errorResponse);
+          if (errorResponse.status === 401) {
+            this.store.dispatch(RegistrationPageActions.getUserLogout());
+            this.router.navigate(['registration']);
+          }
+          throw errorResponse;
+        })
+      );
   }
 
   private setHeaders(token?: string): { headers: HttpHeaders } {
