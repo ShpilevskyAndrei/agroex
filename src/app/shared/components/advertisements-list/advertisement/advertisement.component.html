@@ -5,13 +5,13 @@
 >
   <div
     class="advertisement-wrap__img"
-    [ngClass]="{ 'not-moderated': nonModeratedAdvertisementOnlyForUser() }"
+    [ngClass]="{ 'not-moderated': isModerated() }"
   >
     <img src="{{ advertisement.img }}" alt="apple" />
   </div>
   <div
     class="advertisement-wrap__desc"
-    [ngClass]="{ 'not-moderated': nonModeratedAdvertisementOnlyForUser() }"
+    [ngClass]="{ 'not-moderated': isModerated() }"
   >
     <app-advertisement-title
       [showOwnerFlag]="showOwnerFlag"
@@ -38,17 +38,15 @@
       class="advertisement-wrap__price"
       [user]="user"
       [advertisement]="advertisement"
-      [ngClass]="{ 'not-moderated': nonModeratedAdvertisementOnlyForUser() }"
+      [ngClass]="{ 'not-moderated': isModerated() }"
     ></app-advertisement-price>
     <ng-content select="[buttons]"></ng-content>
 
-    <ng-container *ngIf="advertisement.moderationStatus === 'rejected'">
+    <ng-container *ngIf="advertisement.moderationStatus === ModerationStatus.Rejected">
       <div
         class="advertisement-moderators_message advertisement-moderators_message-rejected"
       >
-        <div
-          class="advertisement-moderators_message-icon advertisement-moderators_message-icon-rejected"
-        ></div>
+        <mat-icon class="advertisement-moderators_message-icon advertisement-moderators_message-icon-rejected">highlight_off</mat-icon>
         <div class="advertisement-moderators_message-bottom-wrap">
           <div class="advertisement-moderators_message-content">
             {{ advertisement.moderationComment }}
@@ -60,13 +58,12 @@
       </div>
     </ng-container>
 
-    <ng-container *ngIf="nonModeratedAdvertisementOnlyForUser()">
+    <ng-container *ngIf="isModerated()">
       <div class="advertisement-moderators_message">
-        <div class="advertisement-moderators_message-icon"></div>
+        <mat-icon class="advertisement-moderators_message-icon">alarm</mat-icon>
         <div class="advertisement-moderators_message-bottom-wrap">
           <div class="advertisement-moderators_message-content">
-            This advertisement now unactive and will moderate soon, please,
-            check later...
+            Inactive and will be moderated
           </div>
           <div class="advertisement-moderators_message-right">
             From AGROEX support

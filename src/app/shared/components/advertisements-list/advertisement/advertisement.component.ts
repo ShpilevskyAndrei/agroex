@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { IAdvertisementInterface } from '../interfaces/advertisement.interface';
 import { IUser } from '../../../interfaces/user.interface';
 import { UserRole } from '../../header/enums/user-role';
+import { ModerationStatus } from '../../header/enums/moderation-status';
 
 @Component({
   selector: 'app-advertisement',
@@ -27,6 +28,8 @@ export class AdvertisementComponent {
   @Output() public setBet: EventEmitter<Record<string, string | number>> =
     new EventEmitter<Record<string, string | number>>();
 
+  public ModerationStatus = ModerationStatus;
+
   constructor(private router: Router) {}
 
   public onSetBet(newBetOptions: Record<string, string | number>): void {
@@ -39,14 +42,10 @@ export class AdvertisementComponent {
     }
   }
 
-  public nonModeratedAdvertisementOnlyForUser(): boolean {
-    if (
-      this.advertisement.moderationStatus === 'unmoderated' &&
+  public isModerated(): boolean {
+    return (
+      this.advertisement.moderationStatus === ModerationStatus.Unmoderated &&
       this.userRole === UserRole.User
-    ) {
-      return true;
-    } else {
-      return false;
-    }
+    );
   }
 }
