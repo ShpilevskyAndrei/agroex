@@ -27,14 +27,14 @@
             [matMenuTriggerFor]="notifications">
             <mat-icon
               class="main-header__notifications-icon"
-              [ngClass]="{ 'with-dot': notificationMessage?.length }">notifications_none</mat-icon>
+              [ngClass]="{ 'with-dot': (notificationMessage$ | async)?.length }">notifications_none</mat-icon>
           </div>
           <mat-menu
             class="main-header__menu notifications"
             #notifications="matMenu"
             xPosition="before">
-            <ng-container *ngIf="notificationMessage?.length; else noMessage">
-              <div mat-menu-item *ngFor="let message of notificationMessage">
+            <ng-container *ngIf="(notificationMessage$ | async)?.length; else noMessage">
+              <div mat-menu-item *ngFor="let message of (notificationMessage$ | async)">
                 <span class="title">{{ message.notification?.title }}</span>
                 <p class="content">{{ message.notification?.body }}</p>
               </div>

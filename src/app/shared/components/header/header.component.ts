@@ -9,7 +9,7 @@ import {
 import { MatSelect } from '@angular/material/select';
 import { Router } from '@angular/router';
 import { AngularFireMessaging } from '@angular/fire/compat/messaging';
-import { mergeMap } from 'rxjs';
+import { mergeMap, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import firebase from 'firebase/compat';
 import MessagePayload = firebase.messaging.MessagePayload;
@@ -20,6 +20,9 @@ import { LOGGED_ROLE_CONFIG } from './constants/user-role-config';
 import { UserPanelOptionId } from './enums/user-panel-option-id';
 import { UserRole } from './enums/user-role';
 import { IUserOptionsType } from './interfaces/user-options-type.interface';
+import { Store } from '@ngrx/store';
+import { AppRootActions } from '../../../state/app-root/app-root.actions';
+import { getNotificationMessage } from '../../../state/app-root/app-root.selectors';
 
 @Component({
   selector: 'app-header',
@@ -29,27 +32,32 @@ import { IUserOptionsType } from './interfaces/user-options-type.interface';
 export class HeaderComponent implements OnChanges {
   @Input() public user: IUser | null;
   @Input() public userRole: UserRole | null;
-  @Input() public notificationMessage: MessagePayload[] | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
   @Output() public selectTab: EventEmitter<UserPanelOptionId> =
     new EventEmitter<UserPanelOptionId>();
-  @Output() public addNotificationMessage: EventEmitter<MessagePayload> =
-    new EventEmitter<MessagePayload>();
 
   public userRoleConfig = LOGGED_ROLE_CONFIG;
   public userRoles = UserRole;
   public userPanelOption = USER_PANEL_OPTION;
   public userCurrentRole: UserRole | null = UserRole.Guest;
 
+  public notificationMessage$: Observable<MessagePayload[] | null>;
+
   constructor(
     private router: Router,
-    private afMessaging: AngularFireMessaging
+    private afMessaging: AngularFireMessaging,
+    private store: Store
   ) {
+    this.notificationMessage$ = this.store.select(getNotificationMessage);
     this.afMessaging.messages
       .pipe(
         tap((message) => {
-          this.addNotificationMessage.emit(message);
+          // this.addNotificationMessage.emit(message);
+
+          this.store.dispatch(
+            AppRootActions.getNotificationMessage({ message })
+          );
         })
       )
       .subscribe();
@@ -103,7 +111,6 @@ export class HeaderComponent implements OnChanges {
   }
 
   public onSelectPage(selectedOptionId: IUserOptionsType): void {
-    console.log(this.notificationMessage);
     this.selectTab.emit(selectedOptionId.id);
   }
 }
