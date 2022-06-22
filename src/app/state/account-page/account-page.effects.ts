@@ -6,7 +6,10 @@ import { AgroexToastService, ToastType } from 'ngx-agroex-toast';
 import { catchError, map, of, switchMap, withLatestFrom } from 'rxjs';
 
 import { AccountPageService } from '../../pages/account-page/services/account-page.service';
-import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
+import {
+  IAdvertisementRequestInterface,
+  IMyBetsRequestInterface,
+} from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
 import { selectUserToken } from '../registration-page/registration-page.selectors';
 import { AccountPageActions } from './account-page.actions';
 import { IMyOrdersInterface } from '../../pages/account-page/my-orders/interfaces/my-orders-request.interface';
@@ -67,6 +70,29 @@ export class AccountPageEffects {
               })
             );
           })
+        )
+      )
+    );
+  });
+
+  public myBettings$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AccountPageActions.getMyBettingsRequest),
+      withLatestFrom(this.store.select(selectUserToken)),
+      switchMap(([_, selectUserToken]) =>
+        this.accountPageService.getMyBettings(selectUserToken).pipe(
+          map((myBettings: IMyBetsRequestInterface) =>
+            AccountPageActions.getMyBettingsSuccess({
+              myBettings,
+            })
+          ),
+          catchError((error: HttpErrorResponse) =>
+            of(
+              AccountPageActions.getMyBettingsError({
+                error: error,
+              })
+            )
+          )
         )
       )
     );

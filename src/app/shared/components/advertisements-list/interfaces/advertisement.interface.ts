@@ -22,7 +22,7 @@ export interface IAdvertisementInterface {
   userBets: IAdvertisementBetInterface[];
 }
 
-export interface IAdvertisementMyBetInterface {
+export interface IMyBetInterface {
   id: number;
   img: string;
   createAt: string;

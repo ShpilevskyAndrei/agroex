@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import {
   IAdvertisementRequestInterface,
-  IAdvertisementRequestMyBetsInterface,
+  IMyBetsRequestInterface,
 } from '../../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
 import { BaseService } from '../../../shared/services/base.service';
 import { IMyOrdersInterface } from '../my-orders/interfaces/my-orders-request.interface';
@@ -29,8 +29,8 @@ export class AccountPageService extends BaseService {
 
   public getMyBettings(
     token?: string
-  ): Observable<IAdvertisementRequestMyBetsInterface> {
-    return this.get<IAdvertisementRequestMyBetsInterface>(
+  ): Observable<IMyBetsRequestInterface> {
+    return this.get<IMyBetsRequestInterface>(
       'advertisements/advertisements/my-bets',
       { token }
     );

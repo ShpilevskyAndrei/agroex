@@ -1,6 +1,6 @@
 import {
   IAdvertisementInterface,
-  IAdvertisementMyBetInterface,
+  IMyBetInterface,
 } from './advertisement.interface';
 
 export interface IAdvertisementRequestInterface {
@@ -8,7 +8,7 @@ export interface IAdvertisementRequestInterface {
   advertisements: IAdvertisementInterface[];
 }
 
-export interface IAdvertisementRequestMyBetsInterface {
+export interface IMyBetsRequestInterface {
   advertisementCount: number | null;
-  advertisements: IAdvertisementMyBetInterface[];
+  advertisements: IMyBetInterface[];
 }

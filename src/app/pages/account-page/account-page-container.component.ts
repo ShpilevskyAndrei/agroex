@@ -7,6 +7,8 @@ import { AccountPageActions } from '../../state/account-page/account-page.action
 import {
   selectMyAdvertisementsData,
   selectMyAdvertisementsLoadingStatus,
+  selectMyBettingsLoadingStatus,
+  selectMyBettingsData,
   selectMyOrdersData,
   selectMyOrdersLoadingStatus,
 } from '../../state/account-page/account-page.selectors';
@@ -19,7 +21,10 @@ import {
 import { IUser } from '../../shared/interfaces/user.interface';
 import { selectAppRootOptionId } from '../../state/app-root/app-root.selectors';
 import { UserRole } from '../../shared/components/header/enums/user-role';
-import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
+import {
+  IAdvertisementRequestInterface,
+  IMyBetsRequestInterface,
+} from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IMyOrdersInterface } from './my-orders/interfaces/my-orders-request.interface';
 
@@ -31,6 +36,8 @@ import { IMyOrdersInterface } from './my-orders/interfaces/my-orders-request.int
     [selectedTab]="selectedTab$ | async"
     [myAdvertisementsRequest]="myAdvertisementsRequest$ | async"
     [myAdvertisementsLoadingStatus]="myAdvertisementsLoadingStatus$ | async"
+    [myBettingsRequest]="myBettingsRequest$ | async"
+    [myBettingsLoadingStatus]="myBettingsLoadingStatus$ | async"
     [myOrdersRequest]="myOrdersRequest$ | async"
     [myOrdersLoadingStatus]="myOrdersLoadingStatus$ | async"
     (logout)="onLogout()"
@@ -46,6 +53,8 @@ export class AccountPageContainerComponent {
   public selectedTab$: Observable<string | null>;
   public myAdvertisementsRequest$: Observable<IAdvertisementRequestInterface | null>;
   public myAdvertisementsLoadingStatus$: Observable<LoadingStatus | null>;
+  public myBettingsRequest$: Observable<IMyBetsRequestInterface | null>;
+  public myBettingsLoadingStatus$: Observable<LoadingStatus | null>;
   public myOrdersRequest$: Observable<IMyOrdersInterface[] | null>;
   public myOrdersLoadingStatus$: Observable<LoadingStatus | null>;
 
@@ -58,6 +67,10 @@ export class AccountPageContainerComponent {
     );
     this.myAdvertisementsLoadingStatus$ = this.store.select(
       selectMyAdvertisementsLoadingStatus
+    );
+    this.myBettingsRequest$ = this.store.select(selectMyBettingsData);
+    this.myBettingsLoadingStatus$ = this.store.select(
+      selectMyBettingsLoadingStatus
     );
     this.myOrdersRequest$ = this.store.select(selectMyOrdersData);
     this.myOrdersLoadingStatus$ = this.store.select(
