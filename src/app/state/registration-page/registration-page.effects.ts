@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, of, switchMap } from 'rxjs';
+import { catchError, map, mergeMap, of, switchMap } from 'rxjs';
 import { AgroexToastService, ToastType } from 'ngx-agroex-toast';
 
 import { UserApiResponse } from '../../shared/interfaces/user.interface';
@@ -62,6 +62,17 @@ export class RegistrationPageEffects {
 
         return EMPTY_ACTION;
       })
+    );
+  });
+
+  public addNotificationToken$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(RegistrationPageActions.getUserSuccess),
+      switchMap(({ user }) =>
+        this.userService
+          .addNotificationToken(user.token)
+          .pipe(mergeMap(() => EMPTY_ACTION))
+      )
     );
   });
 

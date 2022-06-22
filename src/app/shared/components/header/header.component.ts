@@ -8,6 +8,11 @@ import {
 } from '@angular/core';
 import { MatSelect } from '@angular/material/select';
 import { Router } from '@angular/router';
+import { AngularFireMessaging } from '@angular/fire/compat/messaging';
+import { mergeMap } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import firebase from 'firebase/compat';
+import MessagePayload = firebase.messaging.MessagePayload;
 
 import { IUser } from '../../interfaces/user.interface';
 import { USER_PANEL_OPTION } from './constants/user-panel-option';
@@ -28,13 +33,27 @@ export class HeaderComponent implements OnChanges {
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
   @Output() public selectTab: EventEmitter<UserPanelOptionId> =
     new EventEmitter<UserPanelOptionId>();
+  @Output() public addNotificationMessage: EventEmitter<MessagePayload> =
+    new EventEmitter<MessagePayload>();
 
   public userRoleConfig = LOGGED_ROLE_CONFIG;
   public userRoles = UserRole;
   public userPanelOption = USER_PANEL_OPTION;
   public userCurrentRole: UserRole | null = UserRole.Guest;
+  public message: MessagePayload;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private afMessaging: AngularFireMessaging
+  ) {
+    this.afMessaging.messages
+      .pipe(
+        tap((message) => {
+          this.addNotificationMessage.emit(message);
+        })
+      )
+      .subscribe();
+  }
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.user && this.user) {
@@ -74,6 +93,13 @@ export class HeaderComponent implements OnChanges {
     this.userCurrentRole = UserRole.Guest;
     this.logout.emit();
     this.router.navigate(['']);
+    this.afMessaging.getToken
+      .pipe(
+        mergeMap((token) => {
+          return this.afMessaging.deleteToken(<string>token);
+        })
+      )
+      .subscribe();
   }
 
   public onSelectPage(selectedOptionId: IUserOptionsType): void {
