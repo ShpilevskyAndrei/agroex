@@ -21,3 +21,31 @@ export interface IAdvertisementInterface {
   author: IUser;
   userBets: IAdvertisementBetInterface[];
 }
+
+export interface IAdvertisementMyBetInterface {
+  id: number;
+  img: string;
+  createAt: string;
+  updatedAt: string;
+  authorId: number;
+  title: string;
+  price: string;
+  currency: string;
+  quantity: string;
+  unit: string;
+  slug: string;
+  category: string;
+  subCategory: string | null;
+  isModerated: boolean;
+  country: string;
+  location: string;
+  moderationComment: string | null;
+  isActive: boolean;
+  expireAdvert: string;
+  moderationStatus: 'approved' | 'rejected' | 'unmoderated';
+  isConfirmed: boolean;
+  lastBetInfo: {
+    user_id_with_last_bet: number;
+    last_bet_value: string;
+  };
+}

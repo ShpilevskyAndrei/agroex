@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { IAdvertisementRequestInterface } from '../../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
+import {
+  IAdvertisementRequestInterface,
+  IAdvertisementRequestMyBetsInterface,
+} from '../../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
 import { BaseService } from '../../../shared/services/base.service';
 import { IMyOrdersInterface } from '../my-orders/interfaces/my-orders-request.interface';
 
@@ -18,7 +21,17 @@ export class AccountPageService extends BaseService {
     token?: string
   ): Observable<IAdvertisementRequestInterface> {
     return this.get<IAdvertisementRequestInterface>(
-      'advertisements/myAdvertisements/all',
+      // 'advertisements/myAdvertisements/all',
+      'advertisements/my-advertisements',
+      { token }
+    );
+  }
+
+  public getMyBettings(
+    token?: string
+  ): Observable<IAdvertisementRequestMyBetsInterface> {
+    return this.get<IAdvertisementRequestMyBetsInterface>(
+      'advertisements/advertisements/my-bets',
       { token }
     );
   }
