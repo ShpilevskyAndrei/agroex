@@ -1,16 +1,26 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { AngularFireMessaging } from '@angular/fire/compat/messaging';
+import { mergeMap, Observable } from 'rxjs';
 
 import { UserApiResponse } from '../../../shared/interfaces/user.interface';
 import { IUserCredentials } from '../../../shared/interfaces/user-credentials.interfase';
 import { BaseService } from 'src/app/shared/services/base.service';
 
+export interface tokenNotificationResponse {
+  generatedMaps: [];
+  raw: [];
+  affected: number;
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class UserService extends BaseService {
-  constructor(protected override httpClient: HttpClient) {
+  constructor(
+    protected override httpClient: HttpClient,
+    private afMessaging: AngularFireMessaging
+  ) {
     super(httpClient);
   }
 
@@ -19,5 +29,23 @@ export class UserService extends BaseService {
     url: string
   ): Observable<UserApiResponse> {
     return this.post<UserApiResponse>(`auth/${url}`, { user });
+  }
+
+  public addNotificationToken(
+    userToken: string | undefined
+  ): Observable<tokenNotificationResponse> {
+    return this.afMessaging.requestToken.pipe(
+      mergeMap((token: string | null) => {
+        return this.post<tokenNotificationResponse>(
+          'notifications',
+          {
+            deviceType: 'web',
+            token: token,
+            isAllowed: true,
+          },
+          userToken
+        );
+      })
+    );
   }
 }
