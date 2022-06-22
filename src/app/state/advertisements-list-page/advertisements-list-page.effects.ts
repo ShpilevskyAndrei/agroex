@@ -112,10 +112,7 @@ export class AdvertisementsListPageEffects {
 
               return [
                 AdvertisementsListBuyActions.getAdvertisementsBuySuccess(),
-                AdvertisementPageActions.getAdvertisementRequest({
-                  slug: `${buyOptions.slug}`,
-                  disableReloading: true,
-                }),
+                AdvertisementsListPageActions.getAdvertisementsRequest(),
               ];
             }),
             catchError((error: HttpErrorResponse) => {

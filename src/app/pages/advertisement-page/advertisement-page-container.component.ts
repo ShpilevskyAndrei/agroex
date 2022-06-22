@@ -86,7 +86,7 @@ export class AdvertisementPageContainerComponent implements OnInit {
     this.store.dispatch(
       AdvertisementsListBuyActions.getAdvertisementsBuyRequest({ buyOptions })
     );
-    this.router.navigate(['account']);
+    this.router.navigate(['']);
   }
 
   public ngOnInit(): void {
