@@ -1,4 +1,9 @@
-<app-header [userRole]="userRole" [user]="user" (logout)="onLogout()" (selectTab)="onSelectTab($event)"></app-header>
+<app-header
+  [userRole]="userRole"
+  [user]="user"
+  (logout)="onLogout()"
+  (selectTab)="onSelectTab($event)"
+></app-header>
 <div class="container">
   <form [formGroup]="advertisementForm" (ngSubmit)="submitForm()" class="form">
     <div class="form__advertisementTitle">New advertisement</div>
@@ -16,14 +21,14 @@
               placeholder="Enter a title"
               formControlName="title"
             />
-            <mat-error *ngIf="this.get('title').hasError('required')"
-            >Title is required
+            <mat-error *ngIf="this.get('title').hasError('required')">
+              Title is required
             </mat-error>
-            <mat-error *ngIf="this.get('title').hasError('minlength')"
-            >Values must be not shorter than 5 characters
+            <mat-error *ngIf="this.get('title').hasError('minlength')">
+              Values must be not shorter than 5 characters
             </mat-error>
-            <mat-error *ngIf="this.get('title').hasError('maxlength')"
-            >Values must be not longer than 40 characters
+            <mat-error *ngIf="this.get('title').hasError('maxlength')">
+              Values must be not longer than 40 characters
             </mat-error>
           </mat-form-field>
           <mat-hint class="form__helper-text">No more 40 characters</mat-hint>
@@ -61,8 +66,8 @@
                   {{ location.viewValue }}
                 </mat-option>
               </mat-select>
-              <mat-error *ngIf="this.get('location').hasError('required')"
-              >Location is required
+              <mat-error *ngIf="this.get('location').hasError('required')">
+                Location is required
               </mat-error>
             </mat-form-field>
           </div>
@@ -85,8 +90,8 @@
                 {{ category.viewValue }}
               </mat-option>
             </mat-select>
-            <mat-error *ngIf="this.get('category').hasError('required')"
-            >Category is required
+            <mat-error *ngIf="this.get('category').hasError('required')">
+              Category is required
             </mat-error>
           </mat-form-field>
         </div>
@@ -104,11 +109,11 @@
                 placeholder="Enter the quantity"
                 formControlName="quantity"
               />
-              <mat-error *ngIf="this.get('quantity').hasError('required')"
-              >Quantity is required
+              <mat-error *ngIf="this.get('quantity').hasError('required')">
+                Quantity is required
               </mat-error>
-              <mat-error *ngIf="this.get('quantity').hasError('pattern')"
-              >Please use valid quantity. It should be less 1 billion
+              <mat-error *ngIf="this.get('quantity').hasError('pattern')">
+                Please use valid quantity. It should be less 1 billion
               </mat-error>
             </mat-form-field>
             <mat-form-field class="form__input select-small">
@@ -138,11 +143,17 @@
                 placeholder="Enter the price"
                 formControlName="price"
               />
-              <mat-error *ngIf="this.get('price').hasError('required')"
-              >Price is required
+              <mat-error *ngIf="this.get('price').hasError('required')">
+                Price is required
               </mat-error>
-              <mat-error *ngIf="this.get('price').hasError('pattern')"
-              >Please use valid price. It should be less 1 billion
+              <mat-error
+                *ngIf="
+                  this.get('price').hasError('pattern') ||
+                  this.get('price').hasError('min')
+                "
+              >
+                Please use valid price. The number should be an integer, bigger
+                than 2 and less than 1 billion.
               </mat-error>
             </mat-form-field>
             <mat-form-field class="form__input select-small">
