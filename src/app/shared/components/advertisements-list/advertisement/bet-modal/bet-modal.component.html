@@ -9,15 +9,15 @@
         <span matPrefix *ngSwitchDefault>{{data.currency}}</span>
         <input
           matInput
-          type="number"
+          type="text"
           class="bet-modal__input"
           autocomplete="off"
           placeholder="Enter a bet"
           formControlName="bet"
         >
       </mat-form-field>
-      <p class="bet-modal__hint">Bet from {{(data.actualBet.length ? +data.actualBet[0].betValue + 1 : '1') | currency: data.currency: 'symbol-narrow': '1.0'}}
-        to {{+data.price - 1}}</p>
+      <p class="bet-modal__hint">Bet integer number from {{(data.actualBet.length ? +data.actualBet[0].betValue + 1 : '1') | currency: data.currency: 'symbol-narrow': '1.0'}}
+        to {{+data.price - 1 | currency: data.currency: 'symbol-narrow': '1.0'}}</p>
     </div>
     <div mat-dialog-actions class="bet-modal__actions">
       <button
