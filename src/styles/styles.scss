@@ -99,12 +99,16 @@ body {
 
   .mat-menu-item {
     display: flex;
+    flex-grow: 1;
     align-items: center;
     font-size: 1.6rem;
     color: #131314;
-
-    &:last-child {
-      border-top: 0.1rem solid $color-button-disable;
+  }
+  &:not(.notifications) {
+    .mat-menu-item {
+      &:last-child {
+        border-top: 0.1rem solid $color-button-disable;
+      }
     }
   }
 
@@ -120,6 +124,51 @@ body {
     color: $primary-color;
     padding-bottom: 0.7rem;
     border-bottom: 0.1rem solid $color-button-disable;
+  }
+
+  &.notifications {
+    max-width: 30rem;
+    .mat-menu-content:not(:empty) {
+      display: flex;
+      flex-direction: column;
+      padding-top: 0;
+      padding-bottom: 0;
+      height: 100%;
+    }
+
+    .mat-menu-item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: $offset-medium;
+      height: auto;
+      .title {
+        font-size: 1.6rem;
+        font-weight: 500;
+        white-space: normal;
+      }
+      .content {
+        font-size: 1.4rem;
+        margin: $offset-xsmall 0 0;
+      }
+    }
+
+    .mat-menu-item + .mat-menu-item {
+      border-top: 0.1rem solid $color-button-disable;
+    }
+
+    .no-message {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      p {
+        font-size: 1.5rem;
+        color: $color-copy;
+        text-align: center;
+        margin: 0;
+      }
+    }
   }
 }
 

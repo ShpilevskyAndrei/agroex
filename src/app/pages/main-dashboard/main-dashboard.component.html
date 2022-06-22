@@ -1,7 +1,8 @@
 <ng-container *ngIf="categoriesLoadingStatus?.loaded; else notLoaded">
   <app-header
-    [userRole]="userRole"
     [user]="user"
+    [userRole]="userRole"
+    [notificationMessage]="notificationMessage"
     (logout)="onLogout()"
     (selectTab)="onSelectTab($event)"
   ></app-header>

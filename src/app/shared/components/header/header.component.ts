@@ -29,6 +29,7 @@ import { IUserOptionsType } from './interfaces/user-options-type.interface';
 export class HeaderComponent implements OnChanges {
   @Input() public user: IUser | null;
   @Input() public userRole: UserRole | null;
+  @Input() public notificationMessage: MessagePayload[] | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
   @Output() public selectTab: EventEmitter<UserPanelOptionId> =
@@ -40,7 +41,6 @@ export class HeaderComponent implements OnChanges {
   public userRoles = UserRole;
   public userPanelOption = USER_PANEL_OPTION;
   public userCurrentRole: UserRole | null = UserRole.Guest;
-  public message: MessagePayload;
 
   constructor(
     private router: Router,
@@ -103,6 +103,7 @@ export class HeaderComponent implements OnChanges {
   }
 
   public onSelectPage(selectedOptionId: IUserOptionsType): void {
+    console.log(this.notificationMessage);
     this.selectTab.emit(selectedOptionId.id);
   }
 }
