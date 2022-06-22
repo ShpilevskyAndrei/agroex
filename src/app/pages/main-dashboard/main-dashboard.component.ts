@@ -26,7 +26,6 @@ export class MainDashboardComponent {
   @Input() public categoriesLoadingStatus: LoadingStatus | null;
   @Input() public user: IUser | null;
   @Input() public userRole: UserRole | null;
-  @Input() public notificationMessage: MessagePayload[] | null;
   @Input() public advertisementsRequest: IAdvertisementRequestInterface | null;
   @Input() public advertisementsLoadingStatus: LoadingStatus | null;
 
@@ -35,8 +34,6 @@ export class MainDashboardComponent {
     new EventEmitter<Record<string, string | number>>();
   @Output() public selectTab: EventEmitter<UserPanelOptionId> =
     new EventEmitter<UserPanelOptionId>();
-  @Output() public addNotificationMessage: EventEmitter<MessagePayload> =
-    new EventEmitter<MessagePayload>();
 
   public showOwnerFlag = true;
 
@@ -52,9 +49,5 @@ export class MainDashboardComponent {
 
   public onSelectTab(selectedOptionId: UserPanelOptionId): void {
     this.selectTab.emit(selectedOptionId);
-  }
-
-  public onAddNotificationMessage(message: MessagePayload): void {
-    this.addNotificationMessage.emit(message);
   }
 }
