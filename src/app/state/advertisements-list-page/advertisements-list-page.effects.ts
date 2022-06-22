@@ -6,8 +6,7 @@ import { Store } from '@ngrx/store';
 import { AgroexToastService, ToastType } from 'ngx-agroex-toast';
 
 import {
-  AdvertisementsListBetActions,
-  AdvertisementsListBuyActions,
+  AdvertisementsListDealActions,
   AdvertisementsListPageActions,
 } from './advertisements-list-page.actions';
 import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
@@ -21,8 +20,8 @@ export class AdvertisementsListPageEffects {
     return this.actions$.pipe(
       ofType(
         AdvertisementsListPageActions.getAdvertisementsRequest,
-        AdvertisementsListBetActions.getAdvertisementsBetSuccess,
-        AdvertisementsListBetActions.getAdvertisementsBetError
+        AdvertisementsListDealActions.getAdvertisementsBetSuccess,
+        AdvertisementsListDealActions.getAdvertisementsBetError
       ),
       switchMap(() =>
         this.advertisementsListService.getAdvertisements().pipe(
@@ -45,7 +44,7 @@ export class AdvertisementsListPageEffects {
 
   public advertisementsBet$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(AdvertisementsListBetActions.getAdvertisementsBetRequest),
+      ofType(AdvertisementsListDealActions.getAdvertisementsBetRequest),
       concatLatestFrom(() => this.store.select(selectUserToken)),
       switchMap(([{ newBetOptions }, selectUserToken]) =>
         this.advertisementsListService
@@ -64,7 +63,7 @@ export class AdvertisementsListPageEffects {
               });
 
               return [
-                AdvertisementsListBetActions.getAdvertisementsBetSuccess(),
+                AdvertisementsListDealActions.getAdvertisementsBetSuccess(),
                 AdvertisementPageActions.getAdvertisementRequest({
                   slug: `${newBetOptions.slug}`,
                   disableReloading: true,
@@ -80,7 +79,7 @@ export class AdvertisementsListPageEffects {
               });
 
               return of(
-                AdvertisementsListBetActions.getAdvertisementsBetError({
+                AdvertisementsListDealActions.getAdvertisementsBetError({
                   error: error,
                 }),
                 AdvertisementPageActions.getAdvertisementRequest({
@@ -96,11 +95,11 @@ export class AdvertisementsListPageEffects {
 
   public advertisementsBuy$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(AdvertisementsListBuyActions.getAdvertisementsBuyRequest),
+      ofType(AdvertisementsListDealActions.getAdvertisementsBuyRequest),
       concatLatestFrom(() => this.store.select(selectUserToken)),
       switchMap(([{ buyOptions }, selectUserToken]) =>
         this.advertisementsListService
-          .addAdvertisementBuy(buyOptions.slug, {}, selectUserToken)
+          .addAdvertisementBuy(buyOptions.slug, selectUserToken)
           .pipe(
             concatMap(() => {
               this.toastService.addToast({
@@ -111,7 +110,7 @@ export class AdvertisementsListPageEffects {
               });
 
               return [
-                AdvertisementsListBuyActions.getAdvertisementsBuySuccess(),
+                AdvertisementsListDealActions.getAdvertisementsBuySuccess(),
                 AdvertisementsListPageActions.getAdvertisementsRequest(),
               ];
             }),
@@ -124,7 +123,7 @@ export class AdvertisementsListPageEffects {
               });
 
               return of(
-                AdvertisementsListBuyActions.getAdvertisementsBuyError({
+                AdvertisementsListDealActions.getAdvertisementsBuyError({
                   error: error,
                 }),
                 AdvertisementPageActions.getAdvertisementRequest({

@@ -21,10 +21,7 @@ import { RegistrationPageActions } from '../../state/registration-page/registrat
 import { UserPanelOptionId } from '../../shared/components/header/enums/user-panel-option-id';
 import { AppRootActions } from '../../state/app-root/app-root.actions';
 import { UserRole } from '../../shared/components/header/enums/user-role';
-import {
-  AdvertisementsListBetActions,
-  AdvertisementsListBuyActions,
-} from '../../state/advertisements-list-page/advertisements-list-page.actions';
+import { AdvertisementsListDealActions } from '../../state/advertisements-list-page/advertisements-list-page.actions';
 import { IAdRequestInterface } from '../../shared/components/advertisements-list/interfaces/ad-request.interface';
 import { selectMapData } from '../../state/app-root/app-root.selectors';
 
@@ -76,7 +73,7 @@ export class AdvertisementPageContainerComponent implements OnInit {
 
   public onSetBet(newBetOptions: Record<string, string | number>): void {
     this.store.dispatch(
-      AdvertisementsListBetActions.getAdvertisementsBetRequest({
+      AdvertisementsListDealActions.getAdvertisementsBetRequest({
         newBetOptions,
       })
     );
@@ -84,7 +81,7 @@ export class AdvertisementPageContainerComponent implements OnInit {
 
   public onSetBuy(buyOptions: Record<string, string>): void {
     this.store.dispatch(
-      AdvertisementsListBuyActions.getAdvertisementsBuyRequest({ buyOptions })
+      AdvertisementsListDealActions.getAdvertisementsBuyRequest({ buyOptions })
     );
     this.router.navigate(['']);
   }

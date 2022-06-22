@@ -19,7 +19,7 @@ export const AdvertisementsListPageActions = {
   ),
 };
 
-export const AdvertisementsListBetActions = {
+export const AdvertisementsListDealActions = {
   getAdvertisementsBetRequest: createAction(
     '[ADVERTISEMENTS_LIST_BET] bet requested',
     props<{ newBetOptions: Record<string, string | number> }>()
@@ -38,9 +38,7 @@ export const AdvertisementsListBetActions = {
     '[ADVERTISEMENTS_LIST_BET] bet-expired success',
     props<{ slug: string }>()
   ),
-};
 
-export const AdvertisementsListBuyActions = {
   getAdvertisementsBuyRequest: createAction(
     '[ADVERTISEMENTS_LIST_BUY] buy requested',
     props<{ buyOptions: Record<string, string> }>()

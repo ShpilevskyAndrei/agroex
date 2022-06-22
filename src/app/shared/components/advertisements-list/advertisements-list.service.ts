@@ -26,7 +26,6 @@ export class AdvertisementsListService extends BaseService {
 
   public addAdvertisementBuy(
     slug: string | number,
-    emptyObject: object,
     token?: string
   ): Observable<UserApiResponse> {
     return this.post<UserApiResponse>(`orders/buy/${slug}`, {}, token);
