@@ -17,6 +17,7 @@ import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IUser } from '../../shared/interfaces/user.interface';
 import { MAX_FILE_SIZE } from './constant/max-file-sizes';
 import { REGEXP_FOR_IS_NUMBER } from './constant/regexp';
+import { REGEXP_FOR_IS_INTEGER_NUMBER } from '../../shared/constants/regexp';
 import {
   ICategory,
   ICountry,
@@ -83,7 +84,8 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
     ),
     price: new FormControl('', [
       Validators.required,
-      Validators.pattern(REGEXP_FOR_IS_NUMBER),
+      Validators.min(2),
+      Validators.pattern(REGEXP_FOR_IS_INTEGER_NUMBER),
     ]),
     currency: new FormControl(
       {
