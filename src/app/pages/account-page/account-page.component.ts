@@ -42,6 +42,7 @@ export class AccountPageComponent {
 
   public userPanelOption: IUserOptionsType[] = USER_PANEL_OPTION;
   public userPanelOptionId = UserPanelOptionId;
+  public showSidebar = false;
 
   public onLogout(): void {
     this.logout.emit();
@@ -49,6 +50,7 @@ export class AccountPageComponent {
 
   public onSelectTab(selectedOptionId: UserPanelOptionId): void {
     this.selectTab.emit(selectedOptionId);
+    this.showSidebar = !this.showSidebar;
   }
 
   public onDispatcher(dispatcher: Function): void {
@@ -57,5 +59,9 @@ export class AccountPageComponent {
 
   public onConfirmDeal(slug: string): void {
     this.confirmDeal.emit(slug);
+  }
+
+  public switchSideBar(): void {
+    this.showSidebar = !this.showSidebar;
   }
 }
