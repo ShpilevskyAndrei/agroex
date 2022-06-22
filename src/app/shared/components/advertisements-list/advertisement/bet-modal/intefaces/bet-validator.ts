@@ -7,7 +7,7 @@ export class BetValidators {
   ): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const currentBet = control.value;
-      return currentBet > actualBet && currentBet < totalPrice
+      return currentBet >= +actualBet + 1 && currentBet <= +totalPrice - 1
         ? null
         : { invalidBet: true };
     };
