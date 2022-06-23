@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { UserPanelOptionId } from '../../shared/components/header/enums/user-panel-option-id';
+import firebase from 'firebase/compat';
+import MessagePayload = firebase.messaging.MessagePayload;
 
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IUser } from '../../shared/interfaces/user.interface';
@@ -14,6 +16,7 @@ import {
   selectUserRole,
 } from '../../state/registration-page/registration-page.selectors';
 import { UserRole } from '../../shared/components/header/enums/user-role';
+import { getNotificationMessage } from '../../state/app-root/app-root.selectors';
 
 @Component({
   selector: 'app-create-advertisement-page-container',
@@ -23,16 +26,19 @@ import { UserRole } from '../../shared/components/header/enums/user-role';
     [createAdvertisementLoadingStatus]="
       createAdvertisementLoadingStatus$ | async
     "
+    [notificationMessage]="notificationMessage$ | async"
     (logout)="onLogout()"
     (formAdvertisement)="onSubmitAdvertisementFormData($event)"
     (dropLoadingStatus)="onDropLoadingStatus()"
     (selectTab)="onSelectTab($event)"
+    (addNotificationMessage)="onAddNotificationMessage($event)"
   ></app-create-advertisement-page>`,
 })
 export class CreateAdvertisementPageContainerComponent {
   public user$: Observable<IUser | null>;
   public userRole$: Observable<UserRole | null>;
   public createAdvertisementLoadingStatus$: Observable<LoadingStatus>;
+  public notificationMessage$: Observable<MessagePayload[] | null>;
 
   constructor(private store: Store) {
     this.user$ = this.store.select(selectUserData);
@@ -40,6 +46,7 @@ export class CreateAdvertisementPageContainerComponent {
     this.createAdvertisementLoadingStatus$ = this.store.select(
       selectCreateAdvertisementLoadingStatus
     );
+    this.notificationMessage$ = this.store.select(getNotificationMessage);
   }
 
   public onLogout(): void {
@@ -62,5 +69,9 @@ export class CreateAdvertisementPageContainerComponent {
 
   public onSelectTab(selectedOptionId: UserPanelOptionId): void {
     this.store.dispatch(AppRootActions.getUserSelectTab({ selectedOptionId }));
+  }
+
+  public onAddNotificationMessage(message: MessagePayload): void {
+    this.store.dispatch(AppRootActions.getNotificationMessage({ message }));
   }
 }

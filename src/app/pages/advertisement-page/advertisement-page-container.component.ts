@@ -5,6 +5,8 @@ import { map, tap } from 'rxjs/operators';
 import { filter, Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import firebase from 'firebase/compat';
+import MessagePayload = firebase.messaging.MessagePayload;
 
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { AdvertisementPageActions } from '../../state/advertisement-page/advertisement-page.actions';
@@ -23,7 +25,10 @@ import { AppRootActions } from '../../state/app-root/app-root.actions';
 import { UserRole } from '../../shared/components/header/enums/user-role';
 import { AdvertisementsListBetActions } from '../../state/advertisements-list-page/advertisements-list-page.actions';
 import { IAdRequestInterface } from '../../shared/components/advertisements-list/interfaces/ad-request.interface';
-import { selectMapData } from '../../state/app-root/app-root.selectors';
+import {
+  getNotificationMessage,
+  selectMapData,
+} from '../../state/app-root/app-root.selectors';
 
 @UntilDestroy()
 @Component({
@@ -33,10 +38,12 @@ import { selectMapData } from '../../state/app-root/app-root.selectors';
     [userRole]="userRole$ | async"
     [advertisement]="advertisement$ | async"
     [advertisementLoadingStatus]="advertisementLoadingStatus$ | async"
+    [notificationMessage]="notificationMessage$ | async"
     [map]="map$ | async"
     (logout)="onLogout()"
     (selectTab)="onSelectTab($event)"
     (setBet)="onSetBet($event)"
+    (addNotificationMessage)="onAddNotificationMessage($event)"
   ></app-advertisement-page>`,
 })
 export class AdvertisementPageContainerComponent implements OnInit {
@@ -46,6 +53,7 @@ export class AdvertisementPageContainerComponent implements OnInit {
   public userRole$: Observable<UserRole | null>;
   public advertisementLoadingStatus$: Observable<LoadingStatus | null>;
   public map$: Observable<GeoJSON.FeatureCollection<GeoJSON.MultiPolygon> | null>;
+  public notificationMessage$: Observable<MessagePayload[] | null>;
 
   constructor(
     private store: Store,
@@ -59,6 +67,7 @@ export class AdvertisementPageContainerComponent implements OnInit {
     this.advertisementLoadingStatus$ = this.store.select(
       selectAdvertisementLoadingStatus
     );
+    this.notificationMessage$ = this.store.select(getNotificationMessage);
   }
 
   public onLogout(): void {
@@ -91,5 +100,9 @@ export class AdvertisementPageContainerComponent implements OnInit {
         untilDestroyed(this)
       )
       .subscribe();
+  }
+
+  public onAddNotificationMessage(message: MessagePayload): void {
+    this.store.dispatch(AppRootActions.getNotificationMessage({ message }));
   }
 }

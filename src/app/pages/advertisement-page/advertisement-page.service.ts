@@ -9,6 +9,6 @@ export class AdvertisementService extends BaseService {
   public getAdvertisement(
     slug: string | null
   ): Observable<IAdRequestInterface> {
-    return this.get<IAdRequestInterface>(`advertisements/${slug}`);
+    return this.get<IAdRequestInterface>(`advertisements/slug/${slug}`);
   }
 }
