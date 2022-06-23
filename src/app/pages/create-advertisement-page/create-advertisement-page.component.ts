@@ -14,7 +14,6 @@ import { NgxDropzoneChangeEvent } from 'ngx-dropzone';
 import firebase from 'firebase/compat';
 import MessagePayload = firebase.messaging.MessagePayload;
 
-import { UserPanelOptionId } from '../../shared/components/header/enums/user-panel-option-id';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IUser } from '../../shared/interfaces/user.interface';
 import { MAX_FILE_SIZE } from './constant/max-file-sizes';
@@ -46,8 +45,7 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
     new EventEmitter<void>();
   @Output()
   public formAdvertisement: EventEmitter<FormData> = new EventEmitter<FormData>();
-  @Output() public selectTab: EventEmitter<UserPanelOptionId> =
-    new EventEmitter<UserPanelOptionId>();
+  @Output() public selectTab: EventEmitter<string> = new EventEmitter<string>();
   @Output() public addNotificationMessage: EventEmitter<MessagePayload> =
     new EventEmitter<MessagePayload>();
 
@@ -180,7 +178,7 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
     }
   }
 
-  public onSelectTab(selectedOptionId: UserPanelOptionId): void {
+  public onSelectTab(selectedOptionId: string): void {
     this.selectTab.emit(selectedOptionId);
   }
 

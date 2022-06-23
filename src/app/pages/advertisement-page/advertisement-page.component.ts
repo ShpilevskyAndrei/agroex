@@ -18,7 +18,6 @@ import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IUser } from '../../shared/interfaces/user.interface';
 import { IS_SHOWN_MAP_CONFIG } from '../../shared/constants/is-shown-map-config';
 import { IShownMap } from './interfaces/shown-map.interface';
-import { UserPanelOptionId } from '../../shared/components/header/enums/user-panel-option-id';
 import { UserRole } from '../../shared/components/header/enums/user-role';
 import { IAdRequestInterface } from '../../shared/components/advertisements-list/interfaces/ad-request.interface';
 import { CurrenciesEnum } from '../../shared/components/advertisements-list/advertisement/bet-modal/enums/currencies.enum';
@@ -43,8 +42,7 @@ export class AdvertisementPageComponent implements OnChanges {
   @Input() public map: GeoJSON.FeatureCollection<GeoJSON.MultiPolygon> | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
-  @Output() public selectTab: EventEmitter<UserPanelOptionId> =
-    new EventEmitter<UserPanelOptionId>();
+  @Output() public selectTab: EventEmitter<string> = new EventEmitter<string>();
   @Output() public setBet: EventEmitter<Record<string, string | number>> =
     new EventEmitter<Record<string, string | number>>();
   @Output() public addNotificationMessage: EventEmitter<MessagePayload> =
@@ -156,7 +154,7 @@ export class AdvertisementPageComponent implements OnChanges {
     this.logout.emit();
   }
 
-  public onSelectTab(selectedOptionId: UserPanelOptionId): void {
+  public onSelectTab(selectedOptionId: string): void {
     this.selectTab.emit(selectedOptionId);
   }
 

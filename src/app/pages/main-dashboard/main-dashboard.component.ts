@@ -8,7 +8,6 @@ import {
 import firebase from 'firebase/compat';
 import MessagePayload = firebase.messaging.MessagePayload;
 
-import { UserPanelOptionId } from '../../shared/components/header/enums/user-panel-option-id';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IUser } from '../../shared/interfaces/user.interface';
 import { Category } from './categories/interfaces/category.model';
@@ -33,8 +32,7 @@ export class MainDashboardComponent {
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
   @Output() public setBet: EventEmitter<Record<string, string | number>> =
     new EventEmitter<Record<string, string | number>>();
-  @Output() public selectTab: EventEmitter<UserPanelOptionId> =
-    new EventEmitter<UserPanelOptionId>();
+  @Output() public selectTab: EventEmitter<string> = new EventEmitter<string>();
   @Output() public addNotificationMessage: EventEmitter<MessagePayload> =
     new EventEmitter<MessagePayload>();
 
@@ -50,7 +48,7 @@ export class MainDashboardComponent {
     this.setBet.emit(newBetOptions);
   }
 
-  public onSelectTab(selectedOptionId: UserPanelOptionId): void {
+  public onSelectTab(selectedOptionId: string): void {
     this.selectTab.emit(selectedOptionId);
   }
 

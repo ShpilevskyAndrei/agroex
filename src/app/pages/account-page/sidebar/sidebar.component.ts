@@ -10,7 +10,6 @@ import { AngularFireMessaging } from '@angular/fire/compat/messaging';
 import { mergeMap } from 'rxjs';
 
 import { IUserOptionsType } from '../../../shared/components/header/interfaces/user-options-type.interface';
-import { UserPanelOptionId } from '../../../shared/components/header/enums/user-panel-option-id';
 import { UserRole } from '../../../shared/components/header/enums/user-role';
 
 @Component({
@@ -25,8 +24,7 @@ export class SidebarComponent {
   @Input() public userPanelOption: IUserOptionsType[];
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
-  @Output() public selectTab: EventEmitter<UserPanelOptionId> =
-    new EventEmitter<UserPanelOptionId>();
+  @Output() public selectTab: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(
     private router: Router,
@@ -46,7 +44,7 @@ export class SidebarComponent {
       .subscribe();
   }
 
-  public onSelectPage(selectedPage: IUserOptionsType): void {
-    this.selectTab.emit(selectedPage.id);
+  public onSelectPage(selectedPage: string | undefined): void {
+    this.selectTab.emit(selectedPage);
   }
 }

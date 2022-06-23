@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import firebase from 'firebase/compat';
 import MessagePayload = firebase.messaging.MessagePayload;
 
-import { UserPanelOptionId } from '../../shared/components/header/enums/user-panel-option-id';
 import { AccountPageActions } from '../../state/account-page/account-page.actions';
 import {
   selectMyAdvertisementsData,
@@ -78,7 +77,7 @@ export class AccountPageContainerComponent {
     this.store.dispatch(RegistrationPageActions.getUserLogout());
   }
 
-  public onSelectTab(selectedOptionId: UserPanelOptionId): void {
+  public onSelectTab(selectedOptionId: string): void {
     this.store.dispatch(AppRootActions.getUserSelectTab({ selectedOptionId }));
   }
 
