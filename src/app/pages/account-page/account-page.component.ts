@@ -38,8 +38,7 @@ export class AccountPageComponent {
   @Input() public notificationMessage: MessagePayload[] | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
-  @Output() public selectTab: EventEmitter<UserPanelOptionId> =
-    new EventEmitter<UserPanelOptionId>();
+  @Output() public selectTab: EventEmitter<string> = new EventEmitter<string>();
   @Output() public dispatcher: EventEmitter<Function> =
     new EventEmitter<Function>();
   @Output() public confirmDeal: EventEmitter<IAdvertisementInterface> =
@@ -70,7 +69,6 @@ export class AccountPageComponent {
     }
   }
 
-  public onSelectTab(selectedOptionId: UserPanelOptionId): void {
   public onSelectTab(selectedOptionId: string): void {
     this.selectTab.emit(selectedOptionId);
     this.showSidebar = !this.showSidebar;
