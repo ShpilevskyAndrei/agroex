@@ -16,3 +16,7 @@ export const selectAdvertisementsData = createSelector(
   selectGetFeatureState,
   (state) => state.advertisements
 );
+export const selectCategoryTab = createSelector(
+  selectGetFeatureState,
+  (state) => state.categoryTab
+);

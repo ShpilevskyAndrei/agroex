@@ -19,7 +19,13 @@ import { APPEARANCE } from './shared/constants/appearance-outline';
 import { AuthGuard } from './guards/auth.guard';
 import { HeaderModule } from './shared/components/header/header.module';
 import { BreadcrumbsModule } from './shared/components/breadcrumbs/breadcrumbs.module';
-import { environment } from '../environments/environment.prod';
+
+import { environment } from '../environments/environment';
+import { initializeApp } from 'firebase/app';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { AngularFireModule } from '@angular/fire/compat';
+
+initializeApp(environment.firebase);
 
 @NgModule({
   declarations: [AppComponent, AppContainerComponent],
@@ -38,6 +44,8 @@ import { environment } from '../environments/environment.prod';
     NgxMapboxGLModule.withConfig({
       accessToken: environment.accessTokenMap,
     }),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
   ],
   providers: [
     AuthGuard,

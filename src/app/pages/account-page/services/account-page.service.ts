@@ -26,7 +26,6 @@ export class AccountPageService extends BaseService {
     token?: string
   ): Observable<IAdvertisementRequestInterface> {
     return this.get<IAdvertisementRequestInterface>(
-      // 'advertisements/myAdvertisements/all',
       'advertisements/my-advertisements',
       { token }
     );

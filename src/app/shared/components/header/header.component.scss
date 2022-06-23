@@ -43,7 +43,7 @@
         display: flex;
         align-items: center;
         cursor: pointer;
-        margin-left: 3rem;
+        margin-left: 2rem;
         p {
           margin: 0;
           font-size: $font-size-medium;
@@ -57,6 +57,34 @@
         width: 4rem;
         height: 4rem;
         object-fit: cover;
+      }
+    }
+
+    &__notifications {
+      margin-left: 4rem;
+      &-bell {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 4rem;
+        height: 4rem;
+      }
+      &-icon {
+        position: relative;
+        width: auto;
+        height: auto;
+        font-size: 2.4rem;
+        &.with-dot:before {
+          content: '';
+          display: block;
+          position: absolute;
+          top: -.4rem;
+          right: -.4rem;
+          width: .8rem;
+          height: .8rem;
+          border-radius: 50%;
+          background-color: $color-error;
+        }
       }
     }
   }

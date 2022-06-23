@@ -16,6 +16,7 @@ export interface AdvertisementsListPageState {
   advertisementsBetLoadingStatus: LoadingStatus;
   advertisementsBuyLoadingStatus: LoadingStatus;
   advertisements: IAdvertisementRequestInterface;
+  categoryTab: string;
 }
 
 const initialState: AdvertisementsListPageState = {
@@ -23,6 +24,7 @@ const initialState: AdvertisementsListPageState = {
   advertisementsBetLoadingStatus: DEFAULT_LOADING_STATUS,
   advertisementsBuyLoadingStatus: DEFAULT_LOADING_STATUS,
   advertisements: { advertisementCount: null, advertisements: [] },
+  categoryTab: 'Fruits',
 };
 
 export const ADVERTISEMENTS_LIST_PAGE_REDUCER = createReducer(
@@ -138,6 +140,13 @@ export const ADVERTISEMENTS_LIST_PAGE_REDUCER = createReducer(
         error: null,
       },
       advertisementsBetLoadingStatus: { loading: false, loaded: false, error },
+    })
+  ),
+  on(
+    AdvertisementsListPageActions.getCategoryTabRequest,
+    (state, { selectedOptionId }): AdvertisementsListPageState => ({
+      ...state,
+      categoryTab: selectedOptionId,
     })
   )
 );

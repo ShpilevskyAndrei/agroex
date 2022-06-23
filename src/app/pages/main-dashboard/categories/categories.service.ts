@@ -7,6 +7,6 @@ import { BaseService } from '../../../shared/services/base.service';
 @Injectable()
 export class CategoriesService extends BaseService {
   public getCategories(): Observable<Category[]> {
-    return this.get<Category[]>('categories');
+    return this.get<Category[]>('categories?orderType=ASC');
   }
 }

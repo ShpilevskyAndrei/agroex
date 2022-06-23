@@ -17,6 +17,10 @@ export const AdvertisementsListPageActions = {
     '[ADVERTISEMENTS_LIST] advertisements error',
     props<{ error: HttpErrorResponse }>()
   ),
+  getCategoryTabRequest: createAction(
+    '[ADVERTISEMENT_PAGE] category tab requested',
+    props<{ selectedOptionId: string }>()
+  ),
 };
 
 export const AdvertisementsListDealActions = {

@@ -14,6 +14,7 @@ import { AdvertisementsListService } from '../../shared/components/advertisement
 import { selectUserToken } from '../registration-page/registration-page.selectors';
 import { AdvertisementPageActions } from '../advertisement-page/advertisement-page.actions';
 import { AccountPageActions } from '../account-page/account-page.actions';
+import { selectCategoryTab } from './advertisements-list-page.selectors';
 
 @Injectable()
 export class AdvertisementsListPageEffects {
@@ -24,22 +25,25 @@ export class AdvertisementsListPageEffects {
         AdvertisementsListDealActions.getAdvertisementsBetSuccess,
         AdvertisementsListDealActions.getAdvertisementsBetError
       ),
-      switchMap(() =>
-        this.advertisementsListService.getAdvertisements().pipe(
-          map((advertisements: IAdvertisementRequestInterface) =>
-            AdvertisementsListPageActions.getAdvertisementsSuccess({
-              advertisements,
-            })
-          ),
-          catchError((error: HttpErrorResponse) =>
-            of(
-              AdvertisementsListPageActions.getAdvertisementsError({
-                error: error,
+      concatLatestFrom(() => this.store.select(selectCategoryTab)),
+      switchMap(([_, categoryTab]) => {
+        return this.advertisementsListService
+          .getAdvertisements(categoryTab)
+          .pipe(
+            map((advertisements: IAdvertisementRequestInterface) =>
+              AdvertisementsListPageActions.getAdvertisementsSuccess({
+                advertisements,
               })
+            ),
+            catchError((error: HttpErrorResponse) =>
+              of(
+                AdvertisementsListPageActions.getAdvertisementsError({
+                  error: error,
+                })
+              )
             )
-          )
-        )
-      )
+          );
+      })
     );
   });
 

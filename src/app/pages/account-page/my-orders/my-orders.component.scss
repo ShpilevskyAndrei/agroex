@@ -42,12 +42,44 @@
         height: inherit;
         object-fit: cover;
       }
+      @media only screen and (max-width: $medium-large-screen-min-width) {
+        width: 20rem;
+      }
+      @media only screen and (max-width: $medium-x-screen-min-width) {
+        width: 100%;
+        height: 44rem;
+      }
+      @media only screen and (max-width: $medium-screen-min-width) {
+        width: 100%;
+        height: 32rem;
+      }
+      @media only screen and (max-width: $medium-s-screen-min-width) {
+        width: 100%;
+        height: 26rem;
+      }
+      @media only screen and (max-width: $small-medium-screen-min-width) {
+        width: 100%;
+        height: 22rem;
+      }
+      @media only screen and (max-width: 0) {
+        width: 100%;
+        height: 16rem;
+      }
     }
     &__desc {
       display: flex;
       flex-direction: column;
       flex: 1;
       margin-left: $offset-xlarge;
+      @media only screen and (max-width: $medium-large-screen-min-width) {
+        width: 100%;
+        width: 24rem;
+      }
+      @media only screen and (max-width: $medium-x-screen-min-width) {
+        width: 100%;
+        margin-top: $offset-xlarge;
+        margin-left: 0;
+      }
     }
 
     &__title,
@@ -149,5 +181,10 @@
 .order {
   &__item + &__item {
     box-shadow: inset 0 0.083rem 0 $color-button-disable;
+  }
+  &__item {
+    @media only screen and (max-width: $medium-x-screen-min-width) {
+      flex-direction: column;
+    }
   }
 }

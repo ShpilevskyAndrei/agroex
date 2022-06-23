@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, of, switchMap } from 'rxjs';
+import { catchError, map, mergeMap, of, switchMap } from 'rxjs';
 import { AgroexToastService, ToastType } from 'ngx-agroex-toast';
 
 import { UserApiResponse } from '../../shared/interfaces/user.interface';
@@ -16,14 +16,34 @@ export class RegistrationPageEffects {
       ofType(RegistrationPageActions.getUserRequest),
       switchMap(({ user, url }) =>
         this.userService.create(user, url).pipe(
-          map((userApiResponse: UserApiResponse) =>
-            RegistrationPageActions.getUserSuccess({
+          map((userApiResponse: UserApiResponse) => {
+            this.toastService.addToast({
+              title: `User ${userApiResponse.user.username} ${url} will success`,
+              toastType: ToastType.Success,
+              width: '60vw',
+              buttonText: 'Ok',
+            });
+
+            return RegistrationPageActions.getUserSuccess({
               user: userApiResponse.user,
-            })
-          ),
-          catchError((error: HttpErrorResponse) =>
-            of(RegistrationPageActions.getUserError({ error: error }))
-          )
+            });
+          }),
+          catchError((error: HttpErrorResponse) => {
+            this.toastService.addToast({
+              title: `The user can not ${
+                url === 'register' ? 'created' : 'log in'
+              }`,
+              message: `${
+                url === 'register'
+                  ? error.error.message
+                  : 'Incorrect data entered'
+              }`,
+              toastType: ToastType.Error,
+              width: '408px',
+            });
+
+            return of(RegistrationPageActions.getUserError({ error: error }));
+          })
         )
       )
     );
@@ -42,6 +62,17 @@ export class RegistrationPageEffects {
 
         return EMPTY_ACTION;
       })
+    );
+  });
+
+  public addNotificationToken$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(RegistrationPageActions.getUserSuccess),
+      switchMap(({ user }) =>
+        this.userService
+          .addNotificationToken(user.token)
+          .pipe(mergeMap(() => EMPTY_ACTION))
+      )
     );
   });
 

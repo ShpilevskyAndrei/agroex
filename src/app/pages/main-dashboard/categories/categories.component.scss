@@ -5,14 +5,29 @@
     &__wrap {
       background-color: $color-white;
     }
+
     .mat-list-item {
       margin-top: $offset-small;
       margin-bottom: $offset-small;
       font-size: $font-size-medium;
     }
   }
+
+  .advertisement-list {
+    height: 100%;
+    display: flex;
+  }
+
+  .app-advertisement-list {
+    flex: 1;
+  }
+
   .category {
     display: flex;
     align-items: center;
   }
+
+  @include empty-advertisement-block;
 }
+
+@include advertisement-wrap-buttons;
