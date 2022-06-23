@@ -57,7 +57,7 @@ export class AdvertisementsListPageEffects {
             concatMap(() => {
               this.toastService.addToast({
                 toastType: ToastType.Success,
-                title: 'Bet accepted',
+                title: `You betted on LOT "${newBetOptions.title}"`,
                 width: '60vw',
                 buttonText: 'Ok',
               });
@@ -104,7 +104,7 @@ export class AdvertisementsListPageEffects {
             concatMap(() => {
               this.toastService.addToast({
                 toastType: ToastType.Success,
-                title: 'Purchase accepted',
+                title: `You bought LOT "${buyOptions.title}" at original price`,
                 width: '60vw',
                 buttonText: 'Ok',
               });

@@ -28,12 +28,19 @@ export class AdvertisementButtonsAdPageComponent {
     new EventEmitter<Record<string, string>>();
 
   public onClickButton(): void {
-    this.setBet.emit({ newBet: this.newBet, slug: this.advertisement.slug });
+    this.setBet.emit({
+      newBet: this.newBet,
+      slug: this.advertisement.slug,
+      title: this.advertisement.title,
+    });
     this.betForm.get('bet')?.setValue('');
     this.betForm.markAsUntouched();
   }
 
   public onSetBuy(): void {
-    this.setBuy.emit({ slug: this.advertisement.slug });
+    this.setBuy.emit({
+      slug: this.advertisement.slug,
+      title: this.advertisement.title,
+    });
   }
 }

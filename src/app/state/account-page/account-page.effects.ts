@@ -48,7 +48,7 @@ export class AccountPageEffects {
           map(() => {
             this.toastService.addToast({
               toastType: ToastType.Success,
-              title: `Advertisement was confirmed!`,
+              title: `You confirmed the deal with LOT ____`,
               width: '60vw',
             });
 
