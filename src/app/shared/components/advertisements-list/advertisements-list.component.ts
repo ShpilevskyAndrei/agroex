@@ -13,6 +13,7 @@ import { IAdvertisementRequestInterface } from './interfaces/advertisement-reque
 import { AdvertisementButtonsComponent } from './advertisement/advertisement-buttons/advertisement-buttons.component';
 import { IUser } from '../../interfaces/user.interface';
 import { IAdvertisementModerationRequest } from '../../../pages/moderation-advertisements/interfaces/advertisement.interface';
+import { UserRole } from '../header/enums/user-role';
 
 @Component({
   selector: 'app-advertisements-list',
@@ -22,6 +23,7 @@ import { IAdvertisementModerationRequest } from '../../../pages/moderation-adver
 })
 export class AdvertisementsListComponent {
   @Input() public user: IUser | null;
+  @Input() public userRole: UserRole | null;
   @Input() public advertisementsRequest: IAdvertisementRequestInterface | null;
   @Input() public advertisementsLoadingStatus: LoadingStatus | null;
   @Input() public isNavigationToAdvertisementPage: boolean | undefined;
