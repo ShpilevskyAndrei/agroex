@@ -14,7 +14,6 @@ import { UserRole } from '../../shared/components/header/enums/user-role';
 import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IMyOrdersInterface } from './my-orders/interfaces/my-orders-request.interface';
-import { IMyBetInterface } from 'src/app/shared/components/advertisements-list/interfaces/advertisement.interface';
 import { IAdvertisementInterface } from '../../shared/components/advertisements-list/interfaces/advertisement.interface';
 
 @Component({
@@ -31,7 +30,7 @@ export class AccountPageComponent {
   public myAdvertisementsRequest: IAdvertisementRequestInterface | null;
   @Input() public myAdvertisementsLoadingStatus: LoadingStatus | null;
   @Input()
-  public myBettingsRequest: IMyBetInterface[] | null;
+  public myBettingsRequest: IAdvertisementInterface[] | null;
   @Input() public myBettingsLoadingStatus: LoadingStatus | null;
   @Input()
   public myOrdersRequest: IMyOrdersInterface[] | null;

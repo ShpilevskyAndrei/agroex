@@ -5,12 +5,12 @@ import { DEFAULT_LOADING_STATUS } from '../../shared/constants/lodaing-default-s
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { AccountPageActions } from './account-page.actions';
 import { IMyOrdersInterface } from '../../pages/account-page/my-orders/interfaces/my-orders-request.interface';
-import { IMyBetInterface } from 'src/app/shared/components/advertisements-list/interfaces/advertisement.interface';
+import { IAdvertisementInterface } from 'src/app/shared/components/advertisements-list/interfaces/advertisement.interface';
 
 export interface AccountPageState {
   accountPageLoadingStatus: LoadingStatus;
   myAdvertisements: IAdvertisementRequestInterface;
-  myBettings: IMyBetInterface[];
+  myBettings: IAdvertisementInterface[];
   myOrders: IMyOrdersInterface[];
 }
 

@@ -10,7 +10,8 @@ import { IAdvertisementRequestInterface } from '../../shared/components/advertis
 import { selectUserToken } from '../registration-page/registration-page.selectors';
 import { AccountPageActions } from './account-page.actions';
 import { IMyOrdersInterface } from '../../pages/account-page/my-orders/interfaces/my-orders-request.interface';
-import { IMyBetInterface } from '../../shared/components/advertisements-list/interfaces/advertisement.interface';
+import { IAdvertisementInterface } from 'src/app/pages/moderation-advertisements/interfaces/advertisement.interface';
+import { AdvertisementsListDealActions } from '../advertisements-list-page/advertisements-list-page.actions';
 
 @Injectable()
 export class AccountPageEffects {
@@ -77,11 +78,14 @@ export class AccountPageEffects {
 
   public myBettings$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(AccountPageActions.getMyBettingsRequest),
+      ofType(
+        AccountPageActions.getMyBettingsRequest,
+        AdvertisementsListDealActions.getAdvertisementsBetSuccess
+      ),
       concatLatestFrom(() => this.store.select(selectUserToken)),
       switchMap(([_, selectUserToken]) =>
         this.accountPageService.getMyBettings(selectUserToken).pipe(
-          map((myBettings: IMyBetInterface[]) =>
+          map((myBettings: IAdvertisementInterface[]) =>
             AccountPageActions.getMyBettingsSuccess({
               myBettings,
             })

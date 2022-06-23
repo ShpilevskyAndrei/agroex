@@ -87,7 +87,7 @@ export const ADVERTISEMENTS_LIST_PAGE_REDUCER = createReducer(
   on(
     AdvertisementsListDealActions.getAdvertisementsBetExpired,
     (state, { slug }): AdvertisementsListPageState => {
-      const updateAdvertisements = state.advertisements.advertisements.map(
+      const updateAdvertisements = state.advertisements.advertisements?.map(
         (adv: IAdvertisementInterface) => {
           if (adv.slug === slug) {
             return {

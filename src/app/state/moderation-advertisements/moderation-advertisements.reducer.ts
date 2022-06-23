@@ -59,7 +59,7 @@ export const MODERATION_ADVERTISEMENTS_REDUCER = createReducer(
     ModerationAdvertisementsActions.getDecisionNonModerationAdvertisementsSuccess,
     (state, { decision }): ModerationAdvertisementsState => {
       const advNotModerated =
-        state.nonModerationAdvertisements.advertisements.filter(
+        state.nonModerationAdvertisements?.advertisements?.filter(
           (adv: IAdvertisementInterface) =>
             adv.slug !== decision.advertisements.slug
         );

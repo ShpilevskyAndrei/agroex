@@ -5,7 +5,7 @@ import {
 
 export interface IAdvertisementRequestInterface {
   advertisementCount: number | null;
-  advertisements: IAdvertisementInterface[];
+  advertisements: IAdvertisementInterface[] | null | undefined;
 }
 
 export interface IMyBetsInterface {

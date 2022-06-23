@@ -25,7 +25,6 @@ import { IAdvertisementRequestInterface } from '../../shared/components/advertis
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IMyOrdersInterface } from './my-orders/interfaces/my-orders-request.interface';
 import { IAdvertisementInterface } from '../../shared/components/advertisements-list/interfaces/advertisement.interface';
-import { IMyBetInterface } from 'src/app/shared/components/advertisements-list/interfaces/advertisement.interface';
 import { AdvertisementsListDealActions } from 'src/app/state/advertisements-list-page/advertisements-list-page.actions';
 
 @Component({
@@ -55,7 +54,7 @@ export class AccountPageContainerComponent {
   public selectedTab$: Observable<string | null>;
   public myAdvertisementsRequest$: Observable<IAdvertisementRequestInterface | null>;
   public myAdvertisementsLoadingStatus$: Observable<LoadingStatus | null>;
-  public myBettingsRequest$: Observable<IMyBetInterface[] | null>;
+  public myBettingsRequest$: Observable<IAdvertisementInterface[] | null>;
   public myBettingsLoadingStatus$: Observable<LoadingStatus | null>;
   public myOrdersRequest$: Observable<IMyOrdersInterface[] | null>;
   public myOrdersLoadingStatus$: Observable<LoadingStatus | null>;

@@ -3,7 +3,6 @@ import { createAction, props } from '@ngrx/store';
 
 import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
 import { IMyOrdersInterface } from '../../pages/account-page/my-orders/interfaces/my-orders-request.interface';
-import { IMyBetInterface } from '../../shared/components/advertisements-list/interfaces/advertisement.interface';
 import { IAdvertisementInterface } from '../../shared/components/advertisements-list/interfaces/advertisement.interface';
 
 export const AccountPageActions = {
@@ -37,7 +36,7 @@ export const AccountPageActions = {
 
   getMyBettingsSuccess: createAction(
     '[ACCOUNT_PAGE] my bettings success',
-    props<{ myBettings: IMyBetInterface[] }>()
+    props<{ myBettings: IAdvertisementInterface[] }>()
   ),
 
   getMyBettingsError: createAction(
