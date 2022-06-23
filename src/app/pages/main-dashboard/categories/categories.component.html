@@ -5,6 +5,8 @@
       mat-stretch-tabs
       animationDuration="0ms"
       color="accent"
+      (selectedTabChange)="onSelectCategoryTab($event)"
+      [selectedIndex]="findCategory()"
     >
       <mat-tab *ngFor="let category of categories">
         <ng-template mat-tab-label>
@@ -14,28 +16,61 @@
             [category]="category"
           ></app-category>
         </ng-template>
-            <div class="advertisement-list">
-                <app-advertisements-list
-                  [showOwnerFlag]="showOwnerFlag"
-                  [isNavigationToAdvertisementPage]="isNavigationToAdvertisementPage"
+        <ng-container
+          *ngIf="advertisementsLoadingStatus?.loaded; else notLoaded"
+        >
+          <div class="advertisement-list">
+            <app-advertisements-list
+              class="app-advertisement-list"
+              *ngIf="
+                advertisementsRequest?.advertisements?.length;
+                else emptyAdvertisements
+              "
+              [showOwnerFlag]="showOwnerFlag"
+              [isNavigationToAdvertisementPage]="
+                isNavigationToAdvertisementPage
+              "
+              [user]="user"
+              [advertisementsRequest]="advertisementsRequest"
+              [advertisementsLoadingStatus]="advertisementsLoadingStatus"
+              (setBet)="onSetBet($event)"
+              (setBuy)="onSetBuy($event)"
+            >
+              <ng-template #actionButtons let-advertisement>
+                <app-advertisements-list-buttons
+                  class="advertisement-wrap__btns"
                   [user]="user"
-                  [advertisementsRequest]="advertisementsRequest"
-                  [advertisementsLoadingStatus]="advertisementsLoadingStatus"
+                  [advertisement]="advertisement"
                   (setBet)="onSetBet($event)"
                 >
-                  <ng-template #actionButtons let-advertisement>
-                    <app-advertisements-list-buttons
-                      class="advertisement-wrap__btns"
-                      [user]="user"
-                      [advertisement]="advertisement"
-                      (setBet)="onSetBet($event)">
-                    </app-advertisements-list-buttons>
-                  </ng-template>
-                </app-advertisements-list>
-            </div>
+                </app-advertisements-list-buttons>
+              </ng-template>
+            </app-advertisements-list>
+          </div>
+        </ng-container>
 
+        <ng-template #emptyAdvertisements>
+          <div class="empty-advertisement">
+            <p>There are no advertisements</p>
+          </div>
+        </ng-template>
       </mat-tab>
     </mat-tab-group>
   </div>
   <ng-content></ng-content>
 </div>
+
+<ng-template #notLoaded>
+  <ngx-spinner
+    *ngIf="advertisementsLoadingStatus?.loading; else advertisementsError"
+    bdColor="rgba(0, 0, 0, 0)"
+    size="medium"
+    color="#38999B"
+    type="ball-clip-rotate"
+    [fullScreen]="false"
+  >
+  </ngx-spinner>
+  <ng-template #advertisementsError>
+    <p>{{ advertisementsLoadingStatus?.error?.statusText }}</p>
+  </ng-template>
+</ng-template>
