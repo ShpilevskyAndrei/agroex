@@ -9,12 +9,13 @@
     [advertisementsRequest]="myAdvertisementsRequest"
     [advertisementsLoadingStatus]="myAdvertisementsLoadingStatus"
     [user]="user"
+    [userRole]="userRole"
   >
     <ng-template #actionButtons let-advertisement>
       <app-my-advertisements-buttons
         *ngIf="advertisement.isActive && advertisement.userBets.length"
         class="advertisement-wrap__btns"
-        (confirmDeal)="onConfirmDeal(advertisement.slug)"
+        (confirmDeal)="onConfirmDeal(advertisement)"
       ></app-my-advertisements-buttons>
     </ng-template>
   </app-advertisements-list>

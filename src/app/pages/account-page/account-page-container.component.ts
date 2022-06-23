@@ -22,6 +22,7 @@ import { UserRole } from '../../shared/components/header/enums/user-role';
 import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IMyOrdersInterface } from './my-orders/interfaces/my-orders-request.interface';
+import { IAdvertisementInterface } from '../../shared/components/advertisements-list/interfaces/advertisement.interface';
 
 @Component({
   selector: 'app-account-page-container',
@@ -77,7 +78,9 @@ export class AccountPageContainerComponent {
     this.store.dispatch(dispatcher());
   }
 
-  public onConfirmDeal(slug: string): void {
-    this.store.dispatch(AccountPageActions.getConfirmDealRequest({ slug }));
+  public onConfirmDeal(advertisement: IAdvertisementInterface): void {
+    this.store.dispatch(
+      AccountPageActions.getConfirmDealRequest({ advertisement })
+    );
   }
 }

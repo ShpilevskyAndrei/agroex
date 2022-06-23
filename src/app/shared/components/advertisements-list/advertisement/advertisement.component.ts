@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 
 import { IAdvertisementInterface } from '../interfaces/advertisement.interface';
 import { IUser } from '../../../interfaces/user.interface';
+import { UserRole } from '../../header/enums/user-role';
+import { ModerationStatus } from '../../header/enums/moderation-status';
 
 @Component({
   selector: 'app-advertisement',
@@ -19,11 +21,14 @@ import { IUser } from '../../../interfaces/user.interface';
 export class AdvertisementComponent {
   @Input() public advertisement: IAdvertisementInterface;
   @Input() public user: IUser | null;
+  @Input() public userRole: UserRole | null;
   @Input() public isNavigationToAdvertisementPage: boolean | undefined = false;
   @Input() public showOwnerFlag: boolean;
 
   @Output() public setBet: EventEmitter<Record<string, string | number>> =
     new EventEmitter<Record<string, string | number>>();
+
+  public ModerationStatus = ModerationStatus;
 
   constructor(private router: Router) {}
 
@@ -35,5 +40,12 @@ export class AdvertisementComponent {
     if (this.isNavigationToAdvertisementPage) {
       this.router.navigate(['/advertisement', this.advertisement.slug]);
     }
+  }
+
+  public isModerated(): boolean {
+    return (
+      this.advertisement.moderationStatus === ModerationStatus.Unmoderated &&
+      this.userRole === UserRole.User
+    );
   }
 }

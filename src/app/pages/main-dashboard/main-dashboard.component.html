@@ -13,8 +13,10 @@
     [advertisementsRequest]="advertisementsRequest"
     [advertisementsLoadingStatus]="advertisementsLoadingStatus"
     (setBet)="onSetBet($event)"
+    (setBuy)="onSetBuy($event)"
   >
   </app-categories>
+
 </ng-container>
 
 <ng-template #notLoaded>
@@ -26,7 +28,7 @@
     type="ball-clip-rotate"
     [fullScreen]="true"
   >
-    <p style="color: white">Loading...</p>
+    <div style="color: white">Loading...</div>
   </ngx-spinner>
   <ng-template #categoriesError>
     <p>{{ categoriesLoadingStatus?.error?.statusText }}</p>

@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import { AgroexToastService, ToastType } from 'ngx-agroex-toast';
 
 import {
-  AdvertisementsListBetActions,
+  AdvertisementsListDealActions,
   AdvertisementsListPageActions,
 } from './advertisements-list-page.actions';
 import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
@@ -20,8 +20,8 @@ export class AdvertisementsListPageEffects {
     return this.actions$.pipe(
       ofType(
         AdvertisementsListPageActions.getAdvertisementsRequest,
-        AdvertisementsListBetActions.getAdvertisementsBetSuccess,
-        AdvertisementsListBetActions.getAdvertisementsBetError
+        AdvertisementsListDealActions.getAdvertisementsBetSuccess,
+        AdvertisementsListDealActions.getAdvertisementsBetError
       ),
       // withLatestFrom(this.store.select(taba)),
       switchMap(() =>
@@ -45,7 +45,7 @@ export class AdvertisementsListPageEffects {
 
   public advertisementsBet$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(AdvertisementsListBetActions.getAdvertisementsBetRequest),
+      ofType(AdvertisementsListDealActions.getAdvertisementsBetRequest),
       concatLatestFrom(() => this.store.select(selectUserToken)),
       switchMap(([{ newBetOptions }, selectUserToken]) =>
         this.advertisementsListService
@@ -58,13 +58,13 @@ export class AdvertisementsListPageEffects {
             concatMap(() => {
               this.toastService.addToast({
                 toastType: ToastType.Success,
-                title: 'Bet accepted',
+                title: `You betted on LOT "${newBetOptions.title}"`,
                 width: '60vw',
                 buttonText: 'Ok',
               });
 
               return [
-                AdvertisementsListBetActions.getAdvertisementsBetSuccess(),
+                AdvertisementsListDealActions.getAdvertisementsBetSuccess(),
                 AdvertisementPageActions.getAdvertisementRequest({
                   slug: `${newBetOptions.slug}`,
                   disableReloading: true,
@@ -80,11 +80,55 @@ export class AdvertisementsListPageEffects {
               });
 
               return of(
-                AdvertisementsListBetActions.getAdvertisementsBetError({
+                AdvertisementsListDealActions.getAdvertisementsBetError({
                   error: error,
                 }),
                 AdvertisementPageActions.getAdvertisementRequest({
                   slug: `${newBetOptions.slug}`,
+                  disableReloading: true,
+                })
+              );
+            })
+          )
+      )
+    );
+  });
+
+  public advertisementsBuy$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AdvertisementsListDealActions.getAdvertisementsBuyRequest),
+      concatLatestFrom(() => this.store.select(selectUserToken)),
+      switchMap(([{ buyOptions }, selectUserToken]) =>
+        this.advertisementsListService
+          .addAdvertisementBuy(buyOptions.slug, selectUserToken)
+          .pipe(
+            concatMap(() => {
+              this.toastService.addToast({
+                toastType: ToastType.Success,
+                title: `You bought LOT "${buyOptions.title}" at original price`,
+                width: '60vw',
+                buttonText: 'Ok',
+              });
+
+              return [
+                AdvertisementsListDealActions.getAdvertisementsBuySuccess(),
+                AdvertisementsListPageActions.getAdvertisementsRequest(),
+              ];
+            }),
+            catchError((error: HttpErrorResponse) => {
+              this.toastService.addToast({
+                title: 'Purchase not accepted',
+                message: error.error.message,
+                toastType: ToastType.Error,
+                width: '60vw',
+              });
+
+              return of(
+                AdvertisementsListDealActions.getAdvertisementsBuyError({
+                  error: error,
+                }),
+                AdvertisementPageActions.getAdvertisementRequest({
+                  slug: `${buyOptions.slug}`,
                   disableReloading: true,
                 })
               );
