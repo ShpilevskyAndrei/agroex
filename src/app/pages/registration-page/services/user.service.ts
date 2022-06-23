@@ -6,7 +6,6 @@ import { mergeMap, Observable } from 'rxjs';
 import { UserApiResponse } from '../../../shared/interfaces/user.interface';
 import { IUserCredentials } from '../../../shared/interfaces/user-credentials.interfase';
 import { BaseService } from 'src/app/shared/services/base.service';
-import { ITokenNotificationResponse } from '../interfaces/token-notification-response';
 
 @Injectable({
   providedIn: 'root',
@@ -28,10 +27,10 @@ export class UserService extends BaseService {
 
   public addNotificationToken(
     userToken: string | undefined
-  ): Observable<ITokenNotificationResponse> {
+  ): Observable<Record<string, string | boolean>> {
     return this.afMessaging.requestToken.pipe(
       mergeMap((token: string | null) => {
-        return this.post<ITokenNotificationResponse>(
+        return this.post<Record<string, string | boolean>>(
           'notifications',
           {
             deviceType: 'web',

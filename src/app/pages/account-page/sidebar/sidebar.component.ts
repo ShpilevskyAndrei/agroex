@@ -7,11 +7,14 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireMessaging } from '@angular/fire/compat/messaging';
-import { mergeMap } from 'rxjs';
+import { filter, mergeMap } from 'rxjs';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 import { IUserOptionsType } from '../../../shared/components/header/interfaces/user-options-type.interface';
 import { UserRole } from '../../../shared/components/header/enums/user-role';
+import { tap } from 'rxjs/operators';
 
+@UntilDestroy()
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -32,14 +35,16 @@ export class SidebarComponent {
   ) {}
 
   public onLogout(): void {
-    this.userRole = UserRole.Guest;
-    this.logout.emit();
-    this.router.navigate(['']);
     this.afMessaging.getToken
       .pipe(
-        mergeMap((token) => {
-          return this.afMessaging.deleteToken(<string>token);
-        })
+        filter(Boolean),
+        mergeMap((token: string) => this.afMessaging.deleteToken(token)),
+        tap(() => {
+          this.userRole = UserRole.Guest;
+          this.logout.emit();
+          this.router.navigate(['']);
+        }),
+        untilDestroyed(this)
       )
       .subscribe();
   }

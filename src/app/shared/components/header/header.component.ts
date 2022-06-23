@@ -3,14 +3,16 @@ import {
   EventEmitter,
   Input,
   OnChanges,
+  OnInit,
   Output,
   SimpleChanges,
 } from '@angular/core';
 import { MatSelect } from '@angular/material/select';
 import { Router } from '@angular/router';
 import { AngularFireMessaging } from '@angular/fire/compat/messaging';
-import { mergeMap } from 'rxjs';
+import { filter, mergeMap } from "rxjs";
 import { tap } from 'rxjs/operators';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import firebase from 'firebase/compat';
 import MessagePayload = firebase.messaging.MessagePayload;
 
@@ -21,12 +23,13 @@ import { UserPanelOptionId } from './enums/user-panel-option-id';
 import { UserRole } from './enums/user-role';
 import { IUserOptionsType } from './interfaces/user-options-type.interface';
 
+@UntilDestroy()
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnChanges {
+export class HeaderComponent implements OnChanges, OnInit {
   @Input() public user: IUser | null;
   @Input() public userRole: UserRole | null;
   @Input() public notificationMessage: MessagePayload[] | null;
@@ -44,12 +47,15 @@ export class HeaderComponent implements OnChanges {
   constructor(
     private router: Router,
     private afMessaging: AngularFireMessaging
-  ) {
+  ) {}
+
+  public ngOnInit(): void {
     this.afMessaging.messages
       .pipe(
         tap((message) => {
           this.addNotificationMessage.emit(message);
-        })
+        }),
+        untilDestroyed(this)
       )
       .subscribe();
   }
@@ -89,14 +95,16 @@ export class HeaderComponent implements OnChanges {
   }
 
   public onLogout(): void {
-    this.userCurrentRole = UserRole.Guest;
-    this.logout.emit();
-    this.router.navigate(['']);
     this.afMessaging.getToken
       .pipe(
-        mergeMap((token) => {
-          return this.afMessaging.deleteToken(<string>token);
-        })
+        filter(Boolean),
+        mergeMap((token: string) => this.afMessaging.deleteToken(token)),
+        tap(() => {
+          this.userRole = UserRole.Guest;
+          this.logout.emit();
+          this.router.navigate(['']);
+        }),
+        untilDestroyed(this)
       )
       .subscribe();
   }
