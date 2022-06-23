@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import firebase from 'firebase/compat';
+import MessagePayload = firebase.messaging.MessagePayload;
 
-import { UserPanelOptionId } from '../../shared/components/header/enums/user-panel-option-id';
 import { AccountPageActions } from '../../state/account-page/account-page.actions';
 import {
   selectMyAdvertisementsData,
@@ -17,7 +18,10 @@ import {
   selectUserRole,
 } from '../../state/registration-page/registration-page.selectors';
 import { IUser } from '../../shared/interfaces/user.interface';
-import { selectAppRootOptionId } from '../../state/app-root/app-root.selectors';
+import {
+  getNotificationMessage,
+  selectAppRootOptionId,
+} from '../../state/app-root/app-root.selectors';
 import { UserRole } from '../../shared/components/header/enums/user-role';
 import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
@@ -34,10 +38,12 @@ import { IAdvertisementInterface } from '../../shared/components/advertisements-
     [myAdvertisementsLoadingStatus]="myAdvertisementsLoadingStatus$ | async"
     [myOrdersRequest]="myOrdersRequest$ | async"
     [myOrdersLoadingStatus]="myOrdersLoadingStatus$ | async"
+    [notificationMessage]="notificationMessage$ | async"
     (logout)="onLogout()"
     (selectTab)="onSelectTab($event)"
     (dispatcher)="onDispatcher($event)"
     (confirmDeal)="onConfirmDeal($event)"
+    (addNotificationMessage)="onAddNotificationMessage($event)"
   ></app-account-page>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -49,6 +55,7 @@ export class AccountPageContainerComponent {
   public myAdvertisementsLoadingStatus$: Observable<LoadingStatus | null>;
   public myOrdersRequest$: Observable<IMyOrdersInterface[] | null>;
   public myOrdersLoadingStatus$: Observable<LoadingStatus | null>;
+  public notificationMessage$: Observable<MessagePayload[] | null>;
 
   constructor(private store: Store) {
     this.user$ = this.store.select(selectUserData);
@@ -64,13 +71,14 @@ export class AccountPageContainerComponent {
     this.myOrdersLoadingStatus$ = this.store.select(
       selectMyOrdersLoadingStatus
     );
+    this.notificationMessage$ = this.store.select(getNotificationMessage);
   }
 
   public onLogout(): void {
     this.store.dispatch(RegistrationPageActions.getUserLogout());
   }
 
-  public onSelectTab(selectedOptionId: UserPanelOptionId): void {
+  public onSelectTab(selectedOptionId: string): void {
     this.store.dispatch(AppRootActions.getUserSelectTab({ selectedOptionId }));
   }
 
@@ -82,5 +90,9 @@ export class AccountPageContainerComponent {
     this.store.dispatch(
       AccountPageActions.getConfirmDealRequest({ advertisement })
     );
+  }
+
+  public onAddNotificationMessage(message: MessagePayload): void {
+    this.store.dispatch(AppRootActions.getNotificationMessage({ message }));
   }
 }

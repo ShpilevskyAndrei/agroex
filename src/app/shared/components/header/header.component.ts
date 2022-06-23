@@ -3,11 +3,18 @@ import {
   EventEmitter,
   Input,
   OnChanges,
+  OnInit,
   Output,
   SimpleChanges,
 } from '@angular/core';
 import { MatSelect } from '@angular/material/select';
 import { Router } from '@angular/router';
+import { AngularFireMessaging } from '@angular/fire/compat/messaging';
+import { filter, mergeMap } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import firebase from 'firebase/compat';
+import MessagePayload = firebase.messaging.MessagePayload;
 
 import { IUser } from '../../interfaces/user.interface';
 import { USER_PANEL_OPTION } from './constants/user-panel-option';
@@ -15,26 +22,50 @@ import { LOGGED_ROLE_CONFIG } from './constants/user-role-config';
 import { UserPanelOptionId } from './enums/user-panel-option-id';
 import { UserRole } from './enums/user-role';
 import { IUserOptionsType } from './interfaces/user-options-type.interface';
+import { AgroexToastService, ToastType } from 'ngx-agroex-toast';
 
+@UntilDestroy()
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnChanges {
+export class HeaderComponent implements OnChanges, OnInit {
   @Input() public user: IUser | null;
   @Input() public userRole: UserRole | null;
+  @Input() public notificationMessage: MessagePayload[] | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
-  @Output() public selectTab: EventEmitter<UserPanelOptionId> =
-    new EventEmitter<UserPanelOptionId>();
+  @Output() public selectTab: EventEmitter<string> = new EventEmitter<string>();
+  @Output() public addNotificationMessage: EventEmitter<MessagePayload> =
+    new EventEmitter<MessagePayload>();
 
   public userRoleConfig = LOGGED_ROLE_CONFIG;
   public userRoles = UserRole;
-  public userPanelOption = USER_PANEL_OPTION;
+  public userPanelOption: IUserOptionsType[] = USER_PANEL_OPTION;
   public userCurrentRole: UserRole | null = UserRole.Guest;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private afMessaging: AngularFireMessaging,
+    private toastService: AgroexToastService
+  ) {}
+
+  public ngOnInit(): void {
+    this.afMessaging.messages
+      .pipe(
+        tap((message) => {
+          this.toastService.addToast({
+            toastType: ToastType.Info,
+            title: 'You received new message',
+            width: '60vw',
+          });
+          this.addNotificationMessage.emit(message);
+        }),
+        untilDestroyed(this)
+      )
+      .subscribe();
+  }
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.user && this.user) {
@@ -71,12 +102,21 @@ export class HeaderComponent implements OnChanges {
   }
 
   public onLogout(): void {
-    this.userCurrentRole = UserRole.Guest;
-    this.logout.emit();
-    this.router.navigate(['']);
+    this.afMessaging.getToken
+      .pipe(
+        filter(Boolean),
+        mergeMap((token: string) => this.afMessaging.deleteToken(token)),
+        tap(() => {
+          this.logout.emit();
+          this.userCurrentRole = UserRole.Guest;
+          this.router.navigate(['']);
+        }),
+        untilDestroyed(this)
+      )
+      .subscribe();
   }
 
-  public onSelectPage(selectedOptionId: IUserOptionsType): void {
-    this.selectTab.emit(selectedOptionId.id);
+  public onSelectPage(selectedOptionId: string | undefined): void {
+    this.selectTab.emit(selectedOptionId);
   }
 }

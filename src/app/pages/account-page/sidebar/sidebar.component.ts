@@ -6,11 +6,15 @@ import {
   Output,
 } from '@angular/core';
 import { Router } from '@angular/router';
+import { AngularFireMessaging } from '@angular/fire/compat/messaging';
+import { filter, mergeMap } from 'rxjs';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 import { IUserOptionsType } from '../../../shared/components/header/interfaces/user-options-type.interface';
-import { UserPanelOptionId } from '../../../shared/components/header/enums/user-panel-option-id';
 import { UserRole } from '../../../shared/components/header/enums/user-role';
+import { tap } from 'rxjs/operators';
 
+@UntilDestroy()
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -23,18 +27,29 @@ export class SidebarComponent {
   @Input() public userPanelOption: IUserOptionsType[];
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
-  @Output() public selectTab: EventEmitter<UserPanelOptionId> =
-    new EventEmitter<UserPanelOptionId>();
+  @Output() public selectTab: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private afMessaging: AngularFireMessaging
+  ) {}
 
   public onLogout(): void {
-    this.userRole = UserRole.Guest;
-    this.logout.emit();
-    this.router.navigate(['']);
+    this.afMessaging.getToken
+      .pipe(
+        filter(Boolean),
+        mergeMap((token: string) => this.afMessaging.deleteToken(token)),
+        tap(() => {
+          this.userRole = UserRole.Guest;
+          this.logout.emit();
+          this.router.navigate(['']);
+        }),
+        untilDestroyed(this)
+      )
+      .subscribe();
   }
 
-  public onSelectPage(selectedPage: IUserOptionsType): void {
-    this.selectTab.emit(selectedPage.id);
+  public onSelectPage(selectedPage: string | undefined): void {
+    this.selectTab.emit(selectedPage);
   }
 }

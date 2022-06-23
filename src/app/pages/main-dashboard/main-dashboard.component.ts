@@ -5,8 +5,9 @@ import {
   Input,
   Output,
 } from '@angular/core';
+import firebase from 'firebase/compat';
+import MessagePayload = firebase.messaging.MessagePayload;
 
-import { UserPanelOptionId } from '../../shared/components/header/enums/user-panel-option-id';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IUser } from '../../shared/interfaces/user.interface';
 import { Category } from './categories/interfaces/category.model';
@@ -24,6 +25,7 @@ export class MainDashboardComponent {
   @Input() public categoriesLoadingStatus: LoadingStatus | null;
   @Input() public user: IUser | null;
   @Input() public userRole: UserRole | null;
+  @Input() public notificationMessage: MessagePayload[] | null;
   @Input() public advertisementsRequest: IAdvertisementRequestInterface | null;
   @Input() public advertisementsLoadingStatus: LoadingStatus | null;
 
@@ -32,8 +34,10 @@ export class MainDashboardComponent {
     new EventEmitter<Record<string, string | number>>();
   @Output() public setBuy: EventEmitter<Record<string, string>> =
     new EventEmitter<Record<string, string>>();
-  @Output() public selectTab: EventEmitter<UserPanelOptionId> =
-    new EventEmitter<UserPanelOptionId>();
+  @Output() public selectTab: EventEmitter<string> =
+    new EventEmitter<string>();
+  @Output() public addNotificationMessage: EventEmitter<MessagePayload> =
+    new EventEmitter<MessagePayload>();
 
   public showOwnerFlag = true;
 
@@ -51,7 +55,11 @@ export class MainDashboardComponent {
     this.setBuy.emit(buyOptions);
   }
 
-  public onSelectTab(selectedOptionId: UserPanelOptionId): void {
+  public onSelectTab(selectedOptionId: string): void {
     this.selectTab.emit(selectedOptionId);
+  }
+
+  public onAddNotificationMessage(message: MessagePayload): void {
+    this.addNotificationMessage.emit(message);
   }
 }

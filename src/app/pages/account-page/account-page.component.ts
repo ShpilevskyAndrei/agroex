@@ -5,6 +5,8 @@ import {
   Input,
   Output,
 } from '@angular/core';
+import firebase from 'firebase/compat';
+import MessagePayload = firebase.messaging.MessagePayload;
 
 import { UserPanelOptionId } from '../../shared/components/header/enums/user-panel-option-id';
 import { IUser } from '../../shared/interfaces/user.interface';
@@ -33,6 +35,7 @@ export class AccountPageComponent {
   @Input()
   public myOrdersRequest: IMyOrdersInterface[] | null;
   @Input() public myOrdersLoadingStatus: LoadingStatus | null;
+  @Input() public notificationMessage: MessagePayload[] | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
   @Output() public selectTab: EventEmitter<UserPanelOptionId> =
@@ -41,6 +44,8 @@ export class AccountPageComponent {
     new EventEmitter<Function>();
   @Output() public confirmDeal: EventEmitter<IAdvertisementInterface> =
     new EventEmitter<IAdvertisementInterface>();
+  @Output() public addNotificationMessage: EventEmitter<MessagePayload> =
+    new EventEmitter<MessagePayload>();
 
   public userPanelOption: IUserOptionsType[] = USER_PANEL_OPTION;
   public userPanelOptionId = UserPanelOptionId;
@@ -66,6 +71,7 @@ export class AccountPageComponent {
   }
 
   public onSelectTab(selectedOptionId: UserPanelOptionId): void {
+  public onSelectTab(selectedOptionId: string): void {
     this.selectTab.emit(selectedOptionId);
     this.showSidebar = !this.showSidebar;
   }
@@ -76,6 +82,10 @@ export class AccountPageComponent {
 
   public onConfirmDeal(advertisement: IAdvertisementInterface): void {
     this.confirmDeal.emit(advertisement);
+  }
+
+  public onAddNotificationMessage(message: MessagePayload): void {
+    this.addNotificationMessage.emit(message);
   }
 
   public switchSideBar(): void {
