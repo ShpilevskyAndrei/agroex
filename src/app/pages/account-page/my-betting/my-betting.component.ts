@@ -32,6 +32,8 @@ export class MyBettingComponent implements OnInit {
     new EventEmitter<Function>();
   @Output() public setBet: EventEmitter<Record<string, string | number>> =
     new EventEmitter<Record<string, string | number>>();
+  @Output() public setBuy: EventEmitter<Record<string, string>> =
+    new EventEmitter<Record<string, string>>();
 
   public showOwnerFlag = true;
 
@@ -90,7 +92,12 @@ export class MyBettingComponent implements OnInit {
   }
 
   public onSetBet(newBetOptions: Record<string, string | number>): void {
+    console.log('+', newBetOptions);
     this.setBet.emit(newBetOptions);
+  }
+
+  public onSetBuy(buyOptions: Record<string, string>): void {
+    this.setBuy.emit(buyOptions);
   }
 
   public bettingRequest(): IAdvertisementRequestInterface {

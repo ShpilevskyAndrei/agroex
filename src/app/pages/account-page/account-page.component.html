@@ -36,7 +36,8 @@
             [myBettingsLoadingStatus]="myBettingsLoadingStatus"
             [user]="user"
             (dispatcher)="onDispatcher($event)"
-            (setBet)="onSetBet($event)">
+            (setBet)="onSetBet($event)"
+            (setBuy)="onSetBuy($event)">
           </app-my-betting>
           <app-my-orders
             *ngSwitchCase="userPanelOptionId.MyOrders"

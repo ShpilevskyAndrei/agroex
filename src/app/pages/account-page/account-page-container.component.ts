@@ -42,6 +42,7 @@ import { AdvertisementsListDealActions } from 'src/app/state/advertisements-list
     [myOrdersLoadingStatus]="myOrdersLoadingStatus$ | async"
     (logout)="onLogout()"
     (setBet)="onSetBet($event)"
+    (setBuy)="onSetBuy($event)"
     (selectTab)="onSelectTab($event)"
     (dispatcher)="onDispatcher($event)"
     (confirmDeal)="onConfirmDeal($event)"
@@ -102,6 +103,12 @@ export class AccountPageContainerComponent {
       AdvertisementsListDealActions.getAdvertisementsBetRequest({
         newBetOptions,
       })
+    );
+  }
+
+  public onSetBuy(buyOptions: Record<string, string>): void {
+    this.store.dispatch(
+      AdvertisementsListDealActions.getAdvertisementsBuyRequest({ buyOptions })
     );
   }
 }

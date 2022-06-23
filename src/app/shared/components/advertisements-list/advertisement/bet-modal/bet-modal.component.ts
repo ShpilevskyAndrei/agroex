@@ -59,6 +59,7 @@ export class BetModalComponent implements OnInit {
   }
 
   public onCloseBetModal(): void {
+    console.log(this.betForm.get('bet')?.value);
     this.dialogRef.close(this.betForm.get('bet')?.value);
   }
 

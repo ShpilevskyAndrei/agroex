@@ -44,6 +44,8 @@ export class AccountPageComponent {
     new EventEmitter<Function>();
   @Output() public setBet: EventEmitter<Record<string, string | number>> =
     new EventEmitter<Record<string, string | number>>();
+  @Output() public setBuy: EventEmitter<Record<string, string>> =
+    new EventEmitter<Record<string, string>>();
   @Output() public confirmDeal: EventEmitter<IAdvertisementInterface> =
     new EventEmitter<IAdvertisementInterface>();
 
@@ -68,5 +70,9 @@ export class AccountPageComponent {
 
   public onSetBet(newBetOptions: Record<string, string | number>): void {
     this.setBet.emit(newBetOptions);
+  }
+
+  public onSetBuy(buyOptions: Record<string, string>): void {
+    this.setBuy.emit(buyOptions);
   }
 }
