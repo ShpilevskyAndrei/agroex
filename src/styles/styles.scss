@@ -123,13 +123,13 @@ body {
   }
 
   &.notifications {
+    display: flex;
     max-width: 30rem;
+    max-height: 25rem;
     .mat-menu-content:not(:empty) {
-      display: flex;
-      flex-direction: column;
       padding-top: 0;
       padding-bottom: 0;
-      height: 100%;
+      flex-grow: 1;
     }
 
     .mat-menu-item {
@@ -139,12 +139,12 @@ body {
       padding: $offset-medium;
       height: auto;
       .title {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
         font-weight: 500;
         white-space: normal;
       }
       .content {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
         margin: $offset-xsmall 0 0;
       }
     }
