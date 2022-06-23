@@ -1,18 +1,16 @@
 import { createReducer, on } from '@ngrx/store';
 
-import {
-  IAdvertisementRequestInterface,
-  IMyBetsRequestInterface,
-} from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
+import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
 import { DEFAULT_LOADING_STATUS } from '../../shared/constants/lodaing-default-status';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { AccountPageActions } from './account-page.actions';
 import { IMyOrdersInterface } from '../../pages/account-page/my-orders/interfaces/my-orders-request.interface';
+import { IMyBetInterface } from 'src/app/shared/components/advertisements-list/interfaces/advertisement.interface';
 
 export interface AccountPageState {
   accountPageLoadingStatus: LoadingStatus;
   myAdvertisements: IAdvertisementRequestInterface;
-  myBettings: IMyBetsRequestInterface;
+  myBettings: IMyBetInterface[];
   myOrders: IMyOrdersInterface[];
 }
 
@@ -21,7 +19,7 @@ export const ACCOUNT_PAGE = 'accountPage';
 const initialState: AccountPageState = {
   accountPageLoadingStatus: DEFAULT_LOADING_STATUS,
   myAdvertisements: { advertisementCount: null, advertisements: [] },
-  myBettings: { advertisementCount: null, advertisements: [] },
+  myBettings: [],
   myOrders: [],
 };
 

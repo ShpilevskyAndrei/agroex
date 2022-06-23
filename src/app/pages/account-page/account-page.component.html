@@ -29,7 +29,12 @@
             (confirmDeal)="onConfirmDeal($event)"
           >
           </app-my-advertisements>
-          <app-my-betting *ngSwitchCase="userPanelOptionId.Betting">
+          <app-my-betting 
+            *ngSwitchCase="userPanelOptionId.Betting"
+            [myBettingsRequest]="myBettingsRequest"
+            [myBettingsLoadingStatus]="myBettingsLoadingStatus"
+            [user]="user"
+            (dispatcher)="onDispatcher($event)">
           </app-my-betting>
           <app-my-orders
             *ngSwitchCase="userPanelOptionId.MyOrders"

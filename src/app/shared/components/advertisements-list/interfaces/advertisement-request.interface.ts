@@ -8,7 +8,7 @@ export interface IAdvertisementRequestInterface {
   advertisements: IAdvertisementInterface[];
 }
 
-export interface IMyBetsRequestInterface {
+export interface IMyBetsInterface {
   advertisementCount: number | null;
-  advertisements: IMyBetInterface[];
+  advertisements: IMyBetInterface[] | null;
 }

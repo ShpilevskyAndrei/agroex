@@ -7,8 +7,8 @@
     <div class="advertisement-btn">
       <button
         *ngIf="
-          !advertisement.userBets[0] ||
-          +advertisement.userBets[0].betValue + 1 < +advertisement.price
+          !advertisement.userBets![0] ||
+          +this.userBet() + 1 < +advertisement.price
         "
         mat-button
         class="btn_ghost"

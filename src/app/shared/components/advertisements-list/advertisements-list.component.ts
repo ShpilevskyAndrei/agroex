@@ -9,10 +9,14 @@ import {
 } from '@angular/core';
 
 import { LoadingStatus } from '../../interfaces/loading-status';
-import { IAdvertisementRequestInterface } from './interfaces/advertisement-request.interface';
+import {
+  IAdvertisementRequestInterface,
+  IMyBetsInterface,
+} from './interfaces/advertisement-request.interface';
 import { AdvertisementButtonsComponent } from './advertisement/advertisement-buttons/advertisement-buttons.component';
 import { IUser } from '../../interfaces/user.interface';
 import { IAdvertisementModerationRequest } from '../../../pages/moderation-advertisements/interfaces/advertisement.interface';
+// import { IMyBetInterface } from './interfaces/advertisement.interface';
 
 @Component({
   selector: 'app-advertisements-list',
@@ -22,7 +26,10 @@ import { IAdvertisementModerationRequest } from '../../../pages/moderation-adver
 })
 export class AdvertisementsListComponent {
   @Input() public user: IUser | null;
-  @Input() public advertisementsRequest: IAdvertisementRequestInterface | null;
+  @Input() public advertisementsRequest:
+    | IAdvertisementRequestInterface
+    | IMyBetsInterface
+    | null;
   @Input() public advertisementsLoadingStatus: LoadingStatus | null;
   @Input() public isNavigationToAdvertisementPage: boolean | undefined;
   @Input() public showOwnerFlag: boolean;
@@ -38,4 +45,21 @@ export class AdvertisementsListComponent {
   public onSetBet(newBetOptions: Record<string, string | number>): void {
     this.setBet.emit(newBetOptions);
   }
+
+  // public getAdvertisementsRequest(
+  //   advertisementsRequest:
+  //     | IAdvertisementRequestInterface
+  //     | IMyBetsInterface
+  //     | null
+  // ): IAdvertisementRequestInterface | IMyBetsInterface | null {
+  //   if (advertisementsRequest?.advertisements[0]?.author?.id) {
+  //     return advertisementsRequest;
+  //   } else if (
+  //     advertisementsRequest?.advertisements[0]?.lastBetInfo.last_bet_value
+  //   ) {
+  //     return advertisementsRequest;
+  //   } else {
+  //     return null;
+  //   }
+  // }
 }

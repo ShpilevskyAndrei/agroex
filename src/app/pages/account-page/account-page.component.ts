@@ -11,12 +11,10 @@ import { IUser } from '../../shared/interfaces/user.interface';
 import { USER_PANEL_OPTION } from '../../shared/components/header/constants/user-panel-option';
 import { IUserOptionsType } from '../../shared/components/header/interfaces/user-options-type.interface';
 import { UserRole } from '../../shared/components/header/enums/user-role';
-import {
-  IAdvertisementRequestInterface,
-  IMyBetsRequestInterface,
-} from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
+import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IMyOrdersInterface } from './my-orders/interfaces/my-orders-request.interface';
+import { IMyBetInterface } from 'src/app/shared/components/advertisements-list/interfaces/advertisement.interface';
 
 @Component({
   selector: 'app-account-page',
@@ -32,7 +30,7 @@ export class AccountPageComponent {
   public myAdvertisementsRequest: IAdvertisementRequestInterface | null;
   @Input() public myAdvertisementsLoadingStatus: LoadingStatus | null;
   @Input()
-  public myBettingsRequest: IMyBetsRequestInterface | null;
+  public myBettingsRequest: IMyBetInterface[] | null;
   @Input() public myBettingsLoadingStatus: LoadingStatus | null;
   @Input()
   public myOrdersRequest: IMyOrdersInterface[] | null;

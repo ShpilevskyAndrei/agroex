@@ -1,11 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { createAction, props } from '@ngrx/store';
 
-import {
-  IAdvertisementRequestInterface,
-  IMyBetsRequestInterface,
-} from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
+import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
 import { IMyOrdersInterface } from '../../pages/account-page/my-orders/interfaces/my-orders-request.interface';
+import { IMyBetInterface } from '../../shared/components/advertisements-list/interfaces/advertisement.interface';
 
 export const AccountPageActions = {
   getMyAdvertisementsRequest: createAction(
@@ -38,7 +36,7 @@ export const AccountPageActions = {
 
   getMyBettingsSuccess: createAction(
     '[ACCOUNT_PAGE] my bettings success',
-    props<{ myBettings: IMyBetsRequestInterface }>()
+    props<{ myBettings: IMyBetInterface[] }>()
   ),
 
   getMyBettingsError: createAction(

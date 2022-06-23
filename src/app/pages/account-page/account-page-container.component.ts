@@ -21,12 +21,10 @@ import {
 import { IUser } from '../../shared/interfaces/user.interface';
 import { selectAppRootOptionId } from '../../state/app-root/app-root.selectors';
 import { UserRole } from '../../shared/components/header/enums/user-role';
-import {
-  IAdvertisementRequestInterface,
-  IMyBetsRequestInterface,
-} from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
+import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IMyOrdersInterface } from './my-orders/interfaces/my-orders-request.interface';
+import { IMyBetInterface } from 'src/app/shared/components/advertisements-list/interfaces/advertisement.interface';
 
 @Component({
   selector: 'app-account-page-container',
@@ -53,7 +51,7 @@ export class AccountPageContainerComponent {
   public selectedTab$: Observable<string | null>;
   public myAdvertisementsRequest$: Observable<IAdvertisementRequestInterface | null>;
   public myAdvertisementsLoadingStatus$: Observable<LoadingStatus | null>;
-  public myBettingsRequest$: Observable<IMyBetsRequestInterface | null>;
+  public myBettingsRequest$: Observable<IMyBetInterface[] | null>;
   public myBettingsLoadingStatus$: Observable<LoadingStatus | null>;
   public myOrdersRequest$: Observable<IMyOrdersInterface[] | null>;
   public myOrdersLoadingStatus$: Observable<LoadingStatus | null>;

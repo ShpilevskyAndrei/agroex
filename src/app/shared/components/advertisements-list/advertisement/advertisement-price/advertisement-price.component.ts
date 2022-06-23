@@ -1,6 +1,9 @@
 import { Component, Input } from '@angular/core';
 
-import { IAdvertisementInterface } from '../../interfaces/advertisement.interface';
+import {
+  IAdvertisementInterface,
+  IMyBetInterface,
+} from '../../interfaces/advertisement.interface';
 import { WeightEnum } from './enums/weight.enum';
 import { CurrenciesEnum } from '../bet-modal/enums/currencies.enum';
 import { BetColorOptionEnum } from './enums/bet-color-option';
@@ -12,7 +15,7 @@ import { IUser } from '../../../../interfaces/user.interface';
   styleUrls: ['./advertisement-price.component.scss'],
 })
 export class AdvertisementPriceComponent {
-  @Input() public advertisement: IAdvertisementInterface;
+  @Input() public advertisement: IAdvertisementInterface | IMyBetInterface;
   @Input() public user: IUser | null;
 
   public get getBetColor(): string {
@@ -49,7 +52,10 @@ export class AdvertisementPriceComponent {
 
   public get unitCostBet(): number {
     return +(
-      +this.advertisement.userBets[0].betValue / this.CalcTonToKg
+      +(
+        this.advertisement.userBets![0].betValue ||
+        this.advertisement.lastBetInfo!.last_bet_value
+      ) / this.CalcTonToKg
     ).toFixed(2);
   }
 

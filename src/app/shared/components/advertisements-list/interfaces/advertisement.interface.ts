@@ -20,27 +20,16 @@ export interface IAdvertisementInterface {
   updatedAt: string;
   author: IUser;
   userBets: IAdvertisementBetInterface[];
+  authorId?: number;
+  lastBetInfo?: {
+    user_id_with_last_bet: number;
+    last_bet_value: string;
+  };
 }
 
-export interface IMyBetInterface {
-  id: number;
-  img: string;
-  createAt: string;
-  updatedAt: string;
+export interface IMyBetInterface extends IAdvertisementInterface {
   authorId: number;
-  title: string;
-  price: string;
-  currency: string;
-  quantity: string;
-  unit: string;
-  slug: string;
-  category: string;
-  subCategory: string | null;
-  isModerated: boolean;
-  country: string;
-  location: string;
   moderationComment: string | null;
-  isActive: boolean;
   expireAdvert: string;
   moderationStatus: 'approved' | 'rejected' | 'unmoderated';
   isConfirmed: boolean;
