@@ -1,13 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AngularFireMessaging } from '@angular/fire/compat/messaging';
+import { mergeMap, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { AgroexToastService, ToastType } from 'ngx-agroex-toast';
-import { EMPTY, Observable } from 'rxjs';
 
 import { UserApiResponse } from '../../../shared/interfaces/user.interface';
 import { IUserCredentials } from '../../../shared/interfaces/user-credentials.interfase';
-import { catchError, tap } from 'rxjs/operators';
 import { BaseService } from 'src/app/shared/services/base.service';
 
 @Injectable({
@@ -15,10 +14,10 @@ import { BaseService } from 'src/app/shared/services/base.service';
 })
 export class UserService extends BaseService {
   constructor(
-    private toastService: AgroexToastService,
     protected override httpClient: HttpClient,
     protected override router: Router,
-    protected override store: Store
+    protected override store: Store,
+    private afMessaging: AngularFireMessaging
   ) {
     super(httpClient, router, store);
   }
@@ -27,27 +26,23 @@ export class UserService extends BaseService {
     user: IUserCredentials,
     url: string
   ): Observable<UserApiResponse> {
-    return this.post<UserApiResponse>(`auth/${url}`, { user }).pipe(
-      tap((createdUser: UserApiResponse) =>
-        this.toastService.addToast({
-          title: `User ${createdUser['user'].username} ${url} will success`,
-          toastType: ToastType.Success,
-          width: '60vw',
-          buttonText: 'Ok',
-        })
-      ),
-      catchError((e) => {
-        this.toastService.addToast({
-          title: `The user can not ${
-            url === 'register' ? 'created' : 'log in'
-          }`,
-          message: `${
-            url === 'register' ? e.error.message : 'Incorrect data entered'
-          }`,
-          toastType: ToastType.Error,
-          width: '408px',
-        });
-        return EMPTY;
+    return this.post<UserApiResponse>(`auth/${url}`, { user });
+  }
+
+  public addNotificationToken(
+    userToken: string | undefined
+  ): Observable<Record<string, string | boolean>> {
+    return this.afMessaging.requestToken.pipe(
+      mergeMap((token: string | null) => {
+        return this.post<Record<string, string | boolean>>(
+          'notifications',
+          {
+            deviceType: 'web',
+            token: token,
+            isAllowed: true,
+          },
+          userToken
+        );
       })
     );
   }

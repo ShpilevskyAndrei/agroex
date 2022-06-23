@@ -2,7 +2,7 @@
   <span
     class="account__sidebar-item"
     [ngClass]="{'active': this.selectedTab === option.id}"
-    (click)="onSelectPage(option)">
+    (click)="onSelectPage(option.id)">
     <mat-icon svgIcon="{{option.icon}}" class="account__sidebar-icon"></mat-icon>
     <span class="account__sidebar-text">{{option.title}}</span>
   </span>
