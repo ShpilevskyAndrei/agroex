@@ -24,7 +24,9 @@
     .account__info-btn_mobile_only {
       display: none;
       @media only screen and (max-width: $medium-x-medium-screen-min-width) {
-        display: block;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
         height: auto;
         position: relative;
         color: $primary-color;
@@ -32,9 +34,10 @@
         cursor: pointer;
         max-width: 24rem;
         margin-top: 1rem;
-        padding-left: 4rem;
+        padding-left: 4.8rem;
         &:before {
-          content: '';
+          align-self: center;
+          content: "";
           position: absolute;
           width: 1rem;
           height: 1rem;
@@ -88,7 +91,7 @@
       }
     }
 
-    .account__sidebar-for_mobile-active { 
+    .account__sidebar-for_mobile-active {
       @media only screen and (max-width: $medium-x-medium-screen-min-width) {
         left: 0;
       }

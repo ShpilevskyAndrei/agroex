@@ -22,12 +22,12 @@
           (selectTab)="onSelectTab($event)"
         >
         </app-sidebar>
-        <div 
+        <div
           class="account__info"
           [ngClass]="{'account__info_mobile-active': !this.showSidebar}"
           [ngSwitch]="this.selectedTab"
         >
-          <div class="account__info-btn_mobile_only" (click)="switchSideBar()">{{ this.selectedTab }}</div>
+          <div class="account__info-btn_mobile_only" (click)="switchSideBar()">{{ tabOption() }}</div>
           <app-my-advertisements
             *ngSwitchCase="userPanelOptionId.MyAdvertisements"
             [myAdvertisementsRequest]="myAdvertisementsRequest"

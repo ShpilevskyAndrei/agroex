@@ -14,6 +14,7 @@ import { UserRole } from '../../shared/components/header/enums/user-role';
 import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IMyOrdersInterface } from './my-orders/interfaces/my-orders-request.interface';
+import { TAB_OPTIONS } from './constants/tab-options';
 
 @Component({
   selector: 'app-account-page',
@@ -46,6 +47,21 @@ export class AccountPageComponent {
 
   public onLogout(): void {
     this.logout.emit();
+  }
+
+  public tabOption(): string | null {
+    switch (this.selectedTab) {
+      case UserPanelOptionId.MyAccount:
+        return TAB_OPTIONS.MyAccount;
+      case UserPanelOptionId.MyOrders:
+        return TAB_OPTIONS.MyOrders;
+      case UserPanelOptionId.Betting:
+        return TAB_OPTIONS.Betting;
+      case UserPanelOptionId.MyAdvertisements:
+        return TAB_OPTIONS.MyAdvertisements;
+      default:
+        return null;
+    }
   }
 
   public onSelectTab(selectedOptionId: UserPanelOptionId): void {
