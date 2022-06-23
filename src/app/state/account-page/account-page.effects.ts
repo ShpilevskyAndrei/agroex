@@ -10,6 +10,7 @@ import { IAdvertisementRequestInterface } from '../../shared/components/advertis
 import { selectUserToken } from '../registration-page/registration-page.selectors';
 import { AccountPageActions } from './account-page.actions';
 import { IMyOrdersInterface } from '../../pages/account-page/my-orders/interfaces/my-orders-request.interface';
+import { AdvertisementsListDealActions } from '../advertisements-list-page/advertisements-list-page.actions';
 
 @Injectable()
 export class AccountPageEffects {
@@ -70,6 +71,32 @@ export class AccountPageEffects {
               );
             })
           )
+      )
+    );
+  });
+
+  public myBettings$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(
+        AccountPageActions.getMyBettingsRequest,
+        AdvertisementsListDealActions.getAdvertisementsBetSuccess
+      ),
+      concatLatestFrom(() => this.store.select(selectUserToken)),
+      switchMap(([_, selectUserToken]) =>
+        this.accountPageService.getMyBettings(selectUserToken).pipe(
+          map((myBettings: IAdvertisementRequestInterface) =>
+            AccountPageActions.getMyBettingsSuccess({
+              myBettings,
+            })
+          ),
+          catchError((error: HttpErrorResponse) =>
+            of(
+              AccountPageActions.getMyBettingsError({
+                error: error,
+              })
+            )
+          )
+        )
       )
     );
   });

@@ -4,7 +4,7 @@
       <span class="label">Bet</span>
       <ng-container *ngIf="advertisement.userBets.length; else noBetBlock">
         <span class="value" [style]="getBetColor">{{
-          advertisement.userBets[0].betValue
+          advertisement.userBets![0].betValue
             | currency: advertisement.currency:"symbol-narrow":"0.2":"fr"
         }}</span>
         <ng-container *ngIf="unitCostBet > 0.01; else minUnitCost">
@@ -38,10 +38,10 @@
     </div>
   </div>
 </div>
-<div *ngIf="advertisement.userBets[0]">
+<div *ngIf="advertisement.userBets![0]">
   <p
     class="bet-hint"
-    *ngIf="+advertisement.userBets[0].betValue + 1 >= +advertisement.price"
+    *ngIf="+advertisement.userBets![0].betValue + 1 >= +advertisement.price"
   >
     The maximum bet for this product has already been made.
   </p>

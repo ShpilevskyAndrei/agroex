@@ -8,6 +8,8 @@ import { AccountPageActions } from '../../state/account-page/account-page.action
 import {
   selectMyAdvertisementsData,
   selectMyAdvertisementsLoadingStatus,
+  selectMyBettingsLoadingStatus,
+  selectMyBettingsData,
   selectMyOrdersData,
   selectMyOrdersLoadingStatus,
 } from '../../state/account-page/account-page.selectors';
@@ -27,6 +29,7 @@ import { IAdvertisementRequestInterface } from '../../shared/components/advertis
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IMyOrdersInterface } from './my-orders/interfaces/my-orders-request.interface';
 import { IAdvertisementInterface } from '../../shared/components/advertisements-list/interfaces/advertisement.interface';
+import { AdvertisementsListDealActions } from 'src/app/state/advertisements-list-page/advertisements-list-page.actions';
 
 @Component({
   selector: 'app-account-page-container',
@@ -36,10 +39,14 @@ import { IAdvertisementInterface } from '../../shared/components/advertisements-
     [selectedTab]="selectedTab$ | async"
     [myAdvertisementsRequest]="myAdvertisementsRequest$ | async"
     [myAdvertisementsLoadingStatus]="myAdvertisementsLoadingStatus$ | async"
+    [myBettingsRequest]="myBettingsRequest$ | async"
+    [myBettingsLoadingStatus]="myBettingsLoadingStatus$ | async"
     [myOrdersRequest]="myOrdersRequest$ | async"
     [myOrdersLoadingStatus]="myOrdersLoadingStatus$ | async"
     [notificationMessage]="notificationMessage$ | async"
     (logout)="onLogout()"
+    (setBet)="onSetBet($event)"
+    (setBuy)="onSetBuy($event)"
     (selectTab)="onSelectTab($event)"
     (dispatcher)="onDispatcher($event)"
     (confirmDeal)="onConfirmDeal($event)"
@@ -53,6 +60,8 @@ export class AccountPageContainerComponent {
   public selectedTab$: Observable<string | null>;
   public myAdvertisementsRequest$: Observable<IAdvertisementRequestInterface | null>;
   public myAdvertisementsLoadingStatus$: Observable<LoadingStatus | null>;
+  public myBettingsRequest$: Observable<IAdvertisementRequestInterface | null>;
+  public myBettingsLoadingStatus$: Observable<LoadingStatus | null>;
   public myOrdersRequest$: Observable<IMyOrdersInterface[] | null>;
   public myOrdersLoadingStatus$: Observable<LoadingStatus | null>;
   public notificationMessage$: Observable<MessagePayload[] | null>;
@@ -66,6 +75,10 @@ export class AccountPageContainerComponent {
     );
     this.myAdvertisementsLoadingStatus$ = this.store.select(
       selectMyAdvertisementsLoadingStatus
+    );
+    this.myBettingsRequest$ = this.store.select(selectMyBettingsData);
+    this.myBettingsLoadingStatus$ = this.store.select(
+      selectMyBettingsLoadingStatus
     );
     this.myOrdersRequest$ = this.store.select(selectMyOrdersData);
     this.myOrdersLoadingStatus$ = this.store.select(
@@ -92,6 +105,19 @@ export class AccountPageContainerComponent {
     );
   }
 
+  public onSetBet(newBetOptions: Record<string, string | number>): void {
+    this.store.dispatch(
+      AdvertisementsListDealActions.getAdvertisementsBetRequest({
+        newBetOptions,
+      })
+    );
+  }
+
+  public onSetBuy(buyOptions: Record<string, string>): void {
+    this.store.dispatch(
+      AdvertisementsListDealActions.getAdvertisementsBuyRequest({ buyOptions })
+    );
+  }
   public onAddNotificationMessage(message: MessagePayload): void {
     this.store.dispatch(AppRootActions.getNotificationMessage({ message }));
   }

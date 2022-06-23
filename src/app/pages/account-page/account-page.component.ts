@@ -33,6 +33,9 @@ export class AccountPageComponent {
   public myAdvertisementsRequest: IAdvertisementRequestInterface | null;
   @Input() public myAdvertisementsLoadingStatus: LoadingStatus | null;
   @Input()
+  public myBettingsRequest: IAdvertisementRequestInterface | null;
+  @Input() public myBettingsLoadingStatus: LoadingStatus | null;
+  @Input()
   public myOrdersRequest: IMyOrdersInterface[] | null;
   @Input() public myOrdersLoadingStatus: LoadingStatus | null;
   @Input() public notificationMessage: MessagePayload[] | null;
@@ -41,6 +44,10 @@ export class AccountPageComponent {
   @Output() public selectTab: EventEmitter<string> = new EventEmitter<string>();
   @Output() public dispatcher: EventEmitter<Function> =
     new EventEmitter<Function>();
+  @Output() public setBet: EventEmitter<Record<string, string | number>> =
+    new EventEmitter<Record<string, string | number>>();
+  @Output() public setBuy: EventEmitter<Record<string, string>> =
+    new EventEmitter<Record<string, string>>();
   @Output() public confirmDeal: EventEmitter<IAdvertisementInterface> =
     new EventEmitter<IAdvertisementInterface>();
   @Output() public addNotificationMessage: EventEmitter<MessagePayload> =
@@ -80,6 +87,14 @@ export class AccountPageComponent {
 
   public onConfirmDeal(advertisement: IAdvertisementInterface): void {
     this.confirmDeal.emit(advertisement);
+  }
+
+  public onSetBet(newBetOptions: Record<string, string | number>): void {
+    this.setBet.emit(newBetOptions);
+  }
+
+  public onSetBuy(buyOptions: Record<string, string>): void {
+    this.setBuy.emit(buyOptions);
   }
 
   public onAddNotificationMessage(message: MessagePayload): void {

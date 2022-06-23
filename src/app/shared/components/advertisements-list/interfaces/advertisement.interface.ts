@@ -24,4 +24,26 @@ export interface IAdvertisementInterface {
   expireAdvert?: string | null;
   moderationComment?: string | null;
   moderationStatus?: 'unmoderated' | 'approved' | 'rejected';
+  authorId?: number;
+  lastBetInfo?: {
+    user_id_with_last_bet: number;
+    last_bet_value: string;
+  };
+}
+
+export interface IMyBetInterface extends IAdvertisementInterface {
+  authorId: number;
+  moderationComment: string | null;
+  expireAdvert: string;
+  moderationStatus: 'unmoderated' | 'approved' | 'rejected';
+  isConfirmed: boolean;
+  lastBetInfo: {
+    user_id_with_last_bet: number;
+    last_bet_value: string;
+  };
+}
+
+export interface IMyBettingsRequestMap extends IMyBetInterface {
+  userBets: IAdvertisementBetInterface[];
+  author: IUser;
 }

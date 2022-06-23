@@ -13,6 +13,15 @@ export const selectMyAdvertisementsData = createSelector(
   (state) => state.myAdvertisements
 );
 
+export const selectMyBettingsLoadingStatus = createSelector(
+  selectGetFeatureState,
+  (state) => state.accountPageLoadingStatus
+);
+export const selectMyBettingsData = createSelector(
+  selectGetFeatureState,
+  (state) => state.myBettings
+);
+
 export const selectMyOrdersLoadingStatus = createSelector(
   selectGetFeatureState,
   (state) => state.accountPageLoadingStatus

@@ -1,1 +1,31 @@
-<p>my-betting works!</p>
+<ng-container
+  *ngIf="
+  myBettingsRequest?.advertisements?.length;
+    else emptyMyBettings
+  "
+>
+  <app-advertisements-list
+    class="my-advertisements-list"
+    [showOwnerFlag]="showOwnerFlag"
+    [user]="user"
+    [advertisementsRequest]="myBettingsRequest"
+    [advertisementsLoadingStatus]="myBettingsLoadingStatus"
+  >
+    <ng-template #actionButtons let-advertisement>
+      <app-advertisements-list-buttons
+        class="advertisement-wrap__btns"
+        [user]="user"
+        [advertisement]="advertisement"
+        (setBet)="onSetBet($event)"
+        (setBuy)="onSetBuy($event)"
+      >
+      </app-advertisements-list-buttons>
+    </ng-template>
+  </app-advertisements-list>
+</ng-container>
+
+<ng-template #emptyMyBettings>
+  <div class="empty-advertisement">
+    <p>You don't have bettings</p>
+  </div>
+</ng-template>

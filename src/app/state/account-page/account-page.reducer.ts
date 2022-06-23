@@ -9,6 +9,7 @@ import { IMyOrdersInterface } from '../../pages/account-page/my-orders/interface
 export interface AccountPageState {
   accountPageLoadingStatus: LoadingStatus;
   myAdvertisements: IAdvertisementRequestInterface;
+  myBettings: IAdvertisementRequestInterface;
   myOrders: IMyOrdersInterface[];
 }
 
@@ -17,6 +18,7 @@ export const ACCOUNT_PAGE = 'accountPage';
 const initialState: AccountPageState = {
   accountPageLoadingStatus: DEFAULT_LOADING_STATUS,
   myAdvertisements: { advertisementCount: null, advertisements: [] },
+  myBettings: { advertisementCount: null, advertisements: [] },
   myOrders: [],
 };
 
@@ -68,6 +70,32 @@ export const ACCOUNT_PAGE_REDUCER = createReducer(
   ),
   on(
     AccountPageActions.getConfirmDealError,
+    (state, { error }): AccountPageState => ({
+      ...state,
+      accountPageLoadingStatus: { loading: false, loaded: false, error },
+    })
+  ),
+  on(
+    AccountPageActions.getMyBettingsRequest,
+    (state): AccountPageState => ({
+      ...state,
+      accountPageLoadingStatus: DEFAULT_LOADING_STATUS,
+    })
+  ),
+  on(
+    AccountPageActions.getMyBettingsSuccess,
+    (state, { myBettings }): AccountPageState => ({
+      ...state,
+      myBettings,
+      accountPageLoadingStatus: {
+        loading: false,
+        loaded: true,
+        error: null,
+      },
+    })
+  ),
+  on(
+    AccountPageActions.getMyBettingsError,
     (state, { error }): AccountPageState => ({
       ...state,
       accountPageLoadingStatus: { loading: false, loaded: false, error },

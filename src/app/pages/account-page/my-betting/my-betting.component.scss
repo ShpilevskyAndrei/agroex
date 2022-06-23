@@ -1,0 +1,11 @@
+@import "../../../styles/general-styles";
+
+:host {
+  .my-advertisements-list {
+    width: 100%;
+  }
+}
+
+@include advertisement-wrap-buttons;
+
+@include empty-advertisement-block;

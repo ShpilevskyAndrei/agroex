@@ -13,6 +13,7 @@ import { IAdvertisementRequestInterface } from '../../shared/components/advertis
 import { AdvertisementsListService } from '../../shared/components/advertisements-list/advertisements-list.service';
 import { selectUserToken } from '../registration-page/registration-page.selectors';
 import { AdvertisementPageActions } from '../advertisement-page/advertisement-page.actions';
+import { AccountPageActions } from '../account-page/account-page.actions';
 import { selectCategoryTab } from './advertisements-list-page.selectors';
 
 @Injectable()
@@ -116,6 +117,7 @@ export class AdvertisementsListPageEffects {
               return [
                 AdvertisementsListDealActions.getAdvertisementsBuySuccess(),
                 AdvertisementsListPageActions.getAdvertisementsRequest(),
+                AccountPageActions.getMyBettingsRequest(),
               ];
             }),
             catchError((error: HttpErrorResponse) => {

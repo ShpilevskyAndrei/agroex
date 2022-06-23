@@ -32,6 +32,18 @@ export const AccountPageActions = {
     props<{ error: HttpErrorResponse }>()
   ),
 
+  getMyBettingsRequest: createAction('[ACCOUNT_PAGE] my bettings requested'),
+
+  getMyBettingsSuccess: createAction(
+    '[ACCOUNT_PAGE] my bettings success',
+    props<{ myBettings: IAdvertisementRequestInterface }>()
+  ),
+
+  getMyBettingsError: createAction(
+    '[ACCOUNT_PAGE] my bettings error',
+    props<{ error: HttpErrorResponse }>()
+  ),
+
   getMyOrdersRequest: createAction('[ACCOUNT_PAGE] my orders requested'),
 
   getMyOrdersSuccess: createAction(
