@@ -20,7 +20,6 @@ import {
   selectUserRole,
 } from '../../state/registration-page/registration-page.selectors';
 import { RegistrationPageActions } from '../../state/registration-page/registration-page.actions';
-import { UserPanelOptionId } from '../../shared/components/header/enums/user-panel-option-id';
 import { AppRootActions } from '../../state/app-root/app-root.actions';
 import { UserRole } from '../../shared/components/header/enums/user-role';
 import { AdvertisementsListBetActions } from '../../state/advertisements-list-page/advertisements-list-page.actions';
@@ -74,7 +73,7 @@ export class AdvertisementPageContainerComponent implements OnInit {
     this.store.dispatch(RegistrationPageActions.getUserLogout());
   }
 
-  public onSelectTab(selectedOptionId: UserPanelOptionId): void {
+  public onSelectTab(selectedOptionId: string): void {
     this.store.dispatch(AppRootActions.getUserSelectTab({ selectedOptionId }));
   }
 

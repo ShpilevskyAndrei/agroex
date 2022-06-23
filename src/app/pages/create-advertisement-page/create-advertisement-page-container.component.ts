@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { UserPanelOptionId } from '../../shared/components/header/enums/user-panel-option-id';
 import firebase from 'firebase/compat';
 import MessagePayload = firebase.messaging.MessagePayload;
 
@@ -67,7 +66,7 @@ export class CreateAdvertisementPageContainerComponent {
     );
   }
 
-  public onSelectTab(selectedOptionId: UserPanelOptionId): void {
+  public onSelectTab(selectedOptionId: string): void {
     this.store.dispatch(AppRootActions.getUserSelectTab({ selectedOptionId }));
   }
 

@@ -34,7 +34,10 @@
             #notifications="matMenu"
             xPosition="before">
             <ng-container *ngIf="notificationMessage?.length; else noMessage">
-              <div mat-menu-item *ngFor="let message of notificationMessage">
+              <div mat-menu-item
+                   *ngFor="let message of notificationMessage"
+                   [routerLink]="message.data?.linkTo ? ['/account'] : []"
+                   (click)="message.data?.linkTo ? onSelectPage(message.data?.linkTo) : ''">
                 <span class="title">{{ message.notification?.title }}</span>
                 <p class="content">{{ message.notification?.body }}</p>
               </div>
@@ -65,7 +68,7 @@
           <button mat-menu-item *ngFor="let option of userPanelOption"
                   [value]="option"
                   [routerLink]="option.url"
-                  (click)="onSelectPage(option)">
+                  (click)="onSelectPage(option.id)">
             <mat-icon svgIcon="{{option.icon}}" class="main-header__menu-icon"></mat-icon>
             {{ option.title }}
           </button>
@@ -103,7 +106,7 @@
           <button mat-menu-item *ngFor="let option of userPanelOption"
                   [value]="option"
                   [routerLink]="option.url"
-                  (click)="onSelectPage(option)">
+                  (click)="onSelectPage(option.id)">
             <mat-icon svgIcon="{{option.icon}}" class="main-header__menu-icon"></mat-icon>
             {{ option.title }}
           </button>

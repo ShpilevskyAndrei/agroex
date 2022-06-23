@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import firebase from 'firebase/compat';
 import MessagePayload = firebase.messaging.MessagePayload;
 
-import { UserPanelOptionId } from '../../shared/components/header/enums/user-panel-option-id';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { AppRootActions } from '../../state/app-root/app-root.actions';
 import { MainDashboardActions } from '../../state/main-dashboard/main-dashboard.actions';
@@ -97,7 +96,7 @@ export class MainDashboardContainerComponent implements OnInit {
     );
   }
 
-  public onSelectTab(selectedOptionId: UserPanelOptionId): void {
+  public onSelectTab(selectedOptionId: string): void {
     this.store.dispatch(AppRootActions.getUserSelectTab({ selectedOptionId }));
   }
 

@@ -5,7 +5,7 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import firebase from "firebase/compat";
+import firebase from 'firebase/compat';
 import MessagePayload = firebase.messaging.MessagePayload;
 
 import { UserPanelOptionId } from '../../shared/components/header/enums/user-panel-option-id';
@@ -36,8 +36,7 @@ export class AccountPageComponent {
   @Input() public notificationMessage: MessagePayload[] | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
-  @Output() public selectTab: EventEmitter<UserPanelOptionId> =
-    new EventEmitter<UserPanelOptionId>();
+  @Output() public selectTab: EventEmitter<string> = new EventEmitter<string>();
   @Output() public dispatcher: EventEmitter<Function> =
     new EventEmitter<Function>();
   @Output() public confirmDeal: EventEmitter<string> =
@@ -52,7 +51,7 @@ export class AccountPageComponent {
     this.logout.emit();
   }
 
-  public onSelectTab(selectedOptionId: UserPanelOptionId): void {
+  public onSelectTab(selectedOptionId: string): void {
     this.selectTab.emit(selectedOptionId);
   }
 

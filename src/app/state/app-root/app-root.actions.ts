@@ -3,12 +3,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 import firebase from 'firebase/compat';
 import MessagePayload = firebase.messaging.MessagePayload;
 
-import { UserPanelOptionId } from '../../shared/components/header/enums/user-panel-option-id';
-
 export const AppRootActions = {
   getUserSelectTab: createAction(
     '[APP_ROOT] select tab success',
-    props<{ selectedOptionId: UserPanelOptionId }>()
+    props<{ selectedOptionId: string }>()
   ),
 
   getMapRequest: createAction('[APP-COMPONENT] map requested'),

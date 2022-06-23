@@ -32,8 +32,7 @@ export class HeaderComponent implements OnChanges {
   @Input() public notificationMessage: MessagePayload[] | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
-  @Output() public selectTab: EventEmitter<UserPanelOptionId> =
-    new EventEmitter<UserPanelOptionId>();
+  @Output() public selectTab: EventEmitter<string> = new EventEmitter<string>();
   @Output() public addNotificationMessage: EventEmitter<MessagePayload> =
     new EventEmitter<MessagePayload>();
 
@@ -102,8 +101,7 @@ export class HeaderComponent implements OnChanges {
       .subscribe();
   }
 
-  public onSelectPage(selectedOptionId: IUserOptionsType): void {
-    console.log(this.notificationMessage);
-    this.selectTab.emit(selectedOptionId.id);
+  public onSelectPage(selectedOptionId: string | undefined): void {
+    this.selectTab.emit(selectedOptionId);
   }
 }
