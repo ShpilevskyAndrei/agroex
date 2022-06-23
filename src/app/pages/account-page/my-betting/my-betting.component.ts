@@ -92,7 +92,6 @@ export class MyBettingComponent implements OnInit {
   }
 
   public onSetBet(newBetOptions: Record<string, string | number>): void {
-    console.log('+', newBetOptions);
     this.setBet.emit(newBetOptions);
   }
 
