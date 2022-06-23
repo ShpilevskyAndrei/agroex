@@ -104,6 +104,17 @@ export class HeaderComponent implements OnChanges, OnInit {
   public onLogout(): void {
     this.afMessaging.getToken
       .pipe(
+        tap((result) => {
+          if (!result) {
+            this.logout.emit();
+            this.userCurrentRole = UserRole.Guest;
+            this.router.navigate(['']);
+
+            return;
+          }
+
+          return result;
+        }),
         filter(Boolean),
         mergeMap((token: string) => this.afMessaging.deleteToken(token)),
         tap(() => {
