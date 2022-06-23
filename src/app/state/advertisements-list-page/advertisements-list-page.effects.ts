@@ -1,13 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType, concatLatestFrom } from '@ngrx/effects';
-import {
-  catchError,
-  concatMap,
-  map,
-  of,
-  switchMap,
-  withLatestFrom,
-} from 'rxjs';
+import { catchError, concatMap, map, of, switchMap } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { AgroexToastService, ToastType } from 'ngx-agroex-toast';
