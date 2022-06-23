@@ -94,3 +94,6 @@ export class MainDashboardContainerComponent implements OnInit {
     this.store.dispatch(AppRootActions.getUserSelectTab({ selectedOptionId }));
   }
 }
+// this.store.dispatch(
+//   AdvertisementsListPageActions.getAdvertisementsRequest()
+// );

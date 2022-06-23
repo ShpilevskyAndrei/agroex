@@ -23,6 +23,7 @@ export class AdvertisementsListPageEffects {
         AdvertisementsListBetActions.getAdvertisementsBetSuccess,
         AdvertisementsListBetActions.getAdvertisementsBetError
       ),
+      // withLatestFrom(this.store.select(taba)),
       switchMap(() =>
         this.advertisementsListService.getAdvertisements().pipe(
           map((advertisements: IAdvertisementRequestInterface) =>

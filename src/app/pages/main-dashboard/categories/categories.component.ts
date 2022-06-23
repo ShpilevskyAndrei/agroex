@@ -1,6 +1,15 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
+import { IAdvertisementRequestInterface } from '../../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
+import { UserPanelOptionId } from '../../../shared/components/header/enums/user-panel-option-id';
 
 import { LoadingStatus } from '../../../shared/interfaces/loading-status';
+import { IUser } from '../../../shared/interfaces/user.interface';
 import { Category } from './interfaces/category.model';
 import { CategoryItemModel } from './interfaces/categoryItem.model';
 
@@ -13,9 +22,16 @@ import { CategoryItemModel } from './interfaces/categoryItem.model';
 export class CategoriesComponent {
   @Input() public categories: Category[] | null;
   @Input() public categoriesLoadingStatus: LoadingStatus | null;
+  @Input() public user: IUser | null;
+  @Input() public advertisementsRequest: IAdvertisementRequestInterface | null;
+  @Input() public advertisementsLoadingStatus: LoadingStatus | null;
+
+  @Output() public setBet: EventEmitter<Record<string, string | number>> =
+    new EventEmitter<Record<string, string | number>>();
+  @Output() public selectCategoryTab: EventEmitter<UserPanelOptionId> =
+    new EventEmitter<UserPanelOptionId>();
 
   public activeCategory: number;
-
   public categoriesItems: CategoryItemModel[] = [
     {
       categoryId: 1,
@@ -119,6 +135,8 @@ export class CategoriesComponent {
       title: 'almonds',
     },
   ];
+  public isNavigationToAdvertisementPage = true;
+  public showOwnerFlag = true;
 
   public getCategoryList(category: Category): CategoryItemModel[] {
     this.activeCategory = category.id;
@@ -126,5 +144,9 @@ export class CategoriesComponent {
     return this.categoriesItems.filter(
       (item: CategoryItemModel) => item.categoryId === category.id
     );
+  }
+
+  public onSetBet(newBetOptions: Record<string, string | number>): void {
+    this.setBet.emit(newBetOptions);
   }
 }
