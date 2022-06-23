@@ -17,6 +17,7 @@ import { IAdvertisementRequestInterface } from '../../shared/components/advertis
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IMyOrdersInterface } from './my-orders/interfaces/my-orders-request.interface';
 import { IAdvertisementInterface } from '../../shared/components/advertisements-list/interfaces/advertisement.interface';
+import { TAB_OPTIONS } from './constants/tab-options';
 
 @Component({
   selector: 'app-account-page',
@@ -47,13 +48,30 @@ export class AccountPageComponent {
 
   public userPanelOption: IUserOptionsType[] = USER_PANEL_OPTION;
   public userPanelOptionId = UserPanelOptionId;
+  public showSidebar = false;
 
   public onLogout(): void {
     this.logout.emit();
   }
 
+  public tabOption(): string | null {
+    switch (this.selectedTab) {
+      case UserPanelOptionId.MyAccount:
+        return TAB_OPTIONS.MyAccount;
+      case UserPanelOptionId.MyOrders:
+        return TAB_OPTIONS.MyOrders;
+      case UserPanelOptionId.Betting:
+        return TAB_OPTIONS.Betting;
+      case UserPanelOptionId.MyAdvertisements:
+        return TAB_OPTIONS.MyAdvertisements;
+      default:
+        return null;
+    }
+  }
+
   public onSelectTab(selectedOptionId: string): void {
     this.selectTab.emit(selectedOptionId);
+    this.showSidebar = !this.showSidebar;
   }
 
   public onDispatcher(dispatcher: Function): void {
@@ -66,5 +84,9 @@ export class AccountPageComponent {
 
   public onAddNotificationMessage(message: MessagePayload): void {
     this.addNotificationMessage.emit(message);
+  }
+
+  public switchSideBar(): void {
+    this.showSidebar = !this.showSidebar;
   }
 }
