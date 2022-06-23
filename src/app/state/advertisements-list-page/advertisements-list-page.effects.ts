@@ -1,6 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType, concatLatestFrom } from '@ngrx/effects';
-import { catchError, concatMap, map, of, switchMap } from 'rxjs';
+import {
+  catchError,
+  concatMap,
+  map,
+  of,
+  switchMap,
+  withLatestFrom,
+} from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { AgroexToastService, ToastType } from 'ngx-agroex-toast';
@@ -13,6 +20,7 @@ import { IAdvertisementRequestInterface } from '../../shared/components/advertis
 import { AdvertisementsListService } from '../../shared/components/advertisements-list/advertisements-list.service';
 import { selectUserToken } from '../registration-page/registration-page.selectors';
 import { AdvertisementPageActions } from '../advertisement-page/advertisement-page.actions';
+import { selectCategoryTab } from './advertisements-list-page.selectors';
 
 @Injectable()
 export class AdvertisementsListPageEffects {
@@ -23,23 +31,26 @@ export class AdvertisementsListPageEffects {
         AdvertisementsListDealActions.getAdvertisementsBetSuccess,
         AdvertisementsListDealActions.getAdvertisementsBetError
       ),
-      // withLatestFrom(this.store.select(taba)),
-      switchMap(() =>
-        this.advertisementsListService.getAdvertisements().pipe(
-          map((advertisements: IAdvertisementRequestInterface) =>
-            AdvertisementsListPageActions.getAdvertisementsSuccess({
-              advertisements,
-            })
-          ),
-          catchError((error: HttpErrorResponse) =>
-            of(
-              AdvertisementsListPageActions.getAdvertisementsError({
-                error: error,
+      concatLatestFrom(() => this.store.select(selectCategoryTab)),
+      switchMap(([_, categoryTab]) => {
+        console.log(categoryTab);
+        return this.advertisementsListService
+          .getAdvertisements(categoryTab)
+          .pipe(
+            map((advertisements: IAdvertisementRequestInterface) =>
+              AdvertisementsListPageActions.getAdvertisementsSuccess({
+                advertisements,
               })
+            ),
+            catchError((error: HttpErrorResponse) =>
+              of(
+                AdvertisementsListPageActions.getAdvertisementsError({
+                  error: error,
+                })
+              )
             )
-          )
-        )
-      )
+          );
+      })
     );
   });
 
