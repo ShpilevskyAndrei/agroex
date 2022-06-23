@@ -28,6 +28,7 @@ export class MainDashboardComponent {
   @Input() public notificationMessage: MessagePayload[] | null;
   @Input() public advertisementsRequest: IAdvertisementRequestInterface | null;
   @Input() public advertisementsLoadingStatus: LoadingStatus | null;
+  @Input() public selectCategoryTabTitle: string | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
   @Output() public setBet: EventEmitter<Record<string, string | number>> =
@@ -38,6 +39,8 @@ export class MainDashboardComponent {
     new EventEmitter<string>();
   @Output() public addNotificationMessage: EventEmitter<MessagePayload> =
     new EventEmitter<MessagePayload>();
+  @Output() public selectCategoryTab: EventEmitter<string> =
+    new EventEmitter<string>();
 
   public showOwnerFlag = true;
 
@@ -61,5 +64,9 @@ export class MainDashboardComponent {
 
   public onAddNotificationMessage(message: MessagePayload): void {
     this.addNotificationMessage.emit(message);
+  }
+
+  public onSelectCategoryTab(selectedOptionId: string): void {
+    this.selectCategoryTab.emit(selectedOptionId);
   }
 }

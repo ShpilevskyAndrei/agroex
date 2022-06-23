@@ -1,8 +1,17 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
+import { MatTabChangeEvent } from '@angular/material/tabs';
+import { NgxSpinnerService } from 'ngx-spinner';
 
+import { IAdvertisementRequestInterface } from '../../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
 import { LoadingStatus } from '../../../shared/interfaces/loading-status';
+import { IUser } from '../../../shared/interfaces/user.interface';
 import { Category } from './interfaces/category.model';
-import { CategoryItemModel } from './interfaces/categoryItem.model';
 
 @Component({
   selector: 'app-categories',
@@ -13,118 +22,45 @@ import { CategoryItemModel } from './interfaces/categoryItem.model';
 export class CategoriesComponent {
   @Input() public categories: Category[] | null;
   @Input() public categoriesLoadingStatus: LoadingStatus | null;
+  @Input() public user: IUser | null;
+  @Input() public advertisementsRequest: IAdvertisementRequestInterface | null;
+  @Input() public advertisementsLoadingStatus: LoadingStatus | null;
+  @Input() public selectCategoryTabTitle: string | null;
+
+  @Output() public setBet: EventEmitter<Record<string, string | number>> =
+    new EventEmitter<Record<string, string | number>>();
+  @Output() public setBuy: EventEmitter<Record<string, string>> =
+    new EventEmitter<Record<string, string>>();
+  @Output() public selectCategoryTab: EventEmitter<string> =
+    new EventEmitter<string>();
 
   public activeCategory: number;
 
-  public categoriesItems: CategoryItemModel[] = [
-    {
-      categoryId: 1,
-      id: 0,
-      title: 'potato',
-    },
+  public isNavigationToAdvertisementPage = true;
+  public showOwnerFlag = true;
 
-    {
-      categoryId: 1,
-      id: 1,
-      title: 'cabbage',
-    },
-    {
-      categoryId: 1,
-      id: 2,
-      title: 'tomato',
-    },
-    {
-      categoryId: 1,
-      id: 3,
-      title: 'cucumber',
-    },
-    {
-      categoryId: 1,
-      id: 4,
-      title: 'onions',
-    },
-    {
-      categoryId: 1,
-      id: 5,
-      title: 'parsley',
-    },
-    {
-      categoryId: 2,
-      id: 0,
-      title: 'apricots',
-    },
-    {
-      categoryId: 2,
-      id: 1,
-      title: 'apples',
-    },
-    {
-      categoryId: 2,
-      id: 2,
-      title: 'cherries',
-    },
-    {
-      categoryId: 2,
-      id: 3,
-      title: 'persimmon',
-    },
-    {
-      categoryId: 2,
-      id: 4,
-      title: 'plums',
-    },
-    {
-      categoryId: 2,
-      id: 5,
-      title: 'peaches',
-    },
-    {
-      categoryId: 2,
-      id: 6,
-      title: 'lemons',
-    },
-    {
-      categoryId: 2,
-      id: 7,
-      title: 'watermelons',
-    },
-    {
-      categoryId: 3,
-      id: 0,
-      title: 'wheat',
-    },
-    {
-      categoryId: 3,
-      id: 1,
-      title: 'rice',
-    },
-    {
-      categoryId: 3,
-      id: 2,
-      title: 'corn',
-    },
-    {
-      categoryId: 4,
-      id: 0,
-      title: 'wallnuts',
-    },
-    {
-      categoryId: 4,
-      id: 1,
-      title: 'apricots',
-    },
-    {
-      categoryId: 4,
-      id: 2,
-      title: 'almonds',
-    },
-  ];
+  constructor(private spinner: NgxSpinnerService) {}
 
-  public getCategoryList(category: Category): CategoryItemModel[] {
-    this.activeCategory = category.id;
+  public onSetBet(newBetOptions: Record<string, string | number>): void {
+    this.setBet.emit(newBetOptions);
+  }
 
-    return this.categoriesItems.filter(
-      (item: CategoryItemModel) => item.categoryId === category.id
+  public onSetBuy(buyOptions: Record<string, string>): void {
+    this.setBuy.emit(buyOptions);
+  }
+
+  public onSelectCategoryTab(tabChangeEvent: MatTabChangeEvent): void {
+    this.spinner.show();
+    this.selectCategoryTab.emit(this.categories?.[tabChangeEvent.index]?.title);
+  }
+
+  public findCategory(): number {
+    if (!this.categories || !this.selectCategoryTabTitle) {
+      return 0;
+    }
+
+    return this.categories.findIndex(
+      (category: Category) => category.title === this.selectCategoryTabTitle
     );
   }
 }
