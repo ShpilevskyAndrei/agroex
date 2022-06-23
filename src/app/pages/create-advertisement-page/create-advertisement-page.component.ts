@@ -11,8 +11,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AgroexToastService, ToastType } from 'ngx-agroex-toast';
 import { NgxDropzoneChangeEvent } from 'ngx-dropzone';
+import firebase from 'firebase/compat';
+import MessagePayload = firebase.messaging.MessagePayload;
 
-import { UserPanelOptionId } from '../../shared/components/header/enums/user-panel-option-id';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IUser } from '../../shared/interfaces/user.interface';
 import { MAX_FILE_SIZE } from './constant/max-file-sizes';
@@ -36,6 +37,7 @@ import { UserRole } from '../../shared/components/header/enums/user-role';
 export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
   @Input() public user: IUser | null;
   @Input() public createAdvertisementLoadingStatus: LoadingStatus | null;
+  @Input() public notificationMessage: MessagePayload[] | null;
   @Input() public userRole: UserRole | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
@@ -43,8 +45,9 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
     new EventEmitter<void>();
   @Output()
   public formAdvertisement: EventEmitter<FormData> = new EventEmitter<FormData>();
-  @Output() public selectTab: EventEmitter<UserPanelOptionId> =
-    new EventEmitter<UserPanelOptionId>();
+  @Output() public selectTab: EventEmitter<string> = new EventEmitter<string>();
+  @Output() public addNotificationMessage: EventEmitter<MessagePayload> =
+    new EventEmitter<MessagePayload>();
 
   public maxFileSize = MAX_FILE_SIZE;
 
@@ -175,7 +178,11 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
     }
   }
 
-  public onSelectTab(selectedOptionId: UserPanelOptionId): void {
+  public onSelectTab(selectedOptionId: string): void {
     this.selectTab.emit(selectedOptionId);
+  }
+
+  public onAddNotificationMessage(message: MessagePayload): void {
+    this.addNotificationMessage.emit(message);
   }
 }

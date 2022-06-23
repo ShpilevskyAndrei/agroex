@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
+import firebase from 'firebase/compat';
+import MessagePayload = firebase.messaging.MessagePayload;
 
-import { UserPanelOptionId } from '../../shared/components/header/enums/user-panel-option-id';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { AppRootActions } from '../../state/app-root/app-root.actions';
 import { MainDashboardActions } from '../../state/main-dashboard/main-dashboard.actions';
@@ -38,6 +39,7 @@ import { UserRole } from '../../shared/components/header/enums/user-role';
     [user]="user$ | async"
     [userRole]="userRole$ | async"
     [advertisementsRequest]="advertisementsRequest$ | async"
+    [notificationMessage]="notificationMessage$ | async"
     [advertisementsLoadingStatus]="advertisementsLoadingStatus$ | async"
     [selectCategoryTabTitle]="selectCategoryTab$ | async"
     (logout)="onLogout()"
@@ -45,6 +47,7 @@ import { UserRole } from '../../shared/components/header/enums/user-role';
     (setBuy)="onSetBuy($event)"
     (selectTab)="onSelectTab($event)"
     (selectCategoryTab)="onSelectCategoryTab($event)"
+    (addNotificationMessage)="onAddNotificationMessage($event)"
   ></app-main-dashboard>`,
 })
 export class MainDashboardContainerComponent implements OnInit {
@@ -55,6 +58,7 @@ export class MainDashboardContainerComponent implements OnInit {
   public advertisementsRequest$: Observable<IAdvertisementRequestInterface | null>;
   public advertisementsLoadingStatus$: Observable<LoadingStatus | null>;
   public selectCategoryTab$: Observable<string | null>;
+  public notificationMessage$: Observable<MessagePayload[] | null>;
 
   constructor(private store: Store, private spinner: NgxSpinnerService) {
     this.categories$ = this.store.select(selectCategoriesData);
@@ -68,6 +72,7 @@ export class MainDashboardContainerComponent implements OnInit {
       selectAdvertisementsLoadingStatus
     );
     this.selectCategoryTab$ = this.store.select(selectCategoryTab);
+    this.notificationMessage$ = this.store.select(getNotificationMessage);
   }
 
   public ngOnInit(): void {
@@ -102,8 +107,12 @@ export class MainDashboardContainerComponent implements OnInit {
     );
   }
 
-  public onSelectTab(selectedOptionId: UserPanelOptionId): void {
+  public onSelectTab(selectedOptionId: string): void {
     this.store.dispatch(AppRootActions.getUserSelectTab({ selectedOptionId }));
+  }
+
+  public onAddNotificationMessage(message: MessagePayload): void {
+    this.store.dispatch(AppRootActions.getNotificationMessage({ message }));
   }
 
   public onSelectCategoryTab(selectedOptionId: string): void {

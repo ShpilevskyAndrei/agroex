@@ -16,3 +16,8 @@ export const selectMapData = createSelector(
   selectGetFeatureState,
   (state) => state.map
 );
+
+export const getNotificationMessage = createSelector(
+  selectGetFeatureState,
+  (state) => state.notificationMessage
+);

@@ -21,6 +21,35 @@
           <mat-icon class="main-header__add-icon">add</mat-icon>
           <span>Advertisement</span>
         </button>
+        <div class="main-header__notifications">
+          <div
+            class="main-header__notifications-bell"
+            [matMenuTriggerFor]="notifications">
+            <mat-icon
+              class="main-header__notifications-icon"
+              [ngClass]="{ 'with-dot': notificationMessage?.length }">notifications_none</mat-icon>
+          </div>
+          <mat-menu
+            class="main-header__menu notifications"
+            #notifications="matMenu"
+            xPosition="before">
+            <ng-container *ngIf="notificationMessage?.length; else noMessage">
+              <div mat-menu-item
+                   *ngFor="let message of notificationMessage"
+                   [routerLink]="message.data?.linkTo ? ['/account'] : []"
+                   (click)="message.data?.linkTo ? onSelectPage(message.data?.linkTo) : ''">
+                <span class="title">{{ message.notification?.title }}</span>
+                <p class="content">{{ message.notification?.body }}</p>
+              </div>
+            </ng-container>
+            <ng-template #noMessage>
+              <div class="no-message">
+                <p>You don't have messages</p>
+              </div>
+            </ng-template>
+
+          </mat-menu>
+        </div>
         <div
           class="main-header__account-btn"
           [matMenuTriggerFor]="userMenu">
@@ -39,7 +68,7 @@
           <button mat-menu-item *ngFor="let option of userPanelOption"
                   [value]="option"
                   [routerLink]="option.url"
-                  (click)="onSelectPage(option)">
+                  (click)="onSelectPage(option.id)">
             <mat-icon svgIcon="{{option.icon}}" class="main-header__menu-icon"></mat-icon>
             {{ option.title }}
           </button>
@@ -77,7 +106,7 @@
           <button mat-menu-item *ngFor="let option of userPanelOption"
                   [value]="option"
                   [routerLink]="option.url"
-                  (click)="onSelectPage(option)">
+                  (click)="onSelectPage(option.id)">
             <mat-icon svgIcon="{{option.icon}}" class="main-header__menu-icon"></mat-icon>
             {{ option.title }}
           </button>
