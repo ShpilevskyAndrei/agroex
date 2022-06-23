@@ -4,27 +4,24 @@
     else emptyMyBettings
   "
 >
-  <div class="advertisement-list">
-    <div class="container">
-      <app-advertisements-list
-        [showOwnerFlag]="showOwnerFlag"
+  <app-advertisements-list
+    class="my-advertisements-list"
+    [showOwnerFlag]="showOwnerFlag"
+    [user]="user"
+    [advertisementsRequest]="bettingRequest()"
+    [advertisementsLoadingStatus]="myBettingsLoadingStatus"
+  >
+    <ng-template #actionButtons let-advertisement>
+      <app-advertisements-list-buttons
+        class="advertisement-wrap__btns"
         [user]="user"
-        [advertisementsRequest]="bettingRequest()"
-        [advertisementsLoadingStatus]="myBettingsLoadingStatus"
+        [advertisement]="advertisement"
+        (setBet)="onSetBet($event)"
+        (setBuy)="onSetBuy($event)"
       >
-        <ng-template #actionButtons let-advertisement>
-          <app-advertisements-list-buttons
-            class="advertisement-wrap__btns"
-            [user]="user"
-            [advertisement]="advertisement"
-            (setBet)="onSetBet($event)"
-            (setBuy)="onSetBuy($event)"
-          >
-          </app-advertisements-list-buttons>
-        </ng-template>
-      </app-advertisements-list>
-    </div>
-  </div>
+      </app-advertisements-list-buttons>
+    </ng-template>
+  </app-advertisements-list>
 </ng-container>
 
 <ng-template #emptyMyBettings>

@@ -1,10 +1,11 @@
 @import "../../../styles/general-styles";
 
 :host {
-  .advertisement-list {
-    margin: 0;
-    // margin: 5rem 0 0 0;
+  .my-advertisements-list {
+    width: 100%;
   }
 }
 
 @include advertisement-wrap-buttons;
+
+@include empty-advertisement-block;
