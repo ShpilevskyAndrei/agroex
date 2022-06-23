@@ -3,10 +3,16 @@
   [ngClass]="{ 'with-pointer': isNavigationToAdvertisementPage }"
   (click)="openAdvertisement()"
 >
-  <div class="advertisement-wrap__img">
+  <div
+    class="advertisement-wrap__img"
+    [ngClass]="{ 'not-moderated': isModerated() }"
+  >
     <img src="{{ advertisement.img }}" alt="apple" />
   </div>
-  <div class="advertisement-wrap__desc">
+  <div
+    class="advertisement-wrap__desc"
+    [ngClass]="{ 'not-moderated': isModerated() }"
+  >
     <app-advertisement-title
       [showOwnerFlag]="showOwnerFlag"
       [user]="user"
@@ -32,7 +38,38 @@
       class="advertisement-wrap__price"
       [user]="user"
       [advertisement]="advertisement"
+      [ngClass]="{ 'not-moderated': isModerated() }"
     ></app-advertisement-price>
     <ng-content select="[buttons]"></ng-content>
+
+    <ng-container *ngIf="advertisement.moderationStatus === ModerationStatus.Rejected">
+      <div
+        class="advertisement-moderators_message advertisement-moderators_message-rejected"
+      >
+        <mat-icon class="advertisement-moderators_message-icon advertisement-moderators_message-icon-rejected">highlight_off</mat-icon>
+        <div class="advertisement-moderators_message-bottom-wrap">
+          <div class="advertisement-moderators_message-content">
+            {{ advertisement.moderationComment }}
+          </div>
+          <div class="advertisement-moderators_message-right">
+            From Moderator
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="isModerated()">
+      <div class="advertisement-moderators_message">
+        <mat-icon class="advertisement-moderators_message-icon">alarm</mat-icon>
+        <div class="advertisement-moderators_message-bottom-wrap">
+          <div class="advertisement-moderators_message-content">
+            Inactive and will be moderated
+          </div>
+          <div class="advertisement-moderators_message-right">
+            From AGROEX support
+          </div>
+        </div>
+      </div>
+    </ng-container>
   </div>
 </div>
