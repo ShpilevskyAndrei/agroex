@@ -42,3 +42,8 @@ export interface IMyBetInterface extends IAdvertisementInterface {
     last_bet_value: string;
   };
 }
+
+export interface IMyBettingsRequestMap extends IMyBetInterface {
+  userBets: IAdvertisementBetInterface[];
+  author: IUser;
+}

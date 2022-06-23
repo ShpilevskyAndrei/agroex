@@ -7,7 +7,10 @@ import { map, Observable } from 'rxjs';
 import { IAdvertisementRequestInterface } from '../../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
 import { BaseService } from '../../../shared/services/base.service';
 import { IMyOrdersInterface } from '../my-orders/interfaces/my-orders-request.interface';
-import { IMyBetInterface } from '../../../shared/components/advertisements-list/interfaces/advertisement.interface';
+import {
+  IMyBetInterface,
+  IMyBettingsRequestMap,
+} from '../../../shared/components/advertisements-list/interfaces/advertisement.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -37,51 +40,37 @@ export class AccountPageService extends BaseService {
       token,
     }).pipe(
       map((myBettingsRequest: IMyBetInterface[]) => {
-        const myBettingsNewRequest: IAdvertisementRequestInterface = {
-          advertisementCount: myBettingsRequest.length,
-          advertisements: [],
-        };
-        for (let i = 0; i < myBettingsRequest.length; i++) {
-          myBettingsNewRequest.advertisements?.push({
-            id: myBettingsRequest[i].id,
-            title: myBettingsRequest[i].title,
-            country: myBettingsRequest[i].country,
-            location: myBettingsRequest[i].location,
-            slug: myBettingsRequest[i].slug,
-            category: myBettingsRequest[i].category,
-            subCategory: myBettingsRequest[i].subCategory,
-            isModerated: myBettingsRequest[i].isModerated,
-            isActive: myBettingsRequest[i].isActive,
-            price: myBettingsRequest[i].price,
-            currency: myBettingsRequest[i].currency,
-            img: myBettingsRequest[i].img,
-            quantity: myBettingsRequest[i].quantity,
-            unit: myBettingsRequest[i].unit,
-            createAt: myBettingsRequest[i].createAt,
-            updatedAt: myBettingsRequest[i].updatedAt,
-            author: {
-              id: myBettingsRequest[i].authorId,
-              email: '',
-              username: '',
-              phone: '',
-              image: '',
-              banned: false,
-              banReason: '',
-            },
-            userBets: [
-              {
-                id: 0,
-                user_id: myBettingsRequest[i].lastBetInfo.user_id_with_last_bet,
-                advertisement_id: 0,
-                created_at: '',
-                expireBet: '',
-                betValue: myBettingsRequest[i].lastBetInfo.last_bet_value,
-                isActive: true,
+        const myBettingsRequestMap: IMyBettingsRequestMap[] =
+          myBettingsRequest.map((value: IMyBetInterface) => {
+            return {
+              ...value,
+              author: {
+                id: value.authorId,
+                email: '',
+                username: '',
+                phone: '',
+                image: '',
+                banned: false,
+                banReason: '',
               },
-            ],
+              userBets: [
+                {
+                  id: 0,
+                  user_id: value.lastBetInfo?.user_id_with_last_bet,
+                  advertisement_id: 0,
+                  created_at: '',
+                  expireBet: '',
+                  betValue: value.lastBetInfo?.last_bet_value,
+                  isActive: true,
+                },
+              ],
+            };
           });
-        }
-        return myBettingsNewRequest;
+        console.log(myBettingsRequestMap);
+        return {
+          advertisementCount: myBettingsRequest.length,
+          advertisements: myBettingsRequestMap,
+        };
       })
     );
   }
