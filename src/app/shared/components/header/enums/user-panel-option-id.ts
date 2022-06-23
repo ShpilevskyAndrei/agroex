@@ -1,6 +1,6 @@
 export enum UserPanelOptionId {
-  MyAdvertisements = 'My Advertisements',
+  MyAdvertisements = 'MyAdvertisements',
   Betting = 'Betting',
-  MyOrders = 'My Orders',
-  MyAccount = 'My Account',
+  MyOrders = 'MyOrders',
+  MyAccount = 'MyAccount',
 }
