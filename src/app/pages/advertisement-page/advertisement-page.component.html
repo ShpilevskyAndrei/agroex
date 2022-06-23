@@ -51,7 +51,7 @@
                   <span matPrefix>{{ actualCurrency }}</span>
                   <input
                     matInput
-                    type="number"
+                    type="text"
                     class="bet-input"
                     autocomplete="off"
                     placeholder="Enter your bet here"
@@ -71,7 +71,7 @@
               "
               class="bet-hint"
             >
-              Bet from {{ actualCurrency
+              Bet integer number from {{ actualCurrency
               }}{{
                 advertisement.advertisement.userBets.length
                   ? +advertisement.advertisement.userBets[0].betValue + 1
@@ -91,6 +91,7 @@
             [newBet]="newBet"
             [isDisabled]="isDisabled"
             (setBet)="onSetBet($event)"
+            (setBuy)="onSetBuy($event)"
           >
           </app-advertisement-buttons-ad-page>
 
@@ -168,7 +169,7 @@
     type="ball-clip-rotate"
     [fullScreen]="true"
   >
-    <p style="color: white">Loading...</p>
+    <div style="color: white">Loading...</div>
   </ngx-spinner>
   <ng-template #advertisementError>
     <p>{{ advertisementLoadingStatus?.error?.statusText }}</p>

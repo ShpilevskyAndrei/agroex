@@ -43,18 +43,22 @@ body {
   .mat-form-field-appearance-outline .mat-form-field-infix {
     padding: 1rem 0 1rem 0;
   }
+
   .mat-form-field-label-wrapper {
     top: -0.8em;
   }
+
   .mat-form-field-appearance-outline .mat-form-field-prefix,
   .mat-form-field-appearance-outline .mat-form-field-suffix {
     top: 0;
     font-size: $font-size-normal;
     color: $primary-color;
   }
+
   .mat-form-field-appearance-outline .mat-form-field-outline {
     top: 0;
   }
+
   .mat-form-field-prefix {
     margin-right: $offset-small;
   }
@@ -98,6 +102,7 @@ body {
     align-items: center;
     font-size: 1.6rem;
     color: #131314;
+
     &:last-child {
       border-top: 0.1rem solid $color-button-disable;
     }
@@ -176,6 +181,7 @@ body {
   &:hover &__btns {
     display: block;
   }
+
   &.with-pointer:hover {
     cursor: pointer;
   }
@@ -183,4 +189,19 @@ body {
 
 .mat-dialog-container {
   min-width: 28rem;
+}
+
+.ngx-spinner-overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  & > div {
+    position: relative !important;
+    transform: none !important;
+    top: 0 !important;
+    left: 0 !important;
+    margin-top: 2rem;
+  }
 }

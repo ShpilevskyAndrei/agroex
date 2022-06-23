@@ -22,6 +22,7 @@ import { IAdRequestInterface } from '../../shared/components/advertisements-list
 import { CurrenciesEnum } from '../../shared/components/advertisements-list/advertisement/bet-modal/enums/currencies.enum';
 import { BetValidators } from '../../shared/components/advertisements-list/advertisement/bet-modal/intefaces/bet-validator';
 import { TASHKENT_COORDINATES } from '../../shared/constants/tashkent-coordinates';
+import { REGEXP_FOR_IS_INTEGER_NUMBER } from '../../shared/constants/regexp';
 
 @UntilDestroy()
 @Component({
@@ -43,10 +44,12 @@ export class AdvertisementPageComponent implements OnChanges {
     new EventEmitter<UserPanelOptionId>();
   @Output() public setBet: EventEmitter<Record<string, string | number>> =
     new EventEmitter<Record<string, string | number>>();
+  @Output() public setBuy: EventEmitter<Record<string, string>> =
+    new EventEmitter<Record<string, string>>();
 
   public betForm: FormGroup = new FormGroup({
     bet: new FormControl('', {
-      validators: [Validators.required, Validators.maxLength(9)],
+      validators: [Validators.required],
       updateOn: 'change',
     }),
   });
@@ -110,18 +113,23 @@ export class AdvertisementPageComponent implements OnChanges {
     this.setBet.emit(newBetOptions);
   }
 
+  public onSetBuy(buyOptions: Record<string, string>): void {
+    this.setBuy.emit(buyOptions);
+  }
+
   public ngOnChanges(changes: SimpleChanges): void {
     if (this.advertisement && changes.advertisement) {
       this.betForm
         .get('bet')
-        ?.setValidators(
+        ?.setValidators([
+          Validators.pattern(REGEXP_FOR_IS_INTEGER_NUMBER),
           BetValidators.checkBetValue(
             this.advertisement.advertisement.userBets.length
               ? this.advertisement.advertisement.userBets[0].betValue
               : '0',
             this.advertisement.advertisement.price
-          )
-        );
+          ),
+        ]);
       this.newBet = '';
     }
     this.betForm
