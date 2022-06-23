@@ -33,7 +33,6 @@ export class AdvertisementsListPageEffects {
       ),
       concatLatestFrom(() => this.store.select(selectCategoryTab)),
       switchMap(([_, categoryTab]) => {
-        console.log(categoryTab);
         return this.advertisementsListService
           .getAdvertisements(categoryTab)
           .pipe(
