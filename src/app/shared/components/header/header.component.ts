@@ -100,8 +100,8 @@ export class HeaderComponent implements OnChanges, OnInit {
         filter(Boolean),
         mergeMap((token: string) => this.afMessaging.deleteToken(token)),
         tap(() => {
-          this.userRole = UserRole.Guest;
           this.logout.emit();
+          this.userCurrentRole = UserRole.Guest;
           this.router.navigate(['']);
         }),
         untilDestroyed(this)

@@ -3,6 +3,7 @@
     [user]="user"
     [userRole]="userRole"
     [notificationMessage]="notificationMessage"
+    (addNotificationMessage)="onAddNotificationMessage($event)"
     (logout)="onLogout()"
     (selectTab)="onSelectTab($event)"
   ></app-header>
