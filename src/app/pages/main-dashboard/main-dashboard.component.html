@@ -21,6 +21,7 @@
           [advertisementsRequest]="advertisementsRequest"
           [advertisementsLoadingStatus]="advertisementsLoadingStatus"
           (setBet)="onSetBet($event)"
+          (setBuy)="onSetBuy($event)"
         >
           <ng-template #actionButtons let-advertisement>
             <app-advertisements-list-buttons
@@ -28,6 +29,7 @@
               [user]="user"
               [advertisement]="advertisement"
               (setBet)="onSetBet($event)"
+              (setBuy)="onSetBuy($event)"
             >
             </app-advertisements-list-buttons>
           </ng-template>

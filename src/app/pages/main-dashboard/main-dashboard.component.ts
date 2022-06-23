@@ -32,7 +32,10 @@ export class MainDashboardComponent {
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
   @Output() public setBet: EventEmitter<Record<string, string | number>> =
     new EventEmitter<Record<string, string | number>>();
-  @Output() public selectTab: EventEmitter<string> = new EventEmitter<string>();
+  @Output() public setBuy: EventEmitter<Record<string, string>> =
+    new EventEmitter<Record<string, string>>();
+  @Output() public selectTab: EventEmitter<UserPanelOptionId> =
+    new EventEmitter<UserPanelOptionId>();
   @Output() public addNotificationMessage: EventEmitter<MessagePayload> =
     new EventEmitter<MessagePayload>();
 
@@ -48,7 +51,11 @@ export class MainDashboardComponent {
     this.setBet.emit(newBetOptions);
   }
 
-  public onSelectTab(selectedOptionId: string): void {
+  public onSetBuy(buyOptions: Record<string, string>): void {
+    this.setBuy.emit(buyOptions);
+  }
+
+  public onSelectTab(selectedOptionId: UserPanelOptionId): void {
     this.selectTab.emit(selectedOptionId);
   }
 

@@ -1,4 +1,4 @@
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { map, tap } from 'rxjs/operators';
@@ -22,7 +22,7 @@ import {
 import { RegistrationPageActions } from '../../state/registration-page/registration-page.actions';
 import { AppRootActions } from '../../state/app-root/app-root.actions';
 import { UserRole } from '../../shared/components/header/enums/user-role';
-import { AdvertisementsListBetActions } from '../../state/advertisements-list-page/advertisements-list-page.actions';
+import { AdvertisementsListDealActions } from '../../state/advertisements-list-page/advertisements-list-page.actions';
 import { IAdRequestInterface } from '../../shared/components/advertisements-list/interfaces/ad-request.interface';
 import {
   getNotificationMessage,
@@ -57,6 +57,7 @@ export class AdvertisementPageContainerComponent implements OnInit {
   constructor(
     private store: Store,
     private route: ActivatedRoute,
+    private router: Router,
     private spinner: NgxSpinnerService
   ) {
     this.map$ = this.store.select(selectMapData);
@@ -79,10 +80,17 @@ export class AdvertisementPageContainerComponent implements OnInit {
 
   public onSetBet(newBetOptions: Record<string, string | number>): void {
     this.store.dispatch(
-      AdvertisementsListBetActions.getAdvertisementsBetRequest({
+      AdvertisementsListDealActions.getAdvertisementsBetRequest({
         newBetOptions,
       })
     );
+  }
+
+  public onSetBuy(buyOptions: Record<string, string>): void {
+    this.store.dispatch(
+      AdvertisementsListDealActions.getAdvertisementsBuyRequest({ buyOptions })
+    );
+    this.router.navigate(['']);
   }
 
   public ngOnInit(): void {

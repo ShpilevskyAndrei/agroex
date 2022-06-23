@@ -15,7 +15,7 @@ export class UserService extends BaseService {
     protected override httpClient: HttpClient,
     private afMessaging: AngularFireMessaging
   ) {
-    super(httpClient);
+    super(httpClient, router, store);
   }
 
   public create(

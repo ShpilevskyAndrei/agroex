@@ -25,7 +25,7 @@ import {
   selectAdvertisementsLoadingStatus,
 } from '../../state/advertisements-list-page/advertisements-list-page.selectors';
 import {
-  AdvertisementsListBetActions,
+  AdvertisementsListDealActions,
   AdvertisementsListPageActions,
 } from '../../state/advertisements-list-page/advertisements-list-page.actions';
 import { UserRole } from '../../shared/components/header/enums/user-role';
@@ -43,6 +43,7 @@ import { getNotificationMessage } from '../../state/app-root/app-root.selectors'
     [advertisementsLoadingStatus]="advertisementsLoadingStatus$ | async"
     (logout)="onLogout()"
     (setBet)="onSetBet($event)"
+    (setBuy)="onSetBuy($event)"
     (selectTab)="onSelectTab($event)"
     (addNotificationMessage)="onAddNotificationMessage($event)"
   ></app-main-dashboard>`,
@@ -84,15 +85,21 @@ export class MainDashboardContainerComponent implements OnInit {
 
   public onSetBet(newBetOptions: Record<string, string | number>): void {
     this.store.dispatch(
-      AdvertisementsListBetActions.getAdvertisementsBetRequest({
+      AdvertisementsListDealActions.getAdvertisementsBetRequest({
         newBetOptions,
       })
     );
   }
 
+  public onSetBuy(buyOptions: Record<string, string>): void {
+    this.store.dispatch(
+      AdvertisementsListDealActions.getAdvertisementsBuyRequest({ buyOptions })
+    );
+  }
+
   public onBetTimerDown(slug: string): void {
     this.store.dispatch(
-      AdvertisementsListBetActions.getAdvertisementsBetExpired({ slug })
+      AdvertisementsListDealActions.getAdvertisementsBetExpired({ slug })
     );
   }
 

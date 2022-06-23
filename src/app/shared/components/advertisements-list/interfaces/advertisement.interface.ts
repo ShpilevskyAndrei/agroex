@@ -20,4 +20,8 @@ export interface IAdvertisementInterface {
   updatedAt: string;
   author: IUser;
   userBets: IAdvertisementBetInterface[];
+  isConfirmed?: boolean;
+  expireAdvert?: string | null;
+  moderationComment?: string | null;
+  moderationStatus?: 'unmoderated' | 'approved' | 'rejected';
 }
