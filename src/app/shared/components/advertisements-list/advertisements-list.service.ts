@@ -18,8 +18,12 @@ export class AdvertisementsListService extends BaseService {
     super(httpClient, router, store);
   }
 
-  public getAdvertisements(): Observable<IAdvertisementRequestInterface> {
-    return this.get<IAdvertisementRequestInterface>('advertisements');
+  public getAdvertisements(
+    categoryTab: string
+  ): Observable<IAdvertisementRequestInterface> {
+    return this.get<IAdvertisementRequestInterface>(`advertisements/`, {
+      params: { category: categoryTab.split(' ').join('-').toLowerCase() },
+    });
   }
 
   public addAdvertisementBet(
