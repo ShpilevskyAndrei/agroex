@@ -6,9 +6,8 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { IAdvertisementRequestInterface } from '../../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
-import { IAdvertisementInterface } from 'src/app/shared/components/advertisements-list/interfaces/advertisement.interface';
 
+import { IAdvertisementRequestInterface } from '../../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
 import { LoadingStatus } from '../../../shared/interfaces/loading-status';
 import { IUser } from '../../../shared/interfaces/user.interface';
 import { AccountPageActions } from '../../../state/account-page/account-page.actions';
@@ -21,7 +20,7 @@ import { AccountPageActions } from '../../../state/account-page/account-page.act
 })
 export class MyBettingComponent implements OnInit {
   @Input()
-  public myBettingsRequest: IAdvertisementInterface[] | null;
+  public myBettingsRequest: IAdvertisementRequestInterface | null;
   @Input() public myBettingsLoadingStatus: LoadingStatus | null;
   @Input() public user: IUser | null;
 
@@ -44,12 +43,5 @@ export class MyBettingComponent implements OnInit {
 
   public onSetBuy(buyOptions: Record<string, string>): void {
     this.setBuy.emit(buyOptions);
-  }
-
-  public bettingRequest(): IAdvertisementRequestInterface {
-    return {
-      advertisementCount: this.myBettingsRequest?.length || 0,
-      advertisements: this.myBettingsRequest,
-    };
   }
 }

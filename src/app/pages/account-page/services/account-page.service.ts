@@ -8,7 +8,6 @@ import { IAdvertisementRequestInterface } from '../../../shared/components/adver
 import { BaseService } from '../../../shared/services/base.service';
 import { IMyOrdersInterface } from '../my-orders/interfaces/my-orders-request.interface';
 import { IMyBetInterface } from '../../../shared/components/advertisements-list/interfaces/advertisement.interface';
-import { IAdvertisementInterface } from '../../moderation-advertisements/interfaces/advertisement.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -31,14 +30,19 @@ export class AccountPageService extends BaseService {
     );
   }
 
-  public getMyBettings(token?: string): Observable<IAdvertisementInterface[]> {
+  public getMyBettings(
+    token?: string
+  ): Observable<IAdvertisementRequestInterface> {
     return this.get<IMyBetInterface[]>('advertisements/my-bets', {
       token,
     }).pipe(
       map((myBettingsRequest: IMyBetInterface[]) => {
-        const myBettingsNewRequest: IAdvertisementInterface[] = [];
+        const myBettingsNewRequest: IAdvertisementRequestInterface = {
+          advertisementCount: myBettingsRequest.length,
+          advertisements: [],
+        };
         for (let i = 0; i < myBettingsRequest.length; i++) {
-          myBettingsNewRequest.push({
+          myBettingsNewRequest.advertisements?.push({
             id: myBettingsRequest[i].id,
             title: myBettingsRequest[i].title,
             country: myBettingsRequest[i].country,

@@ -36,7 +36,7 @@ export const AccountPageActions = {
 
   getMyBettingsSuccess: createAction(
     '[ACCOUNT_PAGE] my bettings success',
-    props<{ myBettings: IAdvertisementInterface[] }>()
+    props<{ myBettings: IAdvertisementRequestInterface }>()
   ),
 
   getMyBettingsError: createAction(

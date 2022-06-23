@@ -60,7 +60,7 @@ export class AccountPageContainerComponent {
   public selectedTab$: Observable<string | null>;
   public myAdvertisementsRequest$: Observable<IAdvertisementRequestInterface | null>;
   public myAdvertisementsLoadingStatus$: Observable<LoadingStatus | null>;
-  public myBettingsRequest$: Observable<IAdvertisementInterface[] | null>;
+  public myBettingsRequest$: Observable<IAdvertisementRequestInterface | null>;
   public myBettingsLoadingStatus$: Observable<LoadingStatus | null>;
   public myOrdersRequest$: Observable<IMyOrdersInterface[] | null>;
   public myOrdersLoadingStatus$: Observable<LoadingStatus | null>;

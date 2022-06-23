@@ -33,7 +33,7 @@ export class AccountPageComponent {
   public myAdvertisementsRequest: IAdvertisementRequestInterface | null;
   @Input() public myAdvertisementsLoadingStatus: LoadingStatus | null;
   @Input()
-  public myBettingsRequest: IAdvertisementInterface[] | null;
+  public myBettingsRequest: IAdvertisementRequestInterface | null;
   @Input() public myBettingsLoadingStatus: LoadingStatus | null;
   @Input()
   public myOrdersRequest: IMyOrdersInterface[] | null;

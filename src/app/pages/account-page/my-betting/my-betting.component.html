@@ -1,6 +1,6 @@
 <ng-container
   *ngIf="
-  bettingRequest()?.advertisements?.length;
+  myBettingsRequest?.advertisements?.length;
     else emptyMyBettings
   "
 >
@@ -8,7 +8,7 @@
     class="my-advertisements-list"
     [showOwnerFlag]="showOwnerFlag"
     [user]="user"
-    [advertisementsRequest]="bettingRequest()"
+    [advertisementsRequest]="myBettingsRequest"
     [advertisementsLoadingStatus]="myBettingsLoadingStatus"
   >
     <ng-template #actionButtons let-advertisement>

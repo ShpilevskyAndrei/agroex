@@ -5,12 +5,11 @@ import { DEFAULT_LOADING_STATUS } from '../../shared/constants/lodaing-default-s
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { AccountPageActions } from './account-page.actions';
 import { IMyOrdersInterface } from '../../pages/account-page/my-orders/interfaces/my-orders-request.interface';
-import { IAdvertisementInterface } from 'src/app/shared/components/advertisements-list/interfaces/advertisement.interface';
 
 export interface AccountPageState {
   accountPageLoadingStatus: LoadingStatus;
   myAdvertisements: IAdvertisementRequestInterface;
-  myBettings: IAdvertisementInterface[];
+  myBettings: IAdvertisementRequestInterface;
   myOrders: IMyOrdersInterface[];
 }
 
@@ -19,7 +18,7 @@ export const ACCOUNT_PAGE = 'accountPage';
 const initialState: AccountPageState = {
   accountPageLoadingStatus: DEFAULT_LOADING_STATUS,
   myAdvertisements: { advertisementCount: null, advertisements: [] },
-  myBettings: [],
+  myBettings: { advertisementCount: null, advertisements: [] },
   myOrders: [],
 };
 
