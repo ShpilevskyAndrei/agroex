@@ -34,8 +34,8 @@ export class MainDashboardComponent {
     new EventEmitter<Record<string, string | number>>();
   @Output() public setBuy: EventEmitter<Record<string, string>> =
     new EventEmitter<Record<string, string>>();
-  @Output() public selectTab: EventEmitter<UserPanelOptionId> =
-    new EventEmitter<UserPanelOptionId>();
+  @Output() public selectTab: EventEmitter<string> =
+    new EventEmitter<string>();
   @Output() public addNotificationMessage: EventEmitter<MessagePayload> =
     new EventEmitter<MessagePayload>();
 
@@ -55,7 +55,7 @@ export class MainDashboardComponent {
     this.setBuy.emit(buyOptions);
   }
 
-  public onSelectTab(selectedOptionId: UserPanelOptionId): void {
+  public onSelectTab(selectedOptionId: string): void {
     this.selectTab.emit(selectedOptionId);
   }
 

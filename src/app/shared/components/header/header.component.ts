@@ -10,7 +10,7 @@ import {
 import { MatSelect } from '@angular/material/select';
 import { Router } from '@angular/router';
 import { AngularFireMessaging } from '@angular/fire/compat/messaging';
-import { filter, mergeMap } from "rxjs";
+import { filter, mergeMap } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import firebase from 'firebase/compat';
@@ -22,6 +22,7 @@ import { LOGGED_ROLE_CONFIG } from './constants/user-role-config';
 import { UserPanelOptionId } from './enums/user-panel-option-id';
 import { UserRole } from './enums/user-role';
 import { IUserOptionsType } from './interfaces/user-options-type.interface';
+import { AgroexToastService, ToastType } from 'ngx-agroex-toast';
 
 @UntilDestroy()
 @Component({
@@ -41,18 +42,24 @@ export class HeaderComponent implements OnChanges, OnInit {
 
   public userRoleConfig = LOGGED_ROLE_CONFIG;
   public userRoles = UserRole;
-  public userPanelOption = USER_PANEL_OPTION;
+  public userPanelOption: IUserOptionsType[] = USER_PANEL_OPTION;
   public userCurrentRole: UserRole | null = UserRole.Guest;
 
   constructor(
     private router: Router,
-    private afMessaging: AngularFireMessaging
+    private afMessaging: AngularFireMessaging,
+    private toastService: AgroexToastService
   ) {}
 
   public ngOnInit(): void {
     this.afMessaging.messages
       .pipe(
         tap((message) => {
+          this.toastService.addToast({
+            toastType: ToastType.Info,
+            title: 'You received new message',
+            width: '60vw',
+          });
           this.addNotificationMessage.emit(message);
         }),
         untilDestroyed(this)

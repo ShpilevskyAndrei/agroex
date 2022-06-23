@@ -42,6 +42,7 @@ import {
     (logout)="onLogout()"
     (selectTab)="onSelectTab($event)"
     (setBet)="onSetBet($event)"
+    (setBuy)="onSetBuy($event)"
     (addNotificationMessage)="onAddNotificationMessage($event)"
   ></app-advertisement-page>`,
 })

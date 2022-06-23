@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireMessaging } from '@angular/fire/compat/messaging';
 import { mergeMap, Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 
 import { UserApiResponse } from '../../../shared/interfaces/user.interface';
 import { IUserCredentials } from '../../../shared/interfaces/user-credentials.interfase';
@@ -13,6 +15,8 @@ import { BaseService } from 'src/app/shared/services/base.service';
 export class UserService extends BaseService {
   constructor(
     protected override httpClient: HttpClient,
+    protected override router: Router,
+    protected override store: Store,
     private afMessaging: AngularFireMessaging
   ) {
     super(httpClient, router, store);

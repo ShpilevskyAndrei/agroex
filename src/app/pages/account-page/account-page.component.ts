@@ -40,8 +40,8 @@ export class AccountPageComponent {
   @Output() public selectTab: EventEmitter<string> = new EventEmitter<string>();
   @Output() public dispatcher: EventEmitter<Function> =
     new EventEmitter<Function>();
-  @Output() public confirmDeal: EventEmitter<string> =
-    new EventEmitter<string>();
+  @Output() public confirmDeal: EventEmitter<IAdvertisementInterface> =
+    new EventEmitter<IAdvertisementInterface>();
   @Output() public addNotificationMessage: EventEmitter<MessagePayload> =
     new EventEmitter<MessagePayload>();
 
