@@ -33,7 +33,6 @@ export class AdvertisementComponent {
   constructor(private router: Router) {}
 
   public onSetBet(newBetOptions: Record<string, string | number>): void {
-    console.log(newBetOptions);
     this.setBet.emit(newBetOptions);
   }
 

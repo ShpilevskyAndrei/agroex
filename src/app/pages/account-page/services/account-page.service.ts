@@ -66,7 +66,6 @@ export class AccountPageService extends BaseService {
               ],
             };
           });
-        console.log(myBettingsRequestMap);
         return {
           advertisementCount: myBettingsRequest.length,
           advertisements: myBettingsRequestMap,
