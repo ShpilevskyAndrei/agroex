@@ -49,6 +49,7 @@ export class AdvertisementsListButtonsComponent {
         tap((result: string) => {
           this.bet = result;
           this.setBet.emit({ newBet: this.bet, slug: this.advertisement.slug });
+          console.log({ newBet: this.bet, slug: this.advertisement.slug });
         })
       )
       .subscribe();

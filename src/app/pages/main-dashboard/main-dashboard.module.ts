@@ -8,9 +8,7 @@ import { HeaderModule } from '../../shared/components/header/header.module';
 import { CategoriesModule } from './categories/categories.module';
 import { MainDashboardRoutingModule } from './main-dashboard-routing.module';
 import { AdvertisementsListModule } from 'src/app/shared/components/advertisements-list/advertisements-list.module';
-import {
-  AdvertisementsListButtonsModule
-} from "../../shared/components/advertisements-list/advertisement/advertisements-list-buttons/advertisements-list-buttons.module";
+import { AdvertisementsListButtonsModule } from '../../shared/components/advertisements-list/advertisement/advertisements-list-buttons/advertisements-list-buttons.module';
 
 @NgModule({
   declarations: [MainDashboardComponent, MainDashboardContainerComponent],

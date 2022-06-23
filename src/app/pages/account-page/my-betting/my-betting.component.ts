@@ -30,6 +30,10 @@ export class MyBettingComponent implements OnInit {
 
   @Output() public dispatcher: EventEmitter<Function> =
     new EventEmitter<Function>();
+  @Output() public setBet: EventEmitter<Record<string, string | number>> =
+    new EventEmitter<Record<string, string | number>>();
+
+  public showOwnerFlag = true;
 
   public ngOnInit(): void {
     this.dispatcher.emit(AccountPageActions.getMyBettingsRequest);
@@ -83,6 +87,10 @@ export class MyBettingComponent implements OnInit {
     } else {
       return [];
     }
+  }
+
+  public onSetBet(newBetOptions: Record<string, string | number>): void {
+    this.setBet.emit(newBetOptions);
   }
 
   public bettingRequest(): IAdvertisementRequestInterface {

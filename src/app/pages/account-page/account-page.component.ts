@@ -43,6 +43,8 @@ export class AccountPageComponent {
     new EventEmitter<Function>();
   @Output() public confirmDeal: EventEmitter<string> =
     new EventEmitter<string>();
+  @Output() public setBet: EventEmitter<Record<string, string | number>> =
+    new EventEmitter<Record<string, string | number>>();
 
   public userPanelOption: IUserOptionsType[] = USER_PANEL_OPTION;
   public userPanelOptionId = UserPanelOptionId;
@@ -61,5 +63,9 @@ export class AccountPageComponent {
 
   public onConfirmDeal(slug: string): void {
     this.confirmDeal.emit(slug);
+  }
+
+  public onSetBet(newBetOptions: Record<string, string | number>): void {
+    this.setBet.emit(newBetOptions);
   }
 }

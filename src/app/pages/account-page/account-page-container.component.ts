@@ -25,6 +25,7 @@ import { IAdvertisementRequestInterface } from '../../shared/components/advertis
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IMyOrdersInterface } from './my-orders/interfaces/my-orders-request.interface';
 import { IMyBetInterface } from 'src/app/shared/components/advertisements-list/interfaces/advertisement.interface';
+import { AdvertisementsListBetActions } from 'src/app/state/advertisements-list-page/advertisements-list-page.actions';
 
 @Component({
   selector: 'app-account-page-container',
@@ -39,6 +40,7 @@ import { IMyBetInterface } from 'src/app/shared/components/advertisements-list/i
     [myOrdersRequest]="myOrdersRequest$ | async"
     [myOrdersLoadingStatus]="myOrdersLoadingStatus$ | async"
     (logout)="onLogout()"
+    (setBet)="onSetBet($event)"
     (selectTab)="onSelectTab($event)"
     (dispatcher)="onDispatcher($event)"
     (confirmDeal)="onConfirmDeal($event)"
@@ -90,5 +92,13 @@ export class AccountPageContainerComponent {
 
   public onConfirmDeal(slug: string): void {
     this.store.dispatch(AccountPageActions.getConfirmDealRequest({ slug }));
+  }
+
+  public onSetBet(newBetOptions: Record<string, string | number>): void {
+    this.store.dispatch(
+      AdvertisementsListBetActions.getAdvertisementsBetRequest({
+        newBetOptions,
+      })
+    );
   }
 }

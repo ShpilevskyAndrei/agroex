@@ -1,0 +1,10 @@
+@import "../../../styles/general-styles";
+
+:host {
+  .advertisement-list {
+    margin: 0;
+    // margin: 5rem 0 0 0;
+  }
+}
+
+@include advertisement-wrap-buttons;

@@ -49,10 +49,7 @@ export class AdvertisementPriceComponent {
 
   public get unitCostBet(): number {
     return +(
-      +(
-        this.advertisement.userBets![0].betValue ||
-        this.advertisement.lastBetInfo!.last_bet_value
-      ) / this.CalcTonToKg
+      +this.advertisement.userBets[0].betValue / this.CalcTonToKg
     ).toFixed(2);
   }
 
