@@ -12,16 +12,24 @@
       <div class="account__user">
         <p>{{ user?.username | titlecase }}</p>
       </div>
-      <div class="account__content">
+      <div class="account__content"
+           [ngClass]="{'account__content-for_mobile-active': this.showSidebar}"
+      >
         <app-sidebar
           class="account__sidebar"
+          [ngClass]="{'account__sidebar-for_mobile-active': this.showSidebar}"
           [userPanelOption]="this.userPanelOption"
           [selectedTab]="this.selectedTab"
           (logout)="onLogout()"
           (selectTab)="onSelectTab($event)"
         >
         </app-sidebar>
-        <div class="account__info" [ngSwitch]="this.selectedTab">
+        <div
+          class="account__info"
+          [ngClass]="{'account__info_mobile-active': !this.showSidebar}"
+          [ngSwitch]="this.selectedTab"
+        >
+          <div class="account__info-btn_mobile_only" (click)="switchSideBar()">{{ tabOption() }}</div>
           <app-my-advertisements
             *ngSwitchCase="userPanelOptionId.MyAdvertisements"
             [myAdvertisementsRequest]="myAdvertisementsRequest"
