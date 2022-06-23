@@ -7,6 +7,7 @@ import MessagePayload = firebase.messaging.MessagePayload;
 
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { AppRootActions } from '../../state/app-root/app-root.actions';
+import { getNotificationMessage } from '../../state/app-root/app-root.selectors';
 import { MainDashboardActions } from '../../state/main-dashboard/main-dashboard.actions';
 import {
   selectCategoriesData,
