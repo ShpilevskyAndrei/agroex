@@ -11,6 +11,7 @@ import { IAdvertisementRequestInterface } from '../../../shared/components/adver
 import { LoadingStatus } from '../../../shared/interfaces/loading-status';
 import { IUser } from '../../../shared/interfaces/user.interface';
 import { AccountPageActions } from '../../../state/account-page/account-page.actions';
+import { IAdvertisementInterface } from '../../../shared/components/advertisements-list/interfaces/advertisement.interface';
 
 @Component({
   selector: 'app-my-advertisements',
@@ -26,14 +27,14 @@ export class MyAdvertisementsComponent implements OnInit {
 
   @Output() public dispatcher: EventEmitter<Function> =
     new EventEmitter<Function>();
-  @Output() public confirmDeal: EventEmitter<string> =
-    new EventEmitter<string>();
+  @Output() public confirmDeal: EventEmitter<IAdvertisementInterface> =
+    new EventEmitter<IAdvertisementInterface>();
 
   public ngOnInit(): void {
     this.dispatcher.emit(AccountPageActions.getMyAdvertisementsRequest);
   }
 
-  public onConfirmDeal(slug: string): void {
-    this.confirmDeal.emit(slug);
+  public onConfirmDeal(advertisement: IAdvertisementInterface): void {
+    this.confirmDeal.emit(advertisement);
   }
 }
