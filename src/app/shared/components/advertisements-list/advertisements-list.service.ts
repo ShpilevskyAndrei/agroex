@@ -29,4 +29,11 @@ export class AdvertisementsListService extends BaseService {
   ): Observable<UserApiResponse> {
     return this.post<UserApiResponse>(`${slug}/bet`, { betValue }, token);
   }
+
+  public addAdvertisementBuy(
+    slug: string | number,
+    token?: string
+  ): Observable<UserApiResponse> {
+    return this.post<UserApiResponse>(`orders/buy/${slug}`, {}, token);
+  }
 }

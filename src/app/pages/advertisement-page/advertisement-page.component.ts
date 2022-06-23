@@ -44,6 +44,8 @@ export class AdvertisementPageComponent implements OnChanges {
     new EventEmitter<UserPanelOptionId>();
   @Output() public setBet: EventEmitter<Record<string, string | number>> =
     new EventEmitter<Record<string, string | number>>();
+  @Output() public setBuy: EventEmitter<Record<string, string>> =
+    new EventEmitter<Record<string, string>>();
 
   public betForm: FormGroup = new FormGroup({
     bet: new FormControl('', {
@@ -109,6 +111,10 @@ export class AdvertisementPageComponent implements OnChanges {
 
   public onSetBet(newBetOptions: Record<string, string | number>): void {
     this.setBet.emit(newBetOptions);
+  }
+
+  public onSetBuy(buyOptions: Record<string, string>): void {
+    this.setBuy.emit(buyOptions);
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
