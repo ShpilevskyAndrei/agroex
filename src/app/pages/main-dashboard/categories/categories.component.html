@@ -14,14 +14,26 @@
             [category]="category"
           ></app-category>
         </ng-template>
-        <!-- <mat-list role="list">
-          <mat-list-item
-            role="listitem"
-            *ngFor="let subCategory of getCategoryList(category)"
-          >
-            {{ subCategory.title }}
-          </mat-list-item>
-        </mat-list> -->
+            <div class="advertisement-list">
+                <app-advertisements-list
+                  [showOwnerFlag]="showOwnerFlag"
+                  [isNavigationToAdvertisementPage]="isNavigationToAdvertisementPage"
+                  [user]="user"
+                  [advertisementsRequest]="advertisementsRequest"
+                  [advertisementsLoadingStatus]="advertisementsLoadingStatus"
+                  (setBet)="onSetBet($event)"
+                >
+                  <ng-template #actionButtons let-advertisement>
+                    <app-advertisements-list-buttons
+                      class="advertisement-wrap__btns"
+                      [user]="user"
+                      [advertisement]="advertisement"
+                      (setBet)="onSetBet($event)">
+                    </app-advertisements-list-buttons>
+                  </ng-template>
+                </app-advertisements-list>
+            </div>
+
       </mat-tab>
     </mat-tab-group>
   </div>

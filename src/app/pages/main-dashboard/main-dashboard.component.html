@@ -1,53 +1,20 @@
 <ng-container *ngIf="categoriesLoadingStatus?.loaded; else notLoaded">
-  <app-header [userRole]="userRole" [user]="user" (logout)="onLogout()" (selectTab)="onSelectTab($event)"></app-header>
+  <app-header
+    [userRole]="userRole"
+    [user]="user"
+    (logout)="onLogout()"
+    (selectTab)="onSelectTab($event)"
+  ></app-header>
 
   <app-categories
     [categories]="categories"
     [categoriesLoadingStatus]="categoriesLoadingStatus"
+    [user]="user"
+    [advertisementsRequest]="advertisementsRequest"
+    [advertisementsLoadingStatus]="advertisementsLoadingStatus"
+    (setBet)="onSetBet($event)"
   >
-    <div class="advertisement-list">
-      <div class="container">
-        <app-advertisements-list
-          [showOwnerFlag]="showOwnerFlag"
-          [isNavigationToAdvertisementPage]="isNavigationToAdvertisementPage"
-          [user]="user"
-          [advertisementsRequest]="advertisementsRequest"
-          [advertisementsLoadingStatus]="advertisementsLoadingStatus"
-          (setBet)="onSetBet($event)"
-        >
-          <ng-template #actionButtons let-advertisement>
-            <app-advertisements-list-buttons
-              class="advertisement-wrap__btns"
-              [user]="user"
-              [advertisement]="advertisement"
-              (setBet)="onSetBet($event)">
-            </app-advertisements-list-buttons>
-          </ng-template>
-        </app-advertisements-list>
-      </div>
-    </div>
   </app-categories>
-
-  <!-- <div class="advertisement-list">
-    <div class="container">
-      <app-advertisements-list
-        [isNavigationToAdvertisementPage]="isNavigationToAdvertisementPage"
-        [user]="user"
-        [advertisementsRequest]="advertisementsRequest"
-        [advertisementsLoadingStatus]="advertisementsLoadingStatus"
-        (setBet)="onSetBet($event)"
-      >
-        <ng-template #actionButtons let-advertisement>
-          <app-advertisements-list-buttons
-            class="advertisement-wrap__btns"
-            [advertisement]="advertisement"
-            (setBet)="onSetBet($event)">
-          </app-advertisements-list-buttons>
-        </ng-template>
-      </app-advertisements-list>
-    </div>
-  </div> -->
-
 </ng-container>
 
 <ng-template #notLoaded>
