@@ -37,6 +37,7 @@ const routes: Routes = [
       import(
         './pages/create-advertisement-page/create-advertisement-page.module'
       ).then((m) => m.CreateAdvertisementPageModule),
+    canLoad: [AuthGuard],
   },
   {
     path: 'moderation-advertisements',

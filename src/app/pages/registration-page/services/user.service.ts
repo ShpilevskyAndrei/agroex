@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { AgroexToastService, ToastType } from 'ngx-agroex-toast';
 import { EMPTY, Observable } from 'rxjs';
 
@@ -14,9 +16,11 @@ import { BaseService } from 'src/app/shared/services/base.service';
 export class UserService extends BaseService {
   constructor(
     private toastService: AgroexToastService,
-    protected override httpClient: HttpClient
+    protected override httpClient: HttpClient,
+    protected override router: Router,
+    protected override store: Store
   ) {
-    super(httpClient);
+    super(httpClient, router, store);
   }
 
   public create(

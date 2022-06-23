@@ -24,8 +24,9 @@ import { UserRole } from '../../shared/components/header/enums/user-role';
 import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IMyOrdersInterface } from './my-orders/interfaces/my-orders-request.interface';
+import { IAdvertisementInterface } from '../../shared/components/advertisements-list/interfaces/advertisement.interface';
 import { IMyBetInterface } from 'src/app/shared/components/advertisements-list/interfaces/advertisement.interface';
-import { AdvertisementsListBetActions } from 'src/app/state/advertisements-list-page/advertisements-list-page.actions';
+import { AdvertisementsListDealActions } from 'src/app/state/advertisements-list-page/advertisements-list-page.actions';
 
 @Component({
   selector: 'app-account-page-container',
@@ -90,13 +91,15 @@ export class AccountPageContainerComponent {
     this.store.dispatch(dispatcher());
   }
 
-  public onConfirmDeal(slug: string): void {
-    this.store.dispatch(AccountPageActions.getConfirmDealRequest({ slug }));
+  public onConfirmDeal(advertisement: IAdvertisementInterface): void {
+    this.store.dispatch(
+      AccountPageActions.getConfirmDealRequest({ advertisement })
+    );
   }
 
   public onSetBet(newBetOptions: Record<string, string | number>): void {
     this.store.dispatch(
-      AdvertisementsListBetActions.getAdvertisementsBetRequest({
+      AdvertisementsListDealActions.getAdvertisementsBetRequest({
         newBetOptions,
       })
     );

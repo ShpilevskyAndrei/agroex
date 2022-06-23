@@ -20,6 +20,10 @@ export interface IAdvertisementInterface {
   updatedAt: string;
   author: IUser;
   userBets: IAdvertisementBetInterface[];
+  isConfirmed?: boolean;
+  expireAdvert?: string | null;
+  moderationComment?: string | null;
+  moderationStatus?: 'unmoderated' | 'approved' | 'rejected';
   authorId?: number;
   lastBetInfo?: {
     user_id_with_last_bet: number;
@@ -31,7 +35,7 @@ export interface IMyBetInterface extends IAdvertisementInterface {
   authorId: number;
   moderationComment: string | null;
   expireAdvert: string;
-  moderationStatus: 'approved' | 'rejected' | 'unmoderated';
+  moderationStatus: 'unmoderated' | 'approved' | 'rejected';
   isConfirmed: boolean;
   lastBetInfo: {
     user_id_with_last_bet: number;

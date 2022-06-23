@@ -24,6 +24,8 @@ export class AdvertisementsListButtonsComponent {
 
   @Output() public setBet: EventEmitter<Record<string, string>> =
     new EventEmitter<Record<string, string>>();
+  @Output() public setBuy: EventEmitter<Record<string, string>> =
+    new EventEmitter<Record<string, string>>();
 
   private bet: string;
 
@@ -48,11 +50,21 @@ export class AdvertisementsListButtonsComponent {
         filter(Boolean),
         tap((result: string) => {
           this.bet = result;
-          this.setBet.emit({ newBet: this.bet, slug: this.advertisement.slug });
-          console.log({ newBet: this.bet, slug: this.advertisement.slug });
+          this.setBet.emit({
+            newBet: this.bet,
+            slug: this.advertisement.slug,
+            title: this.advertisement.title,
+          });
         })
       )
       .subscribe();
+  }
+
+  public onSetBuy(): void {
+    this.setBuy.emit({
+      slug: this.advertisement.slug,
+      title: this.advertisement.title,
+    });
   }
 
   public stopPropagation(event: MouseEvent): void {

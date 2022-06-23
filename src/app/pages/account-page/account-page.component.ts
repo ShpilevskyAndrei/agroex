@@ -15,6 +15,7 @@ import { IAdvertisementRequestInterface } from '../../shared/components/advertis
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IMyOrdersInterface } from './my-orders/interfaces/my-orders-request.interface';
 import { IMyBetInterface } from 'src/app/shared/components/advertisements-list/interfaces/advertisement.interface';
+import { IAdvertisementInterface } from '../../shared/components/advertisements-list/interfaces/advertisement.interface';
 
 @Component({
   selector: 'app-account-page',
@@ -41,10 +42,10 @@ export class AccountPageComponent {
     new EventEmitter<UserPanelOptionId>();
   @Output() public dispatcher: EventEmitter<Function> =
     new EventEmitter<Function>();
-  @Output() public confirmDeal: EventEmitter<string> =
-    new EventEmitter<string>();
   @Output() public setBet: EventEmitter<Record<string, string | number>> =
     new EventEmitter<Record<string, string | number>>();
+  @Output() public confirmDeal: EventEmitter<IAdvertisementInterface> =
+    new EventEmitter<IAdvertisementInterface>();
 
   public userPanelOption: IUserOptionsType[] = USER_PANEL_OPTION;
   public userPanelOptionId = UserPanelOptionId;
@@ -61,8 +62,8 @@ export class AccountPageComponent {
     this.dispatcher.emit(dispatcher);
   }
 
-  public onConfirmDeal(slug: string): void {
-    this.confirmDeal.emit(slug);
+  public onConfirmDeal(advertisement: IAdvertisementInterface): void {
+    this.confirmDeal.emit(advertisement);
   }
 
   public onSetBet(newBetOptions: Record<string, string | number>): void {

@@ -4,6 +4,7 @@ import { createAction, props } from '@ngrx/store';
 import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
 import { IMyOrdersInterface } from '../../pages/account-page/my-orders/interfaces/my-orders-request.interface';
 import { IMyBetInterface } from '../../shared/components/advertisements-list/interfaces/advertisement.interface';
+import { IAdvertisementInterface } from '../../shared/components/advertisements-list/interfaces/advertisement.interface';
 
 export const AccountPageActions = {
   getMyAdvertisementsRequest: createAction(
@@ -22,7 +23,7 @@ export const AccountPageActions = {
 
   getConfirmDealRequest: createAction(
     '[ACCOUNT_PAGE] confirm deal requested',
-    props<{ slug: string }>()
+    props<{ advertisement: IAdvertisementInterface }>()
   ),
 
   getConfirmDealSuccess: createAction('[ACCOUNT_PAGE] confirm deal success'),
