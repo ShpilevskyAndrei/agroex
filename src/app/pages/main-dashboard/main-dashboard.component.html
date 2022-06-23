@@ -2,7 +2,9 @@
   <app-header
     [user]="user"
     [userRole]="userRole"
+    [notificationMessage]="notificationMessage"
     (logout)="onLogout()"
+    (addNotificationMessage)="onAddNotificationMessage($event)"
     (selectTab)="onSelectTab($event)"></app-header>
 
   <app-categories
