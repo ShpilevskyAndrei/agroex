@@ -26,6 +26,7 @@ export class MainDashboardComponent {
   @Input() public userRole: UserRole | null;
   @Input() public advertisementsRequest: IAdvertisementRequestInterface | null;
   @Input() public advertisementsLoadingStatus: LoadingStatus | null;
+  @Input() public selectCategoryTabTitle: string | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
   @Output() public setBet: EventEmitter<Record<string, string | number>> =
@@ -34,6 +35,8 @@ export class MainDashboardComponent {
     new EventEmitter<Record<string, string>>();
   @Output() public selectTab: EventEmitter<UserPanelOptionId> =
     new EventEmitter<UserPanelOptionId>();
+  @Output() public selectCategoryTab: EventEmitter<string> =
+    new EventEmitter<string>();
 
   public showOwnerFlag = true;
 
@@ -53,5 +56,9 @@ export class MainDashboardComponent {
 
   public onSelectTab(selectedOptionId: UserPanelOptionId): void {
     this.selectTab.emit(selectedOptionId);
+  }
+
+  public onSelectCategoryTab(selectedOptionId: string): void {
+    this.selectCategoryTab.emit(selectedOptionId);
   }
 }

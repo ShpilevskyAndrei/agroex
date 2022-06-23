@@ -12,11 +12,12 @@
     [user]="user"
     [advertisementsRequest]="advertisementsRequest"
     [advertisementsLoadingStatus]="advertisementsLoadingStatus"
+    [selectCategoryTabTitle]="selectCategoryTabTitle"
     (setBet)="onSetBet($event)"
     (setBuy)="onSetBuy($event)"
+    (selectCategoryTab)="onSelectCategoryTab($event)"
   >
   </app-categories>
-
 </ng-container>
 
 <ng-template #notLoaded>

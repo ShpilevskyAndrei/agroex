@@ -22,6 +22,7 @@ import { IAdvertisementRequestInterface } from '../../shared/components/advertis
 import {
   selectAdvertisementsData,
   selectAdvertisementsLoadingStatus,
+  selectCategoryTab,
 } from '../../state/advertisements-list-page/advertisements-list-page.selectors';
 import {
   AdvertisementsListDealActions,
@@ -38,10 +39,12 @@ import { UserRole } from '../../shared/components/header/enums/user-role';
     [userRole]="userRole$ | async"
     [advertisementsRequest]="advertisementsRequest$ | async"
     [advertisementsLoadingStatus]="advertisementsLoadingStatus$ | async"
+    [selectCategoryTabTitle]="selectCategoryTab$ | async"
     (logout)="onLogout()"
     (setBet)="onSetBet($event)"
     (setBuy)="onSetBuy($event)"
     (selectTab)="onSelectTab($event)"
+    (selectCategoryTab)="onSelectCategoryTab($event)"
   ></app-main-dashboard>`,
 })
 export class MainDashboardContainerComponent implements OnInit {
@@ -51,6 +54,7 @@ export class MainDashboardContainerComponent implements OnInit {
   public userRole$: Observable<UserRole | null>;
   public advertisementsRequest$: Observable<IAdvertisementRequestInterface | null>;
   public advertisementsLoadingStatus$: Observable<LoadingStatus | null>;
+  public selectCategoryTab$: Observable<string | null>;
 
   constructor(private store: Store, private spinner: NgxSpinnerService) {
     this.categories$ = this.store.select(selectCategoriesData);
@@ -63,6 +67,7 @@ export class MainDashboardContainerComponent implements OnInit {
     this.advertisementsLoadingStatus$ = this.store.select(
       selectAdvertisementsLoadingStatus
     );
+    this.selectCategoryTab$ = this.store.select(selectCategoryTab);
   }
 
   public ngOnInit(): void {
@@ -100,7 +105,14 @@ export class MainDashboardContainerComponent implements OnInit {
   public onSelectTab(selectedOptionId: UserPanelOptionId): void {
     this.store.dispatch(AppRootActions.getUserSelectTab({ selectedOptionId }));
   }
+
+  public onSelectCategoryTab(selectedOptionId: string): void {
+    this.store.dispatch(
+      AdvertisementsListPageActions.getCategoryTabRequest({ selectedOptionId })
+    );
+    this.store.dispatch(
+      AdvertisementsListPageActions.getAdvertisementsRequest()
+    );
+    this.spinner.show();
+  }
 }
-// this.store.dispatch(
-//   AdvertisementsListPageActions.getAdvertisementsRequest()
-// );
