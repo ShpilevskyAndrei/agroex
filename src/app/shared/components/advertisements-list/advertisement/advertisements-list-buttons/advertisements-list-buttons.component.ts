@@ -8,13 +8,9 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { filter, tap } from 'rxjs';
 
-import {
-  IAdvertisementInterface,
-  IMyBetInterface,
-} from '../../interfaces/advertisement.interface';
+import { IAdvertisementInterface } from '../../interfaces/advertisement.interface';
 import { BetModalComponent } from '../bet-modal/bet-modal.component';
 import { IUser } from '../../../../interfaces/user.interface';
-import { IAdvertisementBetInterface } from '../../interfaces/advertisement-bet.interface';
 
 @Component({
   selector: 'app-advertisements-list-buttons',
@@ -23,7 +19,7 @@ import { IAdvertisementBetInterface } from '../../interfaces/advertisement-bet.i
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdvertisementsListButtonsComponent {
-  @Input() public advertisement: IAdvertisementInterface | IMyBetInterface;
+  @Input() public advertisement: IAdvertisementInterface;
   @Input() public user: IUser | null;
 
   @Output() public setBet: EventEmitter<Record<string, string>> =
@@ -43,7 +39,7 @@ export class AdvertisementsListButtonsComponent {
         data: {
           currency: this.advertisement.currency,
           price: this.advertisement.price,
-          actualBet: this.advertisement.userBets || this.advertisement.,
+          actualBet: this.advertisement.userBets,
           bet: this.bet,
         },
       })
@@ -60,12 +56,5 @@ export class AdvertisementsListButtonsComponent {
 
   public stopPropagation(event: MouseEvent): void {
     event.stopPropagation();
-  }
-
-  public userBet(): IAdvertisementBetInterface | string {
-    return (
-      this.advertisement.userBets![0].betValue ||
-      this.advertisement.lastBetInfo!.last_bet_value
-    );
   }
 }

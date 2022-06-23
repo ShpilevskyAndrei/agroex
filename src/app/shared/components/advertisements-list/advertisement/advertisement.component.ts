@@ -7,10 +7,7 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 
-import {
-  IAdvertisementInterface,
-  IMyBetInterface,
-} from '../interfaces/advertisement.interface';
+import { IAdvertisementInterface } from '../interfaces/advertisement.interface';
 import { IUser } from '../../../interfaces/user.interface';
 
 @Component({
@@ -20,7 +17,7 @@ import { IUser } from '../../../interfaces/user.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdvertisementComponent {
-  @Input() public advertisement: IAdvertisementInterface | IMyBetInterface;
+  @Input() public advertisement: IAdvertisementInterface;
   @Input() public user: IUser | null;
   @Input() public isNavigationToAdvertisementPage: boolean | undefined = false;
   @Input() public showOwnerFlag: boolean;

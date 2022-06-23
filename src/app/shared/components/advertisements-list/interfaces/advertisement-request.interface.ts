@@ -10,5 +10,5 @@ export interface IAdvertisementRequestInterface {
 
 export interface IMyBetsInterface {
   advertisementCount: number | null;
-  advertisements: IMyBetInterface[] | null;
+  advertisements: IMyBetInterface[];
 }

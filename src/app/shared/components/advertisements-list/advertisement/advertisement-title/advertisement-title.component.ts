@@ -1,9 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
-import {
-  IAdvertisementInterface,
-  IMyBetInterface,
-} from '../../interfaces/advertisement.interface';
+import { IAdvertisementInterface } from '../../interfaces/advertisement.interface';
 import { IUser } from '../../../../interfaces/user.interface';
 
 @Component({
@@ -13,7 +10,7 @@ import { IUser } from '../../../../interfaces/user.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdvertisementTitleComponent {
-  @Input() public advertisement: IAdvertisementInterface | IMyBetInterface;
+  @Input() public advertisement: IAdvertisementInterface;
   @Input() public user: IUser | null;
   @Input() public showOwnerFlag: boolean;
 }
