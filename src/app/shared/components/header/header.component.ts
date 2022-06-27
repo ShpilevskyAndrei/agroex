@@ -23,7 +23,6 @@ import { UserPanelOptionId } from './enums/user-panel-option-id';
 import { UserRole } from './enums/user-role';
 import { IUserOptionsType } from './interfaces/user-options-type.interface';
 import { AgroexToastService, ToastType } from 'ngx-agroex-toast';
-import { ModerationPage } from 'src/app/pages/moderation-advertisements/interfaces/moderation-page.interface';
 
 @UntilDestroy()
 @Component({
@@ -35,7 +34,7 @@ export class HeaderComponent implements OnChanges, OnInit {
   @Input() public user: IUser | null;
   @Input() public userRole: UserRole | null;
   @Input() public notificationMessage: MessagePayload[] | null;
-  @Input() public moderationPage = ModerationPage.StatusFalse;
+  @Input() public moderationPage = false;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
   @Output() public reloadModerationPage: EventEmitter<void> =

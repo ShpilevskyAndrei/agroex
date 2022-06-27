@@ -83,7 +83,7 @@
 
       <ng-container *ngIf="this.userCurrentRole === userRoles.Moderator">
 
-        <ng-container *ngIf="moderationPage === 'true'; else notModerationPage">
+        <ng-container *ngIf="moderationPage; else notModerationPage">
           <button
           mat-raised-button
           class="main-header__add-ads"
