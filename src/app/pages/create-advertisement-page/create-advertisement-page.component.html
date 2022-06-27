@@ -250,16 +250,15 @@
 
 <ng-template #notLoaded>
   <ngx-spinner
-    *ngIf="createAdvertisementLoadingStatus?.loading; else categoriesError"
-    bdColor="rgba(0, 0, 0, 0.8)"
+    *ngIf="createAdvertisementLoadingStatus?.loading; else createAdvertisementError"
+    bdColor="rgba(0, 0, 0, 0)"
     size="medium"
-    color="#fff"
+    color="#38999B"
     type="ball-clip-rotate"
-    [fullScreen]="true"
+    [fullScreen]="false"
   >
-    <div style="color: white">Loading...</div>
   </ngx-spinner>
-  <ng-template #categoriesError>
+  <ng-template #createAdvertisementError>
     <p>{{ createAdvertisementLoadingStatus?.error?.statusText }}</p>
   </ng-template>
 </ng-template>
