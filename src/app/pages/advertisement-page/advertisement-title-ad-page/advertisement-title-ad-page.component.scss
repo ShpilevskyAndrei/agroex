@@ -1,4 +1,4 @@
-@import "../../../../../styles/general-styles";
+@import "../../../styles/general-styles";
 
 :host {
   .advertisement-title {
@@ -26,7 +26,6 @@
     .desc,
     .id {
       color: $color-copy;
-      margin: $offset-small;
     }
   }
 
@@ -35,7 +34,7 @@
     display: flex;
     align-items: center;
     padding: 0 0.667rem;
-    margin: $offset-small 0;
+    margin: $offset-small 0 0 0;
     border-radius: 0.333rem;
     span {
       line-height: 2.333rem;
@@ -61,5 +60,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .create {
+    color: $color-copy;
+    font-size: $font-size-xsmall;
+    font-weight: 400;
+    margin: $offset-small $offset-small 0 0;
+  }
+
+  .title-id-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 }
