@@ -1,16 +1,24 @@
-<app-header [userRole]="userRole" [user]="user" (logout)="onLogout()" [moderationPage]="moderationPage"></app-header>
+<app-header
+  [userRole]="userRole"
+  [user]="user"
+  [moderationPage]="moderationPage"
+  (logout)="onLogout()"
+  (reloadModerationPage)="onClickreloadModerationPage()"
+></app-header>
 <div class="container moderation-container">
   <app-advertisements-list
     [user]="user"
     [advertisementsRequest]="advertisementsRequest"
     [advertisementsLoadingStatus]="advertisementsLoadingStatus"
-    (moderationDecision)="onModerationDecision($event)">
+    (moderationDecision)="onModerationDecision($event)"
+  >
     <ng-template #actionButtons let-advertisement>
       <app-moderation-advertisements-buttons
         class="advertisement-wrap__btns"
         [advertisement]="advertisement"
         (reject)="openModerationMessageModal($event)"
-        (approve)="onApproveClick($event)"></app-moderation-advertisements-buttons>
+        (approve)="onApproveClick($event)"
+      ></app-moderation-advertisements-buttons>
     </ng-template>
   </app-advertisements-list>
 </div>

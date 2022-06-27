@@ -27,6 +27,7 @@ import { ModerationAdvertisementsActions } from '../../state/moderation-advertis
     [advertisementsLoadingStatus]="advertisementsLoadingStatus$ | async"
     (logout)="onLogout()"
     (moderationDecision)="onModerationDecision($event)"
+    (reloadModerationPage)="onClickreloadModerationPage()"
   ></app-moderation-advertisements>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -50,6 +51,12 @@ export class ModerationadvertisementsContainerComponent implements OnInit {
 
   public onLogout(): void {
     this.store.dispatch(RegistrationPageActions.getUserLogout());
+  }
+
+  public onClickreloadModerationPage(): void {
+    this.store.dispatch(
+      ModerationAdvertisementsActions.getNonModerationAdvertisementsRequest()
+    );
   }
 
   public ngOnInit(): void {
