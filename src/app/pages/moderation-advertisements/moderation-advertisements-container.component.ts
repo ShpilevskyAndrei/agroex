@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IUser } from '../../shared/interfaces/user.interface';
@@ -38,7 +39,7 @@ export class ModerationadvertisementsContainerComponent implements OnInit {
   public advertisementsRequest$: Observable<IAdvertisementRequestInterface | null>;
   public advertisementsLoadingStatus$: Observable<LoadingStatus | null>;
 
-  constructor(private store: Store) {
+  constructor(private store: Store, private spinner: NgxSpinnerService) {
     this.user$ = this.store.select(selectUserData);
     this.userRole$ = this.store.select(selectUserRole);
     this.advertisementsRequest$ = this.store.select(
@@ -57,12 +58,14 @@ export class ModerationadvertisementsContainerComponent implements OnInit {
     this.store.dispatch(
       ModerationAdvertisementsActions.getNonModerationAdvertisementsRequest()
     );
+    this.spinner.show();
   }
 
   public ngOnInit(): void {
     this.store.dispatch(
       ModerationAdvertisementsActions.getNonModerationAdvertisementsRequest()
     );
+    this.spinner.show();
   }
 
   public onModerationDecision(

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { HeaderModule } from '../../shared/components/header/header.module';
 import { ModerationadvertisementsContainerComponent } from './moderation-advertisements-container.component';
@@ -22,6 +23,7 @@ import { ModerationAdvertisementsButtonsModule } from './moderation-advertisemen
     HeaderModule,
     ModerationAdvertisementsRoutingModule,
     ReactiveFormsModule,
+    NgxSpinnerModule,
     MatFormFieldModule,
     MatButtonModule,
     AdvertisementsListModule,
