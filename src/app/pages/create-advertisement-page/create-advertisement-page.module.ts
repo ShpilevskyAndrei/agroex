@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { HeaderModule } from '../../shared/components/header/header.module';
 import { CreateAdvertisementPageContainerComponent } from './create-advertisement-page-container.component';
@@ -29,6 +30,7 @@ import { CreateAdvertisementPageComponent } from './create-advertisement-page.co
     NgxDropzoneModule,
     MatSelectModule,
     MatTooltipModule,
+    NgxSpinnerModule,
   ],
   exports: [CreateAdvertisementPageContainerComponent],
 })

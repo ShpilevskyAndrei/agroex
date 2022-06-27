@@ -162,7 +162,8 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
   public ngOnChanges(changes: SimpleChanges): void {
     if (
       changes.createAdvertisementLoadingStatus &&
-      this.createAdvertisementLoadingStatus?.loaded
+      this.createAdvertisementLoadingStatus?.loaded &&
+      !changes.createAdvertisementLoadingStatus.isFirstChange()
     ) {
       this.router.navigate(['']);
     }
