@@ -1,7 +1,7 @@
 <header class="main-header">
   <div class="container main-header-content">
     <div class="points-container-header" (click)="goToMainPage()">
-      <img class="logo-img" src="../../../../assets/logo.svg" alt=""/>
+      <img class="logo-img" src="../../../../assets/logo.svg" alt="" />
       <p class="logo-name">AGROEX</p>
     </div>
     <div class="account-container-header">
@@ -24,20 +24,28 @@
         <div class="main-header__notifications">
           <div
             class="main-header__notifications-bell"
-            [matMenuTriggerFor]="notifications">
+            [matMenuTriggerFor]="notifications"
+          >
             <mat-icon
               class="main-header__notifications-icon"
-              [ngClass]="{ 'with-dot': notificationMessage?.length }">notifications_none</mat-icon>
+              [ngClass]="{ 'with-dot': notificationMessage?.length }"
+              >notifications_none</mat-icon
+            >
           </div>
           <mat-menu
             class="main-header__menu notifications"
             #notifications="matMenu"
-            xPosition="before">
+            xPosition="before"
+          >
             <ng-container *ngIf="notificationMessage?.length; else noMessage">
-              <div mat-menu-item
-                   *ngFor="let message of notificationMessage"
-                   [routerLink]="message.data?.linkTo ? ['/account'] : []"
-                   (click)="message.data?.linkTo ? onSelectPage(message.data?.linkTo) : ''">
+              <div
+                mat-menu-item
+                *ngFor="let message of notificationMessage"
+                [routerLink]="message.data?.linkTo ? ['/account'] : []"
+                (click)="
+                  message.data?.linkTo ? onSelectPage(message.data?.linkTo) : ''
+                "
+              >
                 <span class="title">{{ message.notification?.title }}</span>
                 <p class="content">{{ message.notification?.body }}</p>
               </div>
@@ -47,35 +55,40 @@
                 <p>You don't have messages</p>
               </div>
             </ng-template>
-
           </mat-menu>
         </div>
-        <div
-          class="main-header__account-btn"
-          [matMenuTriggerFor]="userMenu">
-          <img
-            *ngIf="this.userCurrentRole === userRoles.User"
-            class="main-header__account-img"
-            alt=""
-            [src]="userRoleConfig[this.userCurrentRole].src"/>
+        <div class="main-header__account-btn" [matMenuTriggerFor]="userMenu">
+          <div class="main-header__account-icon">
+            <p>{{ getFirstSymbolUserName?.toUpperCase() || "" }}</p>
+          </div>
         </div>
         <mat-menu
           class="main-header__menu"
           panelClass="mat-select-unset-height"
           #userMenu="matMenu"
-          xPosition="before">
-          <p class="main-header__menu-user">{{this.user?.username | titlecase}}</p>
-          <button mat-menu-item *ngFor="let option of userPanelOption"
-                  [value]="option"
-                  [routerLink]="option.url"
-                  (click)="onSelectPage(option.id)">
-            <mat-icon svgIcon="{{option.icon}}" class="main-header__menu-icon"></mat-icon>
+          xPosition="before"
+        >
+          <p class="main-header__menu-user">
+            {{ this.user?.username | titlecase }}
+          </p>
+          <button
+            mat-menu-item
+            *ngFor="let option of userPanelOption"
+            [value]="option"
+            [routerLink]="option.url"
+            (click)="onSelectPage(option.id)"
+          >
+            <mat-icon
+              svgIcon="{{ option.icon }}"
+              class="main-header__menu-icon"
+            ></mat-icon>
             {{ option.title }}
           </button>
-          <button mat-menu-item
-                  [routerLink]=""
-                  (click)="onLogout()">
-            <mat-icon svgIcon="logout-icon" class="main-header__menu-icon"></mat-icon>
+          <button mat-menu-item [routerLink]="" (click)="onLogout()">
+            <mat-icon
+              svgIcon="logout-icon"
+              class="main-header__menu-icon"
+            ></mat-icon>
             Logout
           </button>
         </mat-menu>
@@ -89,31 +102,42 @@
         >
           <span>Check Advertisement</span>
         </button>
-        <div
-          class="main-header__account-btn"
-          [matMenuTriggerFor]="userMenu">
-          <img
-            class="main-header__account-img"
-            alt=""
-            [src]="userRoleConfig[this.userCurrentRole].src"/>
+        <div class="main-header__account-btn" [matMenuTriggerFor]="userMenu">
+          <div class="main-header__moderator_bg">
+            <img
+              class="main-header__moderator_img"
+              alt=""
+              [src]="userRoleConfig[this.userCurrentRole].src"
+            />
+          </div>
         </div>
         <mat-menu
           class="main-header__menu"
           panelClass="mat-select-unset-height"
           #userMenu="matMenu"
-          xPosition="before">
-          <p class="main-header__menu-user">{{this.user?.username | titlecase}}</p>
-          <button mat-menu-item *ngFor="let option of userPanelOption"
-                  [value]="option"
-                  [routerLink]="option.url"
-                  (click)="onSelectPage(option.id)">
-            <mat-icon svgIcon="{{option.icon}}" class="main-header__menu-icon"></mat-icon>
+          xPosition="before"
+        >
+          <p class="main-header__menu-user">
+            {{ this.user?.username | titlecase }}
+          </p>
+          <button
+            mat-menu-item
+            *ngFor="let option of userPanelOption"
+            [value]="option"
+            [routerLink]="option.url"
+            (click)="onSelectPage(option.id)"
+          >
+            <mat-icon
+              svgIcon="{{ option.icon }}"
+              class="main-header__menu-icon"
+            ></mat-icon>
             {{ option.title }}
           </button>
-          <button mat-menu-item
-                  [routerLink]=""
-                  (click)="onLogout()">
-            <mat-icon svgIcon="logout-icon" class="main-header__menu-icon"></mat-icon>
+          <button mat-menu-item [routerLink]="" (click)="onLogout()">
+            <mat-icon
+              svgIcon="logout-icon"
+              class="main-header__menu-icon"
+            ></mat-icon>
             Logout
           </button>
         </mat-menu>

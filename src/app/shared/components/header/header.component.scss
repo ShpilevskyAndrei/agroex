@@ -1,6 +1,9 @@
 @import "../../../styles/general-styles";
 
 :host {
+  $bg-color-user-icon: #f87e25;
+  $bg-color-moderator-img: #368ACE;
+
   .main-header {
     position: relative;
     z-index: 2;
@@ -38,12 +41,28 @@
       }
     }
 
+    &__moderator {
+      &_bg {
+        background-color: $bg-color-moderator-img;
+        width: 4rem;
+        height: 4rem;
+        border-radius: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      &_img {
+        color: $color-white;
+        width: 2rem;
+      }
+    }
+
     &__account {
       &-btn {
         display: flex;
         align-items: center;
         cursor: pointer;
-        margin-left: 2rem;
+        margin-left: 3rem;
         p {
           margin: 0;
           font-size: $font-size-medium;
@@ -53,10 +72,18 @@
           color: $header-login-icon-color;
         }
       }
-      &-img {
+      &-icon {
+        background-color: $bg-color-user-icon;
+        color: $color-white;
+        border-radius: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 4rem;
         height: 4rem;
-        object-fit: cover;
+        p {
+          font-size: $font-size-large;
+        }
       }
     }
 
@@ -75,13 +102,13 @@
         height: auto;
         font-size: 2.4rem;
         &.with-dot:before {
-          content: '';
+          content: "";
           display: block;
           position: absolute;
-          top: -.4rem;
-          right: -.4rem;
-          width: .8rem;
-          height: .8rem;
+          top: -0.4rem;
+          right: -0.4rem;
+          width: 0.8rem;
+          height: 0.8rem;
           border-radius: 50%;
           background-color: $color-error;
         }
