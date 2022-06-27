@@ -52,7 +52,7 @@ export class HeaderComponent implements OnChanges, OnInit {
   ) {}
 
   public get getFirstSymbolUserName(): string | undefined {
-    return this.user?.username[0];
+    return this.user?.username[0] || '';
   }
 
   public ngOnInit(): void {
