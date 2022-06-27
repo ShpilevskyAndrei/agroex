@@ -87,7 +87,13 @@
           class="main-header__add-ads"
           (click)="goToModerateAdvertisement()"
         >
-          <span>Check Advertisement</span>
+          <ng-container *ngIf="moderationPage === 'true'; else notModerationPage">
+            <mat-icon class="">sync</mat-icon>
+            <span>Update Advertisement</span>
+          </ng-container>
+          <ng-template #notModerationPage>
+            <span>Check Advertisement</span>
+          </ng-template>
         </button>
         <div
           class="main-header__account-btn"

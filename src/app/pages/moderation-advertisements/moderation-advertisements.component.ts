@@ -17,6 +17,7 @@ import {
 } from './interfaces/advertisement.interface';
 import { UserRole } from '../../shared/components/header/enums/user-role';
 import { ModerationMessageModalComponent } from './moderation-message-modal/moderation-message-modal.component';
+import { ModerationPage } from './interfaces/moderation-page.interface';
 
 @Component({
   selector: 'app-moderation-advertisements',
@@ -34,6 +35,8 @@ export class ModerationAdvertisementsComponent {
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
   @Output()
   public moderationDecision: EventEmitter<IAdvertisementModerationRequest> = new EventEmitter<IAdvertisementModerationRequest>();
+
+  public moderationPage = ModerationPage.StatusTrue;
 
   constructor(public dialog: MatDialog) {}
 
