@@ -33,6 +33,7 @@
                 &__form {
                     display: flex;
                     flex-direction: column;
+                    min-width: 16rem;
                     &__btn {
                         position: relative;
                         align-self: flex-end;
