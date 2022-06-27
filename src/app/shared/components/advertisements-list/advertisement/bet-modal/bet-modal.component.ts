@@ -13,6 +13,7 @@ import { BetValidators } from './intefaces/bet-validator';
 import { BetModalDataInterface } from './intefaces/bet-modal-data.interface';
 import { CurrenciesEnum } from './enums/currencies.enum';
 import { REGEXP_FOR_IS_INTEGER_NUMBER } from '../../../../constants/regexp';
+import { WeightEnum } from '../advertisement-price/enums/weight.enum';
 
 @UntilDestroy()
 @Component({
@@ -45,6 +46,24 @@ export class BetModalComponent implements OnInit {
     private dialogRef: MatDialogRef<BetModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: BetModalDataInterface
   ) {}
+
+  public get tonToKgUnit(): string {
+    return this.data.unit === WeightEnum.ton ? WeightEnum.kg : this.data.unit;
+  }
+
+  public get CalcTonToKg(): number {
+    return this.data.unit === WeightEnum.ton
+      ? +this.data.quantity * 1000
+      : +this.data.quantity;
+  }
+
+  public get unitCostBet(): number {
+    return this.betValue
+      ? +(+this.betValue / this.CalcTonToKg) >= 0.01
+        ? +(+this.betValue / this.CalcTonToKg).toFixed(2)
+        : 0.01
+      : 0;
+  }
 
   public ngOnInit(): void {
     this.betValueChangesSubscription = this.betForm

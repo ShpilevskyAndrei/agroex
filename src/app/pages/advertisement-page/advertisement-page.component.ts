@@ -24,6 +24,7 @@ import { CurrenciesEnum } from '../../shared/components/advertisements-list/adve
 import { BetValidators } from '../../shared/components/advertisements-list/advertisement/bet-modal/intefaces/bet-validator';
 import { TASHKENT_COORDINATES } from '../../shared/constants/tashkent-coordinates';
 import { REGEXP_FOR_IS_INTEGER_NUMBER } from '../../shared/constants/regexp';
+import { WeightEnum } from '../../shared/components/advertisements-list/advertisement/advertisement-price/enums/weight.enum';
 
 @UntilDestroy()
 @Component({
@@ -66,6 +67,28 @@ export class AdvertisementPageComponent implements OnChanges {
   };
 
   public newBet = '';
+
+  public get tonToKgUnit(): string | undefined {
+    return this.advertisement?.advertisement.unit === WeightEnum.ton
+      ? WeightEnum.kg
+      : this.advertisement?.advertisement.unit;
+  }
+
+  public get CalcTonToKg(): number {
+    return this.advertisement?.advertisement.unit === WeightEnum.ton
+      ? +this.advertisement?.advertisement.quantity * 1000
+      : this.advertisement?.advertisement.quantity
+      ? +this.advertisement.advertisement.quantity
+      : 0;
+  }
+
+  public get unitCostBet(): number {
+    return this.newBet
+      ? +(+this.newBet / this.CalcTonToKg) >= 0.01
+        ? +(+this.newBet / this.CalcTonToKg).toFixed(2)
+        : 0.01
+      : 0;
+  }
 
   public get isDisabled(): boolean {
     return !this.newBet;

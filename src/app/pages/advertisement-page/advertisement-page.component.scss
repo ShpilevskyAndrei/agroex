@@ -2,6 +2,8 @@
 @import "../../styles/general-styles";
 
 :host {
+  $color-unit-cost: #51acae;
+
   input[type="number"]::-webkit-inner-spin-button,
   input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -55,7 +57,6 @@
     }
   }
 
-  .buttons-container,
   .price-container,
   .bet-form-container {
     margin: $offset-small 0;
@@ -102,6 +103,12 @@
     line-height: 1.333rem;
     color: $color-ask;
     margin: 0.333rem 0 0;
+  }
+
+  .unit-cost {
+    color: $color-unit-cost;
+    font-size: $font-size-xsmall;
+    margin: $offset-medium 0 0 0;
   }
 
   .ad-card-map {
