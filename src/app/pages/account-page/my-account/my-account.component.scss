@@ -67,12 +67,17 @@
                     &-ins {
                         display: flex;
                         flex-direction: row;
+                        align-items: center;
+                        margin-bottom: 1rem;
                     }
                 }
                 &__check-text {
                     margin-left: 1rem;
                     font-size: 1.5rem;
                     color: $primary-color;
+                    p {
+                        margin-bottom: 0;
+                    }
                 }
             }
         }
