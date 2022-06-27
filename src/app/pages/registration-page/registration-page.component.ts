@@ -168,6 +168,6 @@ export class RegistrationPageComponent implements OnChanges {
       this.get('password').touched &&
       this.get('passwordConfirm').touched &&
       this.form.hasError('passwordsNotMatching')
-    )
+    );
   }
 }

@@ -64,3 +64,15 @@
     border: 1px solid $color-success;
   }
 }
+
+.mat-button.btn_tradewind,
+.mat-raised-button.btn_tradewind,
+[mat-button].btn_tradewind,
+[mat-raised-button].btn_tradewind {
+  color: $color-tradewind;
+  background: $color-white;
+  border: 1px solid $color-tradewind;
+  .mat-ripple {
+    border-width: 0px;
+  }
+}

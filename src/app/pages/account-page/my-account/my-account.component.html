@@ -1,1 +1,117 @@
-<p>my-account works!</p>
+<div class="container_acc">
+    <h2 class="acc-header">
+        Personal data
+    </h2>
+    <div class="acc_top">
+        <div class="acc_top__photo">
+            {{ this.user?.username?.substr(0, 1)?.toUpperCase() }}
+        </div>
+
+        <form class="acc_top__form">
+            <mat-form-field class="acc_top__form__field">
+              <mat-label>Name</mat-label>
+              <input
+                type="text"
+                matInput
+                placeholder= "username"
+                formControlName="username"
+                [value]="this.user?.username"
+                [disabled]="!this.enableForm"
+              />
+            </mat-form-field>
+  
+            <mat-form-field class="acc_top__form__field">
+              <mat-label>Email</mat-label>
+              <input
+                type="email"
+                matInput
+                placeholder="Email"
+                formControlName="email"
+                [value]="this.user?.email"
+                [disabled]="!this.enableForm"
+              />
+            </mat-form-field>
+    
+            <mat-form-field class="acc_top__form__field">
+              <mat-label>Phone</mat-label>
+              <input
+                type="text"
+                matInput
+                placeholder="Phone"
+                formControlName="phoneNumber"
+                [value]="this.user?.phone"
+                [disabled]="!this.enableForm"
+              />
+            </mat-form-field>
+    
+            <button
+              mat-button
+              class="btn_tradewind acc_top__form__btn"
+              (click)="stopPropagation($event)"
+              [disabled]="true"
+            >
+              <mat-icon>mode</mat-icon>
+              <span>Edit data</span>
+            </button>
+
+          </form>
+    </div>
+
+    <div class="acc_bot">
+        <h2 class="acc-header">
+            Security
+        </h2>
+        <button
+              mat-button
+              class="btn_tradewind acc_top__form__btn"
+              (click)="stopPropagation($event)"
+            >
+              <mat-icon>lock</mat-icon>
+              <span>Change password</span>
+            </button>
+        <h2 class="acc-header">
+            Additional settings
+        </h2>
+
+        <div class="acc_bot__check_wrap">
+
+            <div class="acc_bot__check_wrap-ins">
+                <mat-checkbox formControlName="checkBoxConfirm"></mat-checkbox>
+                <div class="acc_bot__check-text">
+                  <p>
+                    Notify me of new messages
+                  </p>
+                </div>
+            </div>
+    
+            <div class="acc_bot__check_wrap-ins">
+                <mat-checkbox formControlName="checkBoxConfirm"></mat-checkbox>
+                <div class="acc_bot__check-text">
+                  <p>
+                    Hide my presence
+                  </p>
+                </div>
+            </div>
+    
+            <div class="acc_bot__check_wrap-ins">
+                <mat-checkbox formControlName="checkBoxConfirm"></mat-checkbox>
+                <div class="acc_bot__check-text">
+                  <p>
+                    Show my email to everyone
+                  </p>
+                </div>
+            </div>
+    
+            <div class="acc_bot__check_wrap-ins">
+                <mat-checkbox formControlName="checkBoxConfirm"></mat-checkbox>
+                <div class="acc_bot__check-text">
+                  <p>
+                    Receive promotional notifications
+                  </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
