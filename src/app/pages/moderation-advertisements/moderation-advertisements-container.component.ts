@@ -58,7 +58,6 @@ export class ModerationadvertisementsContainerComponent implements OnInit {
     this.store.dispatch(
       ModerationAdvertisementsActions.getNonModerationAdvertisementsRequest()
     );
-    this.spinner.show();
   }
 
   public ngOnInit(): void {
