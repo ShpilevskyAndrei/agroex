@@ -1,6 +1,11 @@
 @import "../../../../../styles/general-styles";
 
 :host {
+  $bg-color-timer: #f87e25;
+  $bg-color-create: #eef7ff;
+
+  $color-create: #2978b8;
+
   .advertisement-title {
     display: flex;
     flex-direction: column;
@@ -48,13 +53,13 @@
   }
 
   .advertisement-timer {
-    background-color: #f87e25;
+    background-color: $bg-color-timer;
     color: $color-white;
   }
 
   .advertisement-created {
-    background-color: #eef7ff;
-    color: #2978b8;
+    background-color: $bg-color-create;
+    color: $color-create;
   }
 
   .create-id-container {
