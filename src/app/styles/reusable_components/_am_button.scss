@@ -75,4 +75,7 @@
   .mat-ripple {
     border-width: 0px;
   }
+  @media only screen and (max-width: $laptop-min-width) {
+    line-height: 3rem;
+  }
 }

@@ -38,7 +38,6 @@
                     &__btn {
                         position: relative;
                         align-self: flex-end;
-                        margin-top: 1rem;
                         margin-bottom: 2rem;
                         mat-icon {
                             margin-right: 1rem;
@@ -52,6 +51,9 @@
                         }
                         @media only screen and (max-width: $medium-screen-min-width) {
                             width: 100%;
+                        }
+                        &-edit {
+                            margin-top: 1rem;
                         }
                     }
                     @media only screen and (max-width: $medium-screen-min-width) {
