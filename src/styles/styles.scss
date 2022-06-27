@@ -128,8 +128,8 @@ body {
 
   &.notifications {
     display: flex;
-    max-width: 30rem;
-    max-height: 25rem;
+    max-width: 40rem;
+    max-height: 30rem;
     .mat-menu-content:not(:empty) {
       padding-top: 0;
       padding-bottom: 0;
@@ -138,18 +138,35 @@ body {
 
     .mat-menu-item {
       display: flex;
-      flex-direction: column;
       align-items: flex-start;
       padding: $offset-medium;
       height: auto;
-      .title {
-        font-size: 1.4rem;
-        font-weight: 500;
-        white-space: normal;
+      background-color: $color-select-disable;
+      &.visited {
+        background-color: $color-white;
       }
-      .content {
-        font-size: 1.2rem;
-        margin: $offset-xsmall 0 0;
+      .notification {
+        &__icon {
+          margin-right: .8rem;
+          color: $color-tradewind;
+          &.alert {
+            color: $color-warning;
+          }
+        }
+        &__body {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          .title {
+            font-size: 1.4rem;
+            font-weight: 500;
+            white-space: normal;
+          }
+          .content {
+            font-size: 1.2rem;
+            margin: $offset-xsmall 0 0;
+          }
+        }
       }
     }
 

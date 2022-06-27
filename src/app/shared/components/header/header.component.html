@@ -27,19 +27,43 @@
             [matMenuTriggerFor]="notifications">
             <mat-icon
               class="main-header__notifications-icon"
-              [ngClass]="{ 'with-dot': notificationMessage?.length }">notifications_none</mat-icon>
+              [ngClass]="{ 'with-dot': unreadNotification()?.length }">notifications_none</mat-icon>
           </div>
           <mat-menu
             class="main-header__menu notifications"
             #notifications="matMenu"
             xPosition="before">
-            <ng-container *ngIf="notificationMessage?.length; else noMessage">
+            <ng-container *ngIf="userNotification()?.length; else noMessage">
               <div mat-menu-item
-                   *ngFor="let message of notificationMessage"
+                   *ngFor="let message of userNotification()"
+                   [ngClass]="{'visited': message.data?.status === notificationsStatus.VISITED}"
                    [routerLink]="message.data?.linkTo ? ['/account'] : []"
+                   (click)="onClickNotification(message)"
                    (click)="message.data?.linkTo ? onSelectPage(message.data?.linkTo) : ''">
-                <span class="title">{{ message.notification?.title }}</span>
-                <p class="content">{{ message.notification?.body }}</p>
+                <ng-container [ngSwitch]="message.data?.type">
+                  <mat-icon *ngSwitchCase="notificationsType.CONFIRMATION"
+                            class="notification__icon"
+                            svgIcon="currency-icon"></mat-icon>
+                  <mat-icon *ngSwitchCase="notificationsType.PURCHASE"
+                            class="notification__icon"
+                            svgIcon="currency-icon"></mat-icon>
+                  <mat-icon *ngSwitchCase="notificationsType.NEWBET"
+                            class="notification__icon"
+                            svgIcon="auction-icon"></mat-icon>
+                  <mat-icon *ngSwitchCase="notificationsType.MODERATIONAPPROVED"
+                            class="notification__icon"
+                            svgIcon="moderator-icon"></mat-icon>
+                  <mat-icon *ngSwitchCase="notificationsType.MODERATIONREJECTED"
+                            class="notification__icon alert"
+                            svgIcon="moderator-icon"></mat-icon>
+                  <mat-icon *ngSwitchDefault
+                            class="notification__icon alert"
+                            svgIcon="alert-icon"></mat-icon>
+                </ng-container>
+                <div class="notification__body">
+                  <span class="title">{{ message.notification?.title }}</span>
+                  <p class="content">{{ message.notification?.body }}</p>
+                </div>
               </div>
             </ng-container>
             <ng-template #noMessage>
