@@ -250,7 +250,10 @@
 
 <ng-template #notLoaded>
   <ngx-spinner
-    *ngIf="createAdvertisementLoadingStatus?.loading; else createAdvertisementError"
+    *ngIf="
+      createAdvertisementLoadingStatus?.loading;
+      else createAdvertisementError
+    "
     bdColor="rgba(0, 0, 0, 0)"
     size="medium"
     color="#38999B"
