@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { AngularFireMessaging } from '@angular/fire/compat/messaging';
 import { filter, mergeMap } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import firebase from 'firebase/compat';
 import MessagePayload = firebase.messaging.MessagePayload;
@@ -23,6 +24,7 @@ import { UserPanelOptionId } from './enums/user-panel-option-id';
 import { UserRole } from './enums/user-role';
 import { IUserOptionsType } from './interfaces/user-options-type.interface';
 import { AgroexToastService, ToastType } from 'ngx-agroex-toast';
+import { ModerationAdvertisementsActions } from '../../../state/moderation-advertisements/moderation-advertisements.actions';
 
 @UntilDestroy()
 @Component({
@@ -47,6 +49,7 @@ export class HeaderComponent implements OnChanges, OnInit {
 
   constructor(
     private router: Router,
+    private store: Store,
     private afMessaging: AngularFireMessaging,
     private toastService: AgroexToastService
   ) {}
@@ -99,6 +102,9 @@ export class HeaderComponent implements OnChanges, OnInit {
 
   public goToModerateAdvertisement(): void {
     this.router.navigate(['moderation-advertisements']);
+    this.store.dispatch(
+      ModerationAdvertisementsActions.getNonModerationAdvertisementsRequest()
+    );
   }
 
   public onLogout(): void {
