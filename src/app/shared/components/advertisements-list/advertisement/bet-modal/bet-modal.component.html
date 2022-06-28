@@ -30,7 +30,7 @@
     </p>
     <ng-template #unitcost>
       <p class="bet-modal__unit-cost">
-        You bet {{ unitCostBet <= 0.01 ? "less than" : "" }}
+        {{ unitCostBet <= 0.01 ? "Less than" : "" }}
         {{
           unitCostBet | currency: data.currency:"symbol-narrow":"1.0":"fr"
         }}/{{ tonToKgUnit }}
