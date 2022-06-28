@@ -14,7 +14,8 @@
     <ng-template #actionButtons let-advertisement>
       <app-my-advertisements-buttons
         *ngIf="advertisement.isActive && advertisement.userBets.length"
-        class="advertisement-wrap__btns"
+        class="advertisement-wrap__btns my-advertisements-btn"
+        [advertisement]="advertisement"
         (confirmDeal)="onConfirmDeal(advertisement)"
       ></app-my-advertisements-buttons>
     </ng-template>
