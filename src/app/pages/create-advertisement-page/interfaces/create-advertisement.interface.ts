@@ -1,11 +1,11 @@
-export interface IBaseCreateAdvertisementType {
+export interface IBaseCreateAdvertisement {
   value: string;
   viewValue: string;
 }
 
-export interface ILocation extends IBaseCreateAdvertisementType {}
-export interface ICountry extends IBaseCreateAdvertisementType {}
-export interface IUnit extends IBaseCreateAdvertisementType {}
-export interface ICurrency extends IBaseCreateAdvertisementType {}
-export interface ICategory extends IBaseCreateAdvertisementType {}
-export interface IProductType extends IBaseCreateAdvertisementType {}
+export interface ILocation extends IBaseCreateAdvertisement {}
+export interface ICountry extends IBaseCreateAdvertisement {}
+export interface IUnit extends IBaseCreateAdvertisement {}
+export interface ICurrency extends IBaseCreateAdvertisement {}
+export interface ICategory extends IBaseCreateAdvertisement {}
+export interface IProductType extends IBaseCreateAdvertisement {}
