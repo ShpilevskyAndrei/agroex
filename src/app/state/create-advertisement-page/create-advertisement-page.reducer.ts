@@ -11,7 +11,11 @@ export interface CreateAdvertisementPageState {
 export const CREATE_ADVERTISEMENT_PAGE = 'createAdvertisementPage';
 
 const initialState: CreateAdvertisementPageState = {
-  createAdvertisementLoadingStatus: DEFAULT_LOADING_STATUS,
+  createAdvertisementLoadingStatus: {
+    loading: false,
+    loaded: true,
+    error: null,
+  },
 };
 
 export const CREATE_ADVERTISEMENT_PAGE_REDUCER = createReducer(
@@ -49,7 +53,8 @@ export const CREATE_ADVERTISEMENT_PAGE_REDUCER = createReducer(
     CreateAdvertisementPageActions.dropAdvertisementLoadingStatus,
     (state): CreateAdvertisementPageState => ({
       ...state,
-      createAdvertisementLoadingStatus: DEFAULT_LOADING_STATUS,
+      createAdvertisementLoadingStatus:
+        initialState.createAdvertisementLoadingStatus,
     })
   )
 );
