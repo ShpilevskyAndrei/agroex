@@ -7,245 +7,263 @@
   (selectTab)="onSelectTab($event)"
 ></app-header>
 <ng-container *ngIf="createAdvertisementLoadingStatus?.loaded; else notLoaded">
-  <div class="container">
-    <form
-      [formGroup]="advertisementForm"
-      (ngSubmit)="submitForm()"
-      class="form"
-    >
-      <div class="form__advertisementTitle">New advertisement</div>
-      <div class="form__wrap">
-        <!--      title -->
-        <div class="form__item">
-          <div class="form__field">
-            <div class="form__title">Title</div>
-            <mat-form-field class="form__input">
-              <mat-label>Enter a title</mat-label>
-              <input
-                type="text"
-                matInput
-                required
-                placeholder="Enter a title"
-                formControlName="title"
-              />
-              <mat-error *ngIf="this.get('title').hasError('required')">
-                Title is required
-              </mat-error>
-              <mat-error *ngIf="this.get('title').hasError('minlength')">
-                Values must be not shorter than 5 characters
-              </mat-error>
-              <mat-error *ngIf="this.get('title').hasError('maxlength')">
-                Values must be not longer than 40 characters
-              </mat-error>
-            </mat-form-field>
-            <mat-hint class="form__helper-text">No more 40 characters</mat-hint>
-          </div>
-        </div>
-        <!--      location-->
-        <div class="form__item">
-          <div class="form__field">
-            <div class="form__title">Location</div>
-            <div class="form__input-wrap">
-              <mat-form-field class="form__input several">
-                <mat-select
-                  formControlName="country"
+  <ng-container *ngIf="navigateToCreateAdvertisementPage; else previewPage">
+    <div class="container">
+      <form
+        [formGroup]="advertisementForm"
+        (ngSubmit)="submitForm()"
+        class="form"
+      >
+        <div class="form__advertisementTitle">New advertisement</div>
+        <div class="form__wrap">
+          <!--      title -->
+          <div class="form__item">
+            <div class="form__field">
+              <div class="form__title">Title</div>
+              <mat-form-field class="form__input">
+                <mat-label>Enter a title</mat-label>
+                <input
+                  type="text"
+                  matInput
                   required
-                  disableOptionCentering="true"
-                >
-                  <mat-option
-                    *ngFor="let country of countries"
-                    [value]="country.value"
-                  >
-                    {{ country.viewValue }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-              <mat-form-field class="form__input several region">
-                <mat-label>Select a region</mat-label>
-                <mat-select
-                  formControlName="location"
-                  disableOptionCentering="true"
-                >
-                  <mat-option
-                    *ngFor="let location of locations"
-                    [value]="location.value"
-                  >
-                    {{ location.viewValue }}
-                  </mat-option>
-                </mat-select>
-                <mat-error *ngIf="this.get('location').hasError('required')">
-                  Location is required
-                </mat-error>
-              </mat-form-field>
-            </div>
-          </div>
-        </div>
-        <!--      category-->
-        <div class="form__item">
-          <div class="form__field">
-            <div class="form__title">Category</div>
-            <mat-form-field class="form__input several">
-              <mat-label>Select a category</mat-label>
-              <mat-select
-                formControlName="category"
-                disableOptionCentering="true"
-              >
-                <mat-option
-                  *ngFor="let category of categories"
-                  [value]="category.value"
-                >
-                  {{ category.viewValue }}
-                </mat-option>
-              </mat-select>
-              <mat-error *ngIf="this.get('category').hasError('required')">
-                Category is required
-              </mat-error>
-            </mat-form-field>
-          </div>
-        </div>
-        <!--      quantity and unit-->
-        <div class="form__item">
-          <div class="form__field">
-            <div class="form__title">Quantity</div>
-            <div class="form__input-wrap form__input-wrap-small">
-              <mat-form-field class="form__input several doubleselect">
-                <mat-label>Enter the quantity</mat-label>
-                <input
-                  type="text"
-                  matInput
-                  placeholder="Enter the quantity"
-                  formControlName="quantity"
+                  placeholder="Enter a title"
+                  formControlName="title"
                 />
-                <mat-error *ngIf="this.get('quantity').hasError('required')">
-                  Quantity is required
+                <mat-error *ngIf="this.get('title').hasError('required')">
+                  Title is required
                 </mat-error>
-                <mat-error *ngIf="this.get('quantity').hasError('pattern')">
-                  Please use valid quantity. It should be less 1 billion
+                <mat-error *ngIf="this.get('title').hasError('minlength')">
+                  Values must be not shorter than 5 characters
+                </mat-error>
+                <mat-error *ngIf="this.get('title').hasError('maxlength')">
+                  Values must be not longer than 40 characters
                 </mat-error>
               </mat-form-field>
-              <mat-form-field class="form__input select-small">
-                <mat-select
-                  class="form__select-small-text"
-                  formControlName="unit"
-                  disableOptionCentering="true"
-                >
-                  <mat-option *ngFor="let unit of units" [value]="unit.value">
-                    {{ unit.viewValue }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
+              <mat-hint class="form__helper-text">No more 40 characters</mat-hint>
             </div>
           </div>
-        </div>
-        <!--      price and currency -->
-        <div class="form__item">
-          <div class="form__field">
-            <div class="form__title">Price</div>
-            <div class="form__input-wrap form__input-wrap-small">
-              <mat-form-field class="form__input several doubleselect">
-                <mat-label>Enter the price</mat-label>
-                <input
-                  type="text"
-                  matInput
-                  placeholder="Enter the price"
-                  formControlName="price"
-                />
-                <mat-error *ngIf="this.get('price').hasError('required')">
-                  Price is required
-                </mat-error>
-                <mat-error
-                  *ngIf="
-                    this.get('price').hasError('pattern') ||
-                    this.get('price').hasError('min')
-                  "
-                >
-                  Please use valid price. The number should be an integer,
-                  bigger than 2 and less than 1 billion.
-                </mat-error>
-              </mat-form-field>
-              <mat-form-field class="form__input select-small">
-                <mat-select
-                  class="form__select-small-text"
-                  formControlName="currency"
-                  disableOptionCentering="true"
-                >
-                  <mat-option
-                    *ngFor="let currency of currencies"
-                    [value]="currency.value"
+          <!--      location-->
+          <div class="form__item">
+            <div class="form__field">
+              <div class="form__title">Location</div>
+              <div class="form__input-wrap">
+                <mat-form-field class="form__input several">
+                  <mat-select
+                    formControlName="country"
+                    required
+                    disableOptionCentering="true"
                   >
-                    {{ currency.viewValue }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-          </div>
-        </div>
-        <!--      drag and drop file-->
-        <div class="form__item">
-          <div class="form__field">
-            <div class="form__title">Product images</div>
-            <div
-              class="form__dropzone"
-              ngx-dropzone
-              accept="image/jpeg,image/png"
-              [maxFileSize]="maxFileSize"
-              [multiple]="false"
-              (change)="onSelect($event)"
-              (click)="onClickFile($event)"
-            >
-              <ngx-dropzone-label>
-                <div class="form__dropzone-wrap">
-                  <div>
-                    <span class="form__dropzone-file-text">Choose a file</span>
-                    <span class="form__dropzone-drop-text">
-                      or drag and drop it here!</span
+                    <mat-option
+                      *ngFor="let country of countries"
+                      [value]="country.value"
                     >
-                  </div>
-                  <div class="form__dropzone-footnote">
-                    Acceptable formats: jpeg, png. Maximum size: 5 MB.
-                  </div>
-                </div>
-              </ngx-dropzone-label>
-              <ngx-dropzone-image-preview
-                ngProjectAs="ngx-dropzone-preview"
-                *ngFor="let f of files"
-                [file]="f"
-                [removable]="true"
-                (removed)="onRemove(f)"
-              >
-              </ngx-dropzone-image-preview>
+                      {{ country.viewValue }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field class="form__input several region">
+                  <mat-label>Select a region</mat-label>
+                  <mat-select
+                    formControlName="location"
+                    disableOptionCentering="true"
+                  >
+                    <mat-option
+                      *ngFor="let location of locations"
+                      [value]="location.value"
+                    >
+                      {{ location.viewValue }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="this.get('location').hasError('required')">
+                    Location is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
             </div>
           </div>
-          <div class="form__desc">
-            <img
-              src="assets/question.svg"
-              class="form__desc-image"
-              matTooltip="Pictures work much better than the most talented text. The more photos, the better."
-              matTooltipPosition="right"
-              matTooltipHideDelay="100"
-              alt="question"
-            />
+          <!--      category-->
+          <div class="form__item">
+            <div class="form__field">
+              <div class="form__title">Category</div>
+              <mat-form-field class="form__input several">
+                <mat-label>Select a category</mat-label>
+                <mat-select
+                  formControlName="category"
+                  disableOptionCentering="true"
+                >
+                  <mat-option
+                    *ngFor="let category of categories"
+                    [value]="category.value"
+                  >
+                    {{ category.viewValue }}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="this.get('category').hasError('required')">
+                  Category is required
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <!--      quantity and unit-->
+          <div class="form__item">
+            <div class="form__field">
+              <div class="form__title">Quantity</div>
+              <div class="form__input-wrap form__input-wrap-small">
+                <mat-form-field class="form__input several doubleselect">
+                  <mat-label>Enter the quantity</mat-label>
+                  <input
+                    type="text"
+                    matInput
+                    placeholder="Enter the quantity"
+                    formControlName="quantity"
+                  />
+                  <mat-error *ngIf="this.get('quantity').hasError('required')">
+                    Quantity is required
+                  </mat-error>
+                  <mat-error *ngIf="this.get('quantity').hasError('pattern')">
+                    Please use valid quantity. It should be less 1 billion
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field class="form__input select-small">
+                  <mat-select
+                    class="form__select-small-text"
+                    formControlName="unit"
+                    disableOptionCentering="true"
+                  >
+                    <mat-option *ngFor="let unit of units" [value]="unit.value">
+                      {{ unit.viewValue }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <!--      price and currency -->
+          <div class="form__item">
+            <div class="form__field">
+              <div class="form__title">Price</div>
+              <div class="form__input-wrap form__input-wrap-small">
+                <mat-form-field class="form__input several doubleselect">
+                  <mat-label>Enter the price</mat-label>
+                  <input
+                    type="text"
+                    matInput
+                    placeholder="Enter the price"
+                    formControlName="price"
+                  />
+                  <mat-error *ngIf="this.get('price').hasError('required')">
+                    Price is required
+                  </mat-error>
+                  <mat-error
+                    *ngIf="
+                      this.get('price').hasError('pattern') ||
+                      this.get('price').hasError('min')
+                    "
+                  >
+                    Please use valid price. The number should be an integer,
+                    bigger than 2 and less than 1 billion.
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field class="form__input select-small">
+                  <mat-select
+                    class="form__select-small-text"
+                    formControlName="currency"
+                    disableOptionCentering="true"
+                  >
+                    <mat-option
+                      *ngFor="let currency of currencies"
+                      [value]="currency.value"
+                    >
+                      {{ currency.viewValue }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <!--      drag and drop file-->
+          <div class="form__item">
+            <div class="form__field">
+              <div class="form__title">Product images</div>
+              <div
+                class="form__dropzone"
+                ngx-dropzone
+                accept="image/jpeg,image/png"
+                [maxFileSize]="maxFileSize"
+                [multiple]="false"
+                (change)="onSelect($event)"
+                (click)="onClickFile($event)"
+              >
+                <ngx-dropzone-label>
+                  <div class="form__dropzone-wrap">
+                    <div>
+                      <span class="form__dropzone-file-text">Choose a file</span>
+                      <span class="form__dropzone-drop-text">
+                        or drag and drop it here!</span
+                      >
+                    </div>
+                    <div class="form__dropzone-footnote">
+                      Acceptable formats: jpeg, png. Maximum size: 5 MB.
+                    </div>
+                  </div>
+                </ngx-dropzone-label>
+                <ngx-dropzone-image-preview
+                  ngProjectAs="ngx-dropzone-preview"
+                  *ngFor="let f of files"
+                  [file]="f"
+                  [removable]="true"
+                  (removed)="onRemove(f)"
+                >
+                </ngx-dropzone-image-preview>
+              </div>
+            </div>
+            <div class="form__desc">
+              <img
+                src="assets/question.svg"
+                class="form__desc-image"
+                matTooltip="Pictures work much better than the most talented text. The more photos, the better."
+                matTooltipPosition="right"
+                matTooltipHideDelay="100"
+                alt="question"
+              />
+            </div>
           </div>
         </div>
-      </div>
-      <!--    button-->
-      <div class="form__btns">
-        <div class="form__btns-wrap">
-          <button
-            mat-button
-            [disabled]="advertisementForm.invalid || !files.length"
-            type="submit"
-          >
-            Place an advertisement
-          </button>
+        <!--    button-->
+        <div class="form__btns">
+          <div class="form__btns-wrap">
+            <button
+              mat-button
+              class="btn_tradewind"
+              (click)="goToPreview($event)"
+            >
+              Preview
+            </button>
+            <button
+              mat-button
+              [disabled]="advertisementForm.invalid || !files.length"
+              type="submit"
+            >
+              Place an advertisement
+            </button>
+          </div>
+          <p class="form__footnote">
+            This ad will be placed on the site after review by a moderator and
+            will be valid for the next 30 days.
+          </p>
         </div>
-        <p class="form__footnote">
-          This ad will be placed on the site after review by a moderator and
-          will be valid for the next 30 days.
-        </p>
+      </form>
+    </div>
+  </ng-container>
+  <ng-template #previewPage>
+    <div class="container preview">
+      <div class="preview__back" (click)="goToCreateAdvPage()">
+        <mat-icon>arrow_back</mat-icon>
+        <span class="preview__back-text">New advertisement</span>
       </div>
-    </form>
-  </div>
+      <p>Preview page</p>
+    </div>
+  </ng-template>
 </ng-container>
 
 <ng-template #notLoaded>

@@ -58,6 +58,7 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
   public locations: ILocation[] = this.createAdvertisementService.locations;
   public currencies: ICurrency[] = this.createAdvertisementService.currencies;
   public categories: ICategory[] = this.createAdvertisementService.categories;
+  public navigateToCreateAdvertisementPage = true;
 
   public advertisementForm: FormGroup = new FormGroup({
     title: new FormControl('', [
@@ -185,5 +186,14 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
 
   public onAddNotificationMessage(message: MessagePayload): void {
     this.addNotificationMessage.emit(message);
+  }
+
+  public goToPreview(clickEvent: MouseEvent): void {
+    clickEvent.preventDefault();
+    this.navigateToCreateAdvertisementPage = false;
+  }
+
+  public goToCreateAdvPage(): void {
+    this.navigateToCreateAdvertisementPage = true;
   }
 }

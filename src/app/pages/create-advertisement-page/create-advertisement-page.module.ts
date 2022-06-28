@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatIconModule } from '@angular/material/icon';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
@@ -27,6 +28,7 @@ import { CreateAdvertisementPageComponent } from './create-advertisement-page.co
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatIconModule,
     NgxDropzoneModule,
     MatSelectModule,
     MatTooltipModule,

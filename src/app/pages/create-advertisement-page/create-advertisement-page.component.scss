@@ -184,4 +184,20 @@
       margin-top: 0.3rem;
     }
   }
+
+  .preview {
+    &__back {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      max-width: 32rem;
+      &-text {
+        margin-left: 1rem;
+        font-size: $font-size-xlarge;
+        line-height: 4rem;
+        letter-spacing: 0.25px;
+        color: $primary-color;
+      }
+    }
+  }
 }
