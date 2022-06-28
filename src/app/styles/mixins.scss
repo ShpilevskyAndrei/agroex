@@ -25,6 +25,9 @@
       display: block;
       margin-top: $offset-xlarge;
     }
+    &.my-advertisements-btn {
+      display: block;
+    }
   }
 }
 
@@ -60,6 +63,9 @@
 
   .advertisement-btn {
     @include advertisement-gap-for-price-buttons;
+    &:only-child {
+      width: 100%;
+    }
   }
 }
 
