@@ -22,3 +22,8 @@ export interface ICategory {
   value: string;
   viewValue: string;
 }
+
+export interface IProductType {
+  value: string;
+  viewValue: string;
+}
