@@ -32,6 +32,8 @@ export class ModerationAdvertisementsComponent {
   @Input() public advertisement: IAdvertisementInterface;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
+  @Output() public reloadModerationPage: EventEmitter<void> =
+    new EventEmitter<void>();
   @Output()
   public moderationDecision: EventEmitter<IAdvertisementModerationRequest> = new EventEmitter<IAdvertisementModerationRequest>();
 
@@ -79,5 +81,9 @@ export class ModerationAdvertisementsComponent {
 
   public onLogout(): void {
     this.logout.emit();
+  }
+
+  public onClickreloadModerationPage(): void {
+    this.reloadModerationPage.emit();
   }
 }

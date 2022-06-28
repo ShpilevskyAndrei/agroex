@@ -3,7 +3,7 @@
     <div class="advertisement-btn">
       <button mat-button class="btn_green" (click)="onConfirmDeal()">
         <mat-icon class="advertisement-btns__icon">check</mat-icon>
-        <span>Confirm</span>
+        <span>Confirm {{advertisement.userBets[0].betValue | currency: advertisement.currency:"symbol-narrow":"0.2":"fr"}}</span>
       </button>
     </div>
   </div>

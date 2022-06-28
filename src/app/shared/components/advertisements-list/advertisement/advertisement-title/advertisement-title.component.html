@@ -8,5 +8,11 @@
       (your advertisement)</span
     >
   </div>
-  <span class="create">{{ advertisement.createAt | creatDateFormat }}</span>
+  <div class="create-id-container">
+    <div class="advertisement-created">
+      <mat-icon class="advertisement-created__icon">access_time</mat-icon>
+      <span>{{ advertisement.createAt | availableDateFormat: "days":3 }}</span>
+    </div>
+    <span class="id">№{{ advertisement.id }}</span>
+  </div>
 </div>
