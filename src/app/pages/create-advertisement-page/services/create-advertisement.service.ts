@@ -59,27 +59,27 @@ export class CreateAdvertisementService {
   ];
 
   public productTypes: IProductType[] = [
-    { value: 'Almonds', viewValue: 'Almonds' },
-    { value: 'Apples', viewValue: 'Apples' },
-    { value: 'Apricots', viewValue: 'Apricots' },
+    { value: 'Almond', viewValue: 'Almond' },
+    { value: 'Apple', viewValue: 'Apple' },
+    { value: 'Apricot', viewValue: 'Apricot' },
     { value: 'Cabbage', viewValue: 'Cabbage' },
-    { value: 'Cherries', viewValue: 'Cherries' },
+    { value: 'Cherry', viewValue: 'Cherry' },
     { value: 'Corn', viewValue: 'Corn' },
     { value: 'Cucumber', viewValue: 'Cucumber' },
     {
-      value: 'Lemons',
-      viewValue: 'Lemons',
+      value: 'Lemon',
+      viewValue: 'Lemon',
     },
-    { value: 'Onions', viewValue: 'Onions' },
+    { value: 'Onion', viewValue: 'Onion' },
     { value: 'Parsley', viewValue: 'Parsley' },
-    { value: 'Peaches', viewValue: 'Peaches' },
+    { value: 'Peach', viewValue: 'Peach' },
     { value: 'Persimmon', viewValue: 'Persimmon' },
-    { value: 'Plums', viewValue: 'Plums' },
+    { value: 'Plum', viewValue: 'Plum' },
     { value: 'Potato', viewValue: 'Potato' },
     { value: 'Rice', viewValue: 'Rice' },
     { value: 'Tomato', viewValue: 'Tomato' },
-    { value: 'Watermelons', viewValue: 'Watermelons' },
-    { value: 'Walnuts', viewValue: 'Walnuts' },
+    { value: 'Watermelon', viewValue: 'Watermelon' },
+    { value: 'Walnut', viewValue: 'Walnut' },
     { value: 'Wheat', viewValue: 'Wheat' },
   ];
 
