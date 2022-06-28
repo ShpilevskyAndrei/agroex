@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+import { MatIconModule } from '@angular/material/icon';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -10,7 +11,7 @@ import { AvailableDateFormatPipe } from '../../../../pipes/available-date-format
 
 @NgModule({
   declarations: [AdvertisementPriceComponent, AvailableDateFormatPipe],
-  imports: [CommonModule],
+  imports: [CommonModule, MatIconModule],
   exports: [AdvertisementPriceComponent, AvailableDateFormatPipe],
 })
 export class AdvertisementPriceModule {}
