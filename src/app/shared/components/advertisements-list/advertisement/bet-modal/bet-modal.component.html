@@ -25,17 +25,9 @@
         to {{ +data.price - 1 | currency: data.currency:"symbol-narrow":"1.0" }}
       </p>
     </div>
-    <p *ngIf="betForm.invalid; else unitcost" class="bet-modal__unit-cost">
-      &nbsp;
+    <p class="bet-modal__unit-cost" [ngStyle]="{ visibility: visibility }">
+      {{ unitCostBetText }}
     </p>
-    <ng-template #unitcost>
-      <p class="bet-modal__unit-cost">
-        {{ unitCostBet <= 0.01 ? "Less than" : "" }}
-        {{
-          unitCostBet | currency: data.currency:"symbol-narrow":"1.0":"fr"
-        }}/{{ tonToKgUnit }}
-      </p>
-    </ng-template>
     <div mat-dialog-actions class="bet-modal__actions">
       <button
         mat-button

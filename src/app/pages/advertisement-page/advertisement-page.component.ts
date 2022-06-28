@@ -25,6 +25,7 @@ import { BetValidators } from '../../shared/components/advertisements-list/adver
 import { TASHKENT_COORDINATES } from '../../shared/constants/tashkent-coordinates';
 import { REGEXP_FOR_IS_INTEGER_NUMBER } from '../../shared/constants/regexp';
 import { WeightEnum } from '../../shared/components/advertisements-list/advertisement/advertisement-price/enums/weight.enum';
+import { VISIBILITY_CONFIG } from '../../shared/constants/visibility-config';
 
 @UntilDestroy()
 @Component({
@@ -68,13 +69,16 @@ export class AdvertisementPageComponent implements OnChanges {
 
   public newBet = '';
 
-  public get tonToKgUnit(): string | undefined {
-    return this.advertisement?.advertisement.unit === WeightEnum.ton
-      ? WeightEnum.kg
-      : this.advertisement?.advertisement.unit;
+  public get tonToKgUnit(): string {
+    if (this.advertisement) {
+      return this.advertisement?.advertisement.unit === WeightEnum.ton
+        ? WeightEnum.kg
+        : this.advertisement.advertisement.unit;
+    }
+    return '';
   }
 
-  public get CalcTonToKg(): number {
+  public get calcTonToKg(): number {
     return this.advertisement?.advertisement.unit === WeightEnum.ton
       ? +this.advertisement?.advertisement.quantity * 1000
       : this.advertisement?.advertisement.quantity
@@ -84,10 +88,19 @@ export class AdvertisementPageComponent implements OnChanges {
 
   public get unitCostBet(): number {
     return this.newBet
-      ? +(+this.newBet / this.CalcTonToKg) >= 0.01
-        ? +(+this.newBet / this.CalcTonToKg).toFixed(2)
+      ? +(+this.newBet / this.calcTonToKg) >= 0.01
+        ? +(+this.newBet / this.calcTonToKg).toFixed(2)
         : 0.01
       : 0;
+  }
+
+  public get unitCostBetText(): string {
+    if (this.newBet) {
+      return this.unitCostBet <= 0.01
+        ? `Less than ${this.actualCurrency} ${this.unitCostBet}/${this.tonToKgUnit}`
+        : `${this.actualCurrency} ${this.unitCostBet}/${this.tonToKgUnit}`;
+    }
+    return '0';
   }
 
   public get isDisabled(): boolean {
@@ -107,6 +120,12 @@ export class AdvertisementPageComponent implements OnChanges {
     } else {
       return ' ';
     }
+  }
+
+  public get visibility(): string {
+    return this.betForm.invalid
+      ? VISIBILITY_CONFIG.hidden
+      : VISIBILITY_CONFIG.visible;
   }
 
   public getFullLocationName(): string | undefined {

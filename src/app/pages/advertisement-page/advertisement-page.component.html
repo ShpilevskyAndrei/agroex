@@ -83,22 +83,10 @@
               }}{{ +advertisement.advertisement.price - 1 }}
             </p>
 
-            <p *ngIf="betForm.invalid; else unitcost" class="unit-cost">
-              &nbsp;
+            <p class="unit-cost" [ngStyle]="{ visibility: visibility }">
+              {{ unitCostBetText }}
             </p>
-            <ng-template #unitcost>
-              <p class="unit-cost">
-                {{ unitCostBet <= 0.01 ? "Less than" : "" }}
-                {{
-                  unitCostBet
-                    | currency
-                      : advertisement.advertisement.currency
-                      : "symbol-narrow"
-                      : "1.0"
-                      : "fr"
-                }}/{{ tonToKgUnit }}
-              </p>
-            </ng-template>
+
           </div>
 
           <app-advertisement-buttons-ad-page
