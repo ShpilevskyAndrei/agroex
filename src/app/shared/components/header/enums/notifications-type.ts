@@ -1,8 +1,8 @@
 export enum NotificationsType {
-  MODERATIONAPPROVED = 'moderationApproved',
-  MODERATIONREJECTED = 'moderationRejected',
-  CONFIRMATION = 'confirmation',
-  OUTBIDDING = 'outbidding',
-  PURCHASE = 'purchase',
-  NEWBET = 'newBet',
+  ModerationApproved = 'moderationApproved',
+  ModerationRejected = 'moderationRejected',
+  Confirmation = 'confirmation',
+  Outbidding = 'outbidding',
+  Purchase = 'purchase',
+  NewBet = 'newBet',
 }

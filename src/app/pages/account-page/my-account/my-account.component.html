@@ -4,7 +4,7 @@
     </h2>
     <div class="acc_top">
         <div class="acc_top__photo">
-            {{ this.user?.username?.substr(0, 1)?.toUpperCase() }}
+            {{ this.user?.username?.substring(0, 1)?.toUpperCase() }}
         </div>
 
         <form class="acc_top__form">
@@ -77,7 +77,7 @@
         <div class="acc_bot__check_wrap">
 
             <div class="acc_bot__check_wrap-ins">
-                <mat-checkbox formControlName="checkBoxConfirm"></mat-checkbox>
+                <mat-checkbox></mat-checkbox>
                 <div class="acc_bot__check-text">
                   <p>
                     Notify me of new messages
@@ -86,7 +86,7 @@
             </div>
 
             <div class="acc_bot__check_wrap-ins">
-                <mat-checkbox formControlName="checkBoxConfirm"></mat-checkbox>
+                <mat-checkbox></mat-checkbox>
                 <div class="acc_bot__check-text">
                   <p>
                     Hide my presence
@@ -95,7 +95,7 @@
             </div>
 
             <div class="acc_bot__check_wrap-ins">
-                <mat-checkbox formControlName="checkBoxConfirm"></mat-checkbox>
+                <mat-checkbox></mat-checkbox>
                 <div class="acc_bot__check-text">
                   <p>
                     Show my email to everyone
@@ -104,7 +104,7 @@
             </div>
 
             <div class="acc_bot__check_wrap-ins">
-                <mat-checkbox formControlName="checkBoxConfirm"></mat-checkbox>
+                <mat-checkbox></mat-checkbox>
                 <div class="acc_bot__check-text">
                   <p>
                     Receive promotional notifications

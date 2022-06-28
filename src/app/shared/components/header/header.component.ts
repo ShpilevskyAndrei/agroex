@@ -157,7 +157,7 @@ export class HeaderComponent implements OnChanges, OnInit {
     return this.userNotification().length
       ? this.userNotification().filter(
           (notification: MessagePayload) =>
-            notification.data?.status === this.notificationsStatus.NEW
+            notification.data?.status === this.notificationsStatus.New
         )
       : [];
   }

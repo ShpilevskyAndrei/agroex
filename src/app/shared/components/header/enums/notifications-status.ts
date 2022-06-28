@@ -1,4 +1,4 @@
 export enum NotificationsStatus {
-  NEW = 'new',
-  VISITED = 'visited',
+  New = 'new',
+  Visited = 'visited',
 }

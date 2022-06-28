@@ -37,20 +37,20 @@ export const APP_ROOT_REDUCER = createReducer(
   on(
     AppRootActions.changeNotificationStatus,
     (state, { message }): AppRootState => {
-      const updateNotifications: MessagePayload[] = [
-        ...state.notificationMessage,
-      ].map((notification: MessagePayload) => {
-        return {
-          ...notification,
-          data: {
-            ...notification.data,
-            status:
-              message.data?.id === notification.data?.id
-                ? 'visited'
-                : <string>notification.data?.status,
-          },
-        };
-      });
+      const updateNotifications: MessagePayload[] =
+        state.notificationMessage.map((notification: MessagePayload) => {
+          if (message.data?.id === notification.data?.id) {
+            return {
+              ...notification,
+              data: {
+                ...notification.data,
+                status: 'visited',
+              },
+            };
+          }
+
+          return notification;
+        });
 
       return {
         ...state,
