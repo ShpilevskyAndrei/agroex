@@ -31,9 +31,7 @@
       </ng-template>
       <div class="advertisement-created">
         <mat-icon class="advertisement-created__icon">access_time</mat-icon>
-        <span>{{
-          advertisement.createAt | availableDateFormat: "days":3
-        }}</span>
+        <span>{{advertisement.updatedAt | availableDateFormat: "days":3}}</span>
       </div>
     </div>
   </div>

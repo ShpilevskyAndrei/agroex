@@ -1,16 +1,42 @@
-<app-header [userRole]="userRole" [user]="user" (logout)="onLogout()"></app-header>
+<ng-container *ngIf="advertisementsLoadingStatus?.loaded; else notLoaded">
+  <app-header
+  [userRole]="userRole"
+  [user]="user"
+  [moderationPage]="true"
+  (logout)="onLogout()"
+  (reloadModerationPage)="onClickreloadModerationPage()"
+></app-header>
 <div class="container moderation-container">
   <app-advertisements-list
     [user]="user"
     [advertisementsRequest]="advertisementsRequest"
     [advertisementsLoadingStatus]="advertisementsLoadingStatus"
-    (moderationDecision)="onModerationDecision($event)">
+    (moderationDecision)="onModerationDecision($event)"
+  >
     <ng-template #actionButtons let-advertisement>
       <app-moderation-advertisements-buttons
         class="advertisement-wrap__btns"
         [advertisement]="advertisement"
         (reject)="openModerationMessageModal($event)"
-        (approve)="onApproveClick($event)"></app-moderation-advertisements-buttons>
+        (approve)="onApproveClick($event)"
+      ></app-moderation-advertisements-buttons>
     </ng-template>
   </app-advertisements-list>
 </div>
+</ng-container>
+
+<ng-template #notLoaded>
+  <ngx-spinner
+    *ngIf="advertisementsLoadingStatus?.loading; else advertisementError"
+    bdColor="rgba(0, 0, 0, 0.8)"
+    size="medium"
+    color="#fff"
+    type="ball-clip-rotate"
+    [fullScreen]="true"
+  >
+    <div style="color: white">Loading...</div>
+  </ngx-spinner>
+  <ng-template #advertisementError>
+    <p>{{ advertisementsLoadingStatus?.error?.statusText }}</p>
+  </ng-template>
+</ng-template>
