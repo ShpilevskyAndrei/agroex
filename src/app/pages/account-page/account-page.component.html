@@ -4,6 +4,7 @@
   [notificationMessage]="notificationMessage"
   (logout)="onLogout()"
   (addNotificationMessage)="onAddNotificationMessage($event)"
+  (changeNotificationStatus)="onClickNotification($event)"
   (selectTab)="onSelectTab($event)"
 ></app-header>
 <div class="account">
@@ -40,7 +41,7 @@
             (confirmDeal)="onConfirmDeal($event)"
           >
           </app-my-advertisements>
-          <app-my-betting 
+          <app-my-betting
             *ngSwitchCase="userPanelOptionId.Betting"
             [myBettingsRequest]="myBettingsRequest"
             [myBettingsLoadingStatus]="myBettingsLoadingStatus"

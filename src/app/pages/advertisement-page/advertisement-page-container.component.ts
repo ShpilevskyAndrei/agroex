@@ -44,6 +44,7 @@ import {
     (setBet)="onSetBet($event)"
     (setBuy)="onSetBuy($event)"
     (addNotificationMessage)="onAddNotificationMessage($event)"
+    (changeNotificationStatus)="onClickNotification($event)"
   ></app-advertisement-page>`,
 })
 export class AdvertisementPageContainerComponent implements OnInit {
@@ -112,5 +113,9 @@ export class AdvertisementPageContainerComponent implements OnInit {
 
   public onAddNotificationMessage(message: MessagePayload): void {
     this.store.dispatch(AppRootActions.getNotificationMessage({ message }));
+  }
+
+  public onClickNotification(message: MessagePayload): void {
+    this.store.dispatch(AppRootActions.changeNotificationStatus({ message }));
   }
 }
