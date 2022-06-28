@@ -39,8 +39,7 @@
                    *ngFor="let message of userNotification()"
                    [ngClass]="{'visited': message.data?.status === notificationsStatus.Visited}"
                    [routerLink]="message.data?.linkTo ? ['/account'] : []"
-                   (click)="onClickNotification(message)"
-                   (click)="message.data?.linkTo ? onSelectPage(message.data?.linkTo) : ''">
+                   (click)="onClickNotification(message)">
                 <ng-container [ngSwitch]="message.data?.type">
                   <mat-icon *ngSwitchCase="notificationsType.Confirmation"
                             class="notification__icon"

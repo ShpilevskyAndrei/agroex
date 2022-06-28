@@ -163,6 +163,7 @@ export class HeaderComponent implements OnChanges, OnInit {
   }
 
   public onClickNotification(notification: MessagePayload): void {
+    notification.data?.linkTo && this.onSelectPage(notification.data?.linkTo);
     this.changeNotificationStatus.emit(notification);
   }
 
