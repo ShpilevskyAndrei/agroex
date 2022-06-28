@@ -43,6 +43,8 @@ export class AdvertisementsListButtonsComponent {
           price: this.advertisement.price,
           actualBet: this.advertisement.userBets,
           bet: this.bet,
+          unit: this.advertisement.unit,
+          quantity: this.advertisement.quantity,
         },
       })
       .afterClosed()

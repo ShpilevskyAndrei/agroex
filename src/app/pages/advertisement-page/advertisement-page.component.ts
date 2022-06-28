@@ -24,6 +24,7 @@ import { CurrenciesEnum } from '../../shared/components/advertisements-list/adve
 import { BetValidators } from '../../shared/components/advertisements-list/advertisement/bet-modal/intefaces/bet-validator';
 import { TASHKENT_COORDINATES } from '../../shared/constants/tashkent-coordinates';
 import { REGEXP_FOR_IS_INTEGER_NUMBER } from '../../shared/constants/regexp';
+import { WeightEnum } from '../../shared/components/advertisements-list/advertisement/advertisement-price/enums/weight.enum';
 
 @UntilDestroy()
 @Component({
@@ -67,22 +68,57 @@ export class AdvertisementPageComponent implements OnChanges {
 
   public newBet = '';
 
+  public get tonToKgUnit(): string {
+    if (!this.advertisement) {
+      return '';
+    }
+    return this.advertisement?.advertisement.unit === WeightEnum.ton
+      ? WeightEnum.kg
+      : this.advertisement?.advertisement.unit;
+  }
+
+  public get calcTonToKg(): number {
+    if (!this.advertisement?.advertisement.quantity) {
+      return 0;
+    }
+    return this.advertisement?.advertisement.unit === WeightEnum.ton
+      ? +this.advertisement?.advertisement.quantity * 1000
+      : +this.advertisement.advertisement.quantity;
+  }
+
+  public get unitCostBet(): number {
+    if (!this.newBet) {
+      return 0;
+    }
+    return +(+this.newBet / this.calcTonToKg) >= 0.01
+      ? +(+this.newBet / this.calcTonToKg).toFixed(2)
+      : 0.01;
+  }
+
+  public get unitCostBetText(): string {
+    if (!this.newBet) {
+      return '0';
+    }
+    return this.unitCostBet <= 0.01
+      ? `Less than ${this.actualCurrency} ${this.unitCostBet}/${this.tonToKgUnit}`
+      : `${this.actualCurrency} ${this.unitCostBet}/${this.tonToKgUnit}`;
+  }
+
   public get isDisabled(): boolean {
     return !this.newBet;
   }
 
-  public get actualCurrency(): string | undefined {
-    if (this.advertisement?.advertisement.currency) {
-      switch (this.advertisement.advertisement.currency) {
-        case CurrenciesEnum.USD:
-          return `$`;
-        case CurrenciesEnum.EUR:
-          return `€`;
-        default:
-          return this.advertisement.advertisement.currency;
-      }
-    } else {
+  public get actualCurrency(): string {
+    if (!this.advertisement?.advertisement.currency) {
       return ' ';
+    }
+    switch (this.advertisement.advertisement.currency) {
+      case CurrenciesEnum.USD:
+        return '$';
+      case CurrenciesEnum.EUR:
+        return '€';
+      default:
+        return this.advertisement.advertisement.currency;
     }
   }
 

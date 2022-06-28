@@ -6,7 +6,7 @@
       <mat-form-field class="bet-modal__field" [ngSwitch]="data.currency">
         <span matPrefix *ngSwitchCase="currenciesEnum.USD">$</span>
         <span matPrefix *ngSwitchCase="currenciesEnum.EUR">€</span>
-        <span matPrefix *ngSwitchDefault>{{data.currency}}</span>
+        <span matPrefix *ngSwitchDefault>{{ data.currency }}</span>
         <input
           matInput
           type="text"
@@ -14,11 +14,20 @@
           autocomplete="off"
           placeholder="Enter a bet"
           formControlName="bet"
-        >
+        />
       </mat-form-field>
-      <p class="bet-modal__hint">Bet integer number from {{(data.actualBet.length ? +data.actualBet[0].betValue + 1 : '1') | currency: data.currency: 'symbol-narrow': '1.0'}}
-        to {{+data.price - 1 | currency: data.currency: 'symbol-narrow': '1.0'}}</p>
+      <p class="bet-modal__hint">
+        Bet integer number from
+        {{
+          (data.actualBet.length ? +data.actualBet[0].betValue + 1 : "1")
+            | currency: data.currency:"symbol-narrow":"1.0"
+        }}
+        to {{ +data.price - 1 | currency: data.currency:"symbol-narrow":"1.0" }}
+      </p>
     </div>
+    <p class="bet-modal__unit-cost" [ngStyle]="{ visibility: betForm.invalid ? 'hidden' : 'visible' }">
+      {{ unitCostBetText }}
+    </p>
     <div mat-dialog-actions class="bet-modal__actions">
       <button
         mat-button
@@ -26,9 +35,13 @@
         [disabled]="betForm.invalid"
         (click)="onCloseBetModal()"
       >
-        Bet {{!betForm.invalid ? (betValue | currency: data.currency: 'symbol-narrow': '1.0': 'fr') : ''}}
+        Bet
+        {{
+          betForm.valid
+            ? (betValue | currency: data.currency:"symbol-narrow":"1.0":"fr")
+            : ""
+        }}
       </button>
     </div>
   </form>
 </div>
-
