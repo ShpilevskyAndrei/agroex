@@ -258,3 +258,26 @@ body {
 .mat-tab-body {
   min-height: 50vh;
 }
+
+.account__sidebar-for_mobile-active {
+  @media only screen and (max-width: $medium-x-medium-screen-min-width) {
+    left: 0;
+    & > span {
+      display: flex;
+      align-items: center;
+      position: relative;
+      cursor: pointer;
+      &:before {
+        content: "";
+        position: absolute;
+        width: 1rem;
+        height: 1rem;
+        right: 2.4rem;
+        background: inherit;
+        border-top: 2px solid $primary-color;
+        border-left: 2px solid $primary-color;
+        transform: rotate(135deg);
+      }
+    }
+  }
+}
