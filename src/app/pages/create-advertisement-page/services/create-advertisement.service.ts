@@ -59,29 +59,28 @@ export class CreateAdvertisementService {
   ];
 
   public productTypes: IProductType[] = [
-    { value: 'Potato', viewValue: 'Potato' },
-    { value: 'Cabbage', viewValue: 'Cabbage' },
-    { value: 'Tomato', viewValue: 'Tomato' },
-    { value: 'Cucumber', viewValue: 'Cucumber' },
-    { value: 'Onions', viewValue: 'Onions' },
-    { value: 'Parsley', viewValue: 'Parsley' },
-    { value: 'Apricots', viewValue: 'Apricots' },
+    { value: 'Almonds', viewValue: 'Almonds' },
     { value: 'Apples', viewValue: 'Apples' },
+    { value: 'Apricots', viewValue: 'Apricots' },
+    { value: 'Cabbage', viewValue: 'Cabbage' },
     { value: 'Cherries', viewValue: 'Cherries' },
-    { value: 'Persimmon', viewValue: 'Persimmon' },
-    { value: 'Plums', viewValue: 'Plums' },
-    { value: 'Peaches', viewValue: 'Peaches' },
+    { value: 'Corn', viewValue: 'Corn' },
+    { value: 'Cucumber', viewValue: 'Cucumber' },
     {
       value: 'Lemons',
       viewValue: 'Lemons',
     },
-    { value: 'Watermelons', viewValue: 'Watermelons' },
-    { value: 'Wheat', viewValue: 'Wheat' },
+    { value: 'Onions', viewValue: 'Onions' },
+    { value: 'Parsley', viewValue: 'Parsley' },
+    { value: 'Peaches', viewValue: 'Peaches' },
+    { value: 'Persimmon', viewValue: 'Persimmon' },
+    { value: 'Plums', viewValue: 'Plums' },
+    { value: 'Potato', viewValue: 'Potato' },
     { value: 'Rice', viewValue: 'Rice' },
-    { value: 'Corn', viewValue: 'Corn' },
+    { value: 'Tomato', viewValue: 'Tomato' },
+    { value: 'Watermelons', viewValue: 'Watermelons' },
     { value: 'Walnuts', viewValue: 'Walnuts' },
-    { value: 'Apricots', viewValue: 'Apricots' },
-    { value: 'Almonds', viewValue: 'Almonds' },
+    { value: 'Wheat', viewValue: 'Wheat' },
   ];
 
   constructor(private httpClient: HttpClient) {}
