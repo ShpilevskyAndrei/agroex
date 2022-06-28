@@ -110,12 +110,13 @@
       @media only screen and (max-width: $medium-x-medium-screen-min-width) {
         width: 100%;
         right: 0;
+        min-height: calc(100vh - 15rem);
       }
     }
 
     .account__content-for_mobile-active {
       @media only screen and (max-width: $medium-x-medium-screen-min-width) {
-        height: 28rem;
+        height: calc(100vh - 15rem);
       }
     }
   }
