@@ -24,6 +24,7 @@ import {
   ICountry,
   ICurrency,
   ILocation,
+  IProductType,
   IUnit,
 } from './interfaces/create-advertisement.interface';
 import { CreateAdvertisementService } from './services/create-advertisement.service';
@@ -58,13 +59,11 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
   public locations: ILocation[] = this.createAdvertisementService.locations;
   public currencies: ICurrency[] = this.createAdvertisementService.currencies;
   public categories: ICategory[] = this.createAdvertisementService.categories;
+  public productTypes: IProductType[] =
+    this.createAdvertisementService.productTypes;
 
   public advertisementForm: FormGroup = new FormGroup({
-    title: new FormControl('', [
-      Validators.required,
-      Validators.minLength(5),
-      Validators.maxLength(40),
-    ]),
+    productType: new FormControl('', [Validators.required]),
     country: new FormControl(
       {
         value: this.countries[0].value,
@@ -127,7 +126,7 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
     const formData = new FormData();
 
     formData.append('files', this.files[0]);
-    formData.append('title', rawValue.title);
+    formData.append('title', rawValue.productType);
     formData.append('country', rawValue.country);
     formData.append('location', rawValue.location);
     formData.append('category', rawValue.category);
