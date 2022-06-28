@@ -1,0 +1,95 @@
+@import "../../../styles/general-styles";
+
+:host {
+    .container_acc {
+        padding: 1rem 2rem;
+        @media only screen and (max-width: $medium-screen-min-width) {
+            margin: 0 auto;
+        }
+        .acc {
+            &-header {
+                font-weight: 500;
+                font-size: $font-size-normal;
+                color: $primary-color;
+            }
+            &_top {
+                display: flex;
+                flex-direction: row;
+                &__photo {
+                    display: flex;
+                    color: $color-white;
+                    font-size: 5.5rem;
+                    background: $bg-color-acc;
+                    width: 10rem;
+                    height: 10rem;
+                    border-radius: 10rem;
+                    align-items: center;
+                    justify-content: center;
+                    margin-right: 2rem;
+                    @media only screen and (max-width: $medium-screen-min-width) {
+                        margin: 0 auto;
+                    }
+                }
+                &__form {
+                    display: flex;
+                    flex-direction: column;
+                    min-width: 16rem;
+                    max-width: 20rem;
+                    &__btn {
+                        position: relative;
+                        align-self: flex-end;
+                        margin-bottom: 2rem;
+                        mat-icon {
+                            margin-right: 1rem;
+                            margin-bottom: 0.2rem;
+                        }
+                        &:disabled {
+                            cursor: pointer;
+                            color: $color-tradewind;
+                            background: $color-white;
+                            border: 1px solid $color-tradewind;
+                        }
+                        @media only screen and (max-width: $medium-screen-min-width) {
+                            width: 100%;
+                        }
+                        &-edit {
+                            margin-top: 1rem;
+                        }
+                    }
+                    @media only screen and (max-width: $medium-screen-min-width) {
+                        max-width: 100%;
+                        margin-top: 1rem;
+                    }
+                }
+                @media only screen and (max-width: $medium-screen-min-width) {
+                    flex-direction: column;
+                }
+            }
+            &_bot {
+                &__check_wrap {
+                    display: flex;
+                    flex-direction: column;
+                    &-ins {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        margin-bottom: 1rem;
+                    }
+                }
+                &__check-text {
+                    margin-left: 1rem;
+                    font-size: 1.5rem;
+                    color: $primary-color;
+                    p {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+        h2 {
+            @media only screen and (max-width: $medium-screen-min-width) {
+                text-align: center;
+            }
+        }
+    }
+}

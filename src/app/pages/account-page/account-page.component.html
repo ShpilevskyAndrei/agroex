@@ -57,7 +57,9 @@
             [myOrdersLoadingStatus]="myOrdersLoadingStatus"
             (dispatcher)="onDispatcher($event)">
           </app-my-orders>
-          <app-my-account *ngSwitchCase="userPanelOptionId.MyAccount">
+          <app-my-account 
+            *ngSwitchCase="userPanelOptionId.MyAccount" 
+            [user]="user">
           </app-my-account>
         </div>
       </div>
