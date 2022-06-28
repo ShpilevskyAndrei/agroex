@@ -83,6 +83,11 @@
               to {{ actualCurrency
               }}{{ +advertisement.advertisement.price - 1 }}
             </p>
+
+            <p class="unit-cost" [ngStyle]="{ visibility: betForm.invalid ? 'hidden' : 'visible' }">
+              {{ unitCostBetText }}
+            </p>
+
           </div>
 
           <app-advertisement-buttons-ad-page

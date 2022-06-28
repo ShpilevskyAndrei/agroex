@@ -5,4 +5,6 @@ export interface BetModalDataInterface {
   price: string;
   currency: string;
   actualBet: IAdvertisementBetInterface[];
+  unit: string;
+  quantity: string;
 }
