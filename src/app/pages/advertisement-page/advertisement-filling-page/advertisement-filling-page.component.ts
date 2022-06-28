@@ -11,14 +11,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { tap } from 'rxjs';
 import { LngLatLike } from 'mapbox-gl';
-// import firebase from 'firebase/compat';
-// import MessagePayload = firebase.messaging.MessagePayload;
 
-// import { LoadingStatus } from '../../../shared/interfaces/loading-status';
 import { IUser } from '../../../shared/interfaces/user.interface';
 import { IS_SHOWN_MAP_CONFIG } from '../../../shared/constants/is-shown-map-config';
 import { IShownMap } from '../interfaces/shown-map.interface';
-// import { UserRole } from '../../../shared/components/header/enums/user-role';
 import { IAdRequestInterface } from '../../../shared/components/advertisements-list/interfaces/ad-request.interface';
 import { CurrenciesEnum } from '../../../shared/components/advertisements-list/advertisement/bet-modal/enums/currencies.enum';
 import { BetValidators } from '../../../shared/components/advertisements-list/advertisement/bet-modal/intefaces/bet-validator';
@@ -35,18 +31,10 @@ import { REGEXP_FOR_IS_INTEGER_NUMBER } from '../../../shared/constants/regexp';
 export class AdvertisementPageFillingComponent implements OnChanges {
   @Input() public user: IUser | null;
   @Input() public advertisement: IAdRequestInterface | null;
-  // @Input() public slug: string | null;
-  // @Input() public advertisementLoadingStatus: LoadingStatus | null;
-  // @Input() public userRole: UserRole | null;
-  // @Input() public notificationMessage: MessagePayload[] | null;
   @Input() public map: GeoJSON.FeatureCollection<GeoJSON.MultiPolygon> | null;
 
-  // @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
-  // @Output() public selectTab: EventEmitter<string> = new EventEmitter<string>();
   @Output() public setBet: EventEmitter<Record<string, string | number>> =
     new EventEmitter<Record<string, string | number>>();
-  // @Output() public addNotificationMessage: EventEmitter<MessagePayload> =
-  //   new EventEmitter<MessagePayload>();
   @Output() public setBuy: EventEmitter<Record<string, string>> =
     new EventEmitter<Record<string, string>>();
 
@@ -92,6 +80,7 @@ export class AdvertisementPageFillingComponent implements OnChanges {
 
   public getLocation(): GeoJSON.FeatureCollection<GeoJSON.MultiPolygon> {
     if (this.map) {
+      console.log(this.map);
       return {
         ...this.map,
         features: this.map?.features?.filter(
@@ -155,16 +144,4 @@ export class AdvertisementPageFillingComponent implements OnChanges {
       : this.isShownMapConfig.iconDown;
     this.isShownMap.isShown = !this.isShownMap.isShown;
   }
-
-  // public onLogout(): void {
-  //   this.logout.emit();
-  // }
-
-  // public onSelectTab(selectedOptionId: string): void {
-  //   this.selectTab.emit(selectedOptionId);
-  // }
-
-  // public onAddNotificationMessage(message: MessagePayload): void {
-  //   this.addNotificationMessage.emit(message);
-  // }
 }

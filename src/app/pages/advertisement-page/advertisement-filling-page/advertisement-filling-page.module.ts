@@ -7,23 +7,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 
 import { AdvertisementPageFillingComponent } from './advertisement-filling-page.component';
-import { AdvertisementPageRoutingModule } from '../advertisement-page-routing.module';
-import { BreadcrumbsModule } from '../../../shared/components/breadcrumbs/breadcrumbs.module';
 import { AdvertisementButtonsAdPageModule } from '../advertisement-buttons-ad-page/advertisement-buttons-ad-page.module';
-import { AdvertisementButtonsModule } from '../../../shared/components/advertisements-list/advertisement/advertisement-buttons/advertisement-buttons.module';
 import { AdvertisementPriceModule } from '../../../shared/components/advertisements-list/advertisement/advertisement-price/advertisement-price.module';
-import { AdvertisementModule } from '../../../shared/components/advertisements-list/advertisement/advertisement.module';
 import { AdvertisementTitleAdPageModule } from '../advertisement-title-ad-page/advertisement-title-ad-page.module';
 
 @NgModule({
   declarations: [AdvertisementPageFillingComponent],
   imports: [
     CommonModule,
-    AdvertisementButtonsModule,
-    BreadcrumbsModule,
-    AdvertisementModule,
     AdvertisementPriceModule,
-    AdvertisementPageRoutingModule,
     MatIconModule,
     NgxMapboxGLModule,
     ReactiveFormsModule,
