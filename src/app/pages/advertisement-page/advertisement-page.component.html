@@ -12,7 +12,7 @@
 ></app-breadcrumbs>
 
 <ng-container *ngIf="advertisementLoadingStatus?.loaded; else notLoaded">
-  <div class="container" *ngIf="advertisement">
+  <!-- <div class="container" *ngIf="advertisement">
     <div class="ad-card-container">
       <div class="ad-card-container-without-map">
         <div class="ad-card-image-container">
@@ -159,7 +159,15 @@
         </mgl-layer>
       </mgl-map>
     </div>
-  </div>
+  </div> -->
+  <app-advertisement-filling-page
+    [user]="user"
+    [advertisement]="advertisement"
+    [map]="map"
+    (setBet)="onSetBet($event)"
+    (setBuy)="onSetBuy($event)"
+  >
+  </app-advertisement-filling-page>
 </ng-container>
 
 <ng-template #notLoaded>

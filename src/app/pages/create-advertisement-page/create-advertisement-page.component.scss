@@ -190,10 +190,10 @@
       display: flex;
       align-items: center;
       cursor: pointer;
-      max-width: 32rem;
+      max-width: 22rem;
       &-text {
         margin-left: 1rem;
-        font-size: $font-size-xlarge;
+        font-size: $font-size-large;
         line-height: 4rem;
         letter-spacing: 0.25px;
         color: $primary-color;
