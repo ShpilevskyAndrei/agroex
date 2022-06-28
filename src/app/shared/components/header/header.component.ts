@@ -36,8 +36,11 @@ export class HeaderComponent implements OnChanges, OnInit {
   @Input() public user: IUser | null;
   @Input() public userRole: UserRole | null;
   @Input() public notificationMessage: MessagePayload[] | null;
+  @Input() public moderationPage = false;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
+  @Output() public reloadModerationPage: EventEmitter<void> =
+    new EventEmitter<void>();
   @Output() public selectTab: EventEmitter<string> = new EventEmitter<string>();
   @Output() public addNotificationMessage: EventEmitter<MessagePayload> =
     new EventEmitter<MessagePayload>();
@@ -157,5 +160,9 @@ export class HeaderComponent implements OnChanges, OnInit {
 
   public onClickNotification(notification: MessagePayload): void {
     this.changeNotificationStatus.emit(notification);
+  }
+
+  public onClickreloadModerationPage(): void {
+    this.reloadModerationPage.emit();
   }
 }

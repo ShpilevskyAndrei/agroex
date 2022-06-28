@@ -18,7 +18,9 @@ export class RegistrationPageEffects {
         this.userService.create(user, url).pipe(
           map((userApiResponse: UserApiResponse) => {
             this.toastService.addToast({
-              title: `User ${userApiResponse.user.username} ${url} will success`,
+              title: `You have ${
+                url === 'register' ? '' : 'logged in'
+              } successfully${url === 'register' ? ' registered' : ''}!`,
               toastType: ToastType.Success,
               width: '60vw',
               buttonText: 'Ok',

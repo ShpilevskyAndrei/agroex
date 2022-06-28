@@ -106,13 +106,28 @@
       </ng-container>
 
       <ng-container *ngIf="this.userCurrentRole === userRoles.Moderator">
-        <button
+
+        <ng-container *ngIf="moderationPage; else notModerationPage">
+          <button
+          mat-raised-button
+          class="main-header__add-ads"
+          (click)="onClickreloadModerationPage()"
+          >
+            <mat-icon class="update">sync</mat-icon>
+            <span>Update Advertisement</span>
+          </button>
+        </ng-container>
+
+        <ng-template #notModerationPage>
+          <button
           mat-raised-button
           class="main-header__add-ads"
           (click)="goToModerateAdvertisement()"
-        >
-          <span>Check Advertisement</span>
-        </button>
+          >
+            <span>Check Advertisement</span>
+          </button>
+        </ng-template>
+
         <div
           class="main-header__account-btn"
           [matMenuTriggerFor]="userMenu">

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
 import firebase from 'firebase/compat';
 import MessagePayload = firebase.messaging.MessagePayload;
@@ -34,19 +35,23 @@ import { getNotificationMessage } from '../../state/app-root/app-root.selectors'
     (changeNotificationStatus)="onClickNotification($event)"
   ></app-create-advertisement-page>`,
 })
-export class CreateAdvertisementPageContainerComponent {
+export class CreateAdvertisementPageContainerComponent implements OnInit {
   public user$: Observable<IUser | null>;
   public userRole$: Observable<UserRole | null>;
   public createAdvertisementLoadingStatus$: Observable<LoadingStatus>;
   public notificationMessage$: Observable<MessagePayload[] | null>;
 
-  constructor(private store: Store) {
+  constructor(private store: Store, private spinner: NgxSpinnerService) {
     this.user$ = this.store.select(selectUserData);
     this.userRole$ = this.store.select(selectUserRole);
     this.createAdvertisementLoadingStatus$ = this.store.select(
       selectCreateAdvertisementLoadingStatus
     );
     this.notificationMessage$ = this.store.select(getNotificationMessage);
+  }
+
+  public ngOnInit(): void {
+    this.spinner.show();
   }
 
   public onLogout(): void {
