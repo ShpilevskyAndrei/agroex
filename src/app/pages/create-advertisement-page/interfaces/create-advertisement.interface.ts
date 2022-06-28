@@ -1,29 +1,11 @@
-export interface ILocation {
+export interface IBaseCreateAdvertisementType {
   value: string;
   viewValue: string;
 }
 
-export interface ICountry {
-  value: string;
-  viewValue: string;
-}
-
-export interface IUnit {
-  value: string;
-  viewValue: string;
-}
-
-export interface ICurrency {
-  value: string;
-  viewValue: string;
-}
-
-export interface ICategory {
-  value: string;
-  viewValue: string;
-}
-
-export interface IProductType {
-  value: string;
-  viewValue: string;
-}
+export interface ILocation extends IBaseCreateAdvertisementType {}
+export interface ICountry extends IBaseCreateAdvertisementType {}
+export interface IUnit extends IBaseCreateAdvertisementType {}
+export interface ICurrency extends IBaseCreateAdvertisementType {}
+export interface ICategory extends IBaseCreateAdvertisementType {}
+export interface IProductType extends IBaseCreateAdvertisementType {}
