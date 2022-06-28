@@ -8,6 +8,7 @@ registerLocaleData(localeFr, 'fr');
 
 import { AdvertisementPriceComponent } from './advertisement-price.component';
 import { AvailableDateFormatPipe } from '../../../../pipes/available-date-format.pipe';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [AdvertisementPriceComponent, AvailableDateFormatPipe],
