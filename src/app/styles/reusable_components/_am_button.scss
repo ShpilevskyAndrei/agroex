@@ -29,18 +29,6 @@
     }
 }
 
-.mat-button.mat-button-disabled,
-.mat-raised-button.mat-button-disabled,
-[mat-button].mat-button-disabled,
-[mat-raised-button].mat-button-disabled
- {
-    background: $color-button-disable;
-    color: $color-border-input;
-    .mat-ripple {
-      border: 1px solid $color-button-disable;
-    }
-}
-
 .mat-button.btn_red,
 .mat-raised-button.btn_red,
 [mat-button].btn_red,
@@ -77,5 +65,18 @@
   }
   @media only screen and (max-width: $laptop-min-width) {
     line-height: 3rem;
+  }
+}
+
+.mat-button.mat-button-disabled,
+.mat-raised-button.mat-button-disabled,
+[mat-button].mat-button-disabled,
+[mat-raised-button].mat-button-disabled
+{
+  background: $color-button-disable;
+  color: $color-border-input;
+  border: none;
+  .mat-ripple {
+    border: 1px solid $color-button-disable;
   }
 }

@@ -19,7 +19,7 @@
                 [disabled]="!this.enableForm"
               />
             </mat-form-field>
-  
+
             <mat-form-field class="acc_top__form__field">
               <mat-label>Email</mat-label>
               <input
@@ -31,7 +31,7 @@
                 [disabled]="!this.enableForm"
               />
             </mat-form-field>
-    
+
             <mat-form-field class="acc_top__form__field">
               <mat-label>Phone</mat-label>
               <input
@@ -43,7 +43,7 @@
                 [disabled]="!this.enableForm"
               />
             </mat-form-field>
-    
+
             <button
               mat-button
               class="btn_tradewind acc_top__form__btn acc_top__form__btn-edit"
@@ -64,6 +64,7 @@
         <button
               mat-button
               class="btn_tradewind acc_top__form__btn"
+              [disabled]="true"
               (click)="stopPropagation($event)"
             >
               <mat-icon>lock</mat-icon>
@@ -83,7 +84,7 @@
                   </p>
                 </div>
             </div>
-    
+
             <div class="acc_bot__check_wrap-ins">
                 <mat-checkbox formControlName="checkBoxConfirm"></mat-checkbox>
                 <div class="acc_bot__check-text">
@@ -92,7 +93,7 @@
                   </p>
                 </div>
             </div>
-    
+
             <div class="acc_bot__check_wrap-ins">
                 <mat-checkbox formControlName="checkBoxConfirm"></mat-checkbox>
                 <div class="acc_bot__check-text">
@@ -101,7 +102,7 @@
                   </p>
                 </div>
             </div>
-    
+
             <div class="acc_bot__check_wrap-ins">
                 <mat-checkbox formControlName="checkBoxConfirm"></mat-checkbox>
                 <div class="acc_bot__check-text">
