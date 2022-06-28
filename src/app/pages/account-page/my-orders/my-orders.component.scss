@@ -33,6 +33,12 @@
       width: 100%;
       padding: 2rem 0;
     }
+    &__id {
+      color: $color-copy;
+      font-size: $font-size-xsmall;
+      font-weight: 400;
+      margin: $offset-small $offset-small 0 0;
+    }
     &__img {
       width: 28rem;
       min-width: 28rem;
