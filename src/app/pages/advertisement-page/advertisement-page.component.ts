@@ -108,18 +108,17 @@ export class AdvertisementPageComponent implements OnChanges {
     return !this.newBet;
   }
 
-  public get actualCurrency(): string | undefined {
-    if (this.advertisement?.advertisement.currency) {
-      switch (this.advertisement.advertisement.currency) {
-        case CurrenciesEnum.USD:
-          return `$`;
-        case CurrenciesEnum.EUR:
-          return `€`;
-        default:
-          return this.advertisement.advertisement.currency;
-      }
-    } else {
+  public get actualCurrency(): string {
+    if (!this.advertisement?.advertisement.currency) {
       return ' ';
+    }
+    switch (this.advertisement.advertisement.currency) {
+      case CurrenciesEnum.USD:
+        return '$';
+      case CurrenciesEnum.EUR:
+        return '€';
+      default:
+        return this.advertisement.advertisement.currency;
     }
   }
 
