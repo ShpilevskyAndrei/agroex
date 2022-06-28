@@ -16,7 +16,7 @@ import { AdvertisementButtonsAdPageModule } from './advertisement-buttons-ad-pag
 import { AdvertisementButtonsModule } from '../../shared/components/advertisements-list/advertisement/advertisement-buttons/advertisement-buttons.module';
 import { AdvertisementPriceModule } from '../../shared/components/advertisements-list/advertisement/advertisement-price/advertisement-price.module';
 import { AdvertisementModule } from '../../shared/components/advertisements-list/advertisement/advertisement.module';
-import { AdvertisementTitleModule } from '../../shared/components/advertisements-list/advertisement/advertisement-title/advertisement-title.module';
+import { AdvertisementTitleAdPageModule } from './advertisement-title-ad-page/advertisement-title-ad-page.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,6 @@ import { AdvertisementTitleModule } from '../../shared/components/advertisements
     BreadcrumbsModule,
     AdvertisementModule,
     AdvertisementPriceModule,
-    AdvertisementTitleModule,
     AdvertisementPageRoutingModule,
     MatIconModule,
     NgxSpinnerModule,
@@ -39,6 +38,7 @@ import { AdvertisementTitleModule } from '../../shared/components/advertisements
     MatInputModule,
     MatDialogModule,
     AdvertisementButtonsAdPageModule,
+    AdvertisementTitleAdPageModule,
   ],
   exports: [AdvertisementPageContainerComponent],
 })
