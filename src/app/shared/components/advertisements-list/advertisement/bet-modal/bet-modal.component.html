@@ -25,7 +25,7 @@
         to {{ +data.price - 1 | currency: data.currency:"symbol-narrow":"1.0" }}
       </p>
     </div>
-    <p class="bet-modal__unit-cost" [ngStyle]="{ visibility: visibility }">
+    <p class="bet-modal__unit-cost" [ngStyle]="{ visibility: betForm.invalid ? 'hidden' : 'visible' }">
       {{ unitCostBetText }}
     </p>
     <div mat-dialog-actions class="bet-modal__actions">
@@ -37,7 +37,7 @@
       >
         Bet
         {{
-          !betForm.invalid
+          betForm.valid
             ? (betValue | currency: data.currency:"symbol-narrow":"1.0":"fr")
             : ""
         }}

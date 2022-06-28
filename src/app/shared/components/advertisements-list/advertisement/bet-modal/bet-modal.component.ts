@@ -14,7 +14,6 @@ import { BetModalDataInterface } from './intefaces/bet-modal-data.interface';
 import { CurrenciesEnum } from './enums/currencies.enum';
 import { REGEXP_FOR_IS_INTEGER_NUMBER } from '../../../../constants/regexp';
 import { WeightEnum } from '../advertisement-price/enums/weight.enum';
-import { VISIBILITY_CONFIG } from '../../../../constants/visibility-config';
 
 @UntilDestroy()
 @Component({
@@ -48,24 +47,18 @@ export class BetModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: BetModalDataInterface
   ) {}
 
-  public get visibility(): string {
-    return this.betForm.invalid
-      ? VISIBILITY_CONFIG.hidden
-      : VISIBILITY_CONFIG.visible;
-  }
-
-  public get actualCurrency(): string | undefined {
-    if (this.data.currency) {
-      switch (this.data.currency) {
-        case CurrenciesEnum.USD:
-          return `$`;
-        case CurrenciesEnum.EUR:
-          return `€`;
-        default:
-          return this.data.currency;
-      }
+  public get actualCurrency(): string {
+    if (!this.data.currency) {
+      return ' ';
     }
-    return ' ';
+    switch (this.data.currency) {
+      case CurrenciesEnum.USD:
+        return '$';
+      case CurrenciesEnum.EUR:
+        return '€';
+      default:
+        return this.data.currency;
+    }
   }
 
   public get tonToKgUnit(): string {
@@ -79,20 +72,21 @@ export class BetModalComponent implements OnInit {
   }
 
   public get unitCostBet(): number {
-    return this.betValue
-      ? +(+this.betValue / this.calcTonToKg) >= 0.01
-        ? +(+this.betValue / this.calcTonToKg).toFixed(2)
-        : 0.01
-      : 0;
+    if (!this.betValue) {
+      return 0;
+    }
+    return +(+this.betValue / this.calcTonToKg) >= 0.01
+      ? +(+this.betValue / this.calcTonToKg).toFixed(2)
+      : 0.01;
   }
 
   public get unitCostBetText(): string {
-    if (this.betValue) {
-      return this.unitCostBet <= 0.01
-        ? `Less than ${this.actualCurrency} ${this.unitCostBet}/${this.tonToKgUnit}`
-        : `${this.actualCurrency} ${this.unitCostBet}/${this.tonToKgUnit}`;
+    if (!this.betValue) {
+      return '0';
     }
-    return '0';
+    return this.unitCostBet <= 0.01
+      ? `Less than ${this.actualCurrency} ${this.unitCostBet}/${this.tonToKgUnit}`
+      : `${this.actualCurrency} ${this.unitCostBet}/${this.tonToKgUnit}`;
   }
 
   public ngOnInit(): void {

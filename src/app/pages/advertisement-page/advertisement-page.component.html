@@ -83,7 +83,7 @@
               }}{{ +advertisement.advertisement.price - 1 }}
             </p>
 
-            <p class="unit-cost" [ngStyle]="{ visibility: visibility }">
+            <p class="unit-cost" [ngStyle]="{ visibility: betForm.invalid ? 'hidden' : 'visible' }">
               {{ unitCostBetText }}
             </p>
 
