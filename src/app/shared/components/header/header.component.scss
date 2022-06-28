@@ -74,6 +74,9 @@
           margin-left: $offset-normal;
           color: $header-login-icon-color;
         }
+        @media only screen and (max-width: $small-medium-screen-min-width) {
+          margin-left: 0rem;
+        }
       }
       &-icon {
         background-color: $bg-color-user-icon;
@@ -115,6 +118,12 @@
           border-radius: 50%;
           background-color: $color-error;
         }
+      }
+      @media only screen and (max-width: $medium-x-medium-screen-min-width) {
+        margin-left: 2rem;
+      }
+      @media only screen and (max-width: $small-screen-min-width) {
+        margin-left: 0rem;
       }
     }
   }
