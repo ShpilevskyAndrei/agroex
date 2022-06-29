@@ -28,8 +28,10 @@
       color: $primary-color;
     }
     .ad-user-flag {
+      align-self: center;
       font-size: $font-size-xsmall;
       color: $color-copy;
+      margin-left: $offset-xsmall;
     }
     .moderation-flag-rejected {
       align-self: center;

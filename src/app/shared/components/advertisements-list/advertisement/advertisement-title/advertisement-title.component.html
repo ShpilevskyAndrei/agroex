@@ -9,7 +9,7 @@
       (your advertisement)</span
     >
   </div>
-  <div class="create-id-container">
+  <div class="create-id-container" *ngIf="advertisement.moderationStatus === moderationStatus.Approved">
     <div class="advertisement-created">
       <mat-icon class="advertisement-created__icon">access_time</mat-icon>
       <span>{{ advertisement.createAt | availableDateFormat: "days":3 }}</span>

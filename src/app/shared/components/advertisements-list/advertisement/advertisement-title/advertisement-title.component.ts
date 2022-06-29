@@ -21,6 +21,7 @@ export class AdvertisementTitleComponent implements OnInit {
   @Input() public user: IUser | null;
   @Input() public showOwnerFlag: boolean;
 
+  public moderationStatus = ModerationStatus;
   public moderationFlag = {
     flag: '',
     style: '',
@@ -28,12 +29,12 @@ export class AdvertisementTitleComponent implements OnInit {
 
   public getModerationFlagConfig = (): Object => {
     switch (this.advertisement.moderationStatus) {
-      case ModerationStatus.Rejected:
+      case this.moderationStatus.Rejected:
         return (this.moderationFlag = {
           flag: MODERATION_FLAG_CONFIG.rejected.flag,
           style: MODERATION_FLAG_CONFIG.rejected.style,
         });
-      case ModerationStatus.Unmoderated:
+      case this.moderationStatus.Unmoderated:
         return (this.moderationFlag = {
           flag: MODERATION_FLAG_CONFIG.onModeration.flag,
           style: MODERATION_FLAG_CONFIG.onModeration.style,
