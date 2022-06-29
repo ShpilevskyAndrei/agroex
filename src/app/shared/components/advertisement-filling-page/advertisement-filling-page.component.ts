@@ -75,12 +75,13 @@ export class AdvertisementPageFillingComponent implements OnChanges {
   }
 
   public getFullLocationName(): string | undefined {
+    console.log(this.isShownMap);
     return `${this.advertisement?.advertisement.location}, ${this.advertisement?.advertisement.country}`;
   }
 
   public getLocation(): GeoJSON.FeatureCollection<GeoJSON.MultiPolygon> {
     if (this.map) {
-      console.log(this.map);
+      // console.log(this.map);
       return {
         ...this.map,
         features: this.map?.features?.filter(
@@ -135,7 +136,8 @@ export class AdvertisementPageFillingComponent implements OnChanges {
       .subscribe();
   }
 
-  public toggleShow(): void {
+  public toggleShow(event: MouseEvent): void {
+    event.preventDefault();
     this.isShownMap.isShownText = this.isShownMap.isShown
       ? this.isShownMapConfig.hideMapText
       : this.isShownMapConfig.showMapText;

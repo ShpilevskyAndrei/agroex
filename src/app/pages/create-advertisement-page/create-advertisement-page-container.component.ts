@@ -16,7 +16,10 @@ import {
   selectUserRole,
 } from '../../state/registration-page/registration-page.selectors';
 import { UserRole } from '../../shared/components/header/enums/user-role';
-import { getNotificationMessage } from '../../state/app-root/app-root.selectors';
+import {
+  getNotificationMessage,
+  selectMapData,
+} from '../../state/app-root/app-root.selectors';
 
 @Component({
   selector: 'app-create-advertisement-page-container',
@@ -27,6 +30,7 @@ import { getNotificationMessage } from '../../state/app-root/app-root.selectors'
       createAdvertisementLoadingStatus$ | async
     "
     [notificationMessage]="notificationMessage$ | async"
+    [map]="map$ | async"
     (logout)="onLogout()"
     (formAdvertisement)="onSubmitAdvertisementFormData($event)"
     (dropLoadingStatus)="onDropLoadingStatus()"
@@ -38,11 +42,13 @@ export class CreateAdvertisementPageContainerComponent implements OnInit {
   public user$: Observable<IUser | null>;
   public userRole$: Observable<UserRole | null>;
   public createAdvertisementLoadingStatus$: Observable<LoadingStatus>;
+  public map$: Observable<GeoJSON.FeatureCollection<GeoJSON.MultiPolygon> | null>;
   public notificationMessage$: Observable<MessagePayload[] | null>;
 
   constructor(private store: Store, private spinner: NgxSpinnerService) {
     this.user$ = this.store.select(selectUserData);
     this.userRole$ = this.store.select(selectUserRole);
+    this.map$ = this.store.select(selectMapData);
     this.createAdvertisementLoadingStatus$ = this.store.select(
       selectCreateAdvertisementLoadingStatus
     );

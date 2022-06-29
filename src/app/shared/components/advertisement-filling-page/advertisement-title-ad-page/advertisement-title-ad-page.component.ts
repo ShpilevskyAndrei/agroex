@@ -12,5 +12,5 @@ import { IAdvertisementInterface } from '../../advertisements-list/interfaces/ad
 export class AdvertisementTitleAdPageComponent {
   @Input() public advertisement: IAdvertisementInterface;
   @Input() public user: IUser | null;
-  @Input() public showOwnerFlag: boolean;
+  @Input() public showOwnerFlag: boolean = true;
 }

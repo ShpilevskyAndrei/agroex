@@ -6,6 +6,7 @@
           class="ad-card-image"
           src="{{ advertisement.advertisement.img }}"
           alt="{{ advertisement.advertisement.title }} image"
+          (click)="getFullLocationName()"
         />
       </div>
       <div class="ad-card-info">
@@ -115,7 +116,7 @@
         </div>
       </div>
     </div>
-    <div class="hide-map-container" (click)="toggleShow()">
+    <div class="hide-map-container" (click)="toggleShow($event)">
       <mat-icon class="show-map-icon">{{ isShownMap.isShownIcon }}</mat-icon>
       <p class="show-map-text">{{ isShownMap.isShownText }}</p>
     </div>

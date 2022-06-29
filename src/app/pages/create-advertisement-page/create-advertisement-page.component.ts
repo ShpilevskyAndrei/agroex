@@ -28,6 +28,7 @@ import {
 } from './interfaces/create-advertisement.interface';
 import { CreateAdvertisementService } from './services/create-advertisement.service';
 import { UserRole } from '../../shared/components/header/enums/user-role';
+import { IAdRequestInterface } from '../../shared/components/advertisements-list/interfaces/ad-request.interface';
 
 @Component({
   selector: 'app-create-advertisement-page',
@@ -39,6 +40,7 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
   @Input() public createAdvertisementLoadingStatus: LoadingStatus | null;
   @Input() public notificationMessage: MessagePayload[] | null;
   @Input() public userRole: UserRole | null;
+  @Input() public map: GeoJSON.FeatureCollection<GeoJSON.MultiPolygon> | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
   @Output() public dropLoadingStatus: EventEmitter<void> =
@@ -195,5 +197,61 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
 
   public goToCreateAdvPage(): void {
     this.navigateToCreateAdvertisementPage = true;
+  }
+
+  public getMapData(): void {
+    this.navigateToCreateAdvertisementPage = true;
+  }
+
+  public getDataToPreviewAdvPage(): IAdRequestInterface {
+    const rawValue = this.advertisementForm.getRawValue();
+    const date = new Date();
+    const currentDate = date.getTime().toString();
+    const createAtDate =
+      [date.getFullYear(), date.getMonth() + 1, date.getDate()].join('/') +
+      ' ' +
+      [date.getHours(), date.getMinutes()].join(':');
+
+    return {
+      advertisement: {
+        id: 0,
+        title: rawValue.title || 'Title',
+        country: rawValue.country || 'Country',
+        location: rawValue.location || 'Fergana Region',
+        slug: '',
+        category: rawValue.category || 'Category',
+        subCategory: '',
+        isModerated: false,
+        isActive: false,
+        price: rawValue.price || '0.00',
+        currency: rawValue.currency || '1.00',
+        img: 'https://res.cloudinary.com/agroex-backend/image/upload/v1656420961/g4myrubcbebnwt3depek.webp',
+        // img: this.files[0],
+        quantity: rawValue.quantity || '1.00',
+        unit: rawValue.unit || '1.00',
+        createAt: createAtDate,
+        updatedAt: currentDate,
+        author: {
+          id: this.user?.id || 0,
+          email: '',
+          username: '',
+          phone: '',
+          image: '',
+          banned: false,
+          banReason: '',
+        },
+        userBets: [
+          {
+            id: 0,
+            user_id: 0,
+            advertisement_id: 0,
+            created_at: currentDate,
+            expireBet: currentDate,
+            betValue: '',
+            isActive: false,
+          },
+        ],
+      },
+    };
   }
 }

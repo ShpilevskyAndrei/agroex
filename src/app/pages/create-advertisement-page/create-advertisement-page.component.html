@@ -256,13 +256,28 @@
     </div>
   </ng-container>
   <ng-template #previewPage>
-    <div class="container preview">
-      <div class="preview__back" (click)="goToCreateAdvPage()">
-        <mat-icon>arrow_back</mat-icon>
-        <span class="preview__back-text">New advertisement</span>
+    <div class="container">
+      <div class="preview">
+        <div class="preview__back" (click)="goToCreateAdvPage()">
+          <mat-icon>arrow_back</mat-icon>
+          <span class="preview__back-text">New advertisement</span>
+        </div>
       </div>
-      <p>Preview page</p>
     </div>
+    <app-advertisement-filling-page
+          [user]="user"
+          [advertisement]="getDataToPreviewAdvPage()"
+          [map]="map"
+        >
+    </app-advertisement-filling-page>
+        <!-- <app-advertisement-filling-page
+          [user]="user"
+          [advertisement]="getDataToPreviewAdvPage()"
+          [map]="map"
+          (setBet)="onSetBet($event)"
+          (setBuy)="onSetBuy($event)"
+        >
+        </app-advertisement-filling-page> -->
   </ng-template>
 </ng-container>
 

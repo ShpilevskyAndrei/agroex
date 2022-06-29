@@ -14,6 +14,7 @@ import { HeaderModule } from '../../shared/components/header/header.module';
 import { CreateAdvertisementPageContainerComponent } from './create-advertisement-page-container.component';
 import { CreateAdvertisementPageRoutingModule } from './create-advertisement-page-routing.module';
 import { CreateAdvertisementPageComponent } from './create-advertisement-page.component';
+import { AdvertisementFillingPageModule } from '../../shared/components/advertisement-filling-page/advertisement-filling-page.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { CreateAdvertisementPageComponent } from './create-advertisement-page.co
   imports: [
     CommonModule,
     HeaderModule,
+    AdvertisementFillingPageModule,
     CreateAdvertisementPageRoutingModule,
     ReactiveFormsModule,
     MatFormFieldModule,
