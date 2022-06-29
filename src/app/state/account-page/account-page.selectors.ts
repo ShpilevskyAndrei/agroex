@@ -30,3 +30,7 @@ export const selectMyOrdersData = createSelector(
   selectGetFeatureState,
   (state) => state.myOrders
 );
+export const selectMyAdvertisementTab = createSelector(
+  selectGetFeatureState,
+  (state) => state.myAdvertisementTab
+);

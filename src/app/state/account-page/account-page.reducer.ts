@@ -11,6 +11,7 @@ export interface AccountPageState {
   myAdvertisements: IAdvertisementRequestInterface;
   myBettings: IAdvertisementRequestInterface;
   myOrders: IMyOrdersInterface[];
+  myAdvertisementTab: string;
 }
 
 export const ACCOUNT_PAGE = 'accountPage';
@@ -20,6 +21,7 @@ const initialState: AccountPageState = {
   myAdvertisements: { advertisementCount: null, advertisements: [] },
   myBettings: { advertisementCount: null, advertisements: [] },
   myOrders: [],
+  myAdvertisementTab: 'Active',
 };
 
 export const ACCOUNT_PAGE_REDUCER = createReducer(
@@ -125,6 +127,13 @@ export const ACCOUNT_PAGE_REDUCER = createReducer(
     (state, { error }): AccountPageState => ({
       ...state,
       accountPageLoadingStatus: { loading: false, loaded: false, error },
+    })
+  ),
+  on(
+    AccountPageActions.getMyAdvertisementTabRequest,
+    (state, { selectedMyAdvertisementOptionTab }): AccountPageState => ({
+      ...state,
+      myAdvertisementTab: selectedMyAdvertisementOptionTab,
     })
   )
 );
