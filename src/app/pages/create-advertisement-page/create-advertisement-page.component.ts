@@ -29,6 +29,7 @@ import {
 import { CreateAdvertisementService } from './services/create-advertisement.service';
 import { UserRole } from '../../shared/components/header/enums/user-role';
 import { IAdRequestInterface } from '../../shared/components/advertisements-list/interfaces/ad-request.interface';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-create-advertisement-page',
@@ -198,10 +199,10 @@ export class CreateAdvertisementPageComponent implements OnChanges {
           `${reader.result}`
         );
       };
-    } else {
-      this.dataToPreviewAdvPage =
-        this.getDataToPreviewAdvPage(PATH_TO_EMPTY_IMAGE);
     }
+
+    this.dataToPreviewAdvPage =
+      this.getDataToPreviewAdvPage(PATH_TO_EMPTY_IMAGE);
 
     this.navigateToCreateAdvertisementPage = false;
   }
@@ -212,12 +213,7 @@ export class CreateAdvertisementPageComponent implements OnChanges {
 
   public getDataToPreviewAdvPage(base64File: string): IAdRequestInterface {
     const rawValue = this.advertisementForm.getRawValue();
-    const date = new Date();
-    const currentDate = date.getTime().toString();
-    const createAtDate =
-      [date.getFullYear(), date.getMonth() + 1, date.getDate()].join('/') +
-      ' ' +
-      [date.getHours(), date.getMinutes()].join(':');
+    const currentDate = moment(moment()).format('YYYY-MM-DD HH:mm');
 
     return {
       advertisement: {
@@ -235,7 +231,7 @@ export class CreateAdvertisementPageComponent implements OnChanges {
         img: base64File,
         quantity: rawValue.quantity || '1.00',
         unit: rawValue.unit || '1.00',
-        createAt: createAtDate,
+        createAt: currentDate,
         updatedAt: currentDate,
         author: {
           id: this.user?.id || 0,

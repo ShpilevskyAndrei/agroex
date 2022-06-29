@@ -171,7 +171,6 @@ export class AdvertisementPageFillingComponent implements OnChanges {
   }
 
   public toggleShow(): void {
-    // console.log(this.map);
     this.isShownMap.isShownText = this.isShownMap.isShown
       ? this.isShownMapConfig.hideMapText
       : this.isShownMapConfig.showMapText;
