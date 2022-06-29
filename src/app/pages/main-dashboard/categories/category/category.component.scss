@@ -18,3 +18,7 @@
     }
   }
 }
+
+::ng-deep {
+  @include mat-tab-styles;
+}

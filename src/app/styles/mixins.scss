@@ -81,6 +81,7 @@
     }
   }
 }
+
 @mixin empty-advertisement-block {
   .empty-advertisement {
     display: flex;
@@ -96,3 +97,30 @@
     }
   }
 }
+
+
+@mixin mat-tab-styles {
+  .mat-tab-body {
+    min-height: 50vh;
+  }
+  .mat-tab-label {
+    height: 5.3rem;
+    opacity: 1;
+  }
+
+  .mat-tab-header {
+    border: none;
+    box-shadow: inset 0 -0.083rem 0 #e6e6e6;
+  }
+
+  .mat-tab-label-active {
+    background-color: #f6fbfb;
+  }
+
+  .mat-tab-label-content {
+    font-size: 1.5rem;
+    color: $primary-color;
+  }
+}
+
+

@@ -78,7 +78,7 @@
     &__sidebar {
       display: flex;
       flex-direction: column;
-      margin-top: 8.8rem;
+      padding-top: 7.3rem;
       width: 22.3rem;
       min-width: 22.3rem;
       min-height: 50vh;
@@ -121,4 +121,15 @@
       }
     }
   }
+}
+
+::ng-deep {
+  .account-tabs {
+    width: 100%;
+    .mat-tab-header {
+      margin: 0 2rem;
+    }
+    @include mat-tab-styles;
+  }
+
 }
