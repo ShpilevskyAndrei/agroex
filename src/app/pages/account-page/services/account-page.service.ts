@@ -25,11 +25,15 @@ export class AccountPageService extends BaseService {
   }
 
   public getMyAdvertisements(
+    myAdvertisementTab: string,
     token?: string
   ): Observable<IAdvertisementRequestInterface> {
     return this.get<IAdvertisementRequestInterface>(
-      'advertisements/my-advertisements',
-      { token }
+      `advertisements/my-advertisements`,
+      {
+        params: { type: myAdvertisementTab.toLowerCase() },
+        token,
+      }
     );
   }
 
