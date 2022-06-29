@@ -12,6 +12,7 @@ import {
   selectMyBettingsData,
   selectMyOrdersData,
   selectMyOrdersLoadingStatus,
+  selectMyAdvertisementTab,
 } from '../../state/account-page/account-page.selectors';
 import { AppRootActions } from '../../state/app-root/app-root.actions';
 import { RegistrationPageActions } from '../../state/registration-page/registration-page.actions';
@@ -44,6 +45,7 @@ import { AdvertisementsListDealActions } from 'src/app/state/advertisements-list
     [myOrdersRequest]="myOrdersRequest$ | async"
     [myOrdersLoadingStatus]="myOrdersLoadingStatus$ | async"
     [notificationMessage]="notificationMessage$ | async"
+    [selectMyAdvertisementTabTitle]="selectMyAdvertisementTab$ | async"
     (logout)="onLogout()"
     (setBet)="onSetBet($event)"
     (setBuy)="onSetBuy($event)"
@@ -51,6 +53,7 @@ import { AdvertisementsListDealActions } from 'src/app/state/advertisements-list
     (dispatcher)="onDispatcher($event)"
     (confirmDeal)="onConfirmDeal($event)"
     (addNotificationMessage)="onAddNotificationMessage($event)"
+    (selectMyAdvertisementsTab)="onSelectMyAdvertisementTab($event)"
   ></app-account-page>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -65,6 +68,7 @@ export class AccountPageContainerComponent {
   public myOrdersRequest$: Observable<IMyOrdersInterface[] | null>;
   public myOrdersLoadingStatus$: Observable<LoadingStatus | null>;
   public notificationMessage$: Observable<MessagePayload[] | null>;
+  public selectMyAdvertisementTab$: Observable<string | null>;
 
   constructor(private store: Store) {
     this.user$ = this.store.select(selectUserData);
@@ -85,6 +89,9 @@ export class AccountPageContainerComponent {
       selectMyOrdersLoadingStatus
     );
     this.notificationMessage$ = this.store.select(getNotificationMessage);
+    this.selectMyAdvertisementTab$ = this.store.select(
+      selectMyAdvertisementTab
+    );
   }
 
   public onLogout(): void {
@@ -118,7 +125,22 @@ export class AccountPageContainerComponent {
       AdvertisementsListDealActions.getAdvertisementsBuyRequest({ buyOptions })
     );
   }
+
   public onAddNotificationMessage(message: MessagePayload): void {
     this.store.dispatch(AppRootActions.getNotificationMessage({ message }));
+  }
+
+  public onSelectMyAdvertisementTab(
+    selectedMyAdvertisementOptionTab: string
+  ): void {
+    console.log(selectedMyAdvertisementOptionTab);
+    this.store.dispatch(
+      AccountPageActions.getMyAdvertisementTabRequest({
+        selectedMyAdvertisementOptionTab,
+      })
+    );
+    this.store.dispatch(AccountPageActions.getMyAdvertisementsRequest());
+    //TODO:SPINNER
+    // this.spinner.show();
   }
 }
