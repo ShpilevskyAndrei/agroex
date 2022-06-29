@@ -1,14 +1,10 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { IAdvertisementInterface } from '../../interfaces/advertisement.interface';
 import { IUser } from '../../../../interfaces/user.interface';
 import { MODERATION_FLAG_CONFIG } from './const/moderation-flag-config';
 import { ModerationStatus } from '../../../header/enums/moderation-status';
+import { IModerationFlag } from './inerfaces/i-moderation-flag';
 
 @Component({
   selector: 'app-advertisement-title',
@@ -16,38 +12,30 @@ import { ModerationStatus } from '../../../header/enums/moderation-status';
   styleUrls: ['./advertisement-title.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AdvertisementTitleComponent implements OnInit {
+export class AdvertisementTitleComponent {
   @Input() public advertisement: IAdvertisementInterface;
   @Input() public user: IUser | null;
   @Input() public showOwnerFlag: boolean;
 
   public moderationStatus = ModerationStatus;
-  public moderationFlag = {
-    flag: '',
-    style: '',
-  };
 
-  public getModerationFlagConfig = (): Object => {
+  public get getModerationFlagConfig(): IModerationFlag {
     switch (this.advertisement.moderationStatus) {
       case this.moderationStatus.Rejected:
-        return (this.moderationFlag = {
+        return {
           flag: MODERATION_FLAG_CONFIG.rejected.flag,
           style: MODERATION_FLAG_CONFIG.rejected.style,
-        });
+        };
       case this.moderationStatus.Unmoderated:
-        return (this.moderationFlag = {
+        return {
           flag: MODERATION_FLAG_CONFIG.onModeration.flag,
           style: MODERATION_FLAG_CONFIG.onModeration.style,
-        });
+        };
       default:
-        return (this.moderationFlag = {
+        return {
           flag: '',
           style: '',
-        });
+        };
     }
-  };
-
-  public ngOnInit(): void {
-    this.getModerationFlagConfig();
   }
 }
