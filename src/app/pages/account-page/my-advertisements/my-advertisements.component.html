@@ -10,14 +10,13 @@
     *ngFor="let myAdvertisementsTab of myAdvertisementsTabs"
     [label]="myAdvertisementsTab"
   >
-    <ng-container
-      *ngIf="
-        myAdvertisementsRequest?.advertisements?.length;
-        else emptyMyAdvertisements
-      "
-    >
+    <ng-container *ngIf="myAdvertisementsLoadingStatus?.loaded; else notLoaded">
       <app-advertisements-list
         class="my-advertisements-list"
+        *ngIf="
+          myAdvertisementsRequest?.advertisements?.length;
+          else emptyMyAdvertisements
+        "
         [advertisementsRequest]="myAdvertisementsRequest"
         [advertisementsLoadingStatus]="myAdvertisementsLoadingStatus"
         [user]="user"
@@ -40,4 +39,19 @@
   <div class="empty-advertisement">
     <p>You don't have advertisements</p>
   </div>
+</ng-template>
+
+<ng-template #notLoaded>
+  <ngx-spinner
+    *ngIf="myAdvertisementsLoadingStatus?.loading; else myAdvertisementsError"
+    bdColor="rgba(0, 0, 0, 0)"
+    size="medium"
+    color="#38999B"
+    type="ball-clip-rotate"
+    [fullScreen]="false"
+  >
+  </ngx-spinner>
+  <ng-template #myAdvertisementsError>
+    <p>{{ myAdvertisementsLoadingStatus?.error?.statusText }}</p>
+  </ng-template>
 </ng-template>

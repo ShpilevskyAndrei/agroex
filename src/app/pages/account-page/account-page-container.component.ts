@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
 import firebase from 'firebase/compat';
 import MessagePayload = firebase.messaging.MessagePayload;
@@ -70,7 +71,7 @@ export class AccountPageContainerComponent {
   public notificationMessage$: Observable<MessagePayload[] | null>;
   public selectMyAdvertisementTab$: Observable<string | null>;
 
-  constructor(private store: Store) {
+  constructor(private store: Store, private spinner: NgxSpinnerService) {
     this.user$ = this.store.select(selectUserData);
     this.userRole$ = this.store.select(selectUserRole);
     this.selectedTab$ = this.store.select(selectAppRootOptionId);
@@ -104,6 +105,7 @@ export class AccountPageContainerComponent {
 
   public onDispatcher(dispatcher: Function): void {
     this.store.dispatch(dispatcher());
+    this.spinner.show();
   }
 
   public onConfirmDeal(advertisement: IAdvertisementInterface): void {
@@ -140,7 +142,6 @@ export class AccountPageContainerComponent {
       })
     );
     this.store.dispatch(AccountPageActions.getMyAdvertisementsRequest());
-    //TODO:SPINNER
-    // this.spinner.show();
+    this.spinner.show();
   }
 }
