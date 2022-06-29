@@ -1,21 +1,22 @@
-<mat-tab-group
-  mat-stretch-tabs
-  animationDuration="0ms"
-  color="accent"
-  class="account-tabs"
-  (selectedTabChange)="onSelectMyAdvertisementTab($event)"
-  [selectedIndex]="findMyAdvertisementTabTitle()"
->
-  <mat-tab
-    *ngFor="let myAdvertisementsTab of myAdvertisementsTabs"
-    [label]="myAdvertisementsTab"
-  >
-    <ng-container
-      *ngIf="
+<ng-container
+  *ngIf="
         myAdvertisementsRequest?.advertisements?.length;
         else emptyMyAdvertisements
       "
+>
+  <mat-tab-group
+    mat-stretch-tabs
+    animationDuration="0ms"
+    color="accent"
+    class="account-tabs"
+    (selectedTabChange)="onSelectMyAdvertisementTab($event)"
+    [selectedIndex]="findMyAdvertisementTabTitle()"
+  >
+    <mat-tab
+      *ngFor="let myAdvertisementsTab of myAdvertisementsTabs"
+      [label]="myAdvertisementsTab"
     >
+
       <app-advertisements-list
         class="my-advertisements-list"
         [advertisementsRequest]="myAdvertisementsRequest"
@@ -32,9 +33,10 @@
           ></app-my-advertisements-buttons>
         </ng-template>
       </app-advertisements-list>
-    </ng-container>
-  </mat-tab>
-</mat-tab-group>
+
+    </mat-tab>
+  </mat-tab-group>
+</ng-container>
 
 <ng-template #emptyMyAdvertisements>
   <div class="empty-advertisement">
