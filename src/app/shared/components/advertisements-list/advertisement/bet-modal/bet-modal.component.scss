@@ -1,14 +1,16 @@
 @import "../../../../../styles/general-styles";
 
 :host {
+  $color-unit-cost: #51acae;
+
   .bet-modal {
     position: relative;
     display: flex;
     flex-direction: column;
     padding: 3.333rem;
 
-    input[type=number]::-webkit-inner-spin-button,
-    input[type=number]::-webkit-outer-spin-button {
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
       -webkit-appearance: none;
       margin: 0;
     }
@@ -67,6 +69,13 @@
       cursor: pointer;
       color: $color-copy;
     }
+
+    &__unit-cost {
+      color: $color-unit-cost;
+      margin: 1.5rem 0;
+      font-size: $font-size-normal;
+    }
+
     .mat-form-field-invalid + * {
       color: $color-error;
     }
