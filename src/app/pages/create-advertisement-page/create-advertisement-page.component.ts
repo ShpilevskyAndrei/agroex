@@ -3,7 +3,6 @@ import {
   EventEmitter,
   Input,
   OnChanges,
-  OnDestroy,
   Output,
   SimpleChanges,
 } from '@angular/core';
@@ -17,6 +16,7 @@ import MessagePayload = firebase.messaging.MessagePayload;
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IUser } from '../../shared/interfaces/user.interface';
 import { MAX_FILE_SIZE } from './constant/max-file-sizes';
+import { PATH_TO_EMPTY_IMAGE } from './constant/empty-image';
 import { REGEXP_FOR_IS_NUMBER } from './constant/regexp';
 import { REGEXP_FOR_IS_INTEGER_NUMBER } from '../../shared/constants/regexp';
 import {
@@ -35,7 +35,7 @@ import { IAdRequestInterface } from '../../shared/components/advertisements-list
   templateUrl: './create-advertisement-page.component.html',
   styleUrls: ['./create-advertisement-page.component.scss'],
 })
-export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
+export class CreateAdvertisementPageComponent implements OnChanges {
   @Input() public user: IUser | null;
   @Input() public createAdvertisementLoadingStatus: LoadingStatus | null;
   @Input() public notificationMessage: MessagePayload[] | null;
@@ -52,8 +52,8 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
     new EventEmitter<MessagePayload>();
 
   public maxFileSize = MAX_FILE_SIZE;
-
   public files: File[] = [];
+  public dataToPreviewAdvPage: IAdRequestInterface;
 
   public countries: ICountry[] = this.createAdvertisementService.countries;
   public units: IUnit[] = this.createAdvertisementService.units;
@@ -172,10 +172,6 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
     }
   }
 
-  public ngOnDestroy(): void {
-    this.dropLoadingStatus.emit();
-  }
-
   public onClickFile(event: MouseEvent): void {
     if (this.files.length) {
       event.preventDefault();
@@ -192,6 +188,21 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
 
   public goToPreview(clickEvent: MouseEvent): void {
     clickEvent.preventDefault();
+
+    const reader = new FileReader();
+
+    if (this.files[0]) {
+      reader.readAsDataURL(this.files[0]);
+      reader.onload = (): void => {
+        this.dataToPreviewAdvPage = this.getDataToPreviewAdvPage(
+          `${reader.result}`
+        );
+      };
+    } else {
+      this.dataToPreviewAdvPage =
+        this.getDataToPreviewAdvPage(PATH_TO_EMPTY_IMAGE);
+    }
+
     this.navigateToCreateAdvertisementPage = false;
   }
 
@@ -199,11 +210,7 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
     this.navigateToCreateAdvertisementPage = true;
   }
 
-  public getMapData(): void {
-    this.navigateToCreateAdvertisementPage = true;
-  }
-
-  public getDataToPreviewAdvPage(): IAdRequestInterface {
+  public getDataToPreviewAdvPage(base64File: string): IAdRequestInterface {
     const rawValue = this.advertisementForm.getRawValue();
     const date = new Date();
     const currentDate = date.getTime().toString();
@@ -217,7 +224,7 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
         id: 0,
         title: rawValue.title || 'Title',
         country: rawValue.country || 'Country',
-        location: rawValue.location || 'Fergana Region',
+        location: rawValue.location || 'Location',
         slug: '',
         category: rawValue.category || 'Category',
         subCategory: '',
@@ -225,8 +232,7 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
         isActive: false,
         price: rawValue.price || '0.00',
         currency: rawValue.currency || '1.00',
-        img: 'https://res.cloudinary.com/agroex-backend/image/upload/v1656420961/g4myrubcbebnwt3depek.webp',
-        // img: this.files[0],
+        img: base64File,
         quantity: rawValue.quantity || '1.00',
         unit: rawValue.unit || '1.00',
         createAt: createAtDate,
