@@ -41,11 +41,4 @@ export class AdvertisementComponent {
       this.router.navigate(['/advertisement', this.advertisement.slug]);
     }
   }
-
-  public isModerated(): boolean {
-    return (
-      this.advertisement.moderationStatus === ModerationStatus.Unmoderated &&
-      this.userRole === UserRole.User
-    );
-  }
 }

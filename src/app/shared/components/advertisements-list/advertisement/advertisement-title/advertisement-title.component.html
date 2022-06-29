@@ -1,6 +1,7 @@
 <div class="advertisement-title">
-  <div>
+  <div class="ad-title-wrap-media-only">
     <span class="title">{{ advertisement.title }}</span>
+    <span class="{{moderationFlag.style}}">{{moderationFlag.flag}}</span>
     <span
       class="ad-user-flag"
       *ngIf="advertisement.author.id === user?.id && showOwnerFlag"
