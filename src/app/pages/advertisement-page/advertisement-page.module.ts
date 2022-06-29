@@ -8,7 +8,7 @@ import { AdvertisementPageContainerComponent } from './advertisement-page-contai
 import { AdvertisementPageRoutingModule } from './advertisement-page-routing.module';
 import { BreadcrumbsModule } from '../../shared/components/breadcrumbs/breadcrumbs.module';
 import { HeaderModule } from '../../shared/components/header/header.module';
-import { AdvertisementFillingPageModule } from './advertisement-filling-page/advertisement-filling-page.module';
+import { AdvertisementFillingPageModule } from '../../shared/components/advertisement-filling-page/advertisement-filling-page.module';
 
 @NgModule({
   declarations: [

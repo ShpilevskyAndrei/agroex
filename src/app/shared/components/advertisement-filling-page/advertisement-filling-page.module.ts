@@ -7,9 +7,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 
 import { AdvertisementPageFillingComponent } from './advertisement-filling-page.component';
-import { AdvertisementButtonsAdPageModule } from '../advertisement-buttons-ad-page/advertisement-buttons-ad-page.module';
 import { AdvertisementPriceModule } from '../../../shared/components/advertisements-list/advertisement/advertisement-price/advertisement-price.module';
-import { AdvertisementTitleAdPageModule } from '../advertisement-title-ad-page/advertisement-title-ad-page.module';
+import { AdvertisementButtonsAdPageModule } from './advertisement-buttons-ad-page/advertisement-buttons-ad-page.module';
+import { AdvertisementTitleAdPageModule } from './advertisement-title-ad-page/advertisement-title-ad-page.module';
 
 @NgModule({
   declarations: [AdvertisementPageFillingComponent],

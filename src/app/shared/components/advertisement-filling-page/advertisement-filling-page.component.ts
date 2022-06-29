@@ -14,7 +14,7 @@ import { LngLatLike } from 'mapbox-gl';
 
 import { IUser } from '../../../shared/interfaces/user.interface';
 import { IS_SHOWN_MAP_CONFIG } from '../../../shared/constants/is-shown-map-config';
-import { IShownMap } from '../interfaces/shown-map.interface';
+import { IShownMap } from './interfaces/shown-map.interface';
 import { IAdRequestInterface } from '../../../shared/components/advertisements-list/interfaces/ad-request.interface';
 import { CurrenciesEnum } from '../../../shared/components/advertisements-list/advertisement/bet-modal/enums/currencies.enum';
 import { BetValidators } from '../../../shared/components/advertisements-list/advertisement/bet-modal/intefaces/bet-validator';
