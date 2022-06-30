@@ -241,7 +241,7 @@ export class CreateAdvertisementPageComponent implements OnChanges {
         createAt: currentDate,
         updatedAt: currentDate,
         author: {
-          id: <number>this.user?.id,
+          id: 0,
           email: '',
           username: '',
           phone: '',
