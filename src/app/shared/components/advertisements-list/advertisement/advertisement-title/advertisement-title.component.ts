@@ -13,4 +13,5 @@ export class AdvertisementTitleComponent {
   @Input() public advertisement: IAdvertisementInterface;
   @Input() public user: IUser | null;
   @Input() public showOwnerFlag: boolean;
+  @Input() public isModerationPage: boolean;
 }

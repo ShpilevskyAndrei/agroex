@@ -1,9 +1,6 @@
 .mat-checkbox {
     .mat-checkbox-layout {
         position: relative;
-        .mat-checkbox-label {
-            display: none;
-        }
         .mat-checkbox-background {
             display: none;
         }
@@ -38,7 +35,7 @@
         input[type="checkbox"].mat-checkbox-input {
 
             &:checked {
-                
+
                 & ~ .mat-checkbox-frame::before {
                     top: -3px;
                     left: -3px;
@@ -48,7 +45,7 @@
                 }
             }
         }
-        
+
     }
     &.ng-invalid.ng-touched {
         .mat-checkbox-layout {
@@ -67,4 +64,23 @@
             }
         }
     }
+}
+
+.mat-checkbox {
+  .mat-checkbox-layout {
+    .mat-checkbox-label {
+      display: none;
+    }
+  }
+}
+
+.acc_bot__check_wrap-ins .mat-checkbox {
+  .mat-checkbox-layout {
+    .mat-checkbox-label {
+      display: block;
+      margin-left: .8rem;
+      font-size: 1.5rem;
+      color: $primary-color;
+    }
+  }
 }

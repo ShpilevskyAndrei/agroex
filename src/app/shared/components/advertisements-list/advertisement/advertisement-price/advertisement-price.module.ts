@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { registerLocaleData } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 import localeFr from '@angular/common/locales/fr';
 import { MatIconModule } from '@angular/material/icon';
 

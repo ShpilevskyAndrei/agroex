@@ -49,6 +49,8 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
   @Output() public selectTab: EventEmitter<string> = new EventEmitter<string>();
   @Output() public addNotificationMessage: EventEmitter<MessagePayload> =
     new EventEmitter<MessagePayload>();
+  @Output() public changeNotificationStatus: EventEmitter<MessagePayload> =
+    new EventEmitter<MessagePayload>();
 
   public maxFileSize = MAX_FILE_SIZE;
 
@@ -184,5 +186,9 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
 
   public onAddNotificationMessage(message: MessagePayload): void {
     this.addNotificationMessage.emit(message);
+  }
+
+  public onClickNotification(notification: MessagePayload): void {
+    this.changeNotificationStatus.emit(notification);
   }
 }
