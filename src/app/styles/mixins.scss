@@ -96,3 +96,11 @@
     }
   }
 }
+
+@mixin advertisement-disabled {
+  .advertisement-price .advertisement-disabled,
+  .advertisement-price__total .advertisement-disabled,
+  .advertisement-title .advertisement-disabled {
+    color: $color-copy !important;
+  }
+}

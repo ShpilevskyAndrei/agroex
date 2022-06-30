@@ -1,28 +1,35 @@
 <div class="advertisement-price">
   <div class="advertisement-price-item">
-    <div class="advertisement-price__bet">
-      <span class="label">Bet</span>
-      <ng-container *ngIf="advertisement.userBets.length; else noBetBlock">
-        <span class="value" [style]="getBetColor">{{
-          advertisement.userBets![0].betValue
+    <ng-container *ngIf="advertisement.moderationStatus === moderationStatus.Approved">
+      <div class="advertisement-price__bet">
+        <span class="label">Bet</span>
+        <ng-container *ngIf="advertisement.userBets.length; else noBetBlock">
+        <span
+          class="value"
+          [ngClass]="{'advertisement-disabled': advertisement.isModerated && (advertisement.isConfirmed || !advertisement.isActive)}"
+          [style]="getBetColor">
+          {{advertisement.userBets![0].betValue
             | currency: advertisement.currency:"symbol-narrow":"0.2":"fr"
-        }}</span>
-        <ng-container *ngIf="unitCostBet > 0.01; else minUnitCost">
-          <span class="unit-price">{{ unitCostTextBet }}</span>
+          }}
+        </span>
+          <ng-container *ngIf="unitCostBet > 0.01; else minUnitCost">
+            <span class="unit-price">{{ unitCostTextBet }}</span>
+          </ng-container>
         </ng-container>
-      </ng-container>
-      <ng-template #noBetBlock>
-        <span class="no-bets">No bets</span>
-      </ng-template>
-    </div>
+        <ng-template #noBetBlock>
+          <span class="no-bets">No bets</span>
+        </ng-template>
+      </div>
+    </ng-container>
   </div>
   <div class="advertisement-price-item">
     <div class="advertisement-price__total">
       <span class="label">Total price</span>
-      <span class="value">{{
-        advertisement.price
-          | currency: advertisement.currency:"symbol-narrow":"0.2":"fr"
-      }}</span>
+      <span
+        class="value"
+        [ngClass]="{'advertisement-disabled': advertisement.isModerated && (advertisement.isConfirmed || !advertisement.isActive)}">
+        {{advertisement.price | currency: advertisement.currency:"symbol-narrow":"0.2":"fr"}}
+      </span>
       <ng-container *ngIf="unitCostPrice >= 0.01; else minUnitCost">
         <span class="unit-price">{{ unitCostTextPrice }}</span>
       </ng-container>
