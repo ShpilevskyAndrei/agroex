@@ -1,4 +1,4 @@
-import { IShownMapConfig } from '../../pages/advertisement-page/interfaces/shown-map-config.interface';
+import { IShownMapConfig } from '../components/advertisement-filling-page/interfaces/shown-map-config.interface';
 
 export const IS_SHOWN_MAP_CONFIG: IShownMapConfig = {
   isShown: true,

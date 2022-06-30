@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { IAdvertisementInterface } from '../../../shared/components/advertisements-list/interfaces/advertisement.interface';
+import { IAdvertisementInterface } from '../../advertisements-list/interfaces/advertisement.interface';
 
 @Component({
   selector: 'app-advertisement-buttons-ad-page',

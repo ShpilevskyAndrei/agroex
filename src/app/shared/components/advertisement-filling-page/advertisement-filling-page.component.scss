@@ -1,0 +1,216 @@
+@import "~mapbox-gl/dist/mapbox-gl.css";
+@import "../../../styles/general-styles";
+
+:host {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+  }
+
+  .ad-card-container {
+    width: 100%;
+    background: $color-white;
+    box-shadow: inset 0px -1px 0px $color-button-disable;
+    padding: $offset-medium $offset-xxlarge;
+  }
+
+  .ad-card-container-without-map {
+    display: flex;
+    width: 100%;
+    @media only screen and (max-width: $medium-large-screen-min-width) {
+      flex-direction: column;
+    }
+  }
+
+  .ad-card-image-container {
+    width: 50%;
+    margin-right: $offset-normal;
+    display: flex;
+    align-items: center;
+    min-height: 24rem;
+    @media only screen and (max-width: $medium-large-screen-min-width) {
+      width: 100%;
+    }
+  }
+
+  .ad-card-image {
+    width: 100%;
+    height: 100%;
+    min-height: 24rem;
+    max-height: 50rem;
+    object-fit: cover;
+    @media only screen and (max-width: $medium-large-screen-min-width) {
+      max-height: 50vw;
+    }
+  }
+
+  .ad-card-info {
+    margin-left: $offset-normal;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    @media only screen and (max-width: $medium-large-screen-min-width) {
+      width: 100%;
+      margin-top: $offset-normal;
+      margin-left: 0;
+    }
+  }
+
+  .price-container,
+  .bet-form-container {
+    margin: $offset-small 0;
+    @media only screen and (max-width: $medium-screen-min-width) {
+      mat-form-field {
+        width: 100%;
+      }
+    }
+  }
+
+  .price-container {
+    margin: $offset-small 0;
+  }
+
+  .bet-form-container {
+    width: 100%;
+  }
+
+  .bet-field-container {
+    width: 100%;
+    padding-right: $offset-small;
+  }
+
+  .bet-field {
+    width: 50%;
+  }
+
+  .bet-input-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .bet-input {
+    font-size: $font-size-normal;
+    line-height: 1.667rem;
+    color: $primary-color;
+    width: 100%;
+    padding-left: $offset-xsmall;
+  }
+
+  .bet-hint {
+    font-size: $font-size-xsmall;
+    line-height: 1.333rem;
+    color: $color-ask;
+    margin: 0.333rem 0 0;
+  }
+
+  .unit-cost {
+    color: $color-unit-cost;
+    font-size: $font-size-normal;
+    margin: $offset-medium 0 0 0;
+  }
+
+  .ad-card-map {
+    width: 100%;
+  }
+
+  .discription-container {
+    margin-top: $offset-normal;
+  }
+
+  .title-container {
+    margin-bottom: $offset-normal;
+  }
+
+  .ad-card-discription_string {
+    display: flex;
+    p {
+      width: 50%;
+      margin: 0;
+    }
+  }
+
+  .ad-params-options {
+    color: $primary-color;
+    font-weight: bold;
+  }
+
+  .ad-params {
+    color: $color-copy;
+    font-weight: 500;
+    align-self: center;
+  }
+
+  .material-icons {
+    font-size: $font-size-small;
+    color: $active-color;
+  }
+
+  .hide-map-container {
+    margin: $offset-xlarge 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .show-map-icon {
+    color: $active-color;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .location-container {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    p {
+      width: 100%;
+    }
+    mat-icon {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .show-map-text {
+    margin: 0;
+    color: $active-color;
+    cursor: pointer;
+    align-self: center;
+  }
+
+  .map-container {
+    display: flex;
+    width: 100%;
+    height: 35rem;
+  }
+
+  .map-img {
+    width: 100%;
+  }
+
+  .map-slide-in {
+    animation: slideIn 1s ease-out;
+  }
+
+  @keyframes slideIn {
+    0% {
+      opacity: 0;
+      margin-top: -1%;
+    }
+    50% {
+      margin-top: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  hr {
+    border: 0;
+    border-top: 0.5px solid lightgrey;
+  }
+}

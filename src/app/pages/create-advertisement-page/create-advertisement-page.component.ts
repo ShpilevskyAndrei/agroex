@@ -3,7 +3,6 @@ import {
   EventEmitter,
   Input,
   OnChanges,
-  OnDestroy,
   Output,
   SimpleChanges,
 } from '@angular/core';
@@ -17,6 +16,7 @@ import MessagePayload = firebase.messaging.MessagePayload;
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IUser } from '../../shared/interfaces/user.interface';
 import { MAX_FILE_SIZE } from './constant/max-file-sizes';
+import { PATH_TO_EMPTY_IMAGE } from './constant/empty-image';
 import { REGEXP_FOR_IS_NUMBER } from './constant/regexp';
 import { REGEXP_FOR_IS_INTEGER_NUMBER } from '../../shared/constants/regexp';
 import {
@@ -29,17 +29,20 @@ import {
 } from './interfaces/create-advertisement.interface';
 import { CreateAdvertisementService } from './services/create-advertisement.service';
 import { UserRole } from '../../shared/components/header/enums/user-role';
+import { IAdRequestInterface } from '../../shared/components/advertisements-list/interfaces/ad-request.interface';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-create-advertisement-page',
   templateUrl: './create-advertisement-page.component.html',
   styleUrls: ['./create-advertisement-page.component.scss'],
 })
-export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
+export class CreateAdvertisementPageComponent implements OnChanges {
   @Input() public user: IUser | null;
   @Input() public createAdvertisementLoadingStatus: LoadingStatus | null;
   @Input() public notificationMessage: MessagePayload[] | null;
   @Input() public userRole: UserRole | null;
+  @Input() public map: GeoJSON.FeatureCollection<GeoJSON.MultiPolygon> | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
   @Output() public dropLoadingStatus: EventEmitter<void> =
@@ -53,14 +56,15 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
     new EventEmitter<MessagePayload>();
 
   public maxFileSize = MAX_FILE_SIZE;
-
   public files: File[] = [];
+  public dataToPreviewAdvPage: IAdRequestInterface;
 
   public countries: ICountry[] = this.createAdvertisementService.countries;
   public units: IUnit[] = this.createAdvertisementService.units;
   public locations: ILocation[] = this.createAdvertisementService.locations;
   public currencies: ICurrency[] = this.createAdvertisementService.currencies;
   public categories: ICategory[] = this.createAdvertisementService.categories;
+  public navigateToCreateAdvertisementPage = true;
   public productTypes: IProductType[] =
     this.createAdvertisementService.productTypes;
 
@@ -170,10 +174,6 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
     }
   }
 
-  public ngOnDestroy(): void {
-    this.dropLoadingStatus.emit();
-  }
-
   public onClickFile(event: MouseEvent): void {
     if (this.files.length) {
       event.preventDefault();
@@ -190,5 +190,77 @@ export class CreateAdvertisementPageComponent implements OnChanges, OnDestroy {
 
   public onClickNotification(notification: MessagePayload): void {
     this.changeNotificationStatus.emit(notification);
+  }
+
+  public goToPreview(clickEvent: MouseEvent): void {
+    clickEvent.preventDefault();
+
+    const reader = new FileReader();
+
+    if (!this.files.length) {
+      this.dataToPreviewAdvPage =
+        this.getDataToPreviewAdvPage(PATH_TO_EMPTY_IMAGE);
+      this.navigateToCreateAdvertisementPage = false;
+
+      return;
+    }
+
+    reader.readAsDataURL(this.files[0]);
+    reader.onload = (): void => {
+      this.dataToPreviewAdvPage = this.getDataToPreviewAdvPage(
+        `${reader.result}`
+      );
+      this.navigateToCreateAdvertisementPage = false;
+    };
+  }
+
+  public goToCreateAdvPage(): void {
+    this.navigateToCreateAdvertisementPage = true;
+  }
+
+  public getDataToPreviewAdvPage(base64File: string): IAdRequestInterface {
+    const rawValue = this.advertisementForm.getRawValue();
+    const currentDate = moment().format('YYYY-MM-DD HH:mm');
+
+    return {
+      advertisement: {
+        id: 0,
+        title: rawValue.productType || 'Title',
+        country: rawValue.country || 'Country',
+        location: rawValue.location || 'Location',
+        slug: '',
+        category: rawValue.category || 'Category',
+        subCategory: '',
+        isModerated: false,
+        isActive: false,
+        price: rawValue.price || '0.00',
+        currency: rawValue.currency || '1.00',
+        img: base64File,
+        quantity: rawValue.quantity || '1.00',
+        unit: rawValue.unit || '1.00',
+        createAt: currentDate,
+        updatedAt: currentDate,
+        author: {
+          id: this.user?.id || 0,
+          email: '',
+          username: '',
+          phone: '',
+          image: '',
+          banned: false,
+          banReason: '',
+        },
+        userBets: [
+          {
+            id: 0,
+            user_id: 0,
+            advertisement_id: 0,
+            created_at: currentDate,
+            expireBet: currentDate,
+            betValue: '',
+            isActive: false,
+          },
+        ],
+      },
+    };
   }
 }
