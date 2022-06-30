@@ -3,8 +3,8 @@
   animationDuration="0ms"
   color="accent"
   class="account-tabs"
-  (selectedTabChange)="onSelectMyAdvertisementTab($event)"
   [selectedIndex]="findMyAdvertisementTabTitle()"
+  (selectedTabChange)="onSelectMyAdvertisementTab($event)"
 >
   <mat-tab
     *ngFor="let myAdvertisementsTab of myAdvertisementsTabs"
