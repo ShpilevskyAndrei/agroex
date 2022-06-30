@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AdvertisementTitleAdPageComponent } from './advertisement-title-ad-page.component';
+import { AdvertisementPriceModule } from '../../advertisements-list/advertisement/advertisement-price/advertisement-price.module';
 import { MatIconModule } from '@angular/material/icon';
-import { AdvertisementPriceModule } from '../../../shared/components/advertisements-list/advertisement/advertisement-price/advertisement-price.module';
 
 @NgModule({
   declarations: [AdvertisementTitleAdPageComponent],
