@@ -135,7 +135,6 @@ export class AccountPageContainerComponent {
   public onSelectMyAdvertisementTab(
     selectedMyAdvertisementOptionTab: string
   ): void {
-    console.log(selectedMyAdvertisementOptionTab);
     this.store.dispatch(
       AccountPageActions.getMyAdvertisementTabRequest({
         selectedMyAdvertisementOptionTab,

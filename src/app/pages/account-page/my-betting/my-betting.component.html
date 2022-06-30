@@ -1,11 +1,7 @@
-<ng-container
-  *ngIf="
-  myBettingsRequest?.advertisements?.length;
-    else emptyMyBettings
-  "
->
+<ng-container *ngIf="myBettingsLoadingStatus?.loaded; else notLoaded">
   <app-advertisements-list
     class="my-advertisements-list"
+    *ngIf="myBettingsRequest?.advertisements?.length; else emptyMyBettings"
     [showOwnerFlag]="showOwnerFlag"
     [user]="user"
     [advertisementsRequest]="myBettingsRequest"
@@ -28,4 +24,19 @@
   <div class="empty-advertisement">
     <p>You don't have bettings</p>
   </div>
+</ng-template>
+
+<ng-template #notLoaded>
+  <ngx-spinner
+    *ngIf="myBettingsLoadingStatus?.loading; else myBettingsError"
+    bdColor="rgba(0, 0, 0, 0)"
+    size="medium"
+    color="#38999B"
+    type="ball-clip-rotate"
+    [fullScreen]="false"
+  >
+  </ngx-spinner>
+  <ng-template #myBettingsError>
+    <p>{{ myBettingsLoadingStatus?.error?.statusText }}</p>
+  </ng-template>
 </ng-template>
