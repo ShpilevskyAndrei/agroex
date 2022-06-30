@@ -55,6 +55,7 @@ import { AdvertisementsListDealActions } from 'src/app/state/advertisements-list
     (confirmDeal)="onConfirmDeal($event)"
     (addNotificationMessage)="onAddNotificationMessage($event)"
     (selectMyAdvertisementsTab)="onSelectMyAdvertisementTab($event)"
+    (changeNotificationStatus)="onClickNotification($event)"
   ></app-account-page>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -130,6 +131,10 @@ export class AccountPageContainerComponent {
 
   public onAddNotificationMessage(message: MessagePayload): void {
     this.store.dispatch(AppRootActions.getNotificationMessage({ message }));
+  }
+
+  public onClickNotification(message: MessagePayload): void {
+    this.store.dispatch(AppRootActions.changeNotificationStatus({ message }));
   }
 
   public onSelectMyAdvertisementTab(

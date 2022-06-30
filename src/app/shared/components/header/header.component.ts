@@ -13,6 +13,7 @@ import { AngularFireMessaging } from '@angular/fire/compat/messaging';
 import { filter, mergeMap } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { AgroexToastService, ToastType } from 'ngx-agroex-toast';
 import firebase from 'firebase/compat';
 import MessagePayload = firebase.messaging.MessagePayload;
 
@@ -22,7 +23,8 @@ import { LOGGED_ROLE_CONFIG } from './constants/user-role-config';
 import { UserPanelOptionId } from './enums/user-panel-option-id';
 import { UserRole } from './enums/user-role';
 import { IUserOptionsType } from './interfaces/user-options-type.interface';
-import { AgroexToastService, ToastType } from 'ngx-agroex-toast';
+import { NotificationsType } from './enums/notifications-type';
+import { NotificationsStatus } from './enums/notifications-status';
 
 @UntilDestroy()
 @Component({
@@ -42,11 +44,15 @@ export class HeaderComponent implements OnChanges, OnInit {
   @Output() public selectTab: EventEmitter<string> = new EventEmitter<string>();
   @Output() public addNotificationMessage: EventEmitter<MessagePayload> =
     new EventEmitter<MessagePayload>();
+  @Output() public changeNotificationStatus: EventEmitter<MessagePayload> =
+    new EventEmitter<MessagePayload>();
 
   public userRoleConfig = LOGGED_ROLE_CONFIG;
   public userRoles = UserRole;
   public userPanelOption: IUserOptionsType[] = USER_PANEL_OPTION;
   public userCurrentRole: UserRole | null = UserRole.Guest;
+  public notificationsType = NotificationsType;
+  public notificationsStatus = NotificationsStatus;
 
   constructor(
     private router: Router,
@@ -136,6 +142,29 @@ export class HeaderComponent implements OnChanges, OnInit {
 
   public onSelectPage(selectedOptionId: string | undefined): void {
     this.selectTab.emit(selectedOptionId);
+  }
+
+  public userNotification(): MessagePayload[] {
+    return this.notificationMessage?.length
+      ? this.notificationMessage.filter(
+          (notification: MessagePayload) =>
+            notification.data?.userIds == this.user?.id
+        )
+      : [];
+  }
+
+  public unreadNotification(): MessagePayload[] {
+    return this.userNotification().length
+      ? this.userNotification().filter(
+          (notification: MessagePayload) =>
+            notification.data?.status === this.notificationsStatus.New
+        )
+      : [];
+  }
+
+  public onClickNotification(notification: MessagePayload): void {
+    notification.data?.linkTo && this.onSelectPage(notification.data?.linkTo);
+    this.changeNotificationStatus.emit(notification);
   }
 
   public onClickreloadModerationPage(): void {

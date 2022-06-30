@@ -55,6 +55,8 @@ export class AccountPageComponent {
     new EventEmitter<MessagePayload>();
   @Output() public selectMyAdvertisementsTab: EventEmitter<string> =
     new EventEmitter<string>();
+  @Output() public changeNotificationStatus: EventEmitter<MessagePayload> =
+    new EventEmitter<MessagePayload>();
 
   public userPanelOption: IUserOptionsType[] = USER_PANEL_OPTION;
   public userPanelOptionId = UserPanelOptionId;
@@ -112,5 +114,9 @@ export class AccountPageComponent {
     selectedMyAdvertisementOptionTab: string
   ): void {
     this.selectMyAdvertisementsTab.emit(selectedMyAdvertisementOptionTab);
+  }
+
+  public onClickNotification(notification: MessagePayload): void {
+    this.changeNotificationStatus.emit(notification);
   }
 }

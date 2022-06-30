@@ -23,11 +23,11 @@
         advertisement.price
           | currency: advertisement.currency:"symbol-narrow":"0.2":"fr"
       }}</span>
-      <ng-container *ngIf="unitCostPrice > 0.01; else minUnitCost">
+      <ng-container *ngIf="unitCostPrice >= 0.01; else minUnitCost">
         <span class="unit-price">{{ unitCostTextPrice }}</span>
       </ng-container>
       <ng-template #minUnitCost>
-        <span class="unit-price">{{ minUnitCostText }}</span>
+        <span class="unit-price">Less than {{ minUnitCostText }}</span>
       </ng-template>
     </div>
   </div>

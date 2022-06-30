@@ -25,4 +25,9 @@ export const AppRootActions = {
     '[APP_ROOT] notification message success',
     props<{ message: MessagePayload }>()
   ),
+
+  changeNotificationStatus: createAction(
+    '[APP_ROOT] change notification status success',
+    props<{ message: MessagePayload }>()
+  ),
 };
