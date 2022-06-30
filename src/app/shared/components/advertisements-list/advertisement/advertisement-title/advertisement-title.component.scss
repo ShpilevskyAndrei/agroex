@@ -96,14 +96,14 @@
   .advertisement-created {
     background-color: $bg-color-create;
     color: $color-create;
-    margin-right: .8rem;
+    margin-right: 0.8rem;
   }
 
   .create-id-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: .8rem;
+    margin-top: 0.8rem;
   }
 
   @include advertisement-disabled
