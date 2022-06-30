@@ -5,12 +5,18 @@ import { DEFAULT_LOADING_STATUS } from '../../shared/constants/lodaing-default-s
 import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { AccountPageActions } from './account-page.actions';
 import { IMyOrdersInterface } from '../../pages/account-page/my-orders/interfaces/my-orders-request.interface';
+import {
+  BETTING_ACTIVE_TAB,
+  BETTING_OUTBID_TAB,
+} from '../../pages/account-page/my-betting/constants/my-betting-tab-options';
+import { MY_ADVERTISEMENTS_ACTIVE_TAB } from '../../pages/account-page/my-advertisements/constants/my-advertisements-tab-options';
 
 export interface AccountPageState {
   myAdvertisements: IAdvertisementRequestInterface;
   myBettings: IAdvertisementRequestInterface;
   myOrders: IMyOrdersInterface[];
   myAdvertisementTab: string;
+  myBettingTab: string;
   myAdvertisementLoadingStatus: LoadingStatus;
   myBettingLoadingStatus: LoadingStatus;
   myOrderLoadingStatus: LoadingStatus;
@@ -25,7 +31,8 @@ const initialState: AccountPageState = {
   myAdvertisements: { advertisementCount: null, advertisements: [] },
   myBettings: { advertisementCount: null, advertisements: [] },
   myOrders: [],
-  myAdvertisementTab: 'Active',
+  myAdvertisementTab: MY_ADVERTISEMENTS_ACTIVE_TAB,
+  myBettingTab: BETTING_ACTIVE_TAB,
 };
 
 export const ACCOUNT_PAGE_REDUCER = createReducer(
@@ -90,15 +97,24 @@ export const ACCOUNT_PAGE_REDUCER = createReducer(
   ),
   on(
     AccountPageActions.getMyBettingsSuccess,
-    (state, { myBettings }): AccountPageState => ({
-      ...state,
-      myBettings,
-      myBettingLoadingStatus: {
-        loading: false,
-        loaded: true,
-        error: null,
-      },
-    })
+    (state, { selectUserData, myBettings, myBettingTab }): AccountPageState => {
+      return {
+        ...state,
+        myBettings: {
+          ...myBettings,
+          advertisements: myBettings.advertisements?.filter((advertisement) => {
+            return myBettingTab === BETTING_OUTBID_TAB
+              ? advertisement.userBets[0].user_id !== selectUserData?.id
+              : advertisement.userBets[0].user_id === selectUserData?.id;
+          }),
+        },
+        myBettingLoadingStatus: {
+          loading: false,
+          loaded: true,
+          error: null,
+        },
+      };
+    }
   ),
   on(
     AccountPageActions.getMyBettingsError,
@@ -138,6 +154,13 @@ export const ACCOUNT_PAGE_REDUCER = createReducer(
     (state, { selectedMyAdvertisementOptionTab }): AccountPageState => ({
       ...state,
       myAdvertisementTab: selectedMyAdvertisementOptionTab,
+    })
+  ),
+  on(
+    AccountPageActions.getMyBettingTabRequest,
+    (state, { selectedMyBettingOptionTab }): AccountPageState => ({
+      ...state,
+      myBettingTab: selectedMyBettingOptionTab,
     })
   )
 );

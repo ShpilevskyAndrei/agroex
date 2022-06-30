@@ -51,9 +51,12 @@
             [myBettingsRequest]="myBettingsRequest"
             [myBettingsLoadingStatus]="myBettingsLoadingStatus"
             [user]="user"
+            [selectMyBettingTabTitle]="selectMyBettingTabTitle"
+            selectMyBettingTabTitle
             (dispatcher)="onDispatcher($event)"
             (setBet)="onSetBet($event)"
             (setBuy)="onSetBuy($event)"
+            (selectMyBettingTab)="onSelectMyBettingTab($event)"
           >
           </app-my-betting>
           <app-my-orders
