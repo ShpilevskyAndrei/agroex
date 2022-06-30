@@ -50,6 +50,8 @@ export class AdvertisementPageComponent implements OnChanges {
     new EventEmitter<MessagePayload>();
   @Output() public setBuy: EventEmitter<Record<string, string>> =
     new EventEmitter<Record<string, string>>();
+  @Output() public changeNotificationStatus: EventEmitter<MessagePayload> =
+    new EventEmitter<MessagePayload>();
 
   public betForm: FormGroup = new FormGroup({
     bet: new FormControl('', {
@@ -202,5 +204,9 @@ export class AdvertisementPageComponent implements OnChanges {
 
   public onAddNotificationMessage(message: MessagePayload): void {
     this.addNotificationMessage.emit(message);
+  }
+
+  public onClickNotification(notification: MessagePayload): void {
+    this.changeNotificationStatus.emit(notification);
   }
 }

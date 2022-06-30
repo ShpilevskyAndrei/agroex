@@ -4,6 +4,7 @@
   [notificationMessage]="notificationMessage"
   (logout)="onLogout()"
   (addNotificationMessage)="onAddNotificationMessage($event)"
+  (changeNotificationStatus)="onClickNotification($event)"
   (selectTab)="onSelectTab($event)"
 ></app-header>
 <ng-container *ngIf="createAdvertisementLoadingStatus?.loaded; else notLoaded">

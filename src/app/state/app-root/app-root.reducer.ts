@@ -35,6 +35,30 @@ export const APP_ROOT_REDUCER = createReducer(
     }
   ),
   on(
+    AppRootActions.changeNotificationStatus,
+    (state, { message }): AppRootState => {
+      const updateNotifications: MessagePayload[] =
+        state.notificationMessage.map((notification: MessagePayload) => {
+          if (message.data?.id === notification.data?.id) {
+            return {
+              ...notification,
+              data: {
+                ...notification.data,
+                status: 'visited',
+              },
+            };
+          }
+
+          return notification;
+        });
+
+      return {
+        ...state,
+        notificationMessage: updateNotifications,
+      };
+    }
+  ),
+  on(
     AppRootActions.getUserSelectTab,
     (state, { selectedOptionId }): AppRootState => ({
       ...state,

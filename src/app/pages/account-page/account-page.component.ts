@@ -52,6 +52,8 @@ export class AccountPageComponent {
     new EventEmitter<IAdvertisementInterface>();
   @Output() public addNotificationMessage: EventEmitter<MessagePayload> =
     new EventEmitter<MessagePayload>();
+  @Output() public changeNotificationStatus: EventEmitter<MessagePayload> =
+    new EventEmitter<MessagePayload>();
 
   public userPanelOption: IUserOptionsType[] = USER_PANEL_OPTION;
   public userPanelOptionId = UserPanelOptionId;
@@ -103,5 +105,9 @@ export class AccountPageComponent {
 
   public switchSideBar(): void {
     this.showSidebar = !this.showSidebar;
+  }
+
+  public onClickNotification(notification: MessagePayload): void {
+    this.changeNotificationStatus.emit(notification);
   }
 }

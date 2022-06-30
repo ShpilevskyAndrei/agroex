@@ -4,7 +4,7 @@
     </h2>
     <div class="acc_top">
         <div class="acc_top__photo">
-            {{ this.user?.username?.substr(0, 1)?.toUpperCase() }}
+            {{ this.user?.username?.substring(0, 1)?.toUpperCase() }}
         </div>
 
         <form class="acc_top__form">
@@ -19,7 +19,7 @@
                 [disabled]="!this.enableForm"
               />
             </mat-form-field>
-  
+
             <mat-form-field class="acc_top__form__field">
               <mat-label>Email</mat-label>
               <input
@@ -31,7 +31,7 @@
                 [disabled]="!this.enableForm"
               />
             </mat-form-field>
-    
+
             <mat-form-field class="acc_top__form__field">
               <mat-label>Phone</mat-label>
               <input
@@ -43,7 +43,7 @@
                 [disabled]="!this.enableForm"
               />
             </mat-form-field>
-    
+
             <button
               mat-button
               class="btn_tradewind acc_top__form__btn acc_top__form__btn-edit"
@@ -64,6 +64,7 @@
         <button
               mat-button
               class="btn_tradewind acc_top__form__btn"
+              [disabled]="true"
               (click)="stopPropagation($event)"
             >
               <mat-icon>lock</mat-icon>
@@ -76,39 +77,19 @@
         <div class="acc_bot__check_wrap">
 
             <div class="acc_bot__check_wrap-ins">
-                <mat-checkbox formControlName="checkBoxConfirm"></mat-checkbox>
-                <div class="acc_bot__check-text">
-                  <p>
-                    Notify me of new messages
-                  </p>
-                </div>
+                <mat-checkbox>Notify me of new messages</mat-checkbox>
             </div>
-    
+
             <div class="acc_bot__check_wrap-ins">
-                <mat-checkbox formControlName="checkBoxConfirm"></mat-checkbox>
-                <div class="acc_bot__check-text">
-                  <p>
-                    Hide my presence
-                  </p>
-                </div>
+                <mat-checkbox>Hide my presence</mat-checkbox>
             </div>
-    
+
             <div class="acc_bot__check_wrap-ins">
-                <mat-checkbox formControlName="checkBoxConfirm"></mat-checkbox>
-                <div class="acc_bot__check-text">
-                  <p>
-                    Show my email to everyone
-                  </p>
-                </div>
+                <mat-checkbox>Show my email to everyone</mat-checkbox>
             </div>
-    
+
             <div class="acc_bot__check_wrap-ins">
-                <mat-checkbox formControlName="checkBoxConfirm"></mat-checkbox>
-                <div class="acc_bot__check-text">
-                  <p>
-                    Receive promotional notifications
-                  </p>
-                </div>
+                <mat-checkbox>Receive promotional notifications</mat-checkbox>
             </div>
 
         </div>

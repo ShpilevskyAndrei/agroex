@@ -43,12 +43,6 @@
                             margin-right: 1rem;
                             margin-bottom: 0.2rem;
                         }
-                        &:disabled {
-                            cursor: pointer;
-                            color: $color-tradewind;
-                            background: $color-white;
-                            border: 1px solid $color-tradewind;
-                        }
                         @media only screen and (max-width: $medium-screen-min-width) {
                             width: 100%;
                         }

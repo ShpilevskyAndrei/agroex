@@ -59,6 +59,7 @@
     }
     .desc {
       font-size: $font-size-medium;
+      margin: $offset-small;
     }
     .id {
       font-size: $font-size-xsmall;
@@ -68,7 +69,6 @@
     .desc,
     .id {
       color: $color-copy;
-      margin: $offset-small 0 0 0;
     }
   }
 
@@ -97,11 +97,13 @@
   .advertisement-created {
     background-color: $bg-color-create;
     color: $color-create;
+    margin-right: .8rem;
   }
 
   .create-id-container {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-right: .8rem;
   }
 }
