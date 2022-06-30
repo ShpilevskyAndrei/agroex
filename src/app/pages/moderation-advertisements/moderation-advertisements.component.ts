@@ -37,8 +37,6 @@ export class ModerationAdvertisementsComponent {
   @Output()
   public moderationDecision: EventEmitter<IAdvertisementModerationRequest> = new EventEmitter<IAdvertisementModerationRequest>();
 
-  public isModerationPage: boolean = true;
-
   constructor(public dialog: MatDialog) {}
 
   public openModerationMessageModal(

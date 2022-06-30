@@ -24,7 +24,6 @@ export class AdvertisementComponent {
   @Input() public userRole: UserRole | null;
   @Input() public isNavigationToAdvertisementPage: boolean | undefined = false;
   @Input() public showOwnerFlag: boolean;
-  @Input() public isModerationPage: boolean;
 
   @Output() public setBet: EventEmitter<Record<string, string | number>> =
     new EventEmitter<Record<string, string | number>>();
