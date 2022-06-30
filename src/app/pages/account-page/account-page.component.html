@@ -13,12 +13,13 @@
       <div class="account__user">
         <p>{{ user?.username | titlecase }}</p>
       </div>
-      <div class="account__content"
-           [ngClass]="{'account__content-for_mobile-active': this.showSidebar}"
+      <div
+        class="account__content"
+        [ngClass]="{ 'account__content-for_mobile-active': this.showSidebar }"
       >
         <app-sidebar
           class="account__sidebar"
-          [ngClass]="{'account__sidebar-for_mobile-active': this.showSidebar}"
+          [ngClass]="{ 'account__sidebar-for_mobile-active': this.showSidebar }"
           [userPanelOption]="this.userPanelOption"
           [selectedTab]="this.selectedTab"
           (logout)="onLogout()"
@@ -27,18 +28,22 @@
         </app-sidebar>
         <div
           class="account__info"
-          [ngClass]="{'account__info_mobile-active': !this.showSidebar}"
+          [ngClass]="{ 'account__info_mobile-active': !this.showSidebar }"
           [ngSwitch]="this.selectedTab"
         >
-          <div class="account__info-btn_mobile_only" (click)="switchSideBar()">{{ tabOption() }}</div>
+          <div class="account__info-btn_mobile_only" (click)="switchSideBar()">
+            {{ tabOption() }}
+          </div>
           <app-my-advertisements
             *ngSwitchCase="userPanelOptionId.MyAdvertisements"
             [myAdvertisementsRequest]="myAdvertisementsRequest"
             [myAdvertisementsLoadingStatus]="myAdvertisementsLoadingStatus"
             [user]="user"
             [userRole]="userRole"
+            [selectMyAdvertisementTabTitle]="selectMyAdvertisementTabTitle"
             (dispatcher)="onDispatcher($event)"
             (confirmDeal)="onConfirmDeal($event)"
+            (selectMyAdvertisementsTab)="onSelectMyAdvertisementTab($event)"
           >
           </app-my-advertisements>
           <app-my-betting
@@ -48,18 +53,21 @@
             [user]="user"
             (dispatcher)="onDispatcher($event)"
             (setBet)="onSetBet($event)"
-            (setBuy)="onSetBuy($event)">
+            (setBuy)="onSetBuy($event)"
+          >
           </app-my-betting>
           <app-my-orders
             *ngSwitchCase="userPanelOptionId.MyOrders"
             [user]="user"
             [myOrdersRequest]="myOrdersRequest"
             [myOrdersLoadingStatus]="myOrdersLoadingStatus"
-            (dispatcher)="onDispatcher($event)">
+            (dispatcher)="onDispatcher($event)"
+          >
           </app-my-orders>
-          <app-my-account 
-            *ngSwitchCase="userPanelOptionId.MyAccount" 
-            [user]="user">
+          <app-my-account
+            *ngSwitchCase="userPanelOptionId.MyAccount"
+            [user]="user"
+          >
           </app-my-account>
         </div>
       </div>

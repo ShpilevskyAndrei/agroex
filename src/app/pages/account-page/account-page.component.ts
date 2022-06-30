@@ -39,6 +39,7 @@ export class AccountPageComponent {
   public myOrdersRequest: IMyOrdersInterface[] | null;
   @Input() public myOrdersLoadingStatus: LoadingStatus | null;
   @Input() public notificationMessage: MessagePayload[] | null;
+  @Input() public selectMyAdvertisementTabTitle: string | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
   @Output() public selectTab: EventEmitter<string> = new EventEmitter<string>();
@@ -52,6 +53,8 @@ export class AccountPageComponent {
     new EventEmitter<IAdvertisementInterface>();
   @Output() public addNotificationMessage: EventEmitter<MessagePayload> =
     new EventEmitter<MessagePayload>();
+  @Output() public selectMyAdvertisementsTab: EventEmitter<string> =
+    new EventEmitter<string>();
   @Output() public changeNotificationStatus: EventEmitter<MessagePayload> =
     new EventEmitter<MessagePayload>();
 
@@ -105,6 +108,12 @@ export class AccountPageComponent {
 
   public switchSideBar(): void {
     this.showSidebar = !this.showSidebar;
+  }
+
+  public onSelectMyAdvertisementTab(
+    selectedMyAdvertisementOptionTab: string
+  ): void {
+    this.selectMyAdvertisementsTab.emit(selectedMyAdvertisementOptionTab);
   }
 
   public onClickNotification(notification: MessagePayload): void {

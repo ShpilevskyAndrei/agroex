@@ -104,6 +104,7 @@ body {
     font-size: 1.6rem;
     color: #131314;
   }
+
   &:not(.notifications) {
     .mat-menu-item {
       &:last-child {
@@ -270,10 +271,6 @@ body {
     left: 0 !important;
     margin-top: 2rem;
   }
-}
-
-.mat-tab-body {
-  min-height: 50vh;
 }
 
 .account__sidebar-for_mobile-active {

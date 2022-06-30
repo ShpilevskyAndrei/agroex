@@ -55,4 +55,8 @@ export const AccountPageActions = {
     '[ACCOUNT_PAGE] my orders error',
     props<{ error: HttpErrorResponse }>()
   ),
+  getMyAdvertisementTabRequest: createAction(
+    '[ACCOUNT_PAGE] my advertisement tab requested',
+    props<{ selectedMyAdvertisementOptionTab: string }>()
+  ),
 };

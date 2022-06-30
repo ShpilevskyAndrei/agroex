@@ -12,9 +12,11 @@
     &__info {
       flex: 1;
       right: 0;
+
       & > * {
         display: flex;
         height: 100%;
+        position: relative;
         @media only screen and (max-width: $medium-x-medium-screen-min-width) {
           height: 100%;
         }
@@ -77,6 +79,7 @@
     &__sidebar {
       display: flex;
       flex-direction: column;
+      padding-top: 7.3rem;
       width: 22.3rem;
       min-width: 22.3rem;
       min-height: 50vh;
@@ -119,5 +122,15 @@
         height: calc(100vh - 15rem);
       }
     }
+  }
+}
+
+::ng-deep {
+  .account-tabs {
+    width: 100%;
+    .mat-tab-header {
+      margin: 0 2rem;
+    }
+    @include mat-tab-styles;
   }
 }

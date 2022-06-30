@@ -11,6 +11,7 @@ import { selectUserToken } from '../registration-page/registration-page.selector
 import { AccountPageActions } from './account-page.actions';
 import { IMyOrdersInterface } from '../../pages/account-page/my-orders/interfaces/my-orders-request.interface';
 import { AdvertisementsListDealActions } from '../advertisements-list-page/advertisements-list-page.actions';
+import { selectMyAdvertisementTab } from './account-page.selectors';
 
 @Injectable()
 export class AccountPageEffects {
@@ -20,22 +21,27 @@ export class AccountPageEffects {
         AccountPageActions.getMyAdvertisementsRequest,
         AccountPageActions.getConfirmDealSuccess
       ),
-      concatLatestFrom(() => this.store.select(selectUserToken)),
-      switchMap(([_, selectUserToken]) =>
-        this.accountPageService.getMyAdvertisements(selectUserToken).pipe(
-          map((myAdvertisements: IAdvertisementRequestInterface) =>
-            AccountPageActions.getMyAdvertisementsSuccess({
-              myAdvertisements,
-            })
-          ),
-          catchError((error: HttpErrorResponse) =>
-            of(
-              AccountPageActions.getMyAdvertisementsError({
-                error: error,
+      concatLatestFrom(() => [
+        this.store.select(selectUserToken),
+        this.store.select(selectMyAdvertisementTab),
+      ]),
+      switchMap(([_, selectUserToken, myAdvertisementTab]) =>
+        this.accountPageService
+          .getMyAdvertisements(myAdvertisementTab, selectUserToken)
+          .pipe(
+            map((myAdvertisements: IAdvertisementRequestInterface) =>
+              AccountPageActions.getMyAdvertisementsSuccess({
+                myAdvertisements,
               })
+            ),
+            catchError((error: HttpErrorResponse) =>
+              of(
+                AccountPageActions.getMyAdvertisementsError({
+                  error: error,
+                })
+              )
             )
           )
-        )
       )
     );
   });

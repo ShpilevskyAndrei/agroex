@@ -7,19 +7,25 @@ import { AccountPageActions } from './account-page.actions';
 import { IMyOrdersInterface } from '../../pages/account-page/my-orders/interfaces/my-orders-request.interface';
 
 export interface AccountPageState {
-  accountPageLoadingStatus: LoadingStatus;
   myAdvertisements: IAdvertisementRequestInterface;
   myBettings: IAdvertisementRequestInterface;
   myOrders: IMyOrdersInterface[];
+  myAdvertisementTab: string;
+  myAdvertisementLoadingStatus: LoadingStatus;
+  myBettingLoadingStatus: LoadingStatus;
+  myOrderLoadingStatus: LoadingStatus;
 }
 
 export const ACCOUNT_PAGE = 'accountPage';
 
 const initialState: AccountPageState = {
-  accountPageLoadingStatus: DEFAULT_LOADING_STATUS,
+  myAdvertisementLoadingStatus: DEFAULT_LOADING_STATUS,
+  myBettingLoadingStatus: DEFAULT_LOADING_STATUS,
+  myOrderLoadingStatus: DEFAULT_LOADING_STATUS,
   myAdvertisements: { advertisementCount: null, advertisements: [] },
   myBettings: { advertisementCount: null, advertisements: [] },
   myOrders: [],
+  myAdvertisementTab: 'Active',
 };
 
 export const ACCOUNT_PAGE_REDUCER = createReducer(
@@ -28,7 +34,7 @@ export const ACCOUNT_PAGE_REDUCER = createReducer(
     AccountPageActions.getMyAdvertisementsRequest,
     (state): AccountPageState => ({
       ...state,
-      accountPageLoadingStatus: DEFAULT_LOADING_STATUS,
+      myAdvertisementLoadingStatus: DEFAULT_LOADING_STATUS,
     })
   ),
   on(
@@ -36,7 +42,7 @@ export const ACCOUNT_PAGE_REDUCER = createReducer(
     (state, { myAdvertisements }): AccountPageState => ({
       ...state,
       myAdvertisements,
-      accountPageLoadingStatus: {
+      myAdvertisementLoadingStatus: {
         loading: false,
         loaded: true,
         error: null,
@@ -47,21 +53,21 @@ export const ACCOUNT_PAGE_REDUCER = createReducer(
     AccountPageActions.getMyAdvertisementsError,
     (state, { error }): AccountPageState => ({
       ...state,
-      accountPageLoadingStatus: { loading: false, loaded: false, error },
+      myAdvertisementLoadingStatus: { loading: false, loaded: false, error },
     })
   ),
   on(
     AccountPageActions.getConfirmDealRequest,
     (state): AccountPageState => ({
       ...state,
-      accountPageLoadingStatus: DEFAULT_LOADING_STATUS,
+      myAdvertisementLoadingStatus: DEFAULT_LOADING_STATUS,
     })
   ),
   on(
     AccountPageActions.getConfirmDealSuccess,
     (state): AccountPageState => ({
       ...state,
-      accountPageLoadingStatus: {
+      myAdvertisementLoadingStatus: {
         loading: false,
         loaded: true,
         error: null,
@@ -72,14 +78,14 @@ export const ACCOUNT_PAGE_REDUCER = createReducer(
     AccountPageActions.getConfirmDealError,
     (state, { error }): AccountPageState => ({
       ...state,
-      accountPageLoadingStatus: { loading: false, loaded: false, error },
+      myAdvertisementLoadingStatus: { loading: false, loaded: false, error },
     })
   ),
   on(
     AccountPageActions.getMyBettingsRequest,
     (state): AccountPageState => ({
       ...state,
-      accountPageLoadingStatus: DEFAULT_LOADING_STATUS,
+      myBettingLoadingStatus: DEFAULT_LOADING_STATUS,
     })
   ),
   on(
@@ -87,7 +93,7 @@ export const ACCOUNT_PAGE_REDUCER = createReducer(
     (state, { myBettings }): AccountPageState => ({
       ...state,
       myBettings,
-      accountPageLoadingStatus: {
+      myBettingLoadingStatus: {
         loading: false,
         loaded: true,
         error: null,
@@ -98,14 +104,14 @@ export const ACCOUNT_PAGE_REDUCER = createReducer(
     AccountPageActions.getMyBettingsError,
     (state, { error }): AccountPageState => ({
       ...state,
-      accountPageLoadingStatus: { loading: false, loaded: false, error },
+      myBettingLoadingStatus: { loading: false, loaded: false, error },
     })
   ),
   on(
     AccountPageActions.getMyOrdersRequest,
     (state): AccountPageState => ({
       ...state,
-      accountPageLoadingStatus: DEFAULT_LOADING_STATUS,
+      myOrderLoadingStatus: DEFAULT_LOADING_STATUS,
     })
   ),
   on(
@@ -113,7 +119,7 @@ export const ACCOUNT_PAGE_REDUCER = createReducer(
     (state, { myOrders }): AccountPageState => ({
       ...state,
       myOrders,
-      accountPageLoadingStatus: {
+      myOrderLoadingStatus: {
         loading: false,
         loaded: true,
         error: null,
@@ -124,7 +130,14 @@ export const ACCOUNT_PAGE_REDUCER = createReducer(
     AccountPageActions.getMyOrdersError,
     (state, { error }): AccountPageState => ({
       ...state,
-      accountPageLoadingStatus: { loading: false, loaded: false, error },
+      myOrderLoadingStatus: { loading: false, loaded: false, error },
+    })
+  ),
+  on(
+    AccountPageActions.getMyAdvertisementTabRequest,
+    (state, { selectedMyAdvertisementOptionTab }): AccountPageState => ({
+      ...state,
+      myAdvertisementTab: selectedMyAdvertisementOptionTab,
     })
   )
 );

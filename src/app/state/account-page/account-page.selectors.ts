@@ -6,7 +6,7 @@ const selectGetFeatureState =
 
 export const selectMyAdvertisementsLoadingStatus = createSelector(
   selectGetFeatureState,
-  (state) => state.accountPageLoadingStatus
+  (state) => state.myAdvertisementLoadingStatus
 );
 export const selectMyAdvertisementsData = createSelector(
   selectGetFeatureState,
@@ -15,7 +15,7 @@ export const selectMyAdvertisementsData = createSelector(
 
 export const selectMyBettingsLoadingStatus = createSelector(
   selectGetFeatureState,
-  (state) => state.accountPageLoadingStatus
+  (state) => state.myBettingLoadingStatus
 );
 export const selectMyBettingsData = createSelector(
   selectGetFeatureState,
@@ -24,9 +24,13 @@ export const selectMyBettingsData = createSelector(
 
 export const selectMyOrdersLoadingStatus = createSelector(
   selectGetFeatureState,
-  (state) => state.accountPageLoadingStatus
+  (state) => state.myOrderLoadingStatus
 );
 export const selectMyOrdersData = createSelector(
   selectGetFeatureState,
   (state) => state.myOrders
+);
+export const selectMyAdvertisementTab = createSelector(
+  selectGetFeatureState,
+  (state) => state.myAdvertisementTab
 );
