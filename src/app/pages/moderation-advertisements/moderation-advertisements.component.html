@@ -9,6 +9,7 @@
 <div class="container moderation-container">
   <app-advertisements-list
     [user]="user"
+    [moderationPage]="true"
     [advertisementsRequest]="advertisementsRequest"
     [advertisementsLoadingStatus]="advertisementsLoadingStatus"
     (moderationDecision)="onModerationDecision($event)"

@@ -5,6 +5,7 @@ import { WeightEnum } from './enums/weight.enum';
 import { CurrenciesEnum } from '../bet-modal/enums/currencies.enum';
 import { BetColorOptionEnum } from './enums/bet-color-option';
 import { IUser } from '../../../../interfaces/user.interface';
+import { ModerationStatus } from '../../../header/enums/moderation-status';
 
 @Component({
   selector: 'app-advertisement-price',
@@ -14,6 +15,8 @@ import { IUser } from '../../../../interfaces/user.interface';
 export class AdvertisementPriceComponent {
   @Input() public advertisement: IAdvertisementInterface;
   @Input() public user: IUser | null;
+
+  public moderationStatus = ModerationStatus;
 
   public get getBetColor(): string {
     return this.user?.id === this.advertisement.userBets?.[0]?.user_id

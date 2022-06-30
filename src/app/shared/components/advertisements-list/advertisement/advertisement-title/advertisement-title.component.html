@@ -1,7 +1,13 @@
 <div class="advertisement-title">
   <div class="ad-title-wrap-media-only">
-    <span class="title">{{ advertisement.title }}</span>
-    <span class="{{getModerationFlagConfig.style}}">{{getModerationFlagConfig.flag}}</span>
+    <span
+      class="title"
+      [ngClass]="{'advertisement-disabled': advertisement.isModerated && (advertisement.isConfirmed || !advertisement.isActive)}">
+      {{ advertisement.title }}
+    </span>
+    <ng-container *ngIf="!moderationPage">
+      <span class="{{getModerationFlagConfig.style}}">{{getModerationFlagConfig.flag}}</span>
+    </ng-container>
     <span
       class="ad-user-flag"
       *ngIf="advertisement.author.id === user?.id && showOwnerFlag"
@@ -10,7 +16,8 @@
     >
   </div>
   <div class="create-id-container">
-    <div class="advertisement-created" *ngIf="advertisement.moderationStatus === moderationStatus.Approved">
+    <div class="advertisement-created"
+         *ngIf="advertisement.moderationStatus === moderationStatus.Approved && advertisement.isActive">
       <mat-icon class="advertisement-created__icon">access_time</mat-icon>
       <span>{{ advertisement.createAt | availableDateFormat: "days":3 }}</span>
     </div>

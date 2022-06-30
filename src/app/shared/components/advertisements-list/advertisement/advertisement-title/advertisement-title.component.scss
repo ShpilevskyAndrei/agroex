@@ -77,7 +77,6 @@
     display: flex;
     align-items: center;
     padding: 0 0.667rem;
-    margin: $offset-small $offset-small 0 0;
     border-radius: 0.333rem;
     span {
       line-height: 2.333rem;
@@ -97,13 +96,15 @@
   .advertisement-created {
     background-color: $bg-color-create;
     color: $color-create;
-    margin-right: .8rem;
+    margin-right: 0.8rem;
   }
 
   .create-id-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: .8rem;
+    margin-top: 0.8rem;
   }
+
+  @include advertisement-disabled
 }

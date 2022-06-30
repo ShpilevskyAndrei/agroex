@@ -71,4 +71,6 @@
     color: $color-copy;
     margin-top: 1.2rem;
   }
+
+  @include advertisement-disabled
 }

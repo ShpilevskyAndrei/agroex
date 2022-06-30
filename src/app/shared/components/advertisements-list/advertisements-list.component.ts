@@ -28,6 +28,7 @@ export class AdvertisementsListComponent {
   @Input() public advertisementsLoadingStatus: LoadingStatus | null;
   @Input() public isNavigationToAdvertisementPage: boolean | undefined;
   @Input() public showOwnerFlag: boolean;
+  @Input() public moderationPage: boolean;
 
   @Output() public setBet: EventEmitter<Record<string, string | number>> =
     new EventEmitter<Record<string, string | number>>();
