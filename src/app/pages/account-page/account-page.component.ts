@@ -18,7 +18,6 @@ import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IMyOrdersInterface } from './my-orders/interfaces/my-orders-request.interface';
 import { IAdvertisementInterface } from '../../shared/components/advertisements-list/interfaces/advertisement.interface';
 import { TAB_OPTIONS } from './constants/tab-options';
-import { MatTabChangeEvent } from "@angular/material/tabs";
 
 @Component({
   selector: 'app-account-page',
