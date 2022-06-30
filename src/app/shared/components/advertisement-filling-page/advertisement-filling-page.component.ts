@@ -11,6 +11,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { tap } from 'rxjs';
 import { LngLatLike } from 'mapbox-gl';
+import { Feature } from 'node_modules/@types/geojson';
 
 import { IUser } from '../../../shared/interfaces/user.interface';
 import { IS_SHOWN_MAP_CONFIG } from '../../../shared/constants/is-shown-map-config';
@@ -119,8 +120,11 @@ export class AdvertisementPageFillingComponent implements OnChanges {
       return {
         ...this.map,
         features: this.map?.features?.filter(
-          (feature) =>
-            feature?.properties?.COUNTRY === this.getFullLocationName()
+          (
+            feature: Feature<GeoJSON.MultiPolygon, GeoJSON.GeoJsonProperties>
+          ) => {
+            feature?.properties?.COUNTRY === this.getFullLocationName();
+          }
         ),
       };
     }
