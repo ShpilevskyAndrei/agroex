@@ -33,6 +33,16 @@ import { LoadingStatus } from '../../shared/interfaces/loading-status';
 import { IMyOrdersInterface } from './my-orders/interfaces/my-orders-request.interface';
 import { IAdvertisementInterface } from '../../shared/components/advertisements-list/interfaces/advertisement.interface';
 import { AdvertisementsListDealActions } from 'src/app/state/advertisements-list-page/advertisements-list-page.actions';
+import {
+  NOTIFICATION_TYPE_BET,
+  NOTIFICATION_TYPE_OUTBIDDING,
+  NOTIFICATION_TYPE_REJECTED,
+} from '../../shared/constants/notifications-type';
+import { BETTING_OUTBID_TAB } from './my-betting/constants/my-betting-tab-options';
+import {
+  MY_ADVERTISEMENTS_ACTIVE_TAB,
+  MY_ADVERTISEMENTS_PENDING_TAB,
+} from './my-advertisements/constants/my-advertisements-tab-options';
 
 @Component({
   selector: 'app-account-page-container',
@@ -139,6 +149,33 @@ export class AccountPageContainerComponent {
   }
 
   public onClickNotification(message: MessagePayload): void {
+    if (message.data?.type === NOTIFICATION_TYPE_OUTBIDDING) {
+      this.store.dispatch(
+        AccountPageActions.getMyBettingTabRequest({
+          selectedMyBettingOptionTab: BETTING_OUTBID_TAB,
+        })
+      );
+      this.store.dispatch(AccountPageActions.getMyBettingsRequest());
+      this.spinner.show();
+    }
+    if (message.data?.type === NOTIFICATION_TYPE_BET) {
+      this.store.dispatch(
+        AccountPageActions.getMyAdvertisementTabRequest({
+          selectedMyAdvertisementOptionTab: MY_ADVERTISEMENTS_ACTIVE_TAB,
+        })
+      );
+      this.store.dispatch(AccountPageActions.getMyAdvertisementsRequest());
+      this.spinner.show();
+    }
+    if (message.data?.type === NOTIFICATION_TYPE_REJECTED) {
+      this.store.dispatch(
+        AccountPageActions.getMyAdvertisementTabRequest({
+          selectedMyAdvertisementOptionTab: MY_ADVERTISEMENTS_PENDING_TAB,
+        })
+      );
+      this.store.dispatch(AccountPageActions.getMyAdvertisementsRequest());
+      this.spinner.show();
+    }
     this.store.dispatch(AppRootActions.changeNotificationStatus({ message }));
   }
 
