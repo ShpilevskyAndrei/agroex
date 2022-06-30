@@ -40,6 +40,7 @@ export class AccountPageComponent {
   @Input() public myOrdersLoadingStatus: LoadingStatus | null;
   @Input() public notificationMessage: MessagePayload[] | null;
   @Input() public selectMyAdvertisementTabTitle: string | null;
+  @Input() public selectMyBettingTabTitle: string | null;
 
   @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
   @Output() public selectTab: EventEmitter<string> = new EventEmitter<string>();
@@ -57,6 +58,8 @@ export class AccountPageComponent {
     new EventEmitter<string>();
   @Output() public changeNotificationStatus: EventEmitter<MessagePayload> =
     new EventEmitter<MessagePayload>();
+  @Output() public selectMyBettingTab: EventEmitter<string> =
+    new EventEmitter<string>();
 
   public userPanelOption: IUserOptionsType[] = USER_PANEL_OPTION;
   public userPanelOptionId = UserPanelOptionId;
@@ -118,5 +121,9 @@ export class AccountPageComponent {
 
   public onClickNotification(notification: MessagePayload): void {
     this.changeNotificationStatus.emit(notification);
+  }
+
+  public onSelectMyBettingTab(selectedMyBettingOptionTab: string): void {
+    this.selectMyBettingTab.emit(selectedMyBettingOptionTab);
   }
 }

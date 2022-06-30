@@ -34,3 +34,8 @@ export const selectMyAdvertisementTab = createSelector(
   selectGetFeatureState,
   (state) => state.myAdvertisementTab
 );
+
+export const selectMyBettingTab = createSelector(
+  selectGetFeatureState,
+  (state) => state.myBettingTab
+);

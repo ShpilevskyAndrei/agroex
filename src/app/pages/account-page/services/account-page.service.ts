@@ -38,9 +38,11 @@ export class AccountPageService extends BaseService {
   }
 
   public getMyBettings(
+    myBettingTab: string,
     token?: string
   ): Observable<IAdvertisementRequestInterface> {
     return this.get<IMyBetInterface[]>('advertisements/my-bets', {
+      params: { type: myBettingTab.toLowerCase() },
       token,
     }).pipe(
       map((myBettingsRequest: IMyBetInterface[]) => {

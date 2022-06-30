@@ -7,11 +7,17 @@ import { catchError, map, of, switchMap } from 'rxjs';
 
 import { AccountPageService } from '../../pages/account-page/services/account-page.service';
 import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
-import { selectUserToken } from '../registration-page/registration-page.selectors';
+import {
+  selectUserData,
+  selectUserToken,
+} from '../registration-page/registration-page.selectors';
 import { AccountPageActions } from './account-page.actions';
 import { IMyOrdersInterface } from '../../pages/account-page/my-orders/interfaces/my-orders-request.interface';
 import { AdvertisementsListDealActions } from '../advertisements-list-page/advertisements-list-page.actions';
-import { selectMyAdvertisementTab } from './account-page.selectors';
+import {
+  selectMyAdvertisementTab,
+  selectMyBettingTab,
+} from './account-page.selectors';
 
 @Injectable()
 export class AccountPageEffects {
@@ -87,22 +93,30 @@ export class AccountPageEffects {
         AccountPageActions.getMyBettingsRequest,
         AdvertisementsListDealActions.getAdvertisementsBetSuccess
       ),
-      concatLatestFrom(() => this.store.select(selectUserToken)),
-      switchMap(([_, selectUserToken]) =>
-        this.accountPageService.getMyBettings(selectUserToken).pipe(
-          map((myBettings: IAdvertisementRequestInterface) =>
-            AccountPageActions.getMyBettingsSuccess({
-              myBettings,
-            })
-          ),
-          catchError((error: HttpErrorResponse) =>
-            of(
-              AccountPageActions.getMyBettingsError({
-                error: error,
+      concatLatestFrom(() => [
+        this.store.select(selectUserData),
+        this.store.select(selectUserToken),
+        this.store.select(selectMyBettingTab),
+      ]),
+      switchMap(([_, selectUserData, selectUserToken, myBettingTab]) =>
+        this.accountPageService
+          .getMyBettings(myBettingTab, selectUserToken)
+          .pipe(
+            map((myBettings: IAdvertisementRequestInterface) =>
+              AccountPageActions.getMyBettingsSuccess({
+                selectUserData,
+                myBettings,
+                myBettingTab,
               })
+            ),
+            catchError((error: HttpErrorResponse) =>
+              of(
+                AccountPageActions.getMyBettingsError({
+                  error: error,
+                })
+              )
             )
           )
-        )
       )
     );
   });

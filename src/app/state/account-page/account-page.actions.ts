@@ -4,6 +4,7 @@ import { createAction, props } from '@ngrx/store';
 import { IAdvertisementRequestInterface } from '../../shared/components/advertisements-list/interfaces/advertisement-request.interface';
 import { IMyOrdersInterface } from '../../pages/account-page/my-orders/interfaces/my-orders-request.interface';
 import { IAdvertisementInterface } from '../../shared/components/advertisements-list/interfaces/advertisement.interface';
+import { IUser } from "../../shared/interfaces/user.interface";
 
 export const AccountPageActions = {
   getMyAdvertisementsRequest: createAction(
@@ -36,7 +37,11 @@ export const AccountPageActions = {
 
   getMyBettingsSuccess: createAction(
     '[ACCOUNT_PAGE] my bettings success',
-    props<{ myBettings: IAdvertisementRequestInterface }>()
+    props<{
+      selectUserData: IUser | null;
+      myBettings: IAdvertisementRequestInterface;
+      myBettingTab: string;
+    }>()
   ),
 
   getMyBettingsError: createAction(
@@ -58,5 +63,9 @@ export const AccountPageActions = {
   getMyAdvertisementTabRequest: createAction(
     '[ACCOUNT_PAGE] my advertisement tab requested',
     props<{ selectedMyAdvertisementOptionTab: string }>()
+  ),
+  getMyBettingTabRequest: createAction(
+    '[ACCOUNT_PAGE] my betting tab requested',
+    props<{ selectedMyBettingOptionTab: string }>()
   ),
 };

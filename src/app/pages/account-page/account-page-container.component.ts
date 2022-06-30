@@ -14,6 +14,7 @@ import {
   selectMyOrdersData,
   selectMyOrdersLoadingStatus,
   selectMyAdvertisementTab,
+  selectMyBettingTab,
 } from '../../state/account-page/account-page.selectors';
 import { AppRootActions } from '../../state/app-root/app-root.actions';
 import { RegistrationPageActions } from '../../state/registration-page/registration-page.actions';
@@ -47,6 +48,7 @@ import { AdvertisementsListDealActions } from 'src/app/state/advertisements-list
     [myOrdersLoadingStatus]="myOrdersLoadingStatus$ | async"
     [notificationMessage]="notificationMessage$ | async"
     [selectMyAdvertisementTabTitle]="selectMyAdvertisementTab$ | async"
+    [selectMyBettingTabTitle]="selectMyBettingTab$ | async"
     (logout)="onLogout()"
     (setBet)="onSetBet($event)"
     (setBuy)="onSetBuy($event)"
@@ -56,6 +58,7 @@ import { AdvertisementsListDealActions } from 'src/app/state/advertisements-list
     (addNotificationMessage)="onAddNotificationMessage($event)"
     (selectMyAdvertisementsTab)="onSelectMyAdvertisementTab($event)"
     (changeNotificationStatus)="onClickNotification($event)"
+    (selectMyBettingTab)="onSelectMyBettingTab($event)"
   ></app-account-page>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -71,6 +74,7 @@ export class AccountPageContainerComponent {
   public myOrdersLoadingStatus$: Observable<LoadingStatus | null>;
   public notificationMessage$: Observable<MessagePayload[] | null>;
   public selectMyAdvertisementTab$: Observable<string | null>;
+  public selectMyBettingTab$: Observable<string | null>;
 
   constructor(private store: Store, private spinner: NgxSpinnerService) {
     this.user$ = this.store.select(selectUserData);
@@ -94,6 +98,7 @@ export class AccountPageContainerComponent {
     this.selectMyAdvertisementTab$ = this.store.select(
       selectMyAdvertisementTab
     );
+    this.selectMyBettingTab$ = this.store.select(selectMyBettingTab);
   }
 
   public onLogout(): void {
@@ -146,6 +151,16 @@ export class AccountPageContainerComponent {
       })
     );
     this.store.dispatch(AccountPageActions.getMyAdvertisementsRequest());
+    this.spinner.show();
+  }
+
+  public onSelectMyBettingTab(selectedMyBettingOptionTab: string): void {
+    this.store.dispatch(
+      AccountPageActions.getMyBettingTabRequest({
+        selectedMyBettingOptionTab,
+      })
+    );
+    this.store.dispatch(AccountPageActions.getMyBettingsRequest());
     this.spinner.show();
   }
 }
