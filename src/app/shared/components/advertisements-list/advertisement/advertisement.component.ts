@@ -24,7 +24,6 @@ export class AdvertisementComponent {
   @Input() public userRole: UserRole | null;
   @Input() public isNavigationToAdvertisementPage: boolean | undefined = false;
   @Input() public showOwnerFlag: boolean;
-  @Input() public isModerationPage: boolean;
 
   @Output() public setBet: EventEmitter<Record<string, string | number>> =
     new EventEmitter<Record<string, string | number>>();
@@ -41,12 +40,5 @@ export class AdvertisementComponent {
     if (this.isNavigationToAdvertisementPage) {
       this.router.navigate(['/advertisement', this.advertisement.slug]);
     }
-  }
-
-  public isModerated(): boolean {
-    return (
-      this.advertisement.moderationStatus === ModerationStatus.Unmoderated &&
-      this.userRole === UserRole.User
-    );
   }
 }
