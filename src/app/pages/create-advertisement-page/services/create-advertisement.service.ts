@@ -9,6 +9,7 @@ import {
   ICountry,
   ICurrency,
   ILocation,
+  IProductType,
   IUnit,
 } from '../interfaces/create-advertisement.interface';
 
@@ -55,6 +56,31 @@ export class CreateAdvertisementService {
       viewValue: 'Republic of Karakalpakstan',
     },
     { value: 'Tashkent city', viewValue: 'Tashkent city' },
+  ];
+
+  public productTypes: IProductType[] = [
+    { value: 'Almond', viewValue: 'Almond' },
+    { value: 'Apple', viewValue: 'Apple' },
+    { value: 'Apricot', viewValue: 'Apricot' },
+    { value: 'Cabbage', viewValue: 'Cabbage' },
+    { value: 'Cherry', viewValue: 'Cherry' },
+    { value: 'Corn', viewValue: 'Corn' },
+    { value: 'Cucumber', viewValue: 'Cucumber' },
+    {
+      value: 'Lemon',
+      viewValue: 'Lemon',
+    },
+    { value: 'Onion', viewValue: 'Onion' },
+    { value: 'Parsley', viewValue: 'Parsley' },
+    { value: 'Peach', viewValue: 'Peach' },
+    { value: 'Persimmon', viewValue: 'Persimmon' },
+    { value: 'Plum', viewValue: 'Plum' },
+    { value: 'Potato', viewValue: 'Potato' },
+    { value: 'Rice', viewValue: 'Rice' },
+    { value: 'Tomato', viewValue: 'Tomato' },
+    { value: 'Watermelon', viewValue: 'Watermelon' },
+    { value: 'Walnut', viewValue: 'Walnut' },
+    { value: 'Wheat', viewValue: 'Wheat' },
   ];
 
   constructor(private httpClient: HttpClient) {}
