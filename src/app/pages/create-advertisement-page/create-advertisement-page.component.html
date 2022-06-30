@@ -78,9 +78,9 @@
                 </mat-form-field>
               </div>
             </div>
-            </div>
-            <!--      category-->
-            <div class="form__item">
+          </div>
+          <!--      category-->
+          <div class="form__item">
             <div class="form__field">
               <div class="form__title">Category</div>
               <mat-form-field class="form__input several">
@@ -103,8 +103,7 @@
             </div>
           </div>
           <!--      quantity and unit-->
-          
-          
+
           <!--      location-->
           <div class="form__item">
             <div class="form__field">
@@ -260,7 +259,9 @@
                 <ngx-dropzone-label>
                   <div class="form__dropzone-wrap">
                     <div>
-                      <span class="form__dropzone-file-text">Choose a file</span>
+                      <span class="form__dropzone-file-text"
+                        >Choose a file</span
+                      >
                       <span class="form__dropzone-drop-text">
                         or drag and drop it here!</span
                       >
@@ -291,9 +292,9 @@
               />
             </div>
           </div>
-          </div>
-          <!--    button-->
-          <div class="form__btns">
+        </div>
+        <!--    button-->
+        <div class="form__btns">
           <div class="form__btns-wrap">
             <button
               mat-button
@@ -314,8 +315,7 @@
             This ad will be placed on the site after review by a moderator and
             will be valid for the next 30 days.
           </p>
-          </div>
-        
+        </div>
       </form>
     </div>
   </ng-container>
@@ -329,10 +329,10 @@
       </div>
     </div>
     <app-advertisement-filling-page
-          [user]="user"
-          [advertisement]="dataToPreviewAdvPage"
-          [map]="map"
-        >
+      [user]="user"
+      [advertisement]="dataToPreviewAdvPage"
+      [map]="map"
+    >
     </app-advertisement-filling-page>
   </ng-template>
 </ng-container>
