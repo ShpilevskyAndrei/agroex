@@ -192,19 +192,21 @@ export class CreateAdvertisementPageComponent implements OnChanges {
 
     const reader = new FileReader();
 
-    if (this.files[0]) {
-      reader.readAsDataURL(this.files[0]);
-      reader.onload = (): void => {
-        this.dataToPreviewAdvPage = this.getDataToPreviewAdvPage(
-          `${reader.result}`
-        );
-      };
+    if (!this.files.length) {
+      this.dataToPreviewAdvPage =
+        this.getDataToPreviewAdvPage(PATH_TO_EMPTY_IMAGE);
+      this.navigateToCreateAdvertisementPage = false;
+
+      return;
     }
 
-    this.dataToPreviewAdvPage =
-      this.getDataToPreviewAdvPage(PATH_TO_EMPTY_IMAGE);
-
-    this.navigateToCreateAdvertisementPage = false;
+    reader.readAsDataURL(this.files[0]);
+    reader.onload = (): void => {
+      this.dataToPreviewAdvPage = this.getDataToPreviewAdvPage(
+        `${reader.result}`
+      );
+      this.navigateToCreateAdvertisementPage = false;
+    };
   }
 
   public goToCreateAdvPage(): void {
@@ -213,7 +215,7 @@ export class CreateAdvertisementPageComponent implements OnChanges {
 
   public getDataToPreviewAdvPage(base64File: string): IAdRequestInterface {
     const rawValue = this.advertisementForm.getRawValue();
-    const currentDate = moment(moment()).format('YYYY-MM-DD HH:mm');
+    const currentDate = moment().format('YYYY-MM-DD HH:mm');
 
     return {
       advertisement: {
