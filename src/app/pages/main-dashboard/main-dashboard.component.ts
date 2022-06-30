@@ -41,6 +41,8 @@ export class MainDashboardComponent {
     new EventEmitter<MessagePayload>();
   @Output() public selectCategoryTab: EventEmitter<string> =
     new EventEmitter<string>();
+  @Output() public changeNotificationStatus: EventEmitter<MessagePayload> =
+    new EventEmitter<MessagePayload>();
 
   public showOwnerFlag = true;
 
@@ -68,5 +70,9 @@ export class MainDashboardComponent {
 
   public onSelectCategoryTab(selectedOptionId: string): void {
     this.selectCategoryTab.emit(selectedOptionId);
+  }
+
+  public onClickNotification(notification: MessagePayload): void {
+    this.changeNotificationStatus.emit(notification);
   }
 }

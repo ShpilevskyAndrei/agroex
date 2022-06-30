@@ -49,6 +49,7 @@ import { UserRole } from '../../shared/components/header/enums/user-role';
     (selectTab)="onSelectTab($event)"
     (selectCategoryTab)="onSelectCategoryTab($event)"
     (addNotificationMessage)="onAddNotificationMessage($event)"
+    (changeNotificationStatus)="onClickNotification($event)"
   ></app-main-dashboard>`,
 })
 export class MainDashboardContainerComponent implements OnInit {
@@ -124,5 +125,9 @@ export class MainDashboardContainerComponent implements OnInit {
       AdvertisementsListPageActions.getAdvertisementsRequest()
     );
     this.spinner.show();
+  }
+
+  public onClickNotification(message: MessagePayload): void {
+    this.store.dispatch(AppRootActions.changeNotificationStatus({ message }));
   }
 }

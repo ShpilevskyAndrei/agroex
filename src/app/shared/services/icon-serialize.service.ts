@@ -56,5 +56,13 @@ export class IconSerializeService {
       'currency-icon',
       sanitizer.bypassSecurityTrustResourceUrl('assets/currency-icon.svg')
     );
+    this.matIconRegistry.addSvgIcon(
+      'alert-icon',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/alert.svg')
+    );
+    this.matIconRegistry.addSvgIcon(
+      'moderator-icon',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/account_moderator.svg')
+    );
   }
 }
