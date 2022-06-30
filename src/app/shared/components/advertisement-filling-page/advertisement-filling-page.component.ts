@@ -11,16 +11,15 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { tap } from 'rxjs';
 import { LngLatLike } from 'mapbox-gl';
-import { Feature } from 'node_modules/@types/geojson';
 
-import { IUser } from '../../../shared/interfaces/user.interface';
-import { IS_SHOWN_MAP_CONFIG } from '../../../shared/constants/is-shown-map-config';
+import { IUser } from '../../interfaces/user.interface';
+import { IS_SHOWN_MAP_CONFIG } from '../../constants/is-shown-map-config';
 import { IShownMap } from './interfaces/shown-map.interface';
-import { IAdRequestInterface } from '../../../shared/components/advertisements-list/interfaces/ad-request.interface';
-import { CurrenciesEnum } from '../../../shared/components/advertisements-list/advertisement/bet-modal/enums/currencies.enum';
-import { BetValidators } from '../../../shared/components/advertisements-list/advertisement/bet-modal/intefaces/bet-validator';
-import { TASHKENT_COORDINATES } from '../../../shared/constants/tashkent-coordinates';
-import { REGEXP_FOR_IS_INTEGER_NUMBER } from '../../../shared/constants/regexp';
+import { IAdRequestInterface } from '../advertisements-list/interfaces/ad-request.interface';
+import { CurrenciesEnum } from '../advertisements-list/advertisement/bet-modal/enums/currencies.enum';
+import { BetValidators } from '../advertisements-list/advertisement/bet-modal/intefaces/bet-validator';
+import { TASHKENT_COORDINATES } from '../../constants/tashkent-coordinates';
+import { REGEXP_FOR_IS_INTEGER_NUMBER } from '../../constants/regexp';
 import { WeightEnum } from '../advertisements-list/advertisement/advertisement-price/enums/weight.enum';
 
 @UntilDestroy()
@@ -121,10 +120,11 @@ export class AdvertisementPageFillingComponent implements OnChanges {
         ...this.map,
         features: this.map?.features?.filter(
           (
-            feature: Feature<GeoJSON.MultiPolygon, GeoJSON.GeoJsonProperties>
-          ) => {
-            feature?.properties?.COUNTRY === this.getFullLocationName();
-          }
+            feature: GeoJSON.Feature<
+              GeoJSON.MultiPolygon,
+              GeoJSON.GeoJsonProperties
+            >
+          ) => feature?.properties?.COUNTRY === this.getFullLocationName()
         ),
       };
     }
