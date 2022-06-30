@@ -5,7 +5,6 @@ import { MatIconModule } from '@angular/material/icon';
 import localeFr from '@angular/common/locales/fr';
 
 registerLocaleData(localeFr, 'fr');
-
 import { AdvertisementPriceComponent } from './advertisement-price.component';
 import { AvailableDateFormatPipe } from '../../../../pipes/available-date-format.pipe';
 

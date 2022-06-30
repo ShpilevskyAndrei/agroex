@@ -36,6 +36,7 @@ import {
     (dropLoadingStatus)="onDropLoadingStatus()"
     (selectTab)="onSelectTab($event)"
     (addNotificationMessage)="onAddNotificationMessage($event)"
+    (changeNotificationStatus)="onClickNotification($event)"
   ></app-create-advertisement-page>`,
 })
 export class CreateAdvertisementPageContainerComponent implements OnInit {
@@ -83,5 +84,9 @@ export class CreateAdvertisementPageContainerComponent implements OnInit {
 
   public onAddNotificationMessage(message: MessagePayload): void {
     this.store.dispatch(AppRootActions.getNotificationMessage({ message }));
+  }
+
+  public onClickNotification(message: MessagePayload): void {
+    this.store.dispatch(AppRootActions.changeNotificationStatus({ message }));
   }
 }

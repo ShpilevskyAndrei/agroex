@@ -36,6 +36,8 @@ export class AdvertisementPageComponent {
     new EventEmitter<MessagePayload>();
   @Output() public setBuy: EventEmitter<Record<string, string>> =
     new EventEmitter<Record<string, string>>();
+  @Output() public changeNotificationStatus: EventEmitter<MessagePayload> =
+    new EventEmitter<MessagePayload>();
 
   public onSetBet(newBetOptions: Record<string, string | number>): void {
     this.setBet.emit(newBetOptions);
@@ -55,5 +57,9 @@ export class AdvertisementPageComponent {
 
   public onAddNotificationMessage(message: MessagePayload): void {
     this.addNotificationMessage.emit(message);
+  }
+
+  public onClickNotification(notification: MessagePayload): void {
+    this.changeNotificationStatus.emit(notification);
   }
 }

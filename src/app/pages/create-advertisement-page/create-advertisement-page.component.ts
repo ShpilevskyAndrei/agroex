@@ -24,6 +24,7 @@ import {
   ICountry,
   ICurrency,
   ILocation,
+  IProductType,
   IUnit,
 } from './interfaces/create-advertisement.interface';
 import { CreateAdvertisementService } from './services/create-advertisement.service';
@@ -51,6 +52,8 @@ export class CreateAdvertisementPageComponent implements OnChanges {
   @Output() public selectTab: EventEmitter<string> = new EventEmitter<string>();
   @Output() public addNotificationMessage: EventEmitter<MessagePayload> =
     new EventEmitter<MessagePayload>();
+  @Output() public changeNotificationStatus: EventEmitter<MessagePayload> =
+    new EventEmitter<MessagePayload>();
 
   public maxFileSize = MAX_FILE_SIZE;
   public files: File[] = [];
@@ -62,13 +65,11 @@ export class CreateAdvertisementPageComponent implements OnChanges {
   public currencies: ICurrency[] = this.createAdvertisementService.currencies;
   public categories: ICategory[] = this.createAdvertisementService.categories;
   public navigateToCreateAdvertisementPage = true;
+  public productTypes: IProductType[] =
+    this.createAdvertisementService.productTypes;
 
   public advertisementForm: FormGroup = new FormGroup({
-    title: new FormControl('', [
-      Validators.required,
-      Validators.minLength(5),
-      Validators.maxLength(40),
-    ]),
+    productType: new FormControl('', [Validators.required]),
     country: new FormControl(
       {
         value: this.countries[0].value,
@@ -131,7 +132,7 @@ export class CreateAdvertisementPageComponent implements OnChanges {
     const formData = new FormData();
 
     formData.append('files', this.files[0]);
-    formData.append('title', rawValue.title);
+    formData.append('title', rawValue.productType);
     formData.append('country', rawValue.country);
     formData.append('location', rawValue.location);
     formData.append('category', rawValue.category);
@@ -187,6 +188,10 @@ export class CreateAdvertisementPageComponent implements OnChanges {
     this.addNotificationMessage.emit(message);
   }
 
+  public onClickNotification(notification: MessagePayload): void {
+    this.changeNotificationStatus.emit(notification);
+  }
+
   public goToPreview(clickEvent: MouseEvent): void {
     clickEvent.preventDefault();
 
@@ -220,7 +225,7 @@ export class CreateAdvertisementPageComponent implements OnChanges {
     return {
       advertisement: {
         id: 0,
-        title: rawValue.title || 'Title',
+        title: rawValue.productType || 'Title',
         country: rawValue.country || 'Country',
         location: rawValue.location || 'Location',
         slug: '',

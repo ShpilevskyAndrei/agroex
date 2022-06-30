@@ -4,6 +4,7 @@
   [notificationMessage]="notificationMessage"
   (logout)="onLogout()"
   (addNotificationMessage)="onAddNotificationMessage($event)"
+  (changeNotificationStatus)="onClickNotification($event)"
   (selectTab)="onSelectTab($event)"
 ></app-header>
 <ng-container *ngIf="createAdvertisementLoadingStatus?.loaded; else notLoaded">
@@ -16,32 +17,94 @@
       >
         <div class="form__advertisementTitle">New advertisement</div>
         <div class="form__wrap">
-          <!--      title -->
+          <!--      product type -->
           <div class="form__item">
             <div class="form__field">
-              <div class="form__title">Title</div>
-              <mat-form-field class="form__input">
-                <mat-label>Enter a title</mat-label>
-                <input
-                  type="text"
-                  matInput
-                  required
-                  placeholder="Enter a title"
-                  formControlName="title"
-                />
-                <mat-error *ngIf="this.get('title').hasError('required')">
-                  Title is required
-                </mat-error>
-                <mat-error *ngIf="this.get('title').hasError('minlength')">
-                  Values must be not shorter than 5 characters
-                </mat-error>
-                <mat-error *ngIf="this.get('title').hasError('maxlength')">
-                  Values must be not longer than 40 characters
+              <div class="form__title">Product type</div>
+              <mat-form-field class="form__input several">
+                <mat-label>Select a product type</mat-label>
+                <mat-select
+                  formControlName="productType"
+                  disableOptionCentering="true"
+                >
+                  <mat-option
+                    *ngFor="let productType of productTypes"
+                    [value]="productType.value"
+                  >
+                    {{ productType.viewValue }}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="this.get('productType').hasError('required')">
+                  Product type is required
                 </mat-error>
               </mat-form-field>
-              <mat-hint class="form__helper-text">No more 40 characters</mat-hint>
             </div>
           </div>
+          <!--      location-->
+          <div class="form__item">
+            <div class="form__field">
+              <div class="form__title">Location</div>
+              <div class="form__input-wrap">
+                <mat-form-field class="form__input several">
+                  <mat-select
+                    formControlName="country"
+                    required
+                    disableOptionCentering="true"
+                  >
+                    <mat-option
+                      *ngFor="let country of countries"
+                      [value]="country.value"
+                    >
+                      {{ country.viewValue }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field class="form__input several region">
+                  <mat-label>Select a region</mat-label>
+                  <mat-select
+                    formControlName="location"
+                    disableOptionCentering="true"
+                  >
+                    <mat-option
+                      *ngFor="let location of locations"
+                      [value]="location.value"
+                    >
+                      {{ location.viewValue }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="this.get('location').hasError('required')">
+                    Location is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            </div>
+            <!--      category-->
+            <div class="form__item">
+            <div class="form__field">
+              <div class="form__title">Category</div>
+              <mat-form-field class="form__input several">
+                <mat-label>Select a category</mat-label>
+                <mat-select
+                  formControlName="category"
+                  disableOptionCentering="true"
+                >
+                  <mat-option
+                    *ngFor="let category of categories"
+                    [value]="category.value"
+                  >
+                    {{ category.viewValue }}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="this.get('category').hasError('required')">
+                  Category is required
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <!--      quantity and unit-->
+          
+          
           <!--      location-->
           <div class="form__item">
             <div class="form__field">
@@ -228,9 +291,9 @@
               />
             </div>
           </div>
-        </div>
-        <!--    button-->
-        <div class="form__btns">
+          </div>
+          <!--    button-->
+          <div class="form__btns">
           <div class="form__btns-wrap">
             <button
               mat-button
@@ -251,7 +314,8 @@
             This ad will be placed on the site after review by a moderator and
             will be valid for the next 30 days.
           </p>
-        </div>
+          </div>
+        
       </form>
     </div>
   </ng-container>

@@ -1,15 +1,26 @@
 @import "../../../../../styles/general-styles";
 
 :host {
+  $border-color-rejected: #d72c00;
+
   $bg-color-timer: #f87e25;
   $bg-color-create: #eef7ff;
+  $bg-color-on-moderation: #eef7ff;
 
   $color-create: #2978b8;
+  $color-on-moderation: #368ace;
 
   .advertisement-title {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    .ad-title-wrap-media-only {
+      display: flex;
+      flex-direction: row;
+      @media only screen and (min-width: $medium-x-screen-min-width) and (max-width: $medium-xl-screen-min-width) {
+        flex-direction: column;
+      }
+    }
     .title {
       font-size: $font-size-medium;
       line-height: 2.333rem;
@@ -17,11 +28,38 @@
       color: $primary-color;
     }
     .ad-user-flag {
+      align-self: center;
       font-size: $font-size-xsmall;
       color: $color-copy;
+      margin-left: $offset-xsmall;
+    }
+    .moderation-flag-rejected {
+      align-self: center;
+      margin: 0 0 0 $offset-medium;
+      padding: 0 $offset-normal;
+      border-radius: 1.25rem;
+      border: 1px solid $border-color-rejected;
+      background-color: $bg-color-error-toast;
+      color: $border-color-error-toast;
+      @media only screen and (min-width: $medium-x-screen-min-width) and (max-width: $medium-xl-screen-min-width) {
+        margin: $offset-xsmall 0;
+      }
+    }
+    .moderation-flag-on-moderation {
+      align-self: center;
+      margin: 0 0 0 $offset-medium;
+      padding: 0 $offset-normal;
+      border-radius: 1.25rem;
+      border: 1px solid $color-on-moderation;
+      background-color: $bg-color-on-moderation;
+      color: $color-on-moderation;
+      @media only screen and (min-width: $medium-x-screen-min-width) and (max-width: $medium-xl-screen-min-width) {
+        margin: $offset-xsmall 0;
+      }
     }
     .desc {
       font-size: $font-size-medium;
+      margin: $offset-small;
     }
     .id {
       font-size: $font-size-xsmall;
@@ -31,7 +69,6 @@
     .desc,
     .id {
       color: $color-copy;
-      margin: $offset-small;
     }
   }
 
@@ -40,7 +77,7 @@
     display: flex;
     align-items: center;
     padding: 0 0.667rem;
-    margin: $offset-small 0;
+    margin: $offset-small $offset-small 0 0;
     border-radius: 0.333rem;
     span {
       line-height: 2.333rem;
@@ -60,11 +97,13 @@
   .advertisement-created {
     background-color: $bg-color-create;
     color: $color-create;
+    margin-right: .8rem;
   }
 
   .create-id-container {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-right: .8rem;
   }
 }
