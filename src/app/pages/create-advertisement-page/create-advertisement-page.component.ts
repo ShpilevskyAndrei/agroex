@@ -241,13 +241,13 @@ export class CreateAdvertisementPageComponent implements OnChanges {
         createAt: currentDate,
         updatedAt: currentDate,
         author: {
-          id: 0,
-          email: '',
-          username: '',
-          phone: '',
-          image: '',
-          banned: false,
-          banReason: '',
+          id: this.user?.id || 0,
+          email: this.user?.email || '',
+          username: this.user?.username || '',
+          phone: this.user?.phone || '',
+          image: this.user?.image || '',
+          banned: this.user?.banned || false,
+          banReason: this.user?.banReason || '',
         },
         userBets: [
           {
