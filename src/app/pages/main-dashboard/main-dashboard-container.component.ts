@@ -139,32 +139,37 @@ export class MainDashboardContainerComponent implements OnInit {
   }
 
   public onClickNotification(message: MessagePayload): void {
-    if (message.data?.type === NOTIFICATION_TYPE_OUTBIDDING) {
-      this.store.dispatch(
-        AccountPageActions.getMyBettingTabRequest({
-          selectedMyBettingOptionTab: BETTING_OUTBID_TAB,
-        })
-      );
-      this.store.dispatch(AccountPageActions.getMyBettingsRequest());
-      this.spinner.show();
-    }
-    if (message.data?.type === NOTIFICATION_TYPE_BET) {
-      this.store.dispatch(
-        AccountPageActions.getMyAdvertisementTabRequest({
-          selectedMyAdvertisementOptionTab: MY_ADVERTISEMENTS_ACTIVE_TAB,
-        })
-      );
-      this.store.dispatch(AccountPageActions.getMyAdvertisementsRequest());
-      this.spinner.show();
-    }
-    if (message.data?.type === NOTIFICATION_TYPE_REJECTED) {
-      this.store.dispatch(
-        AccountPageActions.getMyAdvertisementTabRequest({
-          selectedMyAdvertisementOptionTab: MY_ADVERTISEMENTS_PENDING_TAB,
-        })
-      );
-      this.store.dispatch(AccountPageActions.getMyAdvertisementsRequest());
-      this.spinner.show();
+    switch (message.data?.type) {
+      case NOTIFICATION_TYPE_OUTBIDDING:
+        this.store.dispatch(
+          AccountPageActions.getMyBettingTabRequest({
+            selectedMyBettingOptionTab: BETTING_OUTBID_TAB,
+          })
+        );
+        this.store.dispatch(AccountPageActions.getMyBettingsRequest());
+        this.spinner.show();
+
+        break;
+      case NOTIFICATION_TYPE_BET:
+        this.store.dispatch(
+          AccountPageActions.getMyAdvertisementTabRequest({
+            selectedMyAdvertisementOptionTab: MY_ADVERTISEMENTS_ACTIVE_TAB,
+          })
+        );
+        this.store.dispatch(AccountPageActions.getMyAdvertisementsRequest());
+        this.spinner.show();
+
+        break;
+      case NOTIFICATION_TYPE_REJECTED:
+        this.store.dispatch(
+          AccountPageActions.getMyAdvertisementTabRequest({
+            selectedMyAdvertisementOptionTab: MY_ADVERTISEMENTS_PENDING_TAB,
+          })
+        );
+        this.store.dispatch(AccountPageActions.getMyAdvertisementsRequest());
+        this.spinner.show();
+
+        break;
     }
 
     this.store.dispatch(AppRootActions.changeNotificationStatus({ message }));
