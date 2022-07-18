@@ -12,6 +12,7 @@ import { IAdvertisementInterface } from '../../interfaces/advertisement.interfac
 import { BetModalComponent } from '../bet-modal/bet-modal.component';
 import { IUser } from '../../../../interfaces/user.interface';
 import { UserRole } from '../../../header/enums/user-role';
+import { GuestModalComponent } from '../guest-modal/guest-modal.component';
 
 @Component({
   selector: 'app-advertisements-list-buttons',
@@ -64,6 +65,10 @@ export class AdvertisementsListButtonsComponent {
         })
       )
       .subscribe();
+  }
+
+  public openGuestModal(): void {
+    this.dialog.open(GuestModalComponent);
   }
 
   public onSetBuy(): void {

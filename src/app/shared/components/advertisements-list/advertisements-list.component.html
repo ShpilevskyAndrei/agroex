@@ -14,7 +14,7 @@
     >
       <ng-container
         buttons
-        *ngIf="actionButtonsTemplateRef && user"
+        *ngIf="actionButtonsTemplateRef"
         [ngTemplateOutlet]="actionButtonsTemplateRef"
         [ngTemplateOutletContext]="{ $implicit: advertisement }"
       >

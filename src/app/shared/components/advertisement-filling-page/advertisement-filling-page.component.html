@@ -20,7 +20,7 @@
           [user]="user"
         ></app-advertisement-price>
         <div
-          *ngIf="user && user.id !== advertisement.advertisement.author.id"
+          *ngIf="user?.id !== advertisement.advertisement.author.id && userRole !== UserRole.Moderator"
           class="bet-form-container"
         >
           <form
@@ -71,9 +71,10 @@
           </p>
         </div>
         <app-advertisement-buttons-ad-page
-          *ngIf="user && user.id !== advertisement.advertisement.author.id && userRole !== UserRole.Moderator"
+          *ngIf="user?.id !== advertisement.advertisement.author.id && userRole !== UserRole.Moderator"
           class="buttons-container"
           [betForm]="betForm"
+          [user]="user"
           [advertisement]="advertisement.advertisement"
           [actualCurrency]="actualCurrency"
           [newBet]="newBet"

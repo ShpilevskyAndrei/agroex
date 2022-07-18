@@ -1,0 +1,37 @@
+<div class="guest-modal">
+  <div class="guest-modal__text">
+    <div>
+      <h3 class="guest-modal__text__title">
+        Hi!
+        <p>You are not an authorized user</p>
+      </h3>
+      <span class="guest-modal__text__subtitle"
+        >Therefore, you cannot bid on this ad or purchase this product.
+        <br />Please login to do this.</span
+      >
+    </div>
+    <mat-icon
+      role="img"
+      class="guest-modal__text__close mat-icon notranslate material-icons mat-icon-no-color"
+      aria-hidden="true"
+      data-mat-icon-type="font"
+      (click)="onCloseModal()"
+      >close</mat-icon
+    >
+  </div>
+  <div class="guest-modal__login">
+    <button
+      mat-raised-button
+      class="guest-modal__login__button"
+      (click)="onLogin()"
+    >
+      Log in
+    </button>
+  </div>
+  <div>
+    <p class="guest-modal__return" (click)="onCloseModal()">
+      Return to browsing the website as a guest
+    </p>
+  </div>
+  <small class="guest-modal__agroex">&copy; 2022 AGROEX</small>
+</div>

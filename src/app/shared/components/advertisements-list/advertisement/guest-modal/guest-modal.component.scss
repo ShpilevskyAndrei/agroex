@@ -1,0 +1,72 @@
+@import "../../../../../styles/general-styles";
+
+:host {
+  .guest-modal {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    justify-content: space-around;
+    &__text {
+      display: flex;
+      justify-content: space-between;
+      &__title {
+        font-size: 24px;
+      }
+      &__subtitle {
+        margin-bottom: 15px;
+      }
+      &__close {
+        cursor: pointer;
+        right: 3.6rem;
+        top: 3rem;
+        opacity: 0.3;
+      }
+    }
+    &__login {
+      display: flex;
+      flex-direction: column;
+      &__title {
+      }
+      &__button {
+        margin-top: 4rem;
+      }
+    }
+    &__signup {
+      display: flex;
+      flex-direction: column;
+      &__title {
+      }
+      &__button {
+      }
+    }
+    &__return {
+      margin: 1rem 0 4rem;
+      font-style: normal;
+      font-weight: 400;
+      color: $color-copy;
+      cursor: pointer;
+    }
+    &__agroex {
+      margin-top: 1rem;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 0.84rem;
+      text-align: center;
+      color: $color-copy;
+    }
+
+    hr {
+      border: none;
+      background-color: #ebeef1;
+      height: 1px;
+      width: 100%;
+      margin: 2rem 0;
+    }
+
+    &__text__subtitle,
+    &__login__title,
+    &__signup__title {
+      margin: 15px 0;
+    }
+  }
+}
