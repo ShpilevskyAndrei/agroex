@@ -147,10 +147,10 @@
 
         button {
           width: 50%;
-          @media only screen and (min-width: $medium-screen-min-width) and (max-width: $ipad-max-device-width){
+          @media only screen and (min-width: $medium-screen-min-width) and (max-width: $ipad-max-device-width) {
             width: 70%;
           }
-          @media only screen and (max-width: $medium-screen-min-width){
+          @media only screen and (max-width: $medium-screen-min-width) {
             width: 100%;
           }
           @media only screen and (max-width: $medium-x-medium-screen-min-width) {
@@ -162,10 +162,10 @@
           flex-direction: column;
         }
       }
-      @media only screen and (min-width: $medium-screen-min-width) and (max-width: $ipad-max-device-width){
+      @media only screen and (min-width: $medium-screen-min-width) and (max-width: $ipad-max-device-width) {
         width: 70%;
       }
-      @media only screen and (max-width: $medium-screen-min-width){
+      @media only screen and (max-width: $medium-screen-min-width) {
         width: 100%;
       }
     }
@@ -188,19 +188,45 @@
 
   .preview {
     background: $color-white;
-    padding-top: $offset-medium;
-    padding-left: $offset-xxlarge;
+    padding: $offset-medium;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    box-shadow: inset 0px -1px 0px $color-button-disable;
     &__back {
       display: flex;
       align-items: center;
       cursor: pointer;
       max-width: 23rem;
+      margin: 0 2rem;
       &-text {
         margin-left: 1rem;
         font-size: $font-size-large;
         line-height: 4rem;
         letter-spacing: 0.25px;
+        color: $color-copy;
+      }
+      mat-icon {
+        color: $color-warning;
+        font-weight: bold;
+      }
+    }
+    &__place-ad {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      max-width: 23rem;
+      margin: 0 2rem;
+      &-text {
+        margin-right: 1rem;
+        font-size: $font-size-large;
+        line-height: 4rem;
+        letter-spacing: 0.25px;
         color: $primary-color;
+      }
+      mat-icon {
+        color: $active-color;
+        font-weight: bold;
       }
     }
   }
