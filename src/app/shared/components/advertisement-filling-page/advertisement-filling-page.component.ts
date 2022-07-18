@@ -21,6 +21,7 @@ import { BetValidators } from '../advertisements-list/advertisement/bet-modal/in
 import { TASHKENT_COORDINATES } from '../../constants/tashkent-coordinates';
 import { REGEXP_FOR_IS_INTEGER_NUMBER } from '../../constants/regexp';
 import { WeightEnum } from '../advertisements-list/advertisement/advertisement-price/enums/weight.enum';
+import { UserRole } from '../header/enums/user-role';
 
 @UntilDestroy()
 @Component({
@@ -33,6 +34,7 @@ export class AdvertisementPageFillingComponent implements OnChanges {
   @Input() public user: IUser | null;
   @Input() public advertisement: IAdRequestInterface | null;
   @Input() public map: GeoJSON.FeatureCollection<GeoJSON.MultiPolygon> | null;
+  @Input() public userRole: UserRole | null;
 
   @Output() public setBet: EventEmitter<Record<string, string | number>> =
     new EventEmitter<Record<string, string | number>>();
@@ -55,6 +57,7 @@ export class AdvertisementPageFillingComponent implements OnChanges {
   };
 
   public newBet = '';
+  public UserRole = UserRole;
 
   public get tonToKgUnit(): string {
     if (!this.advertisement) {

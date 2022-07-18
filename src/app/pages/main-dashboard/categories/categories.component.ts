@@ -12,6 +12,7 @@ import { IAdvertisementRequestInterface } from '../../../shared/components/adver
 import { LoadingStatus } from '../../../shared/interfaces/loading-status';
 import { IUser } from '../../../shared/interfaces/user.interface';
 import { Category } from './interfaces/category.model';
+import { UserRole } from '../../../shared/components/header/enums/user-role';
 
 @Component({
   selector: 'app-categories',
@@ -23,6 +24,7 @@ export class CategoriesComponent {
   @Input() public categories: Category[] | null;
   @Input() public categoriesLoadingStatus: LoadingStatus | null;
   @Input() public user: IUser | null;
+  @Input() public userRole: UserRole | null;
   @Input() public advertisementsRequest: IAdvertisementRequestInterface | null;
   @Input() public advertisementsLoadingStatus: LoadingStatus | null;
   @Input() public selectCategoryTabTitle: string | null;
