@@ -20,7 +20,7 @@
           [user]="user"
         ></app-advertisement-price>
         <div
-          *ngIf="user?.id !== advertisement.advertisement.author.id && userRole !== UserRole.Moderator"
+          *ngIf="user && user.id !== advertisement.advertisement.author.id"
           class="bet-form-container"
         >
           <form
@@ -62,16 +62,21 @@
                 ? +advertisement.advertisement.userBets[0].betValue + 1
                 : "1"
             }}
-            to {{ actualCurrency
-            }}{{ +advertisement.advertisement.price - 1 }}
+            to {{ actualCurrency }}{{ +advertisement.advertisement.price - 1 }}
           </p>
 
-          <p class="unit-cost" [ngStyle]="{ visibility: betForm.invalid ? 'hidden' : 'visible' }">
+          <p
+            class="unit-cost"
+            [ngStyle]="{ visibility: betForm.invalid ? 'hidden' : 'visible' }"
+          >
             {{ unitCostBetText }}
           </p>
         </div>
         <app-advertisement-buttons-ad-page
-          *ngIf="user?.id !== advertisement.advertisement.author.id && userRole !== UserRole.Moderator"
+          *ngIf="
+            user?.id !== advertisement.advertisement.author.id &&
+            userRole !== UserRole.Moderator
+          "
           class="buttons-container"
           [betForm]="betForm"
           [user]="user"
