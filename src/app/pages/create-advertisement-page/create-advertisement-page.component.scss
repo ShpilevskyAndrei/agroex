@@ -197,36 +197,34 @@
       display: flex;
       align-items: center;
       cursor: pointer;
-      max-width: 23rem;
+      max-width: 35rem;
       margin: 0 2rem;
-      &-text {
-        margin-left: 1rem;
-        font-size: $font-size-large;
-        line-height: 4rem;
-        letter-spacing: 0.25px;
-        color: $color-copy;
+      &-button {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 10px;
       }
       mat-icon {
-        color: $color-warning;
-        font-weight: bold;
+        margin-right: 1rem;
+        color: $active-color;
       }
     }
     &__place-ad {
       display: flex;
       align-items: center;
       cursor: pointer;
-      max-width: 23rem;
+      max-width: 35rem;
       margin: 0 2rem;
-      &-text {
-        margin-right: 1rem;
-        font-size: $font-size-large;
-        line-height: 4rem;
-        letter-spacing: 0.25px;
-        color: $primary-color;
+      &-button {
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
       }
       mat-icon {
-        color: $active-color;
-        font-weight: bold;
+        margin-left: 1rem;
+        color: $color-white;
       }
     }
   }
