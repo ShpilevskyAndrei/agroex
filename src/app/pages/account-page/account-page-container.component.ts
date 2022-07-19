@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
@@ -72,7 +72,7 @@ import {
   ></app-account-page>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AccountPageContainerComponent {
+export class AccountPageContainerComponent implements OnInit {
   public user$: Observable<IUser | null>;
   public userRole$: Observable<UserRole | null>;
   public selectedTab$: Observable<string | null>;
@@ -184,6 +184,19 @@ export class AccountPageContainerComponent {
 
     this.store.dispatch(AppRootActions.changeNotificationStatus({ message }));
   }
+
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+  public refreshData(): void {
+    this.store.dispatch(AccountPageActions.getMyAdvertisementsRequest());
+    this.store.dispatch(AccountPageActions.getMyBettingsRequest());
+  }
+
+  public ngOnInit(): void {
+    setInterval(() => this.refreshData(), 5000);
+  }
+
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
   public onSelectMyAdvertisementTab(
     selectedMyAdvertisementOptionTab: string

@@ -90,9 +90,22 @@ export class MainDashboardContainerComponent implements OnInit {
 
   public ngOnInit(): void {
     this.store.dispatch(MainDashboardActions.getCategoriesRequest());
-    this.store.dispatch(
-      AdvertisementsListPageActions.getAdvertisementsRequest()
+    // this.store.dispatch(
+    //   AdvertisementsListPageActions.getAdvertisementsRequest()
+    // )
+
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    setInterval(
+      () =>
+        this.store.dispatch(
+          AdvertisementsListPageActions.getAdvertisementsRequest()
+        ),
+      30000
     );
+
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
     this.spinner.show();
   }
 
