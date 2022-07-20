@@ -1,0 +1,52 @@
+@import "../../../../../styles/general-styles";
+
+:host {
+  .buy-modal {
+    padding: 20px;
+    &__close {
+      cursor: pointer;
+      color: $color-copy;
+    }
+    &__title {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      &__text {
+        margin-bottom: 0;
+      }
+      &__unique-code {
+        font-size: $font-size-xsmall;
+        line-height: 1.333rem;
+        color: $color-ask;
+        margin: 0 0 3rem;
+      }
+    }
+    &__text {
+    }
+    &__description {
+      display: flex;
+      flex-direction: column;
+      &__lot {
+        color: $color-tradewind;
+        font-weight: bold;
+        margin-bottom: 3rem;
+      }
+      &__item {
+        color: $color-copy;
+        font-weight: 500;
+        &__value {
+          color: $primary-color;
+          font-weight: bold;
+        }
+      }
+    }
+    &__buttons {
+      display: flex;
+      justify-content: space-between;
+      button {
+        margin-top: 3rem;
+        width: 45%;
+      }
+    }
+  }
+}
