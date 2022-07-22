@@ -69,6 +69,7 @@ export class CreateAdvertisementPageComponent implements OnChanges {
     this.createAdvertisementService.productTypes;
 
   public advertisementForm: FormGroup = new FormGroup({
+    title: new FormControl(''),
     productType: new FormControl('', [Validators.required]),
     country: new FormControl(
       {
@@ -132,7 +133,7 @@ export class CreateAdvertisementPageComponent implements OnChanges {
     const formData = new FormData();
 
     formData.append('files', this.files[0]);
-    formData.append('title', rawValue.productType);
+    formData.append('title', this.getTitle());
     formData.append('country', rawValue.country);
     formData.append('location', rawValue.location);
     formData.append('category', rawValue.category);
@@ -141,6 +142,11 @@ export class CreateAdvertisementPageComponent implements OnChanges {
     formData.append('price', rawValue.price);
     formData.append('currency', rawValue.currency);
     this.formAdvertisement.emit(formData);
+  }
+
+  public getTitle(): string {
+    const rawValue = this.advertisementForm.getRawValue();
+    return this.getOtherValue() ? rawValue.title : rawValue.productType;
   }
 
   public onSelect(event: NgxDropzoneChangeEvent): void {
@@ -218,6 +224,19 @@ export class CreateAdvertisementPageComponent implements OnChanges {
     this.navigateToCreateAdvertisementPage = true;
   }
 
+  public getOtherValue(): boolean {
+    const rawValue = this.advertisementForm.getRawValue();
+    if (rawValue.productType === 'Other') {
+      // this.get('title').setValidators([
+      //   Validators.required,
+      //   Validators.minLength(5),
+      //   Validators.maxLength(40),
+      // ]);
+      return true;
+    }
+    return false;
+  }
+
   public getDataToPreviewAdvPage(base64File: string): IAdRequestInterface {
     const rawValue = this.advertisementForm.getRawValue();
     const currentDate = moment().format('YYYY-MM-DD HH:mm');
@@ -225,7 +244,7 @@ export class CreateAdvertisementPageComponent implements OnChanges {
     return {
       advertisement: {
         id: 0,
-        title: rawValue.productType,
+        title: this.getTitle(),
         country: rawValue.country,
         location: rawValue.location,
         slug: '',

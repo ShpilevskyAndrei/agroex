@@ -21,23 +21,46 @@
           <div class="form__item">
             <div class="form__field">
               <div class="form__title">Product type</div>
-              <mat-form-field class="form__input several">
-                <mat-label>Select a product type</mat-label>
-                <mat-select
-                  formControlName="productType"
-                  disableOptionCentering="true"
-                >
-                  <mat-option
-                    *ngFor="let productType of productTypes"
-                    [value]="productType.value"
+              <div class="form__input-wrapper">
+                <mat-form-field class="form__input several form__input-product">
+                  <mat-label>Select a product type</mat-label>
+                  <mat-select
+                    formControlName="productType"
+                    disableOptionCentering="true"
                   >
-                    {{ productType.viewValue }}
-                  </mat-option>
-                </mat-select>
-                <mat-error *ngIf="this.get('productType').hasError('required')">
-                  Product type is required
-                </mat-error>
-              </mat-form-field>
+                    <mat-option
+                      *ngFor="let productType of productTypes"
+                      [value]="productType.value"
+                    >
+                      {{ productType.viewValue }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="this.get('productType').hasError('required')">
+                    Product type is required
+                  </mat-error>
+                </mat-form-field>
+                <div *ngIf="getOtherValue()" class="form__other">
+                  <mat-form-field class="form__input form__input-other">
+                    <mat-label>Enter a title</mat-label>
+                    <input
+                      type="text"
+                      matInput
+                      required
+                      placeholder="Enter a title"
+                      formControlName="title"
+                    />
+                    <mat-error *ngIf="this.get('title').hasError('required')">
+                      Title is required
+                    </mat-error>
+                    <mat-error *ngIf="this.get('title').hasError('minlength')">
+                      Values must be not shorter than 5 characters
+                    </mat-error>
+                    <mat-error *ngIf="this.get('title').hasError('maxlength')">
+                      Values must be not longer than 40 characters
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
             </div>
           </div>
           <!--      location-->
@@ -235,7 +258,7 @@
             <button
               mat-button
               class="btn_tradewind"
-              
+              [disabled]="advertisementForm.invalid || !files.length"
               (click)="goToPreview($event)"
             >
               Preview

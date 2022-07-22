@@ -121,6 +121,15 @@
           width: 25%;
         }
       }
+
+      &-wrapper {
+        display: flex;
+        column-gap: $offset-medium;
+        width: 100%;
+        @media only screen and (max-width: $medium-screen-min-width) {
+          flex-direction: column;
+        }
+      }
     }
 
     &__desc {
@@ -183,6 +192,14 @@
       font-weight: 400;
       color: $color-copy;
       margin-top: 0.3rem;
+    }
+
+    &__other {
+      width: 50%;
+      @media only screen and (max-width: $medium-screen-min-width) {
+        margin-top: $offset-medium;
+        width: 100%;
+      }
     }
   }
 
