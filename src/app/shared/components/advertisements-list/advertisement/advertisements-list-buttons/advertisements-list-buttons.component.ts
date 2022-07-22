@@ -90,11 +90,12 @@ export class AdvertisementsListButtonsComponent {
           id: this.advertisement.id,
           title: this.advertisement.title,
           location: this.advertisement.location,
-          seller: this.advertisement.author.username,
-          sellerUniqueUserCode: this.unigueUserCode(
-            this.advertisement.author.username,
-            this.advertisement.author.phone
-          ),
+          seller: this.advertisement.author.username || 'Unknown seller',
+          sellerUniqueUserCode:
+            this.unigueUserCode(
+              this.advertisement.author.username,
+              this.advertisement.author.phone
+            ) || '...',
           buyer: this.user?.username,
           buyerUniqueUserCode: this.unigueUserCode(
             this.user?.username,
