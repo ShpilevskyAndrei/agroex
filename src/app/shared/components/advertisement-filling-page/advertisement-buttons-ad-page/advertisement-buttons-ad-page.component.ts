@@ -7,12 +7,12 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { filter, tap } from 'rxjs';
 
 import { IAdvertisementInterface } from '../../advertisements-list/interfaces/advertisement.interface';
 import { GuestModalComponent } from '../../advertisements-list/advertisement/guest-modal/guest-modal.component';
 import { IUser } from '../../../interfaces/user.interface';
 import { BuyModalComponent } from '../../advertisements-list/advertisement/buy-modal/buy-modal.component';
-import { filter, tap } from 'rxjs';
 
 @Component({
   selector: 'app-advertisement-buttons-ad-page',
