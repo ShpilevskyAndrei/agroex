@@ -61,6 +61,13 @@ export class AdvertisementButtonsAdPageComponent {
     this.dialog.open(GuestModalComponent);
   }
 
+  public onSetBuy(): void {
+    this.setBuy.emit({
+      slug: this.advertisement.slug,
+      title: this.advertisement.title,
+    });
+  }
+
   public openBuyModal(): void {
     this.dialog
       .open(BuyModalComponent, {
