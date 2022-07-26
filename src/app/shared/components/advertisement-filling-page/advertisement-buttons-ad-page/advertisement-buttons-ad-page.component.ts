@@ -7,14 +7,12 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { filter, tap } from 'rxjs';
 
 import { IAdvertisementInterface } from '../../advertisements-list/interfaces/advertisement.interface';
 import { GuestModalComponent } from '../../advertisements-list/advertisement/guest-modal/guest-modal.component';
 import { IUser } from '../../../interfaces/user.interface';
 import { BuyModalComponent } from '../../advertisements-list/advertisement/buy-modal/buy-modal.component';
-import { filter, tap } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
-import { IUser } from '../../../interfaces/user.interface';
 
 @Component({
   selector: 'app-advertisement-buttons-ad-page',
@@ -29,7 +27,6 @@ export class AdvertisementButtonsAdPageComponent {
   @Input() public newBet: string;
   @Input() public isDisabled = false;
   @Input() public betForm: FormGroup;
-  @Input() public user: IUser;
 
   @Output() public setBet: EventEmitter<Record<string, string>> =
     new EventEmitter<Record<string, string>>();
@@ -63,12 +60,6 @@ export class AdvertisementButtonsAdPageComponent {
   public openGuestModal(): void {
     this.dialog.open(GuestModalComponent);
   }
-
-  public onSetBuy(): void {
-    this.setBuy.emit({
-      slug: this.advertisement.slug,
-      title: this.advertisement.title,
-    });
 
   public openBuyModal(): void {
     this.dialog
