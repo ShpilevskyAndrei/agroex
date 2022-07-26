@@ -13,6 +13,7 @@ import { AdvertisementTitleModule } from './advertisement-title/advertisement-ti
 import { AdvertisementButtonsModule } from './advertisement-buttons/advertisement-buttons.module';
 import { AdvertisementPriceModule } from './advertisement-price/advertisement-price.module';
 import { BetModalComponent } from './bet-modal/bet-modal.component';
+import { BuyModalComponent } from './buy-modal/buy-modal.component';
 import { GuestModalComponent } from './guest-modal/guest-modal.component';
 
 @NgModule({
@@ -20,6 +21,7 @@ import { GuestModalComponent } from './guest-modal/guest-modal.component';
     AdvertisementComponent,
     BetModalComponent,
     GuestModalComponent,
+    BuyModalComponent
   ],
   imports: [
     CommonModule,

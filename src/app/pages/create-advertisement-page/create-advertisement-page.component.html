@@ -260,8 +260,14 @@
     <div class="container">
       <div class="preview">
         <div class="preview__back" (click)="goToCreateAdvPage()">
-          <mat-icon>arrow_back</mat-icon>
-          <span class="preview__back-text">New advertisement</span>
+          <button class="preview__back-button btn_tradewind" mat-raised-button>
+            <mat-icon>arrow_back</mat-icon><span>Back to editing</span>
+          </button>
+        </div>
+        <div class="preview__place-ad" (click)="submitForm()">
+          <button class="preview__place-ad-button" mat-raised-button >
+            <span>Publish your advertisement</span><mat-icon>arrow_forward</mat-icon>
+          </button>
         </div>
       </div>
     </div>

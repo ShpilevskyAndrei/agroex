@@ -12,7 +12,7 @@
     </button>
   </div>
   <div class="advertisement-btn">
-    <button mat-button (click)="user ? onSetBuy() : openGuestModal()">
+    <button mat-button (click)="user ? openBuyModal() : openGuestModal()">
       <mat-icon
         svgIcon="caret-icon"
         class="advertisement-btns__icon"

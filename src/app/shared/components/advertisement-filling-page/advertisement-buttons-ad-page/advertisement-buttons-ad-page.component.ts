@@ -11,6 +11,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { IAdvertisementInterface } from '../../advertisements-list/interfaces/advertisement.interface';
 import { GuestModalComponent } from '../../advertisements-list/advertisement/guest-modal/guest-modal.component';
 import { IUser } from '../../../interfaces/user.interface';
+import { BuyModalComponent } from '../../advertisements-list/advertisement/buy-modal/buy-modal.component';
+import { filter, tap } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { IUser } from '../../../interfaces/user.interface';
 
 @Component({
   selector: 'app-advertisement-buttons-ad-page',
@@ -25,6 +29,7 @@ export class AdvertisementButtonsAdPageComponent {
   @Input() public newBet: string;
   @Input() public isDisabled = false;
   @Input() public betForm: FormGroup;
+  @Input() public user: IUser;
 
   @Output() public setBet: EventEmitter<Record<string, string>> =
     new EventEmitter<Record<string, string>>();
@@ -32,6 +37,18 @@ export class AdvertisementButtonsAdPageComponent {
     new EventEmitter<Record<string, string>>();
 
   constructor(private dialog: MatDialog) {}
+
+  public unigueUserCode(
+    name: string | undefined,
+    phone: string | undefined
+  ): string {
+    if (name && phone) {
+      const letters = name.substring(0, 2).toLowerCase();
+      const numbers = phone.replace(/[^0-9]/g, '');
+      return `${letters} ${numbers}`;
+    }
+    return '';
+  }
 
   public onSetBet(): void {
     this.setBet.emit({
@@ -52,5 +69,44 @@ export class AdvertisementButtonsAdPageComponent {
       slug: this.advertisement.slug,
       title: this.advertisement.title,
     });
+
+  public openBuyModal(): void {
+    this.dialog
+      .open(BuyModalComponent, {
+        panelClass: 'buy-modal-container',
+        width: '100%',
+        maxWidth: '34rem',
+        minWidth: '26.667rem',
+        data: {
+          price: this.advertisement.price,
+          currency: this.advertisement.currency,
+          unit: this.advertisement.unit,
+          quantity: this.advertisement.quantity,
+          id: this.advertisement.id,
+          title: this.advertisement.title,
+          location: this.advertisement.location,
+          seller: this.advertisement.author.username,
+          sellerUniqueUserCode: this.unigueUserCode(
+            this.advertisement.author.username,
+            this.advertisement.author.phone
+          ),
+          buyer: this.user?.username,
+          buyerUniqueUserCode: this.unigueUserCode(
+            this.user?.username,
+            this.user?.phone
+          ),
+        },
+      })
+      .afterClosed()
+      .pipe(
+        filter(Boolean),
+        tap(() => {
+          this.setBuy.emit({
+            slug: this.advertisement.slug,
+            title: this.advertisement.title,
+          });
+        })
+      )
+      .subscribe();
   }
 }
