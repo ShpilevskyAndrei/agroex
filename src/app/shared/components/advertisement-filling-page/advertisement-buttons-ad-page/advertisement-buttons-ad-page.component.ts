@@ -13,8 +13,6 @@ import { GuestModalComponent } from '../../advertisements-list/advertisement/gue
 import { IUser } from '../../../interfaces/user.interface';
 import { BuyModalComponent } from '../../advertisements-list/advertisement/buy-modal/buy-modal.component';
 import { filter, tap } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
-import { IUser } from '../../../interfaces/user.interface';
 
 @Component({
   selector: 'app-advertisement-buttons-ad-page',
@@ -29,7 +27,6 @@ export class AdvertisementButtonsAdPageComponent {
   @Input() public newBet: string;
   @Input() public isDisabled = false;
   @Input() public betForm: FormGroup;
-  @Input() public user: IUser;
 
   @Output() public setBet: EventEmitter<Record<string, string>> =
     new EventEmitter<Record<string, string>>();
@@ -69,6 +66,7 @@ export class AdvertisementButtonsAdPageComponent {
       slug: this.advertisement.slug,
       title: this.advertisement.title,
     });
+  }
 
   public openBuyModal(): void {
     this.dialog
