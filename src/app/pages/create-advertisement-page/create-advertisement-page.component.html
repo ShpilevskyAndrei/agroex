@@ -27,11 +27,11 @@
                   <mat-select
                     formControlName="productType"
                     disableOptionCentering="true"
+                    (selectionChange)="this.getOtherValue()"
                   >
                     <mat-option
                       *ngFor="let productType of productTypes"
                       [value]="productType.value"
-                      (click)="this.getOtherValue()"
                     >
                       {{ productType.viewValue }}
                     </mat-option>
