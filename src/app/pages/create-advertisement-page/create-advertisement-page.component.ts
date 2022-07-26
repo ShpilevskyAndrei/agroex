@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
@@ -37,7 +36,6 @@ import * as moment from 'moment';
   selector: 'app-create-advertisement-page',
   templateUrl: './create-advertisement-page.component.html',
   styleUrls: ['./create-advertisement-page.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateAdvertisementPageComponent implements OnChanges {
   @Input() public user: IUser | null;
