@@ -31,6 +31,7 @@
                     <mat-option
                       *ngFor="let productType of productTypes"
                       [value]="productType.value"
+                      (click)="this.getOtherValue()"
                     >
                       {{ productType.viewValue }}
                     </mat-option>
@@ -39,13 +40,12 @@
                     Product type is required
                   </mat-error>
                 </mat-form-field>
-                <div *ngIf="getOtherValue()" class="form__other">
+                <div *ngIf="otherSelect" class="form__other">
                   <mat-form-field class="form__input form__input-other">
                     <mat-label>Enter a title</mat-label>
                     <input
                       type="text"
                       matInput
-                      required
                       placeholder="Enter a title"
                       formControlName="title"
                     />

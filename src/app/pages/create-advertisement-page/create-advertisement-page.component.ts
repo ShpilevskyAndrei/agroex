@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
@@ -36,6 +37,7 @@ import * as moment from 'moment';
   selector: 'app-create-advertisement-page',
   templateUrl: './create-advertisement-page.component.html',
   styleUrls: ['./create-advertisement-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateAdvertisementPageComponent implements OnChanges {
   @Input() public user: IUser | null;
@@ -67,6 +69,7 @@ export class CreateAdvertisementPageComponent implements OnChanges {
   public navigateToCreateAdvertisementPage = true;
   public productTypes: IProductType[] =
     this.createAdvertisementService.productTypes;
+  public otherSelect = false;
 
   public advertisementForm: FormGroup = new FormGroup({
     title: new FormControl(''),
@@ -146,7 +149,7 @@ export class CreateAdvertisementPageComponent implements OnChanges {
 
   public getTitle(): string {
     const rawValue = this.advertisementForm.getRawValue();
-    return this.getOtherValue() ? rawValue.title : rawValue.productType;
+    return this.otherSelect ? rawValue.title : rawValue.productType;
   }
 
   public onSelect(event: NgxDropzoneChangeEvent): void {
@@ -224,17 +227,24 @@ export class CreateAdvertisementPageComponent implements OnChanges {
     this.navigateToCreateAdvertisementPage = true;
   }
 
-  public getOtherValue(): boolean {
+  public getOtherValue(): void {
     const rawValue = this.advertisementForm.getRawValue();
+
     if (rawValue.productType === 'Other') {
-      // this.get('title').setValidators([
-      //   Validators.required,
-      //   Validators.minLength(5),
-      //   Validators.maxLength(40),
-      // ]);
-      return true;
+      this.get('title').setValidators([
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(40),
+      ]);
+      this.get('title').updateValueAndValidity();
+      this.otherSelect = true;
+      return;
     }
-    return false;
+
+    this.get('title').clearValidators();
+    this.get('title').updateValueAndValidity();
+    this.otherSelect = false;
+    return;
   }
 
   public getDataToPreviewAdvPage(base64File: string): IAdRequestInterface {
