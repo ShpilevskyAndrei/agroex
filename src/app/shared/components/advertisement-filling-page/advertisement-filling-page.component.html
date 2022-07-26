@@ -73,6 +73,7 @@
         <app-advertisement-buttons-ad-page
           *ngIf="user && user.id !== advertisement.advertisement.author.id"
           class="buttons-container"
+          [user]="user"
           [betForm]="betForm"
           [advertisement]="advertisement.advertisement"
           [actualCurrency]="actualCurrency"

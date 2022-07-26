@@ -1,0 +1,55 @@
+<div class="buy-modal">
+  <div class="buy-modal__title">
+    <div>
+      <h2 class="buy-modal__title__text">
+        {{ data.buyer[0].toUpperCase() + data.buyer.substring(1) }},
+        <br />please accept your decision
+      </h2>
+      <p class="buy-modal__title__unique-code">
+        your unique code: {{ data.buyerUniqueUserCode }}
+      </p>
+    </div>
+    <mat-icon class="buy-modal__close" (click)="onCloseBuyModal()"
+      >close</mat-icon
+    >
+  </div>
+  <div class="buy-modal__description">
+    <span class="buy-modal__description__lot">Lot №{{ data.id }}</span>
+    <span class="buy-modal__description__item"
+      >Title:
+      <span class="buy-modal__description__item__value">
+        {{ data.title }}
+      </span>
+    </span>
+    <span class="buy-modal__description__item"
+      >Seller:
+      <span class="buy-modal__description__item__value">
+        {{ data.seller[0].toUpperCase() + data.seller.substring(1) }}
+      </span>
+      <span class=""> ({{ data.sellerUniqueUserCode }})</span>
+    </span>
+    <span class="buy-modal__description__item"
+      >Location:
+      <span class="buy-modal__description__item__value">
+        {{ data.location }}
+      </span>
+    </span>
+    <span class="buy-modal__description__item"
+      >Quantity:
+      <span class="buy-modal__description__item__value"
+        >{{ data.quantity }} {{ data.unit }}</span
+      ></span
+    >
+    <span class="buy-modal__description__item"
+      >Total price:<span class="buy-modal__description__item__value">
+        {{ data.price }} {{ data.currency }}</span
+      ></span
+    >
+  </div>
+  <div class="buy-modal__buttons">
+    <button mat-button class="btn_ghost" (click)="onCloseBuyModal()">
+      Not now
+    </button>
+    <button mat-button (click)="onSetBuy()">Buy</button>
+  </div>
+</div>
