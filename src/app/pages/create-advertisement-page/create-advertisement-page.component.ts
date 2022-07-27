@@ -18,7 +18,10 @@ import { IUser } from '../../shared/interfaces/user.interface';
 import { MAX_FILE_SIZE } from './constant/max-file-sizes';
 import { PATH_TO_EMPTY_IMAGE } from './constant/empty-image';
 import { REGEXP_FOR_IS_NUMBER } from './constant/regexp';
-import { REGEXP_FOR_IS_INTEGER_NUMBER } from '../../shared/constants/regexp';
+import {
+  REGEXP_FOR_IS_INTEGER_NUMBER,
+  REGEXP_FOR_LATIN_CHARS,
+} from '../../shared/constants/regexp';
 import {
   ICategory,
   ICountry,
@@ -233,6 +236,7 @@ export class CreateAdvertisementPageComponent implements OnChanges {
         Validators.required,
         Validators.minLength(5),
         Validators.maxLength(40),
+        Validators.pattern(REGEXP_FOR_LATIN_CHARS),
       ]);
       this.get('title').updateValueAndValidity();
       this.otherSelect = true;

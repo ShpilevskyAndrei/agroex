@@ -58,6 +58,9 @@
                     <mat-error *ngIf="this.get('title').hasError('maxlength')">
                       Values must be not longer than 40 characters
                     </mat-error>
+                    <mat-error *ngIf="this.get('title').hasError('pattern')">
+                      Digits isn't required
+                    </mat-error>
                   </mat-form-field>
                 </div>
               </div>
