@@ -1,0 +1,231 @@
+@import "../../../styles/general-styles";
+
+:host {
+  .form {
+    padding: 3rem 3.3rem 3.3rem;
+    background: $color-white;
+
+    &__advertisementTitle {
+      font-size: $font-size-large;
+      color: $primary-color;
+      font-weight: 500;
+    }
+
+    &__wrap {
+      margin-top: calc(3 * #{$offset-normal});
+    }
+
+    &__input-wrap {
+      display: flex;
+      column-gap: $offset-medium;
+
+      .mat-form-field + .mat-form-field {
+        margin: 0;
+      }
+
+      @media only screen and (max-width: $medium-screen-min-width) {
+        flex-direction: column;
+      }
+
+      &-small {
+        @media only screen and (max-width: $medium-screen-min-width) {
+          flex-direction: row;
+        }
+      }
+    }
+
+    &__dropzone {
+      overflow-y: hidden;
+      position: relative;
+
+      &-file-text {
+        color: $active-color;
+        font-weight: 600;
+        font-size: $font-size-small;
+      }
+
+      &-drop-text {
+        color: $primary-color;
+        font-weight: 500;
+        font-size: $font-size-small;
+      }
+
+      &-footnote {
+        color: $color-copy;
+        font-size: $font-size-xsmall;
+        font-weight: 400;
+      }
+
+      &-wrap {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+
+        div {
+          margin-top: $offset-small;
+        }
+      }
+    }
+
+    &__item {
+      display: flex;
+
+      & + .form__item {
+        margin-top: $offset-xlarge;
+      }
+    }
+
+    &__field {
+      width: 50%;
+      @media only screen and (max-width: $laptop-min-width) {
+        width: 70%;
+      }
+      @media only screen and (max-width: $ipad-min-device-width) {
+        width: 100%;
+      }
+    }
+
+    &__title {
+      font-size: $font-size-medium;
+      color: $primary-color;
+      font-weight: 500;
+      margin-bottom: $offset-small;
+    }
+
+    &__input {
+      width: 100%;
+
+      &.several {
+        width: 50%;
+        @media only screen and (max-width: $medium-screen-min-width) {
+          width: 100%;
+          &.region {
+            margin-top: $offset-large !important;
+          }
+        }
+      }
+
+      &.doubleselect {
+        @media only screen and (max-width: $medium-screen-min-width) {
+          width: 75%;
+        }
+        @media only screen and (max-width: $small-medium-screen-min-width) {
+          width: 70%;
+        }
+      }
+
+      &.select-small {
+        width: 17.6%;
+        @media only screen and (max-width: $medium-screen-min-width) {
+          width: 25%;
+        }
+      }
+    }
+
+    &__desc {
+      margin-left: $font-size-normal;
+      position: relative;
+
+      &-image {
+        position: absolute;
+        top: 35px;
+      }
+
+      p {
+        font-size: $font-size-normal;
+      }
+    }
+
+    &__btns {
+      width: 50%;
+      margin-top: 5.3rem;
+
+      &-wrap {
+        display: flex;
+        column-gap: $offset-medium;
+
+        button {
+          width: 50%;
+          @media only screen and (min-width: $medium-screen-min-width) and (max-width: $ipad-max-device-width) {
+            width: 70%;
+          }
+          @media only screen and (max-width: $medium-screen-min-width) {
+            width: 100%;
+          }
+          @media only screen and (max-width: $medium-x-medium-screen-min-width) {
+            margin-top: 1.5rem;
+          }
+        }
+
+        @media only screen and (max-width: $medium-x-medium-screen-min-width) {
+          flex-direction: column;
+        }
+      }
+      @media only screen and (min-width: $medium-screen-min-width) and (max-width: $ipad-max-device-width) {
+        width: 70%;
+      }
+      @media only screen and (max-width: $medium-screen-min-width) {
+        width: 100%;
+      }
+    }
+
+    &__footnote {
+      display: block;
+      font-size: $font-size-xsmall;
+      color: $color-copy;
+      font-weight: 400;
+      margin-top: $offset-medium;
+    }
+
+    &__helper-text {
+      font-size: $font-size-xsmall;
+      font-weight: 400;
+      color: $color-copy;
+      margin-top: 0.3rem;
+    }
+  }
+
+  .preview {
+    background: $color-white;
+    padding: $offset-medium;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    box-shadow: inset 0px -1px 0px $color-button-disable;
+    &__back {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      max-width: 35rem;
+      margin: 0 2rem;
+      &-button {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 10px;
+      }
+      mat-icon {
+        margin-right: 1rem;
+        color: $active-color;
+      }
+    }
+    &__place-ad {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      max-width: 35rem;
+      margin: 0 2rem;
+      &-button {
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+      mat-icon {
+        margin-left: 1rem;
+        color: $color-white;
+      }
+    }
+  }
+}
