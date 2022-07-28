@@ -2,16 +2,16 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnChanges,
+  // OnChanges,
   Output,
-  SimpleChanges,
+  // SimpleChanges,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AgroexToastService, ToastType } from 'ngx-agroex-toast';
 import { NgxDropzoneChangeEvent } from 'ngx-dropzone';
-import firebase from 'firebase/compat';
-import MessagePayload = firebase.messaging.MessagePayload;
+// import firebase from 'firebase/compat';
+// import MessagePayload = firebase.messaging.MessagePayload;
 
 import { MAX_FILE_SIZE } from './constant/max-file-sizes';
 import { PATH_TO_EMPTY_IMAGE } from './constant/empty-image';
@@ -27,8 +27,8 @@ import {
 import { CreateAdvertisementService } from './services/create-advertisement.service';
 import * as moment from 'moment';
 import { IUser } from '../../interfaces/user.interface';
-import { LoadingStatus } from '../../interfaces/loading-status';
-import { UserRole } from '../header/enums/user-role';
+// import { LoadingStatus } from '../../interfaces/loading-status';
+// import { UserRole } from '../header/enums/user-role';
 import { IAdRequestInterface } from '../advertisements-list/interfaces/ad-request.interface';
 import { REGEXP_FOR_IS_INTEGER_NUMBER } from '../../constants/regexp';
 
@@ -37,23 +37,25 @@ import { REGEXP_FOR_IS_INTEGER_NUMBER } from '../../constants/regexp';
   templateUrl: './create-advertisement-filling-page.component.html',
   styleUrls: ['./create-advertisement-filling-page.component.scss'],
 })
-export class CreateAdvertisementFillingPageComponent implements OnChanges {
+
+// export class CreateAdvertisementFillingPageComponent implements OnChanges {
+export class CreateAdvertisementFillingPageComponent {
   @Input() public user: IUser | null;
-  @Input() public createAdvertisementLoadingStatus: LoadingStatus | null;
-  @Input() public notificationMessage: MessagePayload[] | null;
-  @Input() public userRole: UserRole | null;
+  // @Input() public createAdvertisementLoadingStatus: LoadingStatus | null;
+  // @Input() public notificationMessage: MessagePayload[] | null;
+  // @Input() public userRole: UserRole | null;
   @Input() public map: GeoJSON.FeatureCollection<GeoJSON.MultiPolygon> | null;
 
-  @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
-  @Output() public dropLoadingStatus: EventEmitter<void> =
-    new EventEmitter<void>();
+  // @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
+  // @Output() public dropLoadingStatus: EventEmitter<void> =
+  //   new EventEmitter<void>();
   @Output()
   public formAdvertisement: EventEmitter<FormData> = new EventEmitter<FormData>();
-  @Output() public selectTab: EventEmitter<string> = new EventEmitter<string>();
-  @Output() public addNotificationMessage: EventEmitter<MessagePayload> =
-    new EventEmitter<MessagePayload>();
-  @Output() public changeNotificationStatus: EventEmitter<MessagePayload> =
-    new EventEmitter<MessagePayload>();
+  // @Output() public selectTab: EventEmitter<string> = new EventEmitter<string>();
+  // @Output() public addNotificationMessage: EventEmitter<MessagePayload> =
+  //   new EventEmitter<MessagePayload>();
+  // @Output() public changeNotificationStatus: EventEmitter<MessagePayload> =
+  //   new EventEmitter<MessagePayload>();
 
   public maxFileSize = MAX_FILE_SIZE;
   public files: File[] = [];
@@ -114,10 +116,6 @@ export class CreateAdvertisementFillingPageComponent implements OnChanges {
     return this.advertisementForm.get(key) as FormControl;
   }
 
-  public onLogout(): void {
-    this.logout.emit();
-  }
-
   public submitForm(): void {
     if (this.files.length < 1) {
       this.toastService.addToast({
@@ -164,32 +162,10 @@ export class CreateAdvertisementFillingPageComponent implements OnChanges {
     this.files.splice(this.files.indexOf(event), 1);
   }
 
-  public ngOnChanges(changes: SimpleChanges): void {
-    if (
-      changes.createAdvertisementLoadingStatus &&
-      this.createAdvertisementLoadingStatus?.loaded &&
-      !changes.createAdvertisementLoadingStatus.isFirstChange()
-    ) {
-      this.router.navigate(['']);
-    }
-  }
-
   public onClickFile(event: MouseEvent): void {
     if (this.files.length) {
       event.preventDefault();
     }
-  }
-
-  public onSelectTab(selectedOptionId: string): void {
-    this.selectTab.emit(selectedOptionId);
-  }
-
-  public onAddNotificationMessage(message: MessagePayload): void {
-    this.addNotificationMessage.emit(message);
-  }
-
-  public onClickNotification(notification: MessagePayload): void {
-    this.changeNotificationStatus.emit(notification);
   }
 
   public goToPreview(clickEvent: MouseEvent): void {

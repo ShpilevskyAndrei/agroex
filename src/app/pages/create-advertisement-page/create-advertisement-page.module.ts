@@ -15,6 +15,7 @@ import { CreateAdvertisementPageContainerComponent } from './create-advertisemen
 import { CreateAdvertisementPageRoutingModule } from './create-advertisement-page-routing.module';
 import { CreateAdvertisementPageComponent } from './create-advertisement-page.component';
 import { AdvertisementFillingPageModule } from '../../shared/components/advertisement-filling-page/advertisement-filling-page.module';
+import { CreateAdvertisementFillingPageModule } from '../../shared/components/create-advertisement-filling-page/create-advertisement-filling-page.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { AdvertisementFillingPageModule } from '../../shared/components/advertis
     HeaderModule,
     AdvertisementFillingPageModule,
     CreateAdvertisementPageRoutingModule,
+    CreateAdvertisementFillingPageModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,

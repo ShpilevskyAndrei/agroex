@@ -7,8 +7,9 @@
   (changeNotificationStatus)="onClickNotification($event)"
   (selectTab)="onSelectTab($event)"
 ></app-header>
+
 <ng-container *ngIf="createAdvertisementLoadingStatus?.loaded; else notLoaded">
-  <ng-container *ngIf="navigateToCreateAdvertisementPage; else previewPage">
+  <!-- <ng-container *ngIf="navigateToCreateAdvertisementPage; else previewPage">
     <div class="container">
       <form
         [formGroup]="advertisementForm"
@@ -17,7 +18,7 @@
       >
         <div class="form__advertisementTitle">New advertisement</div>
         <div class="form__wrap">
-          <!--      product type -->
+          
           <div class="form__item">
             <div class="form__field">
               <div class="form__title">Product type</div>
@@ -40,7 +41,7 @@
               </mat-form-field>
             </div>
           </div>
-          <!--      location-->
+          
           <div class="form__item">
             <div class="form__field">
               <div class="form__title">Location</div>
@@ -79,7 +80,7 @@
               </div>
             </div>
           </div>
-          <!--      category-->
+          
           <div class="form__item">
             <div class="form__field">
               <div class="form__title">Category</div>
@@ -102,7 +103,7 @@
               </mat-form-field>
             </div>
           </div>
-          <!--      quantity and unit-->
+          
           <div class="form__item">
             <div class="form__field">
               <div class="form__title">Quantity</div>
@@ -136,7 +137,7 @@
               </div>
             </div>
           </div>
-          <!--      price and currency -->
+          
           <div class="form__item">
             <div class="form__field">
               <div class="form__title">Price</div>
@@ -179,7 +180,7 @@
               </div>
             </div>
           </div>
-          <!--      drag and drop file-->
+          
           <div class="form__item">
             <div class="form__field">
               <div class="form__title">Product images</div>
@@ -229,7 +230,7 @@
             </div>
           </div>
         </div>
-        <!--    button-->
+        
         <div class="form__btns">
           <div class="form__btns-wrap">
             <button
@@ -277,7 +278,12 @@
       [map]="map"
     >
     </app-advertisement-filling-page>
-  </ng-template>
+  </ng-template> -->
+  <app-create-advertisement-filling-page
+    [map]="map"
+    [user]="user"
+    (formAdvertisement)="onSubmitAdvertisementFormData($event)"
+  ></app-create-advertisement-filling-page>
 </ng-container>
 
 <ng-template #notLoaded>

@@ -30,6 +30,6 @@ import { HeaderModule } from '../header/header.module';
     MatTooltipModule,
     NgxSpinnerModule,
   ],
-  exports: [],
+  exports: [CreateAdvertisementFillingPageComponent],
 })
-export class CreateAdvertisementPageModule {}
+export class CreateAdvertisementFillingPageModule {}

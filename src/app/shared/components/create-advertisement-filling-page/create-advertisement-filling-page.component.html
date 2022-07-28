@@ -1,15 +1,4 @@
-<!-- <app-header
-  [user]="user"
-  [userRole]="userRole"
-  [notificationMessage]="notificationMessage"
-  (logout)="onLogout()"
-  (addNotificationMessage)="onAddNotificationMessage($event)"
-  (changeNotificationStatus)="onClickNotification($event)"
-  (selectTab)="onSelectTab($event)"
-></app-header> -->
-
-<ng-container *ngIf="createAdvertisementLoadingStatus?.loaded; else notLoaded">
-  <ng-container *ngIf="navigateToCreateAdvertisementPage; else previewPage">
+<ng-container *ngIf="navigateToCreateAdvertisementPage; else previewPage">
     <div class="container">
       <form
         [formGroup]="advertisementForm"
@@ -256,45 +245,26 @@
         </div>
       </form>
     </div>
-  </ng-container>
-  <ng-template #previewPage>
-    <div class="container">
-      <div class="preview">
-        <div class="preview__back" (click)="goToCreateAdvPage()">
-          <button class="preview__back-button btn_tradewind" mat-raised-button>
-            <mat-icon>arrow_back</mat-icon><span>Back to editing</span>
-          </button>
-        </div>
-        <div class="preview__place-ad" (click)="submitForm()">
-          <button class="preview__place-ad-button" mat-raised-button >
-            <span>Publish your advertisement</span><mat-icon>arrow_forward</mat-icon>
-          </button>
-        </div>
+</ng-container>
+<ng-template #previewPage>
+  <div class="container">
+    <div class="preview">
+      <div class="preview__back" (click)="goToCreateAdvPage()">
+        <button class="preview__back-button btn_tradewind" mat-raised-button>
+          <mat-icon>arrow_back</mat-icon><span>Back to editing</span>
+        </button>
+      </div>
+      <div class="preview__place-ad" (click)="submitForm()">
+        <button class="preview__place-ad-button" mat-raised-button >
+          <span>Publish your advertisement</span><mat-icon>arrow_forward</mat-icon>
+        </button>
       </div>
     </div>
-    <app-advertisement-filling-page
-      [user]="user"
-      [advertisement]="dataToPreviewAdvPage"
-      [map]="map"
-    >
-    </app-advertisement-filling-page>
-  </ng-template>
-</ng-container>
-
-<ng-template #notLoaded>
-  <ngx-spinner
-    *ngIf="
-      createAdvertisementLoadingStatus?.loading;
-      else createAdvertisementError
-    "
-    bdColor="rgba(0, 0, 0, 0)"
-    size="medium"
-    color="#38999B"
-    type="ball-clip-rotate"
-    [fullScreen]="false"
+  </div>
+  <app-advertisement-filling-page
+    [user]="user"
+    [advertisement]="dataToPreviewAdvPage"
+    [map]="map"
   >
-  </ngx-spinner>
-  <ng-template #createAdvertisementError>
-    <p>{{ createAdvertisementLoadingStatus?.error?.statusText }}</p>
-  </ng-template>
+  </app-advertisement-filling-page>
 </ng-template>

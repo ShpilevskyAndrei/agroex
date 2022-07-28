@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { AgroexToastService, ToastType } from 'ngx-agroex-toast';
 import { catchError, map, of, switchMap, withLatestFrom } from 'rxjs';
 
-import { CreateAdvertisementService } from '../../pages/create-advertisement-page/services/create-advertisement.service';
+import { CreateAdvertisementService } from '../../shared/components/create-advertisement-filling-page/services/create-advertisement.service';
 import { selectUserToken } from '../registration-page/registration-page.selectors';
 import { CreateAdvertisementPageActions } from './create-advertisement-page.actions';
 
