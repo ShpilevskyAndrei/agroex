@@ -81,6 +81,7 @@ export class CreateAdvertisementService {
     { value: 'Watermelon', viewValue: 'Watermelon' },
     { value: 'Walnut', viewValue: 'Walnut' },
     { value: 'Wheat', viewValue: 'Wheat' },
+    { value: 'Other', viewValue: 'Other...' },
   ];
 
   constructor(private httpClient: HttpClient) {}

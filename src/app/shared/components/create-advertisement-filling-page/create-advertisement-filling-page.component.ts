@@ -1,21 +1,14 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  // OnChanges,
-  Output,
-  // SimpleChanges,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AgroexToastService, ToastType } from 'ngx-agroex-toast';
 import { NgxDropzoneChangeEvent } from 'ngx-dropzone';
-// import firebase from 'firebase/compat';
-// import MessagePayload = firebase.messaging.MessagePayload;
 
 import { MAX_FILE_SIZE } from './constant/max-file-sizes';
 import { PATH_TO_EMPTY_IMAGE } from './constant/empty-image';
-import { REGEXP_FOR_IS_NUMBER } from './constant/regexp';
+import {
+  REGEXP_FOR_IS_NUMBER,
+  REGEXP_FOR_LATIN_CHARS,
+} from './constant/regexp';
 import {
   ICategory,
   ICountry,
@@ -27,8 +20,6 @@ import {
 import { CreateAdvertisementService } from './services/create-advertisement.service';
 import * as moment from 'moment';
 import { IUser } from '../../interfaces/user.interface';
-// import { LoadingStatus } from '../../interfaces/loading-status';
-// import { UserRole } from '../header/enums/user-role';
 import { IAdRequestInterface } from '../advertisements-list/interfaces/ad-request.interface';
 import { REGEXP_FOR_IS_INTEGER_NUMBER } from '../../constants/regexp';
 
@@ -37,25 +28,11 @@ import { REGEXP_FOR_IS_INTEGER_NUMBER } from '../../constants/regexp';
   templateUrl: './create-advertisement-filling-page.component.html',
   styleUrls: ['./create-advertisement-filling-page.component.scss'],
 })
-
-// export class CreateAdvertisementFillingPageComponent implements OnChanges {
 export class CreateAdvertisementFillingPageComponent {
   @Input() public user: IUser | null;
-  // @Input() public createAdvertisementLoadingStatus: LoadingStatus | null;
-  // @Input() public notificationMessage: MessagePayload[] | null;
-  // @Input() public userRole: UserRole | null;
   @Input() public map: GeoJSON.FeatureCollection<GeoJSON.MultiPolygon> | null;
-
-  // @Output() public logout: EventEmitter<void> = new EventEmitter<void>();
-  // @Output() public dropLoadingStatus: EventEmitter<void> =
-  //   new EventEmitter<void>();
   @Output()
   public formAdvertisement: EventEmitter<FormData> = new EventEmitter<FormData>();
-  // @Output() public selectTab: EventEmitter<string> = new EventEmitter<string>();
-  // @Output() public addNotificationMessage: EventEmitter<MessagePayload> =
-  //   new EventEmitter<MessagePayload>();
-  // @Output() public changeNotificationStatus: EventEmitter<MessagePayload> =
-  //   new EventEmitter<MessagePayload>();
 
   public maxFileSize = MAX_FILE_SIZE;
   public files: File[] = [];
@@ -69,8 +46,10 @@ export class CreateAdvertisementFillingPageComponent {
   public navigateToCreateAdvertisementPage = true;
   public productTypes: IProductType[] =
     this.createAdvertisementService.productTypes;
+  public otherSelect = false;
 
   public advertisementForm: FormGroup = new FormGroup({
+    title: new FormControl(''),
     productType: new FormControl('', [Validators.required]),
     country: new FormControl(
       {
@@ -107,7 +86,6 @@ export class CreateAdvertisementFillingPageComponent {
   });
 
   constructor(
-    private router: Router,
     private createAdvertisementService: CreateAdvertisementService,
     private toastService: AgroexToastService
   ) {}
@@ -130,7 +108,7 @@ export class CreateAdvertisementFillingPageComponent {
     const formData = new FormData();
 
     formData.append('files', this.files[0]);
-    formData.append('title', rawValue.productType);
+    formData.append('title', this.getTitle());
     formData.append('country', rawValue.country);
     formData.append('location', rawValue.location);
     formData.append('category', rawValue.category);
@@ -194,6 +172,32 @@ export class CreateAdvertisementFillingPageComponent {
     this.navigateToCreateAdvertisementPage = true;
   }
 
+  public getOtherValue(): void {
+    const rawValue = this.advertisementForm.getRawValue();
+
+    if (rawValue.productType === 'Other') {
+      this.get('title').setValidators([
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(40),
+        Validators.pattern(REGEXP_FOR_LATIN_CHARS),
+      ]);
+      this.get('title').updateValueAndValidity();
+      this.otherSelect = true;
+      return;
+    }
+
+    this.get('title').clearValidators();
+    this.get('title').updateValueAndValidity();
+    this.otherSelect = false;
+    return;
+  }
+
+  public getTitle(): string {
+    const rawValue = this.advertisementForm.getRawValue();
+    return this.otherSelect ? rawValue.title : rawValue.productType;
+  }
+
   public getDataToPreviewAdvPage(base64File: string): IAdRequestInterface {
     const rawValue = this.advertisementForm.getRawValue();
     const currentDate = moment().format('YYYY-MM-DD HH:mm');
@@ -201,7 +205,7 @@ export class CreateAdvertisementFillingPageComponent {
     return {
       advertisement: {
         id: 0,
-        title: rawValue.productType,
+        title: this.getTitle(),
         country: rawValue.country,
         location: rawValue.location,
         slug: '',
