@@ -16,7 +16,7 @@
             <div class="user-type-checkbox__box">
               <mat-radio-button
                 value="entity"
-                (click)="getLabelPosition(labelPositionEnum.entity)"
+                (click)="getLabelPosition(labelPositionEnum.legalEntity)"
                 >Legal entity</mat-radio-button
               >
             </div>
@@ -50,16 +50,16 @@
             type="text"
             matInput
             placeholder="Surname"
-            formControlName="userSurname"
+            formControlName="surname"
           />
           <mat-error
             *ngIf="
-              this.get('userSurname').touched &&
-              this.get('userSurname').hasError('required')
+              this.get('surname').touched &&
+              this.get('surname').hasError('required')
             "
             >Enter your Surname</mat-error
           >
-          <mat-error *ngIf="this.get('username').hasError('minlength')"
+          <mat-error *ngIf="this.get('surname').hasError('minlength')"
             >Surname must bigger than
             {{ this.MIN_USER_NAME_LENGTH }} char</mat-error
           >
@@ -192,163 +192,134 @@
 
         <hr
           *ngIf="
-            !this.isLoginForm && labelPosition === labelPositionEnum.entity
+            !this.isLoginForm && labelPosition === labelPositionEnum.legalEntity
           "
         />
 
-        <mat-form-field
-          *ngIf="
-            !this.isLoginForm && labelPosition === labelPositionEnum.entity
-          "
-          class="form_login__field"
-        >
-          <mat-label>Company name</mat-label>
-          <input
-            type="text"
-            matInput
-            placeholder="Company name"
-            formControlName="companyName"
-          />
-          <mat-error
-            *ngIf="
-              this.get('companyName').touched &&
-              this.get('companyName').hasError('required')
-            "
-            >Enter your company name</mat-error
-          >
-          <mat-error *ngIf="this.get('companyName').hasError('minlength')"
-            >Company name must be more than
-            {{ this.MIN_USER_NAME_LENGTH }} char</mat-error
-          >
-        </mat-form-field>
+<!--        <mat-form-field-->
+<!--          *ngIf="-->
+<!--            !this.isLoginForm && labelPosition === labelPositionEnum.legalEntity-->
+<!--          "-->
+<!--          class="form_login__field"-->
+<!--        >-->
+<!--          <mat-label>Company name</mat-label>-->
+<!--          <input-->
+<!--            type="text"-->
+<!--            matInput-->
+<!--            placeholder="Company name"-->
+<!--            formControlName="companyName"-->
+<!--          />-->
+<!--          <mat-error-->
+<!--            *ngIf="-->
+<!--              this.get('companyName').touched &&-->
+<!--              this.get('companyName').hasError('required')-->
+<!--            "-->
+<!--            >Enter your company name</mat-error-->
+<!--          >-->
+<!--          <mat-error *ngIf="this.get('companyName').hasError('minlength')"-->
+<!--            >Company name must be more than-->
+<!--            {{ this.MIN_USER_NAME_LENGTH }} char</mat-error-->
+<!--          >-->
+<!--        </mat-form-field>-->
 
-        <mat-form-field
-          *ngIf="
-            !this.isLoginForm && labelPosition === labelPositionEnum.entity
-          "
-          class="form_login__field"
-        >
-          <mat-label>Company tax number (INN)</mat-label>
-          <input
-            type="text"
-            matInput
-            placeholder="Company tax number (INN)"
-            formControlName="companyTaxNumber"
-          />
-          <mat-error
-            *ngIf="
-              this.get('companyTaxNumber').touched &&
-              this.get('companyTaxNumber').hasError('required')
-            "
-            >Enter your company tax number (INN)</mat-error
-          >
-          <mat-error *ngIf="this.get('companyTaxNumber').hasError('minlength')"
-            >Company tax number (INN) must be more than
-            {{ this.MIN_USER_NAME_LENGTH }} char</mat-error
-          >
-        </mat-form-field>
+<!--        <mat-form-field-->
+<!--          *ngIf="-->
+<!--            !this.isLoginForm && labelPosition === labelPositionEnum.legalEntity-->
+<!--          "-->
+<!--          class="form_login__field"-->
+<!--        >-->
+<!--          <mat-label>Company tax number (INN)</mat-label>-->
+<!--          <input-->
+<!--            type="text"-->
+<!--            matInput-->
+<!--            placeholder="Company tax number (INN)"-->
+<!--            formControlName="companyTaxNumber"-->
+<!--          />-->
+<!--          <mat-error-->
+<!--            *ngIf="-->
+<!--              this.get('companyTaxNumber').touched &&-->
+<!--              this.get('companyTaxNumber').hasError('required')-->
+<!--            "-->
+<!--            >Enter your company tax number (INN)</mat-error-->
+<!--          >-->
+<!--          <mat-error *ngIf="this.get('companyTaxNumber').hasError('minlength')"-->
+<!--            >Company tax number (INN) must be more than-->
+<!--            {{ this.MIN_USER_NAME_LENGTH }} char</mat-error-->
+<!--          >-->
+<!--        </mat-form-field>-->
 
-        <mat-form-field
-          *ngIf="
-            !this.isLoginForm && labelPosition === labelPositionEnum.entity
-          "
-          class="form_login__field"
-        >
-          <mat-label>Bank account</mat-label>
-          <input
-            type="text"
-            matInput
-            placeholder="Bank account"
-            formControlName="bankAccount"
-          />
-          <mat-error
-            *ngIf="
-              this.get('bankAccount').touched &&
-              this.get('bankAccount').hasError('required')
-            "
-            >Enter your bank account</mat-error
-          >
-          <mat-error *ngIf="this.get('bankAccount').hasError('minlength')"
-            >Bank account must be more than
-            {{ this.MIN_USER_NAME_LENGTH }} char</mat-error
-          >
-        </mat-form-field>
+<!--        <mat-form-field-->
+<!--          *ngIf="-->
+<!--            !this.isLoginForm && labelPosition === labelPositionEnum.legalEntity-->
+<!--          "-->
+<!--          class="form_login__field"-->
+<!--        >-->
+<!--          <mat-label>Bank account</mat-label>-->
+<!--          <input-->
+<!--            type="text"-->
+<!--            matInput-->
+<!--            placeholder="Bank account"-->
+<!--            formControlName="bankAccount"-->
+<!--          />-->
+<!--          <mat-error-->
+<!--            *ngIf="-->
+<!--              this.get('bankAccount').touched &&-->
+<!--              this.get('bankAccount').hasError('required')-->
+<!--            "-->
+<!--            >Enter your bank account</mat-error-->
+<!--          >-->
+<!--          <mat-error *ngIf="this.get('bankAccount').hasError('minlength')"-->
+<!--            >Bank account must be more than-->
+<!--            {{ this.MIN_USER_NAME_LENGTH }} char</mat-error-->
+<!--          >-->
+<!--        </mat-form-field>-->
 
-        <mat-form-field
-          *ngIf="
-            !this.isLoginForm && labelPosition === labelPositionEnum.entity
-          "
-          class="form_login__field"
-        >
-          <mat-label>Company phone number</mat-label>
-          <input
-            type="text"
-            matInput
-            placeholder="Company phone number"
-            formControlName="companyPhoneNumber"
-          />
-          <mat-error
-            *ngIf="
-              this.get('companyPhoneNumber').touched &&
-              this.get('companyPhoneNumber').hasError('required')
-            "
-            >Enter your company phone number</mat-error
-          >
-          <mat-error
-            *ngIf="
-              this.get('companyPhoneNumber').touched &&
-              this.get('companyPhoneNumber').hasError('pattern')
-            "
-            >Enter a valid phone</mat-error
-          >
-        </mat-form-field>
-
-        <div
-          *ngIf="
-            !this.isLoginForm && labelPosition === labelPositionEnum.entity
-          "
-        >
-          <div>
-            <div
-              class="form__dropzone"
-              ngx-dropzone
-              accept="image/jpeg,image/png"
-              formControlName="certificate"
-              [maxFileSize]="maxFileSize"
-              [multiple]="false"
-              (change)="onSelect($event)"
-              (click)="onClickFile($event)"
-            >
-              <ngx-dropzone-label>
-                <div>
-                  <div>
-                    <p>Add your registration certificate</p>
-                    <span
-                      >Choose a file or drag and drop it here! <br />
-                      (max size: 5 mb)</span
-                    >
-                  </div>
-                </div>
-              </ngx-dropzone-label>
-              <ngx-dropzone-image-preview
-                ngProjectAs="ngx-dropzone-preview"
-                *ngFor="let f of files"
-                [file]="f"
-                [removable]="true"
-                (removed)="onRemove(f)"
-              >
-              </ngx-dropzone-image-preview>
-            </div>
-          </div>
-          <mat-error
-            class="form__dropzone__error-message"
-            *ngIf="
-              this.get('certificate').touched &&
-              this.get('certificate').hasError('required')
-            "
-            >Add your registration certificate</mat-error
-          >
-        </div>
+<!--        <div-->
+<!--          *ngIf="-->
+<!--            !this.isLoginForm && labelPosition === labelPositionEnum.legalEntity-->
+<!--          "-->
+<!--        >-->
+<!--          <div>-->
+<!--            <div-->
+<!--              class="form__dropzone"-->
+<!--              ngx-dropzone-->
+<!--              accept="image/jpeg,image/png"-->
+<!--              formControlName="certificate"-->
+<!--              [maxFileSize]="maxFileSize"-->
+<!--              [multiple]="false"-->
+<!--              (change)="onSelect($event)"-->
+<!--              (click)="onClickFile($event)"-->
+<!--            >-->
+<!--              <ngx-dropzone-label>-->
+<!--                <div>-->
+<!--                  <div>-->
+<!--                    <p>Add your registration certificate</p>-->
+<!--                    <span-->
+<!--                      >Choose a file or drag and drop it here! <br />-->
+<!--                      (max size: 5 mb)</span-->
+<!--                    >-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </ngx-dropzone-label>-->
+<!--              <ngx-dropzone-image-preview-->
+<!--                ngProjectAs="ngx-dropzone-preview"-->
+<!--                *ngFor="let f of files"-->
+<!--                [file]="f"-->
+<!--                [removable]="true"-->
+<!--                (removed)="onRemove(f)"-->
+<!--              >-->
+<!--              </ngx-dropzone-image-preview>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <mat-error-->
+<!--            class="form__dropzone__error-message"-->
+<!--            *ngIf="-->
+<!--              this.get('certificate').touched &&-->
+<!--              this.get('certificate').hasError('required')-->
+<!--            "-->
+<!--            >Add your registration certificate</mat-error-->
+<!--          >-->
+<!--        </div>-->
 
         <div *ngIf="!this.isLoginForm" class="form_login__privacy">
           <mat-checkbox formControlName="checkBoxConfirm"></mat-checkbox>

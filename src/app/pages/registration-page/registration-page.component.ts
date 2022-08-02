@@ -66,7 +66,7 @@ export class RegistrationPageComponent implements OnChanges {
         Validators.required,
         Validators.minLength(this.MIN_USER_NAME_LENGTH),
       ]),
-      userSurname: new FormControl('', [
+      surname: new FormControl('', [
         Validators.required,
         Validators.minLength(this.MIN_USER_NAME_LENGTH),
       ]),
@@ -80,23 +80,19 @@ export class RegistrationPageComponent implements OnChanges {
       ]),
       passwordConfirm: new FormControl('', [Validators.required]),
       checkBoxConfirm: new FormControl(false, Validators.requiredTrue),
-      companyName: new FormControl('', [
-        Validators.required,
-        Validators.minLength(this.MIN_USER_NAME_LENGTH),
-      ]),
-      companyTaxNumber: new FormControl('', [
-        Validators.required,
-        Validators.minLength(this.MIN_USER_NAME_LENGTH),
-      ]),
-      bankAccount: new FormControl('', [
-        Validators.required,
-        Validators.minLength(this.MIN_USER_NAME_LENGTH),
-      ]),
-      companyPhoneNumber: new FormControl('', [
-        Validators.required,
-        Validators.pattern(REGEXP_FOR_PHONE),
-      ]),
-      certificate: new FormControl('', Validators.required),
+      // companyName: new FormControl('', [
+      //   Validators.required,
+      //   Validators.minLength(this.MIN_USER_NAME_LENGTH),
+      // ]),
+      // companyTaxNumber: new FormControl('', [
+      //   Validators.required,
+      //   Validators.minLength(this.MIN_USER_NAME_LENGTH),
+      // ]),
+      // bankAccount: new FormControl('', [
+      //   Validators.required,
+      //   Validators.minLength(this.MIN_USER_NAME_LENGTH),
+      // ]),
+      // certificate: new FormControl('', Validators.required),
     },
     {
       validators: CustomValidators.passwordsMatching,
@@ -138,11 +134,22 @@ export class RegistrationPageComponent implements OnChanges {
   }
 
   public getLabelPosition(label: LabelPositionEnum): void {
+    console.log(label);
     this.labelPosition = label;
   }
 
   public get(key: string): FormControl {
     return this.form.get(key) as FormControl;
+  }
+
+  public registrURL(): string {
+    if (this.labelPosition === this.labelPositionEnum.person) {
+      return 'person';
+    } else if (this.labelPosition === this.labelPositionEnum.legalEntity) {
+      return 'company';
+    } else {
+      return '';
+    }
   }
 
   public onRegister(clickEvent: MouseEvent): void {
@@ -152,12 +159,14 @@ export class RegistrationPageComponent implements OnChanges {
     if (this.form.valid) {
       this.authorizationCombineInfo.emit({
         user: {
-          username: this.get('username').value,
+          name: this.get('username').value,
+          surname: this.get('surname').value,
           email: this.get('email').value,
           password: this.get('password').value,
           phone: this.get('phoneNumber').value,
+          type: this.labelPosition,
         },
-        url: 'register',
+        url: `signup/${this.registrURL()}`,
       });
     }
   }

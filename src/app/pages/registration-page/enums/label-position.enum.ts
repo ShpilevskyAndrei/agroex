@@ -1,4 +1,4 @@
 export enum LabelPositionEnum {
-  entity = 'entity',
+  legalEntity = 'legalEntity',
   person = 'person',
 }

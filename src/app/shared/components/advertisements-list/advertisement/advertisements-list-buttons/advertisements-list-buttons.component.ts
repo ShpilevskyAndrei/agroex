@@ -37,18 +37,6 @@ export class AdvertisementsListButtonsComponent {
 
   constructor(private dialog: MatDialog) {}
 
-  public unigueUserCode(
-    name: string | undefined,
-    phone: string | undefined
-  ): string {
-    if (name && phone) {
-      const letters = name.substring(0, 2).toLowerCase();
-      const numbers = phone.replace(/[^0-9]/g, '');
-      return `${letters} ${numbers}`;
-    }
-    return '';
-  }
-
   public openBetModal(): void {
     this.dialog
       .open(BetModalComponent, {
@@ -106,17 +94,10 @@ export class AdvertisementsListButtonsComponent {
           id: this.advertisement.id,
           title: this.advertisement.title,
           location: this.advertisement.location,
-          seller: this.advertisement.author.username || 'Unknown seller',
-          sellerUniqueUserCode:
-            this.unigueUserCode(
-              this.advertisement.author.username,
-              this.advertisement.author.phone
-            ) || '...',
-          buyer: this.user?.username,
-          buyerUniqueUserCode: this.unigueUserCode(
-            this.user?.username,
-            this.user?.phone
-          ),
+          seller: this.advertisement.author.name || 'Unknown seller',
+          sellerUniqueUserCode: this.advertisement.author.uuid,
+          buyer: this.user?.name,
+          buyerUniqueUserCode: this.user?.uuid,
         },
       })
       .afterClosed()

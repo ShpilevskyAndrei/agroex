@@ -6,6 +6,7 @@ export interface BuyModalDataInterface {
   id: number;
   title: string;
   location: string;
+  uuid: string;
   seller: string;
   sellerUniqueUserCode: string;
   buyer: string;

@@ -83,14 +83,14 @@ export class AdvertisementButtonsAdPageComponent {
           id: this.advertisement.id,
           title: this.advertisement.title,
           location: this.advertisement.location,
-          seller: this.advertisement.author.username,
+          seller: this.advertisement.author.name,
           sellerUniqueUserCode: this.unigueUserCode(
-            this.advertisement.author.username,
+            this.advertisement.author.name,
             this.advertisement.author.phone
           ),
-          buyer: this.user?.username,
+          buyer: this.user?.name,
           buyerUniqueUserCode: this.unigueUserCode(
-            this.user?.username,
+            this.user?.name,
             this.user?.phone
           ),
         },

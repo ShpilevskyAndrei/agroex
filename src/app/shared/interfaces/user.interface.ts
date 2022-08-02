@@ -23,9 +23,12 @@ export interface IUserRole {
 }
 
 export interface IUser {
+  type: string | undefined;
+  uuid: string | undefined;
   id: number;
   email: string;
-  username: string;
+  name: string;
+  surname: string;
   phone: string;
   image: string;
   token?: string;
