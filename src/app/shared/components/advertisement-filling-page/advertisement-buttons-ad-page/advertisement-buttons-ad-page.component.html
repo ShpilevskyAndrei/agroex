@@ -3,8 +3,8 @@
     <button
       mat-button
       class="btn_ghost bet-button"
-      [disabled]="isDisabled || betForm.invalid"
-      (click)="onSetBet()"
+      [disabled]="user && (isDisabled || betForm.invalid)"
+      (click)="user ? onSetBet() : openGuestModal()"
     >
       <mat-icon svgIcon="bet-icon" class="advertisement-btns__icon"></mat-icon>
       <span>Bet </span>
@@ -12,7 +12,7 @@
     </button>
   </div>
   <div class="advertisement-btn">
-    <button mat-button (click)="openBuyModal()">
+    <button mat-button (click)="user ? openBuyModal() : openGuestModal()">
       <mat-icon
         svgIcon="caret-icon"
         class="advertisement-btns__icon"

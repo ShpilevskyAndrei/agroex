@@ -1,18 +1,20 @@
 <div
   class="advertisement-wrap__btns"
-  *ngIf="user?.id !== advertisement?.author?.id"
+  *ngIf="
+    user?.id !== advertisement?.author?.id && userRole !== UserRole.Moderator
+  "
   (click)="stopPropagation($event)"
 >
   <div class="advertisement-btns">
     <div class="advertisement-btn">
       <button
         *ngIf="
-        !advertisement.userBets[0] ||
-        +advertisement.userBets[0].betValue + 1 < +advertisement.price
-      "
+          !advertisement.userBets[0] ||
+          +advertisement.userBets[0].betValue + 1 < +advertisement.price
+        "
         mat-button
         class="btn_ghost"
-        (click)="openBetModal()"
+        (click)="user ? openBetModal() : openGuestModal()"
       >
         <mat-icon
           svgIcon="bet-icon"
@@ -22,7 +24,7 @@
       </button>
     </div>
     <div class="advertisement-btn">
-      <button mat-button (click)="openBuyModal()">
+      <button mat-button (click)="user ? openBuyModal() : openGuestModal()">
         <mat-icon
           svgIcon="caret-icon"
           class="advertisement-btns__icon"

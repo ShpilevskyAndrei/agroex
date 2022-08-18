@@ -241,9 +241,12 @@ export class CreateAdvertisementPageComponent implements OnChanges {
         createAt: currentDate,
         updatedAt: currentDate,
         author: {
+          type: this.user?.type,
+          uuid: this.user?.uuid,
           id: this.user?.id || 0,
           email: this.user?.email || '',
-          username: this.user?.username || '',
+          name: this.user?.name || '',
+          surname: this.user?.surname || '',
           phone: this.user?.phone || '',
           image: this.user?.image || '',
           banned: this.user?.banned || false,

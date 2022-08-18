@@ -14,6 +14,7 @@
 
 <ng-container *ngIf="advertisementLoadingStatus?.loaded; else notLoaded">
   <app-advertisement-filling-page
+    [userRole]="userRole"
     [user]="user"
     [advertisement]="advertisement"
     [map]="map"

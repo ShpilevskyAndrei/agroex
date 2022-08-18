@@ -1,220 +1,387 @@
 <div class="container">
-    <mat-card class="mat-card">
-      <mat-card-title *ngIf="!this.isLoginForm">Sign up</mat-card-title>
-      <mat-card-title *ngIf="this.isLoginForm">Log in</mat-card-title>
-      <mat-icon class="close" (click)="close()">close</mat-icon>
-      <mat-card-content class="form-content">
-        <form [formGroup]="form" class="form_login">
-          <mat-form-field *ngIf="!this.isLoginForm" class="form_login__field">
-            <mat-label>Name</mat-label>
-            <input
-              type="text"
-              matInput
-              placeholder="Name"
-              formControlName="username"
-            />
-            <mat-error
-              *ngIf="
-                this.get('username').touched &&
-                this.get('username').hasError('required')
-              "
-              >Enter your Name</mat-error
-            >
-            <mat-error *ngIf="this.get('username').hasError('minlength')"
-              >Name must bigger than
-              {{ this.MIN_USER_NAME_LENGTH }} char</mat-error
-            >
-          </mat-form-field>
+  <mat-card class="mat-card">
+    <mat-card-title *ngIf="!this.isLoginForm">Sign up</mat-card-title>
+    <mat-card-title *ngIf="this.isLoginForm">Log in</mat-card-title>
+    <mat-icon class="close" (click)="close()">close</mat-icon>
+    <mat-card-content class="form-content">
+      <form [formGroup]="form" class="form_login">
+        <section *ngIf="!this.isLoginForm">
+          <mat-radio-group class="user-type-checkbox">
+            <div class="user-type-checkbox__box">
+              <mat-radio-button
+                (click)="getLabelPosition(labelPositionEnum.person)"
+                >Person</mat-radio-button
+              >
+            </div>
+            <div class="user-type-checkbox__box">
+              <mat-radio-button
+                value="entity"
+                (click)="getLabelPosition(labelPositionEnum.legalEntity)"
+                >Legal entity</mat-radio-button
+              >
+            </div>
+          </mat-radio-group>
+        </section>
 
-          <mat-form-field class="form_login__field">
-            <mat-label>Email</mat-label>
-            <input
-              type="email"
-              matInput
-              placeholder="Email"
-              formControlName="email"
-            />
-            <mat-error
-              *ngIf="
-                this.get('email').touched &&
-                this.get('email').hasError('required')
-              "
-              >Enter your email</mat-error
-            >
-            <mat-error
-              *ngIf="
-                this.get('email').touched && this.get('email').hasError('pattern')
-              "
-              >Email must be valid</mat-error
-            >
-          </mat-form-field>
-  
-          <mat-form-field *ngIf="!this.isLoginForm" class="form_login__field">
-            <mat-label>Phone</mat-label>
-            <input
-              type="text"
-              matInput
-              placeholder="Phone"
-              formControlName="phoneNumber"
-            />
-            <mat-error
-              *ngIf="
-                this.get('phoneNumber').touched &&
-                this.get('phoneNumber').hasError('required')
-              "
-              >Enter your Phone</mat-error
-            >
-            <mat-error
-              *ngIf="
-                this.get('phoneNumber').touched &&
-                this.get('phoneNumber').hasError('pattern')
-              "
-              >Enter a valid phone</mat-error
-            >
-          </mat-form-field>
-  
-          <mat-form-field class="form_login__field" [ngClass]="{'not-matching' : isPasswordsMatching()}">
-            <mat-label>Password</mat-label>
-            <input
-              [type]="this.isHidePass ? 'password' : 'text'"
-              matInput
-              placeholder="Password"
-              formControlName="password"
-            />
-            <button
-              mat-icon-button
-              matSuffix
-              (click)="changePaswordVisibility($event)"
-              [attr.aria-label]="'Hide password'"
-              [attr.aria-pressed]="this.isHidePass"
-            >
-              <mat-icon>{{
-                this.isHidePass ? "visibility_off" : "visibility"
-              }}</mat-icon>
-            </button>
-            <mat-error
-              *ngIf="
-                this.get('password').touched &&
-                this.get('password').hasError('required')
-              "
-              >Enter your password</mat-error
-            >
-            <mat-error *ngIf="this.get('password').hasError('minlength')"
-              >Minimum
-              {{ this.MIN_PASSWORD_LENGTH }} characters</mat-error
-            >
-          </mat-form-field>
-  
-          <mat-form-field *ngIf="!this.isLoginForm" class="form_login__field" [ngClass]="{'not-matching' : isPasswordsMatching()}">
-            <mat-label>Password Confirm</mat-label>
-            <input
-              [type]="this.isHidePassConf ? 'password' : 'text'"
-              matInput
-              placeholder="Password Confirm"
-              formControlName="passwordConfirm"
-            />
-            <button
-              mat-icon-button
-              matSuffix
-              (click)="changePaswordVisibilityConf($event)"
-              [attr.aria-label]="'Hide password'"
-              [attr.aria-pressed]="this.isHidePassConf"
-            >
-              <mat-icon>{{
-                this.isHidePassConf ? "visibility_off" : "visibility"
-              }}</mat-icon>
-            </button>
-            <mat-error
-              *ngIf="
-                this.get('passwordConfirm').touched &&
-                this.get('passwordConfirm').hasError('required')
-              "
-              >Confirm your password </mat-error
-            >
-          </mat-form-field>
-  
+        <mat-form-field *ngIf="!this.isLoginForm" class="form_login__field">
+          <mat-label>Name</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Name"
+            formControlName="username"
+          />
           <mat-error
             *ngIf="
-              this.get('password').value &&
-              this.get('passwordConfirm').value &&
-              this.get('password').touched &&
-              this.get('passwordConfirm').touched &&
-              form.hasError('passwordsNotMatching')
+              this.get('username').touched &&
+              this.get('username').hasError('required')
             "
-            class="form_login__field-error_match"
-            >Passwords not matching</mat-error
+            >Enter your Name</mat-error
           >
-  
-          <div *ngIf="!this.isLoginForm" class="form_login__privacy">
-            <mat-checkbox formControlName="checkBoxConfirm"></mat-checkbox>
-            <div class="form_login__privacy-wrapper">
-              <p>
-                I am familiar with the
-                <span
-                  (click)="openPolicyModal()"
-                  class="form_login__privacy-click"
-                  >Privacy policy</span
-                >
-                and
-                <span
-                  (click)="openPolicyModal()"
-                  class="form_login__privacy-click"
-                  >User Agreement</span
-                >
-                . I consent to the processing of my personal data.
-              </p>
-            </div>
-          </div>
-  
-          <div
-            *ngIf="this.isLoginForm; else registerPage"
-            class="form_login__button"
+          <mat-error *ngIf="this.get('username').hasError('minlength')"
+            >Name must bigger than
+            {{ this.MIN_USER_NAME_LENGTH }} char</mat-error
           >
-            <button class="form_login-forgot" [disabled]="true">
-              Forgot your pasword?
-            </button>
-            <button
-              mat-button
-              (click)="onLogin($event)"
-              class="form_login__button-log"
-            >
-              Log in
-            </button>
-            <hr />
-            <p class="form_login-forgot form_login-ask">Don't have an account?</p>
-            <button
-              mat-button
-              class="btn_ghost"
-              (click)="switchForms($event)"
-            >
-              Sign up
-            </button>
-          </div>
-  
-          <ng-template #registerPage>
-            <button
-              mat-button
-              (click)="onRegister($event)"
-              class="form_login__button-log"
-            >
-              Sign up
-            </button>
-            <hr />
-            <p class="form_login-forgot form_login-ask">
-              Already have an account?
+        </mat-form-field>
+
+        <mat-form-field *ngIf="!this.isLoginForm" class="form_login__field">
+          <mat-label>Surname</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Surname"
+            formControlName="surname"
+          />
+          <mat-error
+            *ngIf="
+              this.get('surname').touched &&
+              this.get('surname').hasError('required')
+            "
+            >Enter your Surname</mat-error
+          >
+          <mat-error *ngIf="this.get('surname').hasError('minlength')"
+            >Surname must bigger than
+            {{ this.MIN_USER_NAME_LENGTH }} char</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field class="form_login__field">
+          <mat-label>Email</mat-label>
+          <input
+            type="email"
+            matInput
+            placeholder="Email"
+            formControlName="email"
+          />
+          <mat-error
+            *ngIf="
+              this.get('email').touched &&
+              this.get('email').hasError('required')
+            "
+            >Enter your email</mat-error
+          >
+          <mat-error
+            *ngIf="
+              this.get('email').touched && this.get('email').hasError('pattern')
+            "
+            >Email must be valid</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field *ngIf="!this.isLoginForm" class="form_login__field">
+          <mat-label>Phone</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Phone"
+            formControlName="phoneNumber"
+          />
+          <mat-error
+            *ngIf="
+              this.get('phoneNumber').touched &&
+              this.get('phoneNumber').hasError('required')
+            "
+            >Enter your Phone</mat-error
+          >
+          <mat-error
+            *ngIf="
+              this.get('phoneNumber').touched &&
+              this.get('phoneNumber').hasError('pattern')
+            "
+            >Enter a valid phone</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field
+          class="form_login__field"
+          [ngClass]="{ 'not-matching': isPasswordsMatching() }"
+        >
+          <mat-label>Password</mat-label>
+          <input
+            [type]="this.isHidePass ? 'password' : 'text'"
+            matInput
+            placeholder="Password"
+            formControlName="password"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="changePaswordVisibility($event)"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="this.isHidePass"
+          >
+            <mat-icon>{{
+              this.isHidePass ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
+          <mat-error
+            *ngIf="
+              this.get('password').touched &&
+              this.get('password').hasError('required')
+            "
+            >Enter your password</mat-error
+          >
+          <mat-error *ngIf="this.get('password').hasError('minlength')"
+            >Minimum {{ this.MIN_PASSWORD_LENGTH }} characters</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field
+          *ngIf="!this.isLoginForm"
+          class="form_login__field"
+          [ngClass]="{ 'not-matching': isPasswordsMatching() }"
+        >
+          <mat-label>Password Confirm</mat-label>
+          <input
+            [type]="this.isHidePassConf ? 'password' : 'text'"
+            matInput
+            placeholder="Password Confirm"
+            formControlName="passwordConfirm"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="changePaswordVisibilityConf($event)"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="this.isHidePassConf"
+          >
+            <mat-icon>{{
+              this.isHidePassConf ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
+          <mat-error
+            *ngIf="
+              this.get('passwordConfirm').touched &&
+              this.get('passwordConfirm').hasError('required')
+            "
+            >Confirm your password
+          </mat-error>
+        </mat-form-field>
+
+        <mat-error
+          *ngIf="
+            this.get('password').value &&
+            this.get('passwordConfirm').value &&
+            this.get('password').touched &&
+            this.get('passwordConfirm').touched &&
+            form.hasError('passwordsNotMatching')
+          "
+          class="form_login__field-error_match"
+          >Passwords not matching</mat-error
+        >
+
+        <hr
+          *ngIf="
+            !this.isLoginForm && labelPosition === labelPositionEnum.legalEntity
+          "
+        />
+
+<!--        <mat-form-field-->
+<!--          *ngIf="-->
+<!--            !this.isLoginForm && labelPosition === labelPositionEnum.legalEntity-->
+<!--          "-->
+<!--          class="form_login__field"-->
+<!--        >-->
+<!--          <mat-label>Company name</mat-label>-->
+<!--          <input-->
+<!--            type="text"-->
+<!--            matInput-->
+<!--            placeholder="Company name"-->
+<!--            formControlName="companyName"-->
+<!--          />-->
+<!--          <mat-error-->
+<!--            *ngIf="-->
+<!--              this.get('companyName').touched &&-->
+<!--              this.get('companyName').hasError('required')-->
+<!--            "-->
+<!--            >Enter your company name</mat-error-->
+<!--          >-->
+<!--          <mat-error *ngIf="this.get('companyName').hasError('minlength')"-->
+<!--            >Company name must be more than-->
+<!--            {{ this.MIN_USER_NAME_LENGTH }} char</mat-error-->
+<!--          >-->
+<!--        </mat-form-field>-->
+
+<!--        <mat-form-field-->
+<!--          *ngIf="-->
+<!--            !this.isLoginForm && labelPosition === labelPositionEnum.legalEntity-->
+<!--          "-->
+<!--          class="form_login__field"-->
+<!--        >-->
+<!--          <mat-label>Company tax number (INN)</mat-label>-->
+<!--          <input-->
+<!--            type="text"-->
+<!--            matInput-->
+<!--            placeholder="Company tax number (INN)"-->
+<!--            formControlName="companyTaxNumber"-->
+<!--          />-->
+<!--          <mat-error-->
+<!--            *ngIf="-->
+<!--              this.get('companyTaxNumber').touched &&-->
+<!--              this.get('companyTaxNumber').hasError('required')-->
+<!--            "-->
+<!--            >Enter your company tax number (INN)</mat-error-->
+<!--          >-->
+<!--          <mat-error *ngIf="this.get('companyTaxNumber').hasError('minlength')"-->
+<!--            >Company tax number (INN) must be more than-->
+<!--            {{ this.MIN_USER_NAME_LENGTH }} char</mat-error-->
+<!--          >-->
+<!--        </mat-form-field>-->
+
+<!--        <mat-form-field-->
+<!--          *ngIf="-->
+<!--            !this.isLoginForm && labelPosition === labelPositionEnum.legalEntity-->
+<!--          "-->
+<!--          class="form_login__field"-->
+<!--        >-->
+<!--          <mat-label>Bank account</mat-label>-->
+<!--          <input-->
+<!--            type="text"-->
+<!--            matInput-->
+<!--            placeholder="Bank account"-->
+<!--            formControlName="bankAccount"-->
+<!--          />-->
+<!--          <mat-error-->
+<!--            *ngIf="-->
+<!--              this.get('bankAccount').touched &&-->
+<!--              this.get('bankAccount').hasError('required')-->
+<!--            "-->
+<!--            >Enter your bank account</mat-error-->
+<!--          >-->
+<!--          <mat-error *ngIf="this.get('bankAccount').hasError('minlength')"-->
+<!--            >Bank account must be more than-->
+<!--            {{ this.MIN_USER_NAME_LENGTH }} char</mat-error-->
+<!--          >-->
+<!--        </mat-form-field>-->
+
+<!--        <div-->
+<!--          *ngIf="-->
+<!--            !this.isLoginForm && labelPosition === labelPositionEnum.legalEntity-->
+<!--          "-->
+<!--        >-->
+<!--          <div>-->
+<!--            <div-->
+<!--              class="form__dropzone"-->
+<!--              ngx-dropzone-->
+<!--              accept="image/jpeg,image/png"-->
+<!--              formControlName="certificate"-->
+<!--              [maxFileSize]="maxFileSize"-->
+<!--              [multiple]="false"-->
+<!--              (change)="onSelect($event)"-->
+<!--              (click)="onClickFile($event)"-->
+<!--            >-->
+<!--              <ngx-dropzone-label>-->
+<!--                <div>-->
+<!--                  <div>-->
+<!--                    <p>Add your registration certificate</p>-->
+<!--                    <span-->
+<!--                      >Choose a file or drag and drop it here! <br />-->
+<!--                      (max size: 5 mb)</span-->
+<!--                    >-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </ngx-dropzone-label>-->
+<!--              <ngx-dropzone-image-preview-->
+<!--                ngProjectAs="ngx-dropzone-preview"-->
+<!--                *ngFor="let f of files"-->
+<!--                [file]="f"-->
+<!--                [removable]="true"-->
+<!--                (removed)="onRemove(f)"-->
+<!--              >-->
+<!--              </ngx-dropzone-image-preview>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <mat-error-->
+<!--            class="form__dropzone__error-message"-->
+<!--            *ngIf="-->
+<!--              this.get('certificate').touched &&-->
+<!--              this.get('certificate').hasError('required')-->
+<!--            "-->
+<!--            >Add your registration certificate</mat-error-->
+<!--          >-->
+<!--        </div>-->
+
+        <div *ngIf="!this.isLoginForm" class="form_login__privacy">
+          <mat-checkbox formControlName="checkBoxConfirm"></mat-checkbox>
+          <div class="form_login__privacy-wrapper">
+            <p>
+              I am familiar with the
+              <span
+                (click)="openPolicyModal()"
+                class="form_login__privacy-click"
+                >Privacy policy</span
+              >
+              and
+              <span
+                (click)="openPolicyModal()"
+                class="form_login__privacy-click"
+                >User Agreement</span
+              >
+              . I consent to the processing of my personal data.
             </p>
-            <button
-              mat-button
-              (click)="switchForms($event)"
-              class="btn_ghost"
-            >
-              Log in
-            </button>
-          </ng-template>
-  
-          <small class="form_login-copy">&copy; 2022 AGROEX</small>
-        </form>
-      </mat-card-content>
-    </mat-card>
-  </div>
-  
+          </div>
+        </div>
+
+        <div
+          *ngIf="this.isLoginForm; else registerPage"
+          class="form_login__button"
+        >
+          <button class="form_login-forgot" [disabled]="true">
+            Forgot your pasword?
+          </button>
+          <button
+            mat-button
+            (click)="onLogin($event)"
+            class="form_login__button-log"
+          >
+            Log in
+          </button>
+          <hr />
+          <p class="form_login-forgot form_login-ask">Don't have an account?</p>
+          <button mat-button class="btn_ghost" (click)="switchForms($event)">
+            Sign up
+          </button>
+        </div>
+
+        <ng-template #registerPage>
+          <button
+            mat-button
+            (click)="onRegister($event)"
+            class="form_login__button-log"
+          >
+            Sign up
+          </button>
+          <hr />
+          <p class="form_login-forgot form_login-ask">
+            Already have an account?
+          </p>
+          <button mat-button (click)="switchForms($event)" class="btn_ghost">
+            Log in
+          </button>
+        </ng-template>
+
+        <small class="form_login-copy">&copy; 2022 AGROEX</small>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

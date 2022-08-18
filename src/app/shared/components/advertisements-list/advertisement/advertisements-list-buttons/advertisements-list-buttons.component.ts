@@ -11,6 +11,8 @@ import { filter, tap } from 'rxjs';
 import { IAdvertisementInterface } from '../../interfaces/advertisement.interface';
 import { BetModalComponent } from '../bet-modal/bet-modal.component';
 import { IUser } from '../../../../interfaces/user.interface';
+import { UserRole } from '../../../header/enums/user-role';
+import { GuestModalComponent } from '../guest-modal/guest-modal.component';
 import { BuyModalComponent } from '../buy-modal/buy-modal.component';
 
 @Component({
@@ -22,27 +24,18 @@ import { BuyModalComponent } from '../buy-modal/buy-modal.component';
 export class AdvertisementsListButtonsComponent {
   @Input() public advertisement: IAdvertisementInterface;
   @Input() public user: IUser | null;
+  @Input() public userRole: UserRole | null;
 
   @Output() public setBet: EventEmitter<Record<string, string>> =
     new EventEmitter<Record<string, string>>();
   @Output() public setBuy: EventEmitter<Record<string, string>> =
     new EventEmitter<Record<string, string>>();
 
+  public UserRole = UserRole;
+
   private bet: string;
 
   constructor(private dialog: MatDialog) {}
-
-  public unigueUserCode(
-    name: string | undefined,
-    phone: string | undefined
-  ): string {
-    if (name && phone) {
-      const letters = name.substring(0, 2).toLowerCase();
-      const numbers = phone.replace(/[^0-9]/g, '');
-      return `${letters} ${numbers}`;
-    }
-    return '';
-  }
 
   public openBetModal(): void {
     this.dialog
@@ -75,6 +68,17 @@ export class AdvertisementsListButtonsComponent {
       .subscribe();
   }
 
+  public openGuestModal(): void {
+    this.dialog.open(GuestModalComponent);
+  }
+
+  public onSetBuy(): void {
+    this.setBuy.emit({
+      slug: this.advertisement.slug,
+      title: this.advertisement.title,
+    });
+  }
+
   public openBuyModal(): void {
     this.dialog
       .open(BuyModalComponent, {
@@ -90,17 +94,10 @@ export class AdvertisementsListButtonsComponent {
           id: this.advertisement.id,
           title: this.advertisement.title,
           location: this.advertisement.location,
-          seller: this.advertisement.author.username || 'Unknown seller',
-          sellerUniqueUserCode:
-            this.unigueUserCode(
-              this.advertisement.author.username,
-              this.advertisement.author.phone
-            ) || '...',
-          buyer: this.user?.username,
-          buyerUniqueUserCode: this.unigueUserCode(
-            this.user?.username,
-            this.user?.phone
-          ),
+          seller: this.advertisement.author.name || 'Unknown seller',
+          sellerUniqueUserCode: this.advertisement.author.uuid,
+          buyer: this.user?.name,
+          buyerUniqueUserCode: this.user?.uuid,
         },
       })
       .afterClosed()

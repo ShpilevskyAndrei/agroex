@@ -51,9 +51,12 @@ export class AccountPageService extends BaseService {
             return {
               ...value,
               author: {
+                uuid: '',
+                type: '',
                 id: value.authorId,
                 email: '',
-                username: '',
+                name: '',
+                surname: '',
                 phone: '',
                 image: '',
                 banned: false,

@@ -14,9 +14,15 @@ import { AdvertisementButtonsModule } from './advertisement-buttons/advertisemen
 import { AdvertisementPriceModule } from './advertisement-price/advertisement-price.module';
 import { BetModalComponent } from './bet-modal/bet-modal.component';
 import { BuyModalComponent } from './buy-modal/buy-modal.component';
+import { GuestModalComponent } from './guest-modal/guest-modal.component';
 
 @NgModule({
-  declarations: [AdvertisementComponent, BetModalComponent, BuyModalComponent],
+  declarations: [
+    AdvertisementComponent,
+    BetModalComponent,
+    GuestModalComponent,
+    BuyModalComponent
+  ],
   imports: [
     CommonModule,
     AdvertisementTitleModule,

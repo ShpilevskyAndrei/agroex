@@ -1,0 +1,32 @@
+<div class="guest-modal">
+  <div class="guest-modal__text">
+    <div>
+      <h3 class="guest-modal__text__title">
+        Hi!
+        <p style="margin-bottom: 40px">You are not an authorized user</p>
+      </h3>
+      <p class="guest-modal__text__subtitle"
+        >Please Sign in before you Bet or Buy.
+      </p>
+      <p class="guest-modal__text__subtitle">Don’t have an account yet? Register.</p>
+    </div>
+    <mat-icon
+      role="img"
+      class="guest-modal__text__close mat-icon notranslate material-icons mat-icon-no-color"
+      aria-hidden="true"
+      data-mat-icon-type="font"
+      (click)="onCloseModal()"
+      >close</mat-icon
+    >
+  </div>
+  <div class="guest-modal__login">
+    <button
+      mat-raised-button
+      class="guest-modal__login__button"
+      (click)="onLogin()"
+    >
+      Proceed
+    </button>
+  </div>
+  <small class="guest-modal__agroex">&copy; 2022 AGROEX</small>
+</div>
